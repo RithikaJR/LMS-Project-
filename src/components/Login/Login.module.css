@@ -1,0 +1,110 @@
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;600&display=swap');
+
+
+.loginPage{
+  height: 86vh;
+  background-image: url("../images/slide_image4.jpg");
+  background-size:cover;
+  background-repeat: no-repeat;
+  
+
+  /* height: 100%; */
+  /* background-color: #464646;
+  background-size: cover; */
+}
+.login {
+  font-family: 'Montserrat', sans-serif;
+  color: whitesmoke;
+  width: 30%;
+  max-width: 40rem;
+  margin: 2rem auto;
+  padding: 2rem;
+  padding-top: 9rem;
+  padding-left: 30rem;
+}
+
+
+.login h2 {
+  text-align: right;
+  font-size: 50px;
+  font-weight: bolder ;
+  margin-top: -25px;
+  padding-left: 60px;
+  padding-bottom: 20px;
+  margin-right: 180px;
+  text-shadow: 4px 6px 8px #000000;
+}
+
+.useremail {
+  border-radius: 25px;
+  border: 2px;
+  margin: 12px 10px;
+  padding: 20px; 
+  width: 200px;
+  height: 10px; 
+}
+
+.userpassword {
+  border-radius: 25px;
+  border: 2px;
+  margin: 12px 10px;
+  padding: 20px; 
+  width: 200px;
+  height: 3px; 
+}
+/* ///// */
+
+.control {
+  margin: 1rem 0;
+  display: flex;
+  align-items: stretch;
+  flex-direction: column;
+}
+
+.control label,
+.control input {
+  display: block;
+}
+
+.control label {
+  font-weight: bold;
+  flex: 1;
+  color: #ffffff;
+  margin-bottom: 0.5rem;
+  margin-right: 2rem;
+}
+
+.control label.email {
+  margin-right: 5rem;
+}
+
+.control input {
+  flex: 3;
+  font: inherit;
+  padding: 0.7rem 1rem;
+  border-radius: 20px;
+  border: 0.5px #ccc;
+} 
+
+.control input:focus {
+  outline: none;
+  /* background: #f6dbfc; */
+}
+
+.control.invalid input {
+  /* border-color: red; */
+  background: #fbdada;
+}
+
+.actions {
+  margin-left: 100px;
+  margin-top: 40px;
+}
+
+@media (min-width: 768px) {
+  .control {
+    align-items: center;
+    flex-direction: row;
+  }
+
+}
