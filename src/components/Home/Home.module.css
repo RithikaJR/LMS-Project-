@@ -1,0 +1,40 @@
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;600&display=swap');
+
+
+.home {
+  box-sizing: border-box;
+  height: 87vh;
+  background-image: url(D:\Edits\lms_with_login\src\components\images\homepage_background.jpg);
+  /* background-size: cover; */
+}
+
+
+.writeup{
+  font-family: 'Montserrat', sans-serif;
+  /* font-size: 17px; */
+  font-size: large;
+  /* width: 90%; */
+  /* max-width: 40rem; */
+  padding: 3rem;
+  /* margin: 2rem auto; */
+  text-align: center;
+}
+
+.logolinks ul {
+  display: flex;
+  float:inline-start;
+  justify-content: center;
+  list-style: none;
+  margin-left: 20px;
+}
+
+.logolinks li {
+  margin-right: 20px;
+  height: 30px;
+  width: 50px;
+}
+
+.logolinks a {
+  /* display: none; */
+  background-image: url(D:\Edits\lms_with_login\src\components\images\user_logo.png);
+}
