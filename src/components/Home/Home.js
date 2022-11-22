@@ -1,4 +1,6 @@
 import React from 'react';
+import AvailableCourses from '../Courses/AvailableCourses';
+import Courses from '../Courses/Courses';
 
 import Card from '../UI/Card/Card';
 import classes from './Home.module.css';
@@ -9,6 +11,7 @@ const Home = (props) => {
       <div className={classes.writeup}>
         <h1>Welcome Pratheep!</h1>
         <h4>You are THE SUPER ADMIN!!</h4>
+        <Courses/>
       </div>
       <div className={classes.logolinks}>
         <ul>
@@ -19,6 +22,8 @@ const Home = (props) => {
           </li>
           <li>
             <a href='courses'>
+              
+  
               {/* <img src='D:\Edits\lms_with_login\src\components\images\course_logo.png'/> */} <h6>Courses</h6>
             </a>
           </li>
