@@ -4,7 +4,7 @@
 .home {
   box-sizing: border-box;
   height: 87vh;
-  background-image: url(D:\Edits\lms_with_login\src\components\images\homepage_background.jpg);
+  background-image: url(D:\LMS_Project_WS\LMS-Project-\src\components\images\homepage_background.jpg);
   /* background-size: cover; */
 }
 
@@ -36,5 +36,5 @@
 
 .logolinks a {
   /* display: none; */
-  background-image: url(D:\Edits\lms_with_login\src\components\images\user_logo.png);
+  background-image: url(D:\LMS_Project_WS\LMS-Project-\src\components\images\user_logo.png);
 }
