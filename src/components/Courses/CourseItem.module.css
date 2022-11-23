@@ -2,44 +2,46 @@
     display: inline-block;
     /* float: left; */
     height: 20rem;
+    width: 30rem;
     justify-content: center;
+    text-transform: capitalize;
     margin: 1rem;
+    margin-right: 2rem;
+    padding: 0 1rem;
     padding-top: 3rem;
     padding-bottom: 20rem;
-    border-bottom: 1px solid #ccc;
+    border: 0.5px;
+    border-radius: 40px;
+    background-color: white; 
+    box-shadow: 10px 5px 25px black;
+    transition: 0.3s ease-in-out;
   }
   
-  .courses {
-    text-transform: capitalize;
-  }
   .courses h3 {
     margin: 0 0 0.5rem 1rem;
   }
   
   .description {
+    /* word-wrap: break-word; */
     font-style: italic;
     margin: 1rem 0;
   }
   
-  /* .price {
-    margin-top: 0.25rem;
-    font-weight: bold;
-    color: #ad5502;
-    font-size: 1.25rem;
-  } */
-
   .courseimg img {
       height: 100px;
       width: 170px;
       margin-left: 20px;
       margin-top: 10px;
       margin-bottom: 20px;
-      /* margin-left: -115px; */
-      /* margin-right: -100px; */
-     
     }
     
-.price button {
-  /* text-decoration: none; */
+.view button {
   margin: 10px 0;
+}
+
+.courses:hover {
+  transform: scale(1.1);
+  z-index: 1;
+  box-shadow: 2px 2px 25px rgb(133, 132, 132);
+  /* margin: 1rem; */
 }
