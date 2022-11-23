@@ -19,43 +19,43 @@ class UserPage extends Component {
     // On file upload (click the upload button)
 
 
-    // onFileUpload = (e) => {
-    //     e.preventDefault();
-    //     this.setState({
-    //         selectedFile: e.target.files
-    //     });
-    //     const formData = new FormData();
-    //     formData.append('File', this.state.selectedFile);
-    //     fetch('http://localhost:8080/uploadFile', {
-    //         method: 'post',
-    //         body: formData
-    //     }).then(res => {
-    //         if(res.ok) {
-    //             console.log(res.data);
-    //             alert("File uploaded successfully.")
-    //         }
-    //     });
-    // };
-    onFileUpload = () => {
-
-    // Create an object of formData
-    let formData = new FormData();
-
-    // Update the formData object
-    formData.append(
-    "File",
-    this.state.selectedFile,
-    this.state.selectedFile.name
-    );
-
-    // Details of the uploaded file
-    // console.log(this.state.selectedFile);
-    
-    // Request made to the backend api
-    // Send formData object
-    const response = axios.post("http://localhost:8080/api/employee/upload",formData);
-    console.log(response);
+    onFileUpload = (e) => {
+        e.preventDefault();
+        this.setState({
+            selectedFile: e.target.files
+        });
+        const formData = new FormData();
+        formData.append('file', this.state.selectedFile);
+        fetch('http://localhost:8080/api/employee/upload', {
+            method: 'post',
+            body: formData
+        }).then(res => {
+            if(res.ok) {
+                console.log(res.data);
+                alert("File uploaded successfully.")
+            }
+        });
     };
+    // onFileUpload = () => {
+
+    // // Create an object of formData
+    // let formData = new FormData();
+
+    // // Update the formData object
+    // formData.append(
+    // "file",
+    // this.state.selectedFile,
+    // this.state.selectedFile.name
+    // );
+
+    // // Details of the uploaded file
+    // // console.log(this.state.selectedFile);
+    
+    // // Request made to the backend api
+    // // Send formData object
+    // const response = axios.post("http://localhost:8080/api/employee/upload",formData);
+    // console.log(response);
+    // };
 
     
     // File content to be displayed after
