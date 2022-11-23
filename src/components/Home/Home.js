@@ -13,7 +13,7 @@ const Home = (props) => {
     <div className={classes.home}>
       <div className={classes.writeup}>
         {/* <h1>Welcome Pratheep!</h1> */}
-        <h4>You are THE SUPER ADMIN!!</h4>
+        {/* <h4>You are THE SUPER ADMIN!!</h4> */}
         
       </div>
       

@@ -4,7 +4,39 @@
     height: auto;
     background-image: url(../images/homepage_background.jpg);
     /* background-size: cover; */
-    padding-bottom: 3rem;
-    padding-top: 3rem;
+    padding-bottom: 12rem;
+    padding-top: 5rem;
     text-align: center;
+}
+
+.inside_userpage {
+    font: inherit;
+    text-align: center; 
+}
+
+.userpage input {
+    font: inherit;
+    font-size: large;
+    background-color: white;
+    padding: 0.5rem;
+    border: 1px;
+    border-radius: 25px;
+}
+
+.inside_userpage h4 {
+    font-size: small;   
+    color: rgb(237, 137, 137); 
+}
+
+.userpage Button {
+    /* font: inherit; */
+    font-size: large;
+    padding: 0.6rem;
+    margin-left: 1rem;
+}
+
+.userpage h1 {
+    font-size: 50px;
+    font-weight: bold;
+    color: rgb(69, 68, 68);
 }

@@ -1,7 +1,7 @@
-
 import axios from 'axios';
-//npm install axios --save
 import React,{Component} from 'react';
+import Button from '../UI/Button/Button';
+import classes from "./UserPage.module.css";
 
 class UserPage extends Component {
 
@@ -11,7 +11,7 @@ class UserPage extends Component {
     };
 
     // On file select (from the pop up)
-    onFileChange = event => {
+        onFileChange = event => {
     // Update the state
     this.setState({ selectedFile: event.target.files[0] });
 
@@ -42,23 +42,26 @@ class UserPage extends Component {
 
     if (this.state.selectedFile) {
             return (
-            <div>
-                <h2>File Details:</h2>
-                <p>File Name: {this.state.selectedFile.name}</p>
+                <div className={classes.inside_userpage}>
+                    <div>
+                        <h2>File Details:</h2>
+                        <p>File Name: {this.state.selectedFile.name}</p>
 
-                <p>File Type: {this.state.selectedFile.type}</p>
+                        <p>File Type: {this.state.selectedFile.type}</p>
 
-            <p>
-                Last Modified:{" "}
-                {this.state.selectedFile.lastModifiedDate.toDateString()}
-            </p>
+                        <p>
+                            Last Modified:{" "}
+                            {this.state.selectedFile.lastModifiedDate.toDateString()}
+                        </p>
 
-            </div>
+                     </div>
+                </div>
+            
             );
     } else {
 
             return (
-                <div>
+                <div className={classes.inside_userpage}>
                     <br />
                     <h4>Choose before Pressing the Upload button</h4>
                 </div>
@@ -68,20 +71,22 @@ class UserPage extends Component {
 
     render() {
         return (
-            <div>
-                <h1>
-                    USERS
-                </h1>
-                <h3>
-                Upload Employee Details
-                </h3>
-            <div>
-                <input type="file" onChange={this.onFileChange} />
-                <button onClick={this.onFileUpload}>
-                Upload!
-                </button>
-            </div>
-                {this.fileData()}
+            <div className={classes.userpage}>
+                <div>
+                    <h1>
+                        Add Users
+                    </h1>
+                    <h3>
+                        Upload Employee Details
+                    </h3>
+                    <div>
+                        <input type="file" onChange={this.onFileChange} />
+                        <Button onClick={this.onFileUpload}>
+                            Upload
+                        </Button>
+                    </div>
+                    {this.fileData()}
+                </div>
             </div>
         );
     }
