@@ -4,7 +4,7 @@
 .home {
   box-sizing: border-box;
   height: 87vh;
-  background-image: url(D:\LMS_Project_WS\LMS-Project-\src\components\images\homepage_background.jpg);
+  background-image: url(../images/homepage_background.jpg);
   /* background-size: cover; */
 }
 
@@ -32,9 +32,4 @@
   margin-right: 20px;
   height: 30px;
   width: 50px;
-}
-
-.logolinks a {
-  /* display: none; */
-  background-image: url(D:\LMS_Project_WS\LMS-Project-\src\components\images\user_logo.png);
 }

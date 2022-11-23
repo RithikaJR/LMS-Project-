@@ -30,6 +30,8 @@ const Home = (props) => {
         </ul>
       </div>
 
+      
+
     </div>
   );
 };
