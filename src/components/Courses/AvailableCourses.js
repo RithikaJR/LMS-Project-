@@ -12,7 +12,7 @@ const AvailableCourses = () => {
     useEffect(() => {
       const fetchMeals = async () => {
         const response = await fetch(
-          'https://lmsproject-49ed0-default-rtdb.firebaseio.com/courses.json'
+          'http://localhost:8080/api/courses'
           // 'http://localhost:8080/api/mealitems/meals.json'
         );
   
@@ -23,13 +23,16 @@ const AvailableCourses = () => {
         const responseData = await response.json();
   
         const loadedCourses = [];
+        const courseArray = {...responseData._embedded.course};
+
         console.log(responseData);
-        for (const key in responseData) {
+        for (const key in courseArray) {
           loadedCourses.push({
             id: key,
-            name: responseData[key].courseName,
-            courseUrl: responseData[key].courseUrl,
-            description: responseData[key].description,
+            name: courseArray[key].courseName,
+            image: courseArray[key].courseImageUrl,
+            courseUrl: courseArray[key].courseUrl,
+            description: courseArray[key].courseDescription,
           });
         }
   
@@ -64,6 +67,7 @@ const AvailableCourses = () => {
         key={course.id}
         id={course.id}
         name={course.name}
+        image={course.image}
         url={course.courseUrl}
         description={course.description}
       />
@@ -71,9 +75,9 @@ const AvailableCourses = () => {
   
     return (
       <section className={classes.courses}>
-        <Card>
+        
           <ul>{coursesList}</ul>
-        </Card>
+        
       </section>
     );
   };

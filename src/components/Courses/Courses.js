@@ -4,7 +4,7 @@ import AvailableCourses from "./AvailableCourses";
 const Courses = () => {
     return (
         <div>
-            <h1>The Course Page</h1>
+            <h1 style={{textAlign: "center"}}>The Course Page</h1>
             <AvailableCourses/>
 
         </div>
