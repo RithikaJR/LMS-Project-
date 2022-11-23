@@ -53,7 +53,7 @@ class UserPage extends Component {
     
     // Request made to the backend api
     // Send formData object
-    const response = axios.post("http://localhost:8080/uploadFile",formData);
+    const response = axios.post("http://localhost:8080/api/employee/upload",formData);
     console.log(response);
     };
 
