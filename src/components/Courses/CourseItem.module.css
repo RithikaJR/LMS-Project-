@@ -1,17 +1,24 @@
 .courses {
-    display: flex;
-    justify-content: space-between;
+    display: inline-block;
+    /* float: left; */
+    height: 20rem;
+    justify-content: center;
     margin: 1rem;
-    padding-bottom: 1rem;
+    padding-top: 3rem;
+    padding-bottom: 20rem;
     border-bottom: 1px solid #ccc;
   }
   
+  .courses {
+    text-transform: capitalize;
+  }
   .courses h3 {
-    margin: 0 0 0.25rem 0;
+    margin: 0 0 0.5rem 1rem;
   }
   
   .description {
     font-style: italic;
+    margin: 1rem 0;
   }
   
   /* .price {
@@ -22,10 +29,17 @@
   } */
 
   .courseimg img {
-      height: 75px;
-      width: 250px;
+      height: 100px;
+      width: 170px;
       margin-left: 20px;
-      margin-top: 20px;
+      margin-top: 10px;
+      margin-bottom: 20px;
       /* margin-left: -115px; */
+      /* margin-right: -100px; */
      
     }
+    
+.price button {
+  /* text-decoration: none; */
+  margin: 10px 0;
+}

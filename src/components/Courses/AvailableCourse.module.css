@@ -1,11 +1,23 @@
 .courses {
-    max-width: 60rem;
+    display: flex;
+    flex-direction: row;
+    /* float: left; */
+    max-width: 40rem;
+    text-align: center;
+    /* justify-content: center; */
+    padding: 3rem;
+    /* height: 30rem; */
     width: 90%;
     margin: 2rem auto;
-    animation: meals-appear 1s ease-out forwards;
+    border: 0.5px;
+    border-radius: 25px;
+    background-color: white;
+    box-shadow: 5px 10px 25px black;
+    animation: 2s ease-out forwards;
   }
   
   .coursesLoading {
+    font: inherit;
     text-align: center;
     color: white;
   }
