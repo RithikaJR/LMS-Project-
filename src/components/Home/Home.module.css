@@ -7,7 +7,7 @@
   height: auto;
   background-image: url(../images/homepage_background.jpg);
   /* background-size: cover; */
-  padding-bottom: 3rem;
+  padding-bottom: 1rem;
 }
 
 
@@ -71,10 +71,10 @@
   margin-left: 20px;
 }
 
-.usertext:hover {
-  opacity: 0.5;
+.usertext img:hover {
+  opacity: 0.7;
 }
 
-.coursetext:hover {
-  opacity: 0.5;
+.coursetext img:hover {
+  opacity: 0.7;
 }
