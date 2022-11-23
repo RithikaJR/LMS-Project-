@@ -1,0 +1,14 @@
+.coursepage {
+    font-family: 'Montserrat', sans-serif;
+    box-sizing: border-box;
+    height: auto;
+    background-image: url(../images/homepage_background.jpg);
+    /* background-size: cover; */
+    padding-bottom: 3rem;
+    padding-top: 3rem;
+    text-align: center;
+}
+
+.coursepage h1 {
+    font-weight: bolder;
+}

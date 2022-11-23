@@ -1,8 +1,11 @@
-
+import classes from "./UserPage.module.css";
 
 const UserPage = () => {
     return (
-        <h1>This is user User Page</h1>
+        <div className={classes.userpage}>
+            <h1>This is user Page</h1>
+        </div>
+        
     )
 }
 

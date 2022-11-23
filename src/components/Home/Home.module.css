@@ -71,11 +71,11 @@
   margin-left: 20px;
 }
 
-.usertext:hover {
+.usertext img:hover {
   opacity: 0.5;
 }
 
-.coursetext:hover {
+.coursetext img:hover {
   opacity: 0.5;
 }
 
