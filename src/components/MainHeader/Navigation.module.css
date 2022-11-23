@@ -16,6 +16,10 @@
   margin-left: 3rem;
 }
 
+.nav h1 {
+  color: rgb(207, 206, 206);
+}
+
 .nav a {
   text-decoration: none;
   color: rgb(163, 162, 162);

@@ -8,10 +8,11 @@ const Navigation = (props) => {
       <ul>
         {props.isLoggedIn && (
           <li>
-            <a href="/">Home</a>
+            {/* <a href="/">Home</a> */}
+            <h1>Welcome Pratheep!</h1>
           </li>
         )}
-        {props.isLoggedIn && (
+        {/* {props.isLoggedIn && (
           <li>
             <a href="courses">Courses</a>
           </li>
@@ -20,7 +21,7 @@ const Navigation = (props) => {
           <li>
             <a href="users">Users</a>
           </li>
-        )}
+        )} */}
         {props.isLoggedIn && (
           <li>
             <button onClick={props.onLogout}>Logout</button>
