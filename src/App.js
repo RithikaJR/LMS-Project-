@@ -6,6 +6,7 @@ import MainHeader from './components/MainHeader/MainHeader';
 import { Redirect, Route, Switch } from 'react-router-dom';
 import Courses from './components/Courses/Courses';
 import UserPage from './components/Users/UserPage';
+import UserMainPage from './components/Users/UserMainPage';
 
 
 function App() {
@@ -33,8 +34,7 @@ function App() {
 
   return (
     <React.Fragment>
-      <MainHeader isAuthenticated={isLoggedIn} onLogout={logoutHandler} />
-      
+       {isLoggedIn && <MainHeader isAuthenticated={isLoggedIn} onLogout={logoutHandler} /> }
       <main>
         <Switch>
           <Route path="/" exact>
@@ -51,7 +51,7 @@ function App() {
               {isLoggedIn ? <Courses onLogout={logoutHandler} /> : <Redirect to='/login' /> }
           </Route>
           <Route path="/users">
-            {isLoggedIn ? <UserPage onLogout={logoutHandler} /> : <Redirect to='/login' /> }
+            {isLoggedIn ? <UserMainPage onLogout={logoutHandler} /> : <Redirect to='/login' /> }
           </Route>
 
         </Switch>
