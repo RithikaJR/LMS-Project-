@@ -3,6 +3,7 @@ import AvailableCourses from '../Courses/AvailableCourses';
 import Courses from '../Courses/Courses';
 
 import Card from '../UI/Card/Card';
+import UserTab from '../UserTabs/UserTab';
 import classes from './Home.module.css';
 
 const Home = (props) => {
