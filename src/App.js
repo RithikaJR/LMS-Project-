@@ -7,6 +7,7 @@ import { Redirect, Route, Switch } from 'react-router-dom';
 import Courses from './components/Courses/Courses';
 import UserPage from './components/Users/UserPage';
 
+
 function App() {
   const [isLoggedIn, setIsLoggedIn] = useState(false);
 

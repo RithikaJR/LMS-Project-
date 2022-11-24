@@ -2,7 +2,9 @@
 import axios from 'axios';
 //npm install axios --save
 import React,{Component} from 'react';
-
+import Button from '../UI/Button/Button';
+import AddUser from './AddUser';
+import classes from "./UserPage.module.css";
 
 class UserPage extends Component {
 
@@ -69,21 +71,29 @@ class UserPage extends Component {
 
     render() {
         return (
-            <div>
-                <h1>
-                    USERS
-                </h1>
-                <h3>
-                Upload Employee Details
-                </h3>
-            <div>
-                <input type="file" onChange={this.onFileChange} />
-                <button onClick={this.onFileUpload}>
-                Upload!
-                </button>
+            <div className={classes.userpage}>
+                
+                <div>
+                    <AddUser/>
+                </div>
+                <div>
+                    <h1>
+                        Add Users
+                    </h1>
+                    <h3>
+                        Upload Employee Details
+                    </h3>
+                    <div>
+                        <input type="file" onChange={this.onFileChange} />
+                        <Button onClick={this.onFileUpload}>
+                            Upload
+                        </Button>
+                    </div>
+                    {this.fileData()}
+                </div>
             </div>
-                {this.fileData()}
-            </div>
+
+            
         );
     }
 }
