@@ -12,6 +12,7 @@
   width: 100%;
   /* padding-bottom: 15px; */
   background: linear-gradient(180deg, rgb(72, 72, 72),rgb(0, 0, 0));
+  z-index: 2;
 }
 
 .header-image img {

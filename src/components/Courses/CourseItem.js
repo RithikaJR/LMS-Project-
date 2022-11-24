@@ -1,6 +1,7 @@
 import { useContext } from 'react';
 import classes from './CourseItem.module.css';
-import exp_logo from '../images/bg1.jpg';
+import slide_image4 from '../images/slide_image4.jpg';
+import Button from '../UI/Button/Button';
 
 
 const CourseItem = (props) => {
@@ -20,12 +21,12 @@ const CourseItem = (props) => {
     return (
       <li className={classes.courses}>
         <div className={classes.courseimg}>
-          <img src={exp_logo}/>
+          <img src={props.image}/>
         </div>
         <div>
-          <h3>Course Name: {props.name}</h3>
-          <div className={classes.description}> Course Description:{props.description}</div>
-          <div className={classes.price}>Url: {props.url}</div>
+          <h3>{props.name}</h3>
+          <div className={classes.description}>Course Description : {props.description}</div>
+          <div className={classes.view}><a href={props.url} target="_blank"><Button>View</Button></a></div>
         </div>
         
       </li>

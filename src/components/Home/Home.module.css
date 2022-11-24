@@ -2,15 +2,17 @@
 
 
 .home {
+  font-family: 'Montserrat', sans-serif;
   box-sizing: border-box;
-  height: 87vh;
-  background-image: url(D:\LMS_Project_WS\LMS-Project-\src\components\images\homepage_background.jpg);
+  height: auto;
+  background-image: url(../images/homepage_background.jpg);
   /* background-size: cover; */
+  padding-bottom: 1rem;
 }
 
 
 .writeup{
-  font-family: 'Montserrat', sans-serif;
+  /* font-family: 'Montserrat', sans-serif; */
   /* font-size: 17px; */
   font-size: large;
   /* width: 90%; */
@@ -25,16 +27,54 @@
   float:inline-start;
   justify-content: center;
   list-style: none;
-  margin-left: 20px;
+  margin-left: -40px;
+  margin-bottom: 150px;
+  /* padding-left: 2rem; */
 }
 
-.logolinks li {
+.logolinks li a {
   margin-right: 20px;
   height: 30px;
   width: 50px;
+  padding-left: 2rem;
 }
 
-.logolinks a {
-  /* display: none; */
-  background-image: url(D:\LMS_Project_WS\LMS-Project-\src\components\images\user_logo.png);
+.logolinks img {
+  height: 200px;
+  width: 200px;
+}
+
+.course {
+  margin-top: 13px;
+}
+
+.usertext{
+  text-decoration: none;
+  color: rgb(223, 130, 8);
+  text-align: center;
+  padding-left: 2rem;
+}
+
+.coursetext{
+  text-decoration: none;
+  color: rgb(29, 133, 230);
+  text-align: center;
+}
+
+.coursetext h4 {
+  margin-top: 5px;
+  margin-left: 20px;
+}
+
+.usertext h4 {
+  /* margin-top: 5px; */
+  margin-left: 20px;
+}
+
+.usertext img:hover {
+  opacity: 0.7;
+}
+
+.coursetext img:hover {
+  opacity: 0.7;
 }

@@ -1,10 +1,11 @@
 import React from "react";
 import AvailableCourses from "./AvailableCourses";
+import classes from "./Courses.module.css";
 
 const Courses = () => {
     return (
-        <div>
-            <h1>The Course Page</h1>
+        <div className={classes.coursepage}>
+            <h1>Courses</h1>
             <AvailableCourses/>
 
         </div>
