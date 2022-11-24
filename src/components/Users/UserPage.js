@@ -1,6 +1,7 @@
 import axios from 'axios';
 import React,{Component} from 'react';
 import Button from '../UI/Button/Button';
+import AddUser from './AddUser';
 import classes from "./UserPage.module.css";
 
 class UserPage extends Component {
@@ -94,6 +95,10 @@ class UserPage extends Component {
     render() {
         return (
             <div className={classes.userpage}>
+                
+                <div>
+                    <AddUser/>
+                </div>
                 <div>
                     <h1>
                         Add Users
@@ -110,6 +115,8 @@ class UserPage extends Component {
                     {this.fileData()}
                 </div>
             </div>
+
+            
         );
     }
 }
