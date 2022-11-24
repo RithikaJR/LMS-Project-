@@ -6,36 +6,43 @@ import Card from '../UI/Card/Card';
 import classes from './Home.module.css';
 import user_logo from '../images/user_logo.png';
 import course_logo from '../images/course_logo.png';
+import { NavLink } from 'react-router-dom';
 
 const Home = (props) => {
   return (
     <div className={classes.home}>
       <div className={classes.writeup}>
-        <h1>Welcome Pratheep!</h1>
-        <h4>You are THE SUPER ADMIN!!</h4>
+        {/* <h1>Welcome Pratheep!</h1> */}
+        {/* <h4>You are THE SUPER ADMIN!!</h4> */}
         
       </div>
       
-      {/* <div className={classes.logolinks}>
+      <div className={classes.logolinks}>
         <ul>
           <li>
-            <a href='users'>
+            <NavLink to = "/users" className={classes.usertext}>
               <img src={user_logo}/>
-            </a>
+              <h4>Users</h4>
+            </NavLink>
+            
           </li>
           <li>
-            <a href='courses'>
-              
-  
-              <img src={course_logo}/>
-            </a>
+            <NavLink to ='/courses' className={classes.coursetext}>
+              <img src={course_logo} className={classes.course}/>
+              <h4>Courses</h4>
+            </NavLink>
           </li>
         </ul>
-      </div> */}
-      <Courses/>
+      </div>
 
     </div> 
   );
+};
+
+const textstyle = {
+  color: "black",
+  textAlign: "center",
+  textdecoration: "none"
 };
 
 export default Home;

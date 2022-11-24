@@ -26,7 +26,7 @@ const CourseItem = (props) => {
         <div>
           <h3>{props.name}</h3>
           <div className={classes.description}>Course Description : {props.description}</div>
-          <div className={classes.price}><a href={props.url} target="_blank"><Button>View</Button></a></div>
+          <div className={classes.view}><a href={props.url} target="_blank"><Button>View</Button></a></div>
         </div>
         
       </li>
