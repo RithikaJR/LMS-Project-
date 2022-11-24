@@ -5,6 +5,7 @@ import React,{Component} from 'react';
 import Button from '../UI/Button/Button';
 import AddUser from './AddUser';
 import classes from "./UserPage.module.css";
+import Search from './Search';
 
 class UserPage extends Component {
 
