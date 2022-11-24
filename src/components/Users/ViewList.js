@@ -1,10 +1,9 @@
 import { useEffect, useState } from 'react';
-import Card from '../UI/Card/Card';
 
-import classes from './AvailableCourse.module.css';
-import CourseItem from './CourseItem';
+// import classes from './ViewList.module.css';
+import ListItem from './ListItem';
 
-const AvailableCourses = () => {
+const ViewList = () => {
     const [courses, setMeals] = useState([]);
     const [isLoading, setIsLoading] = useState(true);
     const [httpError, setHttpError] = useState();
@@ -12,7 +11,7 @@ const AvailableCourses = () => {
     useEffect(() => {
       const fetchMeals = async () => {
         const response = await fetch(
-          'http://localhost:8080/api/courses'
+          'http://localhost:8080/api/employee'
         );
   
         if (!response.ok) {
@@ -22,16 +21,16 @@ const AvailableCourses = () => {
         const responseData = await response.json();
   
         const loadedCourses = [];
-        const courseArray = {...responseData._embedded.course};
+        const courseArray = {...responseData._embedded.employees};
 
         console.log(responseData);
         for (const key in courseArray) {
           loadedCourses.push({
             id: key,
-            name: courseArray[key].courseName,
-            image: courseArray[key].courseImageUrl,
-            courseUrl: courseArray[key].courseUrl,
-            description: courseArray[key].courseDescription,
+            employeeFirstName: courseArray[key].employeeFirstName,
+            employeeLastName: courseArray[key].employeeLastName,
+            employeeEmail: courseArray[key].employeeEmail,
+            // description: courseArray[key].courseDescription,
           });
         }
   
@@ -47,7 +46,7 @@ const AvailableCourses = () => {
   
     if (isLoading) {
       return (
-        <section className={classes.coursesLoading}>
+        <section>
           <p>Loading...</p>
         </section>
       );
@@ -55,25 +54,25 @@ const AvailableCourses = () => {
   
     if (httpError) {
       return (
-        <section className={classes.coursesError}>
+        <section>
           <p>{httpError}</p>
         </section>
       );
     }
   
     const coursesList = courses.map((course) => (
-      <CourseItem
-        key={course.id}
-        id={course.id}
-        name={course.name}
-        image={course.image}
-        url={course.courseUrl}
-        description={course.description}
+      <ListItem
+        key={course.employeeId}
+        id={course.employeeId}
+        employeeFirstName={course.employeeFirstName}
+        employeeLastName={course.employeeLastName}
+        employeeEmail={course.employeeEmail}
+        // description={course.description}
       />
     ));
   
     return (
-      <section className={classes.courses}>
+      <section>
         
           <ul>{coursesList}</ul>
         
@@ -81,5 +80,5 @@ const AvailableCourses = () => {
     );
   };
   
-  export default AvailableCourses;
+  export default ViewList;
   
