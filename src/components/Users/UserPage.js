@@ -85,7 +85,7 @@ class UserPage extends Component {
             return (
                 <div className={classes.inside_userpage}>
                     <br />
-                    <h4>Choose before Pressing the Upload button</h4>
+                    <h4>Choose a file before Pressing the Upload button</h4>
                 </div>
             );
         }
@@ -109,7 +109,7 @@ class UserPage extends Component {
                     </div>
                     {this.fileData()}
                 </div>
-            </div>
+                </div>
         );
     }
 }
