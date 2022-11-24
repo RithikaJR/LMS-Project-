@@ -4,6 +4,8 @@ import Card from '../UI/Card/Card';
 import classes from './Login.module.css';
 import Button from '../UI/Button/Button';
 import MainHeader from '../MainHeader/MainHeader';
+import exp_logo from '../images/exp_logo.png'
+import video from '../images/video.mp4';
 
 const Login = (props) => {
   const [enteredEmail, setEnteredEmail] = useState('');
@@ -59,7 +61,10 @@ const Login = (props) => {
 
   return (
     
-    <div className={classes.loginPage}>  
+    <div className={classes.loginPage}>
+      <div className={classes.headerimage}>
+          <a href=''><img src={exp_logo}/></a>
+      </div>
       <div className={classes.login}>
         <h2 className='login-text'>Login</h2>
         <form onSubmit={submitHandler}>

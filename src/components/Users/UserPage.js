@@ -96,7 +96,7 @@ class UserPage extends Component {
             <div className={classes.userpage}>
                 <div>
                     <h1>
-                        Add Users
+                        Add User List
                     </h1>
                     <h3>
                         Upload Employee Details

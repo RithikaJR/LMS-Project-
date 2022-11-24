@@ -21,14 +21,18 @@ const Home = (props) => {
         <ul>
           <li>
             <NavLink to = "/users" className={classes.usertext}>
+              <div className={classes.image_wrap}>
               <img src={user_logo}/>
+              </div>
               <h4>Users</h4>
             </NavLink>
             
           </li>
           <li>
-            <NavLink to ='/courses' className={classes.coursetext}>
+            <NavLink to ='/courses' className={classes.coursetext}> 
+            <div className={classes.image_wrap}>
               <img src={course_logo} className={classes.course}/>
+            </div >
               <h4>Courses</h4>
             </NavLink>
           </li>
