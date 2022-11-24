@@ -1,0 +1,40 @@
+.courses {
+    display: inline-block;
+    /* float: left; */
+    max-width: 30rem;
+    text-align: center;
+    padding: 3rem;
+    /* height: 30rem; */
+    width: 90%;
+    margin: 2rem auto;
+    animation: 1s ease-out forwards;
+  }
+  
+  .coursesLoading {
+    text-align: center;
+    color: white;
+  }
+  
+  .coursesError {
+    text-align: center;
+    color: red;
+  }
+  
+  .courses ul {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+  }
+  
+  @keyframes meals-appear {
+    from {
+      opacity: 0;
+      transform: translateY(3rem);
+    }
+  
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+  
