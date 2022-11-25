@@ -2,6 +2,7 @@ import axios from 'axios';
 import React,{Component} from 'react';
 import Button from '../UI/Button/Button';
 import classes from "./UserPage.module.css";
+import Search from './Search';
 
 class UserPage extends Component {
 
