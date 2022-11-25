@@ -1,4 +1,7 @@
 import { useEffect, useState } from 'react';
+import classes from './ViewList.module.css';
+// import BootstrapTable from 'react-bootstrap-table-next';
+
 
 // import classes from './ViewList.module.css';
 import ListItem from './ListItem';
@@ -70,15 +73,40 @@ const ViewList = () => {
         // description={course.description}
       />
     ));
+
   
     return (
-      <section>
+      <div className={classes.viewlist}>
         
-          <ul>{coursesList}</ul>
+          {/* <ul>{coursesList}</ul> */}
+
+        <table className={classes.tablee}>
+          <thead>
+            <tr>
+              <th className={classes.first_head}>First name</th>
+              <th>Last name</th>
+              <th>Email</th>
+              <th className={classes.last_head}>Role</th>
+            </tr>
+          </thead>
+          <tbody>
+            {courses.map(item => {
+              return (
+                <tr key={item.employeeId}>
+                  <td className={classes.first_column}>{ item.employeeFirstName }</td>
+                  <td>{ item.employeeLastName }</td>
+                  <td>{ item.employeeEmail }</td>
+                  <td className={classes.last_column}>NULL</td>
+                </tr>
+              );
+            })}
+          </tbody>
+        </table>
         
-      </section>
+      </div>
     );
   };
+
   
   export default ViewList;
   
