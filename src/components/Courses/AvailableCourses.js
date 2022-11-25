@@ -1,5 +1,6 @@
-import { useEffect, useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import Card from '../UI/Card/Card';
+import Search from '../Users/Search';
 
 import classes from './AvailableCourse.module.css';
 import CourseItem from './CourseItem';
@@ -8,12 +9,23 @@ const AvailableCourses = () => {
     const [courses, setMeals] = useState([]);
     const [isLoading, setIsLoading] = useState(true);
     const [httpError, setHttpError] = useState();
+    const [searchName, setSearchName] = useState("");
   
+    const onSearchHandler = (name)=>{
+      console.log(name)
+      setSearchName(name);
+    }
+
     useEffect(() => {
       const fetchMeals = async () => {
-        const response = await fetch(
-          'http://localhost:8080/api/courses'
-        );
+        let response;
+        if(searchName===''){
+          response = await fetch(
+            'http://localhost:8080/api/courses');
+        }else{
+          response = await fetch('http://localhost:8080/api/courses/search/findAllBycourseName?name='+searchName);
+        }
+        
   
         if (!response.ok) {
           throw new Error('Something went wrong!');
@@ -43,7 +55,7 @@ const AvailableCourses = () => {
         setIsLoading(false);
         setHttpError(error.message);
       });
-    }, []);
+    }, [searchName]);
   
     if (isLoading) {
       return (
@@ -71,13 +83,16 @@ const AvailableCourses = () => {
         description={course.description}
       />
     ));
+
+    
   
     return (
-      <section className={classes.courses}>
-        
+      <React.Fragment>
+        <Search search={onSearchHandler}/>
+        <section className={classes.courses}>
           <ul>{coursesList}</ul>
-        
-      </section>
+        </section>
+      </React.Fragment>
     );
   };
   
