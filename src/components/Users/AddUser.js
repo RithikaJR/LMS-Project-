@@ -1,5 +1,7 @@
 import React, {Component}  from 'react'; 
 import axios from 'axios';
+import classes from './AddUser.module.css';
+import Button from '../UI/Button/Button';
 
 class AddUser extends Component{
     constructor() {
@@ -29,7 +31,7 @@ submitHandler = e => {
 render() {
     const {employee_id, role} = this.state;
     return(
-        <form onSubmit ={this.submitHandler}>
+        <form onSubmit ={this.submitHandler} className={classes.wrap}>
             <label >Employee ID</label>
             <input type="text" name="employee_id" 
                 onChange={this.changeHandler}
@@ -48,10 +50,10 @@ render() {
 
         
 
-            <button
+            <Button
                 type="submit"
                 className="btn btn-primary">submit
-            </button>
+            </Button>
         </form>
     )
 }

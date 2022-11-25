@@ -2,6 +2,8 @@ import { useContext } from 'react';
 import classes from './CourseItem.module.css';
 import slide_image4 from '../images/slide_image4.jpg';
 import Button from '../UI/Button/Button';
+import { NavLink } from 'react-router-dom';
+import CourseInterface from './CourseInterface';
 
 
 const CourseItem = (props) => {
@@ -17,6 +19,7 @@ const CourseItem = (props) => {
     //     price: props.price
     //   });
     // };
+
   
     return (
       <li className={classes.courses}>
@@ -26,12 +29,14 @@ const CourseItem = (props) => {
         <div>
           <h3>{props.name}</h3>
           <div className={classes.description}>Course Description : {props.description}</div>
-          <div className={classes.view}><a href={props.url} target="_blank"><Button>View</Button></a></div>
+          <div className={classes.view}><NavLink to = "/courseinterface" ><Button>Modules</Button></NavLink></div>
         </div>
         
       </li>
     );
   };
+  // <NavLink to = "/courseinterface" ><Button>Modules</Button></NavLink>
+  // {props.url}
   
   export default CourseItem;
   
