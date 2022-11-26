@@ -40,10 +40,13 @@ const AvailableCourses = () => {
         for (const key in courseArray) {
           loadedCourses.push({
             id: key,
+            courseId: courseArray[key].courseId,
             name: courseArray[key].courseName,
-            image: courseArray[key].courseImageUrl,
-            courseUrl: courseArray[key].courseUrl,
             description: courseArray[key].courseDescription,
+            image: courseArray[key].courseImageUrl,
+            // courseUrl: courseArray[key].courseUrl,
+            // moduleApi:courseArray[key]._links.modules.href,
+            
           });
         }
   
@@ -76,11 +79,12 @@ const AvailableCourses = () => {
     const coursesList = courses.map((course) => (
       <CourseItem
         key={course.id}
-        id={course.id}
+        id={course.courseId}
         name={course.name}
         image={course.image}
-        url={course.courseUrl}
+        // url={course.courseUrl}
         description={course.description}
+        // api={module.moduleApi}
       />
     ));
 
