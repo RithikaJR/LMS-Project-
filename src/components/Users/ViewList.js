@@ -83,8 +83,8 @@ const ViewList = () => {
         <table className={classes.tablee}>
           <thead>
             <tr>
-              <th className={classes.first_head}>First name</th>
-              <th>Last name</th>
+              <th className={classes.first_head}>Name</th>
+              {/* <th>Last name</th> */}
               <th>Email</th>
               <th className={classes.last_head}>Role</th>
             </tr>
@@ -93,8 +93,8 @@ const ViewList = () => {
             {courses.map(item => {
               return (
                 <tr key={item.employeeId}>
-                  <td className={classes.first_column}>{ item.employeeFirstName }</td>
-                  <td>{ item.employeeLastName }</td>
+                  <td className={classes.first_column}>{ item.employeeFirstName }  { item.employeeLastName }</td>
+                  {/* <td>{ item.employeeLastName }</td> */}
                   <td>{ item.employeeEmail }</td>
                   <td className={classes.last_column}>NULL</td>
                 </tr>

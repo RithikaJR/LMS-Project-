@@ -2,6 +2,7 @@ import React, { useState, useEffect } from "react";
 // import "./App.css";
 import axios from "axios";
 import Button from "../UI/Button/Button";
+import classes from './Search.module.css';
 
 function Search(props) {
   // const [loading, setLoading] = useState(false);
@@ -88,11 +89,11 @@ function Search(props) {
  } 
  
 return(
-  <div>
+  <div className={classes.wrap}>
      {/* <form onSubmit={onsubmitHandler}> */}
       <input
           type="text"
-          placeholder="Search..."
+          placeholder="Search.."
           onChange={onChangeSearch}
           // onChange={(e) => setSearchTitle(e.target.value)}
           />
