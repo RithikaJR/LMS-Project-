@@ -48,13 +48,13 @@ function App() {
           <Route path="/home">
               {isLoggedIn ? <Home onLogout={logoutHandler} /> : <Redirect to='/login' />}
           </Route>
-          <Route path="/courses">
+          <Route path="/courses" exact>
               {isLoggedIn ? <Courses onLogout={logoutHandler} /> : <Redirect to='/login' /> }
           </Route>
           <Route path="/users">
             {isLoggedIn ? <UserMainPage onLogout={logoutHandler} /> : <Redirect to='/login' /> }
           </Route>
-          <Route path="/courseinterface">
+          <Route path="/courses/course-module">
             {isLoggedIn ? <CourseInterface onLogout={logoutHandler} /> : <Redirect to='/login' /> }
           </Route>
 

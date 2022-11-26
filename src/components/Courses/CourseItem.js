@@ -20,7 +20,7 @@ const CourseItem = (props) => {
     //   });
     // };
 
-  
+    console.log("CouresItem"+props.id);
     return (
       <li className={classes.courses}>
         <div className={classes.courseimg}>
@@ -29,7 +29,7 @@ const CourseItem = (props) => {
         <div>
           <h3>{props.name}</h3>
           <div className={classes.description}>Course Description : {props.description}</div>
-          <div className={classes.view}><NavLink to = "/courseinterface" ><Button>Modules</Button></NavLink></div>
+          <div className={classes.view}><NavLink to={{pathname:'/courses/course-module',state:{id:props.id}}}><Button >View</Button></NavLink></div>
         </div>
         
       </li>
