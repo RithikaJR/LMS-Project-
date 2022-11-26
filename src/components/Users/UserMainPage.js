@@ -8,6 +8,7 @@ import { useState } from "react";
 
 const Tab = styled.button`
   margin: 30px;
+  height: 5rem;
   font-size: 20px;
   padding: 10px 60px;
   cursor: pointer;
@@ -17,10 +18,17 @@ const Tab = styled.button`
   outline: 0;
 
   ${({ active }) =>
+    // active &&
+    `
+    font-family: 'Montserrat', sans-serif;
+    opacity: 1;
+  `}
+  ${({ active }) =>
     active &&
     `
-    border-bottom: 2px solid black;
+    font-family: 'Montserrat', sans-serif;
     opacity: 1;
+    background-color: grey;
   `}
 `;
 
@@ -35,18 +43,18 @@ const UserMainPage = () => {
   const [active, setActive] = useState(types[0]);
 
   return (
-
+    <div className={classes.wrap}>
     <div className={classes.tab}>
 
       <ButtonGroup>
 
         {types.map(type => (
 
-          <Tab
+          <Tab className={classes.tab_wrap}
 
             key={type}
 
-            active={active === type}
+            active={active === type} 
 
             onClick={() => setActive(type)}
           >
@@ -55,12 +63,17 @@ const UserMainPage = () => {
         ))}
 
       </ButtonGroup>
+          <div className={classes.all_tab}>
+            {active==='All Users' && <ViewList />}
 
-      {active==='All Users' && <ViewList />}
+            {active === "Add New Users" && <AddUser/>}
 
-      {active === "Add New Users" && <AddUser/>}
+            {active==='Excel Upload' && <UserPage />}
+          </div>
 
-      {active==='Excel Upload' && <UserPage />}
+
+
+    </div>
     </div>
 
   );
@@ -72,19 +85,3 @@ const UserMainPage = () => {
 // <TabGroup/>
 
 export default UserMainPage;
-// const UserMainPage = () => {
-//     return (
-//         <div className={classes.mainpage}>
-            
-            
-//              <h1>This is user main page</h1>
-//             {/* <UserPage /> */}
-//             <ViewList />
-//         </div>
-       
-//     );
-// }
-
-
-
-// export default UserMainPage;

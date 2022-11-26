@@ -1,18 +1,36 @@
 import { useEffect, useState } from 'react';
+import classes from './ViewList.module.css';
+// import BootstrapTable from 'react-bootstrap-table-next';
+
 
 // import classes from './ViewList.module.css';
 import ListItem from './ListItem';
+import Search from './Search';
 
 const ViewList = () => {
     const [courses, setMeals] = useState([]);
     const [isLoading, setIsLoading] = useState(true);
     const [httpError, setHttpError] = useState();
   
+    const [searchName, setSearchName] = useState("");
+  
+    const onSearchHandler = (name)=>{
+      console.log(name)
+      setSearchName(name);
+    }
+
     useEffect(() => {
       const fetchMeals = async () => {
-        const response = await fetch(
-          'http://localhost:8080/api/employee'
-        );
+        let response
+        if(searchName ===""){
+          response = await fetch(
+            'http://localhost:8080/api/employee'
+          );
+        }else{
+          response = await fetch(
+            'http://localhost:8080/api/employee/search/findAllByemployeeFirstName?name='+searchName
+          );
+        }
   
         if (!response.ok) {
           throw new Error('Something went wrong!');
@@ -42,7 +60,7 @@ const ViewList = () => {
         setIsLoading(false);
         setHttpError(error.message);
       });
-    }, []);
+    }, [searchName]);
   
     if (isLoading) {
       return (
@@ -70,15 +88,40 @@ const ViewList = () => {
         // description={course.description}
       />
     ));
+
   
     return (
-      <section>
+      <div className={classes.viewlist}>
+        <Search search={onSearchHandler}/>
+          {/* <ul>{coursesList}</ul> */}
+
+        <table className={classes.tablee}>
+          <thead>
+            <tr>
+              <th className={classes.first_head}>First name</th>
+              <th>Last name</th>
+              <th>Email</th>
+              <th className={classes.last_head}>Role</th>
+            </tr>
+          </thead>
+          <tbody>
+            {courses.map(item => {
+              return (
+                <tr key={item.employeeId}>
+                  <td className={classes.first_column}>{ item.employeeFirstName }</td>
+                  <td>{ item.employeeLastName }</td>
+                  <td>{ item.employeeEmail }</td>
+                  <td className={classes.last_column}>NULL</td>
+                </tr>
+              );
+            })}
+          </tbody>
+        </table>
         
-          <ul>{coursesList}</ul>
-        
-      </section>
+      </div>
     );
   };
+
   
   export default ViewList;
   

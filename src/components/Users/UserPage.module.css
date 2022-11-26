@@ -2,10 +2,10 @@
     font-family: 'Montserrat', sans-serif;
     box-sizing: border-box;
     height: auto;
-    background-image: url(../images/homepage_background.jpg);
+    /* background-image: url(../images/homepage_background.jpg); */
     /* background-size: cover; */
-    padding-bottom: 12rem;
-    padding-top: 5rem;
+    padding-bottom: 8rem;
+    padding-top: 3rem;
     text-align: center;
 }
 
