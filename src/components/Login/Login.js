@@ -17,9 +17,7 @@ const Login = (props) => {
   useEffect(() =>{
     const identifier =setTimeout(() =>{
       console.log("Validity Check");
-      setFormIsValid(
-        enteredEmail.includes('.') && enteredPassword.trim().length > 6
-      );
+      setFormIsValid(enteredEmail.includes('.') && enteredPassword.trim().length > 6);
     }, 500)
 
     return () => {
@@ -99,11 +97,11 @@ const Login = (props) => {
               onBlur={validatePasswordHandler}
             />
           </div>
-          <div className={classes.actions}>
-            <Button type="submit" className={classes.btn} disabled={!formIsValid}>
+           <div className={classes.actions}>
+             <Button type="submit" className={classes.btn} disabled={!formIsValid}>
               Login
-            </Button>
-          </div>
+             </Button>
+           </div>
         </form>
       </div>
     </div>

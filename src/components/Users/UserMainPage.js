@@ -61,9 +61,6 @@ const UserMainPage = () => {
       {active === "Add New Users" && <AddUser/>}
 
       {active==='Excel Upload' && <UserPage />}
-
-
-
     </div>
 
   );
