@@ -11,7 +11,7 @@
   height: 90px;
   width: 100%;
   /* padding-bottom: 15px; */
-  background: linear-gradient(180deg, rgb(72, 72, 72),rgb(0, 0, 0));
+  background-color: rgb(104, 152, 195);
   z-index: 2;
 }
 

@@ -1,5 +1,4 @@
 import React, { useEffect, useState } from 'react';
-import Card from '../UI/Card/Card';
 import Search from '../Search Bar/Search.js';
 
 import classes from './AvailableCourse.module.css';

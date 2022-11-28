@@ -1,5 +1,18 @@
 @import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;600&display=swap');
 
+
+.loginPage{
+  height: 100vh;
+  display: flex;
+}
+
+.login_left {
+  height: 100vh;
+  width: 70%;
+  background-image: url("../images/login_1.jpg");
+  background-size: cover;
+}
+
 .headerimage img{
   height: 75px;
   width: 250px;
@@ -7,57 +20,26 @@
   margin-top: 1.3rem;
 }
 
-.loginPage{
-  height: 100vh;
-  background-image: url("../images/slide_image4.jpg");
-  background-size:cover;
-  background-repeat: no-repeat;
-  margin-top: -5rem;
-}
-
 .login {
   font-family: 'Montserrat', sans-serif;
   color: whitesmoke;
+  background-color: #3b7db7;
   width: 30%;
-  max-width: 40rem;
-  margin: 2rem auto;
   padding: 2rem;
-  padding-top: 7rem;
-  padding-left: 27rem;
+  padding-top: 5rem;  
+  box-shadow: 0 10px 50px gray;
 }
 
 
 .login h2 {
-  text-align: right;
+  text-align: center;
   font-size: 50px;
   font-weight: bolder ;
-  margin-top: -25px;
-  padding-left: 60px;
-  padding-bottom: 20px;
-  margin-right: 180px;
-  text-shadow: 4px 6px 8px #000000;
+  margin-bottom: 4rem;
 }
-
-.useremail {
-  border-radius: 25px;
-  border: 2px;
-  margin: 12px 10px;
-  padding: 20px; 
-  width: 200px;
-  height: 10px; 
-}
-
-.userpassword {
-  border-radius: 25px;
-  border: 2px;
-  margin: 12px 10px;
-  padding: 20px; 
-  width: 200px;
-  height: 3px; 
-}
-/* ///// */
 
 .control {
+  justify-content: center;
   margin: 1rem 0;
   display: flex;
   align-items: stretch;
@@ -71,18 +53,12 @@
 
 .control label {
   font-weight: bold;
-  flex: 1;
   color: #ffffff;
   margin-bottom: 0.5rem;
   margin-right: 2rem;
 }
 
-.control label.email {
-  margin-right: 5rem;
-}
-
 .control input {
-  flex: 3;
   font: inherit;
   padding: 0.7rem 1rem;
   border-radius: 20px;
@@ -100,8 +76,8 @@
 }
 
 .actions {
-  margin-left: 100px;
-  margin-top: 40px;
+  text-align: center;
+  padding-top: 1.5rem;
 }
 
 @media (min-width: 768px) {

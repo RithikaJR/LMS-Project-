@@ -5,7 +5,7 @@ import classes from './ViewList.module.css';
 
 // import classes from './ViewList.module.css';
 import ListItem from './ListItem';
-import Search from './Search';
+import Search from '../Search Bar/Search.js';
 
 const ViewList = () => {
     const [courses, setMeals] = useState([]);

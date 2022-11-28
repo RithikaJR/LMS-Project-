@@ -1,5 +1,5 @@
 .courses {
-    display: inline-block;
+    display: block;
     /* float: left; */
     height: 20rem;
     width: 20rem;
