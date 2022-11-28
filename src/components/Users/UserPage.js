@@ -2,7 +2,7 @@ import axios from 'axios';
 import React,{Component} from 'react';
 import Button from '../UI/Button/Button';
 import classes from "./UserPage.module.css";
-import Search from './Search';
+import Search from "../Search Bar/Search.js";
 
 class UserPage extends Component {
 
@@ -97,7 +97,7 @@ class UserPage extends Component {
             <div className={classes.userpage}>
                 <div>
                     <h1>
-                        Add Users
+                        Add User List
                     </h1>
                     <h3>
                         Upload Employee Details

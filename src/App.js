@@ -7,6 +7,7 @@ import { Redirect, Route, Switch } from 'react-router-dom';
 import Courses from './components/Courses/Courses';
 import UserPage from './components/Users/UserPage';
 import UserMainPage from './components/Users/UserMainPage';
+import CourseInterface from './components/Courses/CourseInterface';
 
 
 function App() {
@@ -47,11 +48,14 @@ function App() {
           <Route path="/home">
               {isLoggedIn ? <Home onLogout={logoutHandler} /> : <Redirect to='/login' />}
           </Route>
-          <Route path="/courses">
+          <Route path="/courses" exact>
               {isLoggedIn ? <Courses onLogout={logoutHandler} /> : <Redirect to='/login' /> }
           </Route>
           <Route path="/users">
             {isLoggedIn ? <UserMainPage onLogout={logoutHandler} /> : <Redirect to='/login' /> }
+          </Route>
+          <Route path="/courses/course-module">
+            {isLoggedIn ? <CourseInterface onLogout={logoutHandler} /> : <Redirect to='/login' /> }
           </Route>
 
         </Switch>

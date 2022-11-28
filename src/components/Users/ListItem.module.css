@@ -1,0 +1,8 @@
+.wrap {
+    display: flex;
+    padding: 1rem;
+}
+
+.element {
+    margin: 0 1rem;
+}

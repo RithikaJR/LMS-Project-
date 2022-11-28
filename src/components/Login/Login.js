@@ -1,10 +1,7 @@
 import React, { useEffect, useState } from 'react';
-
-import Card from '../UI/Card/Card';
 import classes from './Login.module.css';
 import Button from '../UI/Button/Button';
-import MainHeader from '../MainHeader/MainHeader';
-import exp_logo from '../images/exp_logo.png'
+import exp_logo from '../images/exp_logo.png';
 
 const Login = (props) => {
   const [enteredEmail, setEnteredEmail] = useState('');
@@ -18,7 +15,7 @@ const Login = (props) => {
     const identifier =setTimeout(() =>{
       console.log("Validity Check");
       setFormIsValid(
-        enteredEmail.includes('.') && enteredPassword.trim().length > 6
+        enteredEmail.includes('.admin') && enteredPassword.trim().length > 6
       );
     }, 500)
 
@@ -61,8 +58,10 @@ const Login = (props) => {
   return (
     
     <div className={classes.loginPage}>
-      <div className={classes.headerimage}>
-          <a href=''><img src={exp_logo}/></a>
+      <div className={classes.login_left}>
+        <div className={classes.headerimage}>
+            <a href=''><img src={exp_logo}/></a>
+        </div>
       </div>
       <div className={classes.login}>
         <h2 className='login-text'>Login</h2>

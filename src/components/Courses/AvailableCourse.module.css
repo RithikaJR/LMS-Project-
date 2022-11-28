@@ -4,7 +4,7 @@
     text-align: center;
     padding: 3rem;
     width: 90%;
-    margin: 2rem 5rem;
+    margin: 2rem 0.2rem;
     border-radius: 25px;
   }
   
@@ -27,7 +27,7 @@
     flex-direction: row;
     width: auto;
     display: grid;
-    grid-template-columns: repeat(2, 460px);
+    grid-template-columns: repeat(3, 350px);
     grid-gap: 60px;
   }
   

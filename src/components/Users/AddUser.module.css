@@ -1,0 +1,25 @@
+.wrap {
+    height: 15rem;
+    width: 50rem;
+    margin-left: 2rem;
+    text-align: center;
+    margin-top: 4rem;
+    background-color: rgb(133, 135, 135);
+    margin-bottom: 3rem;
+}
+
+.wrap label {
+    /* padding: 0 1rem; */
+    margin: 0 1rem;
+}
+
+.wrap input {
+    border: 1px;
+    border-radius: 25px;
+    padding: 1rem 1rem;
+}
+
+.wrap button {
+    margin-left: 1rem;
+    margin-top: 3rem;
+}

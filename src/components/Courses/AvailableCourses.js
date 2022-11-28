@@ -1,5 +1,5 @@
-import { useEffect, useState } from 'react';
-import Card from '../UI/Card/Card';
+import React, { useEffect, useState } from 'react';
+import Search from '../Search Bar/Search.js';
 
 import classes from './AvailableCourse.module.css';
 import CourseItem from './CourseItem';
@@ -8,12 +8,23 @@ const AvailableCourses = () => {
     const [courses, setMeals] = useState([]);
     const [isLoading, setIsLoading] = useState(true);
     const [httpError, setHttpError] = useState();
+    const [searchName, setSearchName] = useState("");
   
+    const onSearchHandler = (name)=>{
+      console.log(name)
+      setSearchName(name);
+    }
+
     useEffect(() => {
       const fetchMeals = async () => {
-        const response = await fetch(
-          'http://localhost:8080/api/courses'
-        );
+        let response;
+        if(searchName===''){
+          response = await fetch(
+            'http://localhost:8080/api/courses');
+        }else{
+          response = await fetch('http://localhost:8080/api/courses/search/findAllBycourseName?name='+searchName);
+        }
+        
   
         if (!response.ok) {
           throw new Error('Something went wrong!');
@@ -28,10 +39,13 @@ const AvailableCourses = () => {
         for (const key in courseArray) {
           loadedCourses.push({
             id: key,
+            courseId: courseArray[key].courseId,
             name: courseArray[key].courseName,
-            image: courseArray[key].courseImageUrl,
-            courseUrl: courseArray[key].courseUrl,
             description: courseArray[key].courseDescription,
+            image: courseArray[key].courseImageUrl,
+            // courseUrl: courseArray[key].courseUrl,
+            // moduleApi:courseArray[key]._links.modules.href,
+            
           });
         }
   
@@ -43,7 +57,7 @@ const AvailableCourses = () => {
         setIsLoading(false);
         setHttpError(error.message);
       });
-    }, []);
+    }, [searchName]);
   
     if (isLoading) {
       return (
@@ -64,20 +78,24 @@ const AvailableCourses = () => {
     const coursesList = courses.map((course) => (
       <CourseItem
         key={course.id}
-        id={course.id}
+        id={course.courseId}
         name={course.name}
         image={course.image}
-        url={course.courseUrl}
+        // url={course.courseUrl}
         description={course.description}
+        // api={module.moduleApi}
       />
     ));
+
+    
   
     return (
-      <section className={classes.courses}>
-        
+      <React.Fragment>
+        <Search search={onSearchHandler}/>
+        <section className={classes.courses}>
           <ul>{coursesList}</ul>
-        
-      </section>
+        </section>
+      </React.Fragment>
     );
   };
   
