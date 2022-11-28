@@ -3,7 +3,7 @@ import AvailableCourses from '../Courses/AvailableCourses';
 import Courses from '../Courses/Courses';
 
 import Card from '../UI/Card/Card';
-import UserTab from '../UserTabs/UserTab';
+// import UserTab from '../UserTabs/UserTab';
 import classes from './Home.module.css';
 import user_logo from '../images/user_logo.png';
 import course_logo from '../images/course_logo.png';
@@ -11,13 +11,7 @@ import { NavLink } from 'react-router-dom';
 
 const Home = (props) => {
   return (
-    <div className={classes.home}>
-      <div className={classes.writeup}>
-        {/* <h1>Welcome Pratheep!</h1> */}
-        {/* <h4>You are THE SUPER ADMIN!!</h4> */}
-        
-      </div>
-      
+    <div className={classes.home}>      
       <div className={classes.logolinks}>
         <ul>
           <li>
@@ -29,6 +23,7 @@ const Home = (props) => {
             </NavLink>
             
           </li>
+
           <li>
             <NavLink to ='/courses' className={classes.coursetext}> 
             <div className={classes.image_wrap}>
@@ -44,10 +39,10 @@ const Home = (props) => {
   );
 };
 
-const textstyle = {
-  color: "black",
-  textAlign: "center",
-  textdecoration: "none"
-};
+// const textstyle = {
+//   color: "black",
+//   textAlign: "center",
+//   textdecoration: "none"
+// };
 
 export default Home;

@@ -5,7 +5,7 @@ import classes from './CourseInterface.module.css';
 import CourseModuleList from "./CourseModuleList";
 
 
-
+import Collapsible from 'react-collapsible';
 
 
 const CourseInterface = (props) => {
@@ -128,7 +128,12 @@ const CourseInterface = (props) => {
       <p>{location.state.id}</p>
       <section className={classes.courses}>
         <ul>{courseModuleList}</ul>
+        <section className={classes.aa}>
+
+        </section>
       </section>
+      
+      
     </React.Fragment>
   );
 }

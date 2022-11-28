@@ -1,8 +1,8 @@
 .courses {
-    display: inline-block;
+    display: block;
     /* float: left; */
     height: 20rem;
-    width: 30rem;
+    width: 20rem;
     justify-content: center;
     text-transform: capitalize;
     margin: 1rem;
