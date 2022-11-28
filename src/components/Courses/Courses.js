@@ -8,7 +8,7 @@ const Courses = () => {
         <div className={classes.coursepage}>
             <h1>Courses</h1>
             <Search/>
-            <AvailableCourses/>
+         <AvailableCourses/>
         </div>
     
     );

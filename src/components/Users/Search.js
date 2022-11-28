@@ -11,11 +11,12 @@ function Search() {
     const loadPosts = async () => {
       setLoading(true);
       const response = await axios.get(
-        "http://localhost:8080/api/courses/search/findAllBycourseName?name="
+        "http://localhost:8080/api/courses/search/findAllBycourseName?name=?"
       );
       setPosts(response.data);
-      setLoading(false);
+      // setLoading(false);
 
+      
       if (!response.ok) {
         throw new Error('Something went wrong!');
       }
@@ -26,6 +27,7 @@ function Search() {
 
       const courseArray = [...responseData._embedded.course]
 
+      console.log(courseArray);
       console.log(responseData);
       for (const key in courseArray) {
         loadedCourses.push({
@@ -37,8 +39,8 @@ function Search() {
         });
       }
 
-      setPosts(loadedCourses);
-      setLoading(false);
+      // setPosts(courseArray);
+      // setLoading(false);
     };
 
     // fetchMeals().catch((error) => {
