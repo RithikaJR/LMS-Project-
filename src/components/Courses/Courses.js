@@ -7,7 +7,7 @@ const Courses = () => {
     return (
         <div className={classes.coursepage}>
             <h1>Courses</h1>
-            <AvailableCourses />
+         <AvailableCourses />
         </div>
     
     );
