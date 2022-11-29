@@ -7,7 +7,7 @@ import classes from './Search.module.css';
 function Search(props) {
   // const [loading, setLoading] = useState(false);
   // const [posts, setPosts] = useState([]);
-  const [searchTitle, setSearchTitle] = useState("");
+  // const [searchTitle, setSearchTitle] = useState("");
 
   // useEffect(() => {
   //   const loadPosts = async () => {
@@ -78,10 +78,10 @@ function Search(props) {
   //   </div>
   // );
 
- const onsubmitHandler = (event) =>{
-  event.preventDefault();
-  props.search(searchTitle)
- }
+//  const onsubmitHandler = (event) =>{
+//   event.preventDefault();
+//   props.search(searchTitle)
+//  }
 
  const onChangeSearch = (event) => {
   // setSearchTitle(event.target.value)

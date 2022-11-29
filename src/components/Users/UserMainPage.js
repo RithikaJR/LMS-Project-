@@ -22,13 +22,15 @@ const Tab = styled.button`
     `
     font-family: 'Montserrat', sans-serif;
     opacity: 1;
+    color: #1a72be;
   `}
   ${({ active }) =>
     active &&
     `
     font-family: 'Montserrat', sans-serif;
     opacity: 1;
-    background-color: grey;
+    background-color: #6898c3;
+    color: white;
   `}
 `;
 

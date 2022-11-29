@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import classes from './Login.module.css';
 import Button from '../UI/Button/Button';
-import exp_logo from '../images/exp_logo.png';
+import exp_logo_dark from '../images/exp_logo_dark.png';
 
 const Login = (props) => {
   const [enteredEmail, setEnteredEmail] = useState('');
@@ -59,9 +59,9 @@ const Login = (props) => {
     
     <div className={classes.loginPage}>
       <div className={classes.login_left}>
-        <div className={classes.headerimage}>
-            <a href=''><img src={exp_logo}/></a>
-        </div>
+          <div className={classes.headerimage}>
+              <a href=''><img src={exp_logo_dark}/></a>
+          </div>
       </div>
       <div className={classes.login}>
         <h2 className='login-text'>Login</h2>
