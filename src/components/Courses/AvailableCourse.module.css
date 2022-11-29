@@ -21,9 +21,7 @@
   
   .courses ul {
     list-style: none;
-    margin: 0;
     padding: 0;
-    /* display: flex; */
     flex-direction: row;
     width: auto;
     display: grid;
@@ -41,6 +39,10 @@
       opacity: 1;
       transform: translateY(0);
     }
+  }
+
+  .searchbar {
+    background-color: blue;
   }
   
   

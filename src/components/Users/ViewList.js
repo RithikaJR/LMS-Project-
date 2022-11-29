@@ -28,7 +28,7 @@ const ViewList = () => {
           );
         }else{
           response = await fetch(
-            'http://localhost:8080/api/employee/search/findAllByemployeeFirstName?name='+searchName
+            'http://localhost:8080/api/employee/search/findByemployeeFirstNameContaining?name='+searchName
           );
         }
   
@@ -111,7 +111,7 @@ const ViewList = () => {
                   <td className={classes.first_column}>{ item.employeeFirstName }  { item.employeeLastName }</td>
                   {/* <td>{ item.employeeLastName }</td> */}
                   <td>{ item.employeeEmail }</td>
-                  <td className={classes.last_column}>NULL</td>
+                  <td className={classes.last_column}>Trainee</td>
                 </tr>
               );
             })}

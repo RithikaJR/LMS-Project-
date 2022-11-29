@@ -3,10 +3,10 @@
 .wrap input {
     font-family: 'Montserrat', sans-serif;
     border: 1px;
-    border-radius: 25px;
-    padding: 0.5rem 0;
+    border-radius: 20px;
+    padding: 1rem 0;
     padding-left: 1rem;
     padding-right: 20rem;
     text-align: left;
-    box-shadow: 0 1px 10px rgb(171, 171, 171);
+    background-color: rgb(225, 225, 225);
 }
