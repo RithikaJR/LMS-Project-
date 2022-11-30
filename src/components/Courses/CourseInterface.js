@@ -3,7 +3,7 @@ import { useLocation } from "react-router-dom";
 import Button from "../UI/Button/Button";
 import classes from './CourseInterface.module.css';
 import CourseModuleList from "./CourseModuleList";
-
+import Collapsible from 'react-collapsible';
 
 
 
@@ -125,12 +125,42 @@ const CourseInterface = (props) => {
     <React.Fragment>
       {/* <Search search={onSearchHandler}/> */}
 
-      <p>{location.state.id}</p>
-      <section className={classes.courses}>
+      {/* <p>{location.state.id}</p> */}
+      
+      
+      
+      {/* <section className={classes.courses}>
         <ul>{courseModuleList}</ul>
-      </section>
+        
+        </section> */}
+        
+        {/* <label>
+          <select value={courseModuleList}></select>
+        </label> */}
+
+    <Collapsible trigger="Start here">
+      <p>
+        This is the collapsible content. It can be any element or React
+        component you like.
+      </p>
+      <p>
+        It can even be another Collapsible component. Check out the next
+        section!
+      </p>
+    </Collapsible>
+
+    
+      
     </React.Fragment>
   );
+
+  return(
+    <div>
+      <select>
+
+      </select>
+    </div>
+  )
 }
 
 export default CourseInterface;

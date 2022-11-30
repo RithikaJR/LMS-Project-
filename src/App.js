@@ -60,10 +60,6 @@ function App() {
           <Route path="/courses/course-module">
             {isLoggedIn ? <CourseInterface onLogout={logoutHandler} /> : <Redirect to='/login' /> }
           </Route>
-
-          
-          
-
         </Switch>
 
      
