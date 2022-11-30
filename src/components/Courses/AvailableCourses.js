@@ -1,6 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import Card from '../UI/Card/Card';
-import Search from '../Users/Search';
+import Search from '../Search Bar/Search.js';
 
 import classes from './AvailableCourse.module.css';
 import CourseItem from './CourseItem';
@@ -23,7 +22,7 @@ const AvailableCourses = () => {
           response = await fetch(
             'http://localhost:8080/api/courses');
         }else{
-          response = await fetch('http://localhost:8080/api/courses/search/findAllBycourseName?name='+searchName);
+          response = await fetch('http://localhost:8080/api/courses/search/findBycourseNameContaining?name='+searchName);
         }
         
   

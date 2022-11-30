@@ -3,9 +3,10 @@ import { useLocation } from "react-router-dom";
 import Button from "../UI/Button/Button";
 import classes from './CourseInterface.module.css';
 import CourseModuleList from "./CourseModuleList";
+import video from '../video/sample_video.mp4';
+
+
 import Collapsible from 'react-collapsible';
-
-
 
 
 const CourseInterface = (props) => {
@@ -23,6 +24,7 @@ const CourseInterface = (props) => {
   const [httpError, setHttpError] = useState();
   const [searchName, setSearchName] = useState("");
 
+  const [link, setLink] = useState("");
  
 //   const [courseId, setCurseId] = useState(location.state.id);
   let location = useLocation();
@@ -107,8 +109,15 @@ const CourseInterface = (props) => {
     );
   }
 
+
+  const videoLinkHandler = (link1)=>{
+   
+    setLink(link1)
+  }
+
   const courseModuleList = modules.map((module) => (
     <CourseModuleList
+      videoLink = {videoLinkHandler}
       key={module.id}
       id={module.moduleId}
       name={module.name}
@@ -122,36 +131,24 @@ const CourseInterface = (props) => {
   
 
   return (
-    <React.Fragment>
-      {/* <Search search={onSearchHandler}/> */}
+    <section className={classes.page}>
 
       {/* <p>{location.state.id}</p> */}
-      
-      
-      
-      {/* <section className={classes.courses}>
+        <h3>Modules</h3>
+      <section className={classes.courses}>
+        
         <ul>{courseModuleList}</ul>
-        
-        </section> */}
-        
-        {/* <label>
-          <select value={courseModuleList}></select>
-        </label> */}
-
-    <Collapsible trigger="Start here">
-      <p>
-        This is the collapsible content. It can be any element or React
-        component you like.
-      </p>
-      <p>
-        It can even be another Collapsible component. Check out the next
-        section!
-      </p>
-    </Collapsible>
-
-    
+        <section className={classes.aa}>
+          <iframe src={link} className={classes.player}></iframe>
+          {/* <video className={classes.player} controls autoPlay>
+            { console.log("VideoLink "+link)}
+            <source src={link} type="video/mp4"/>
+          </video> */}
+        </section>
+      </section>
       
-    </React.Fragment>
+      
+    </section>
   );
 
   return(

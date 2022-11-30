@@ -35,8 +35,6 @@ const CourseItem = (props) => {
       </li>
     );
   };
-  // <NavLink to = "/courseinterface" ><Button>Modules</Button></NavLink>
-  // {props.url}
   
   export default CourseItem;
   

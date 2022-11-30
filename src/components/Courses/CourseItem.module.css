@@ -1,19 +1,16 @@
 .courses {
-    display: inline-block;
+    display: block;
     /* float: left; */
     height: 20rem;
-    width: 30rem;
+    width: 20rem;
     justify-content: center;
     text-transform: capitalize;
-    margin: 1rem;
-    margin-right: 2rem;
     padding: 0 1rem;
     padding-top: 3rem;
-    padding-bottom: 20rem;
     border: 0.5px;
     border-radius: 40px;
     background-color: white; 
-    box-shadow: 10px 5px 25px black;
+    box-shadow: 2px 2px 12px black;
     transition: 0.3s ease-in-out;
   }
   
@@ -42,6 +39,6 @@
 .courses:hover {
   transform: scale(1.1);
   z-index: 1;
-  box-shadow: 2px 2px 25px rgb(133, 132, 132);
+  /* box-shadow: 2px 2px 25px rgb(133, 132, 132); */
   /* margin: 1rem; */
 }
