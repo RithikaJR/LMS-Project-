@@ -3,6 +3,7 @@ import React,{Component} from 'react';
 import Button from '../UI/Button/Button';
 import classes from "./UserPage.module.css";
 import Search from "../Search Bar/Search.js";
+import image from '../images/excel.png';
 
 class UserPage extends Component {
 
@@ -99,9 +100,12 @@ class UserPage extends Component {
                     <h1>
                         Add User List
                     </h1>
-                    <h3>
-                        Upload Employee Details
-                    </h3>
+                    <div className={classes.sample}>
+                        <h4>Dowload Template here : </h4>
+                        <a href='https://experiontechnologies-my.sharepoint.com/personal/vaishnav_cc_experionglobal_com/_layouts/15/download.aspx?e=Zqt516&share=EbR-k5dxQZdKuJmypTMuHPsBGrcXfz0DnX0nqVdAk76k3Q'>
+                            <img src={image} />
+                        </a>
+                    </div>
                     <div>
                         <input type="file" onChange={this.onFileChange} />
                         <Button onClick={this.onFileUpload}>
