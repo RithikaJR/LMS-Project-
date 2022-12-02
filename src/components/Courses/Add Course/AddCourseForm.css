@@ -1,0 +1,24 @@
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;600&display=swap');
+
+.all {
+    font-family: 'Montserrat', sans-serif;
+    /* text-align: center; */
+}
+
+.px-4 h1 {
+    text-align: center;
+}
+
+.px-4 label {
+    display: block;
+    padding: 0.5rem 0;
+    margin: 0 3rem;
+}
+
+.px-4 select, input, textarea {
+    margin: 0 0.5rem;
+}
+
+.last {
+    text-align:center;
+}
