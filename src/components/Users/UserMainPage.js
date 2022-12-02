@@ -38,7 +38,7 @@ const ButtonGroup = styled.div`
   display: flex;
 `;
 
-const types = ['All Users', 'Add New Users', 'Excel Upload'];
+const types = ['All Users', 'Assign Role', 'Excel Upload'];
 
 const UserMainPage = () => {
 
@@ -68,7 +68,7 @@ const UserMainPage = () => {
           <div className={classes.all_tab}>
             {active==='All Users' && <ViewList />}
 
-            {active === "Add New Users" && <AddUser/>}
+            {active === "Assign Role" && <AddUser/>}
 
             {active==='Excel Upload' && <UserPage />}
           </div>

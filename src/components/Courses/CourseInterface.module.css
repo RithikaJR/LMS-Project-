@@ -7,7 +7,7 @@
     text-align: center;
     padding: 1rem;
     /* margin: 1rem; */
-    background-color: rgb(13, 14, 16);
+    background-color: white;
 }
 
 
@@ -37,6 +37,9 @@
     width: 60%;
     height: auto;
     margin: 1rem;
+    background-image: url(../images/login_2.jpg);
+    background-size: cover;
+    border-radius: 10px;
 }
 
 /* .collapse {
