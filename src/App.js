@@ -8,6 +8,8 @@ import Courses from './components/Courses/Courses';
 import UserPage from './components/Users/UserPage';
 import UserMainPage from './components/Users/UserMainPage';
 import CourseInterface from './components/Courses/CourseInterface';
+import EmployeesHome from './components/Employees_Home/EmployeesHome';
+import FeedbackForm from './components/Employees_Home/FeedbackForm';
 
 
 function App() {
@@ -48,9 +50,15 @@ function App() {
           <Route path="/home">
               {isLoggedIn ? <Home onLogout={logoutHandler} /> : <Redirect to='/login' />}
           </Route>
-          <Route path="/courses" exact>
+          {/* <Route path="/courses" exact>
               {isLoggedIn ? <Courses onLogout={logoutHandler} /> : <Redirect to='/login' /> }
+          </Route> */}
+
+          <Route path="/courses" exact>
+              <Courses /> 
           </Route>
+
+
           {/* <Route path="/courses/course-module">
               {isLoggedIn ? <CourseModules onLogout={logoutHandler} /> : <Redirect to='/login' /> }
           </Route> */}
@@ -60,6 +68,11 @@ function App() {
           <Route path="/courses/course-module">
             {isLoggedIn ? <CourseInterface onLogout={logoutHandler} /> : <Redirect to='/login' /> }
           </Route>
+
+          <Route path="/employees">
+          <EmployeesHome></EmployeesHome>
+          </Route>
+          
         </Switch>
 
      

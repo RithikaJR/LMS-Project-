@@ -93,13 +93,13 @@ const ViewList = () => {
     return (
       <div className={classes.viewlist}>
         <Search search={onSearchHandler}/>
-          {/* <ul>{coursesList}</ul> */}
+         
 
         <table className={classes.tablee}>
           <thead>
             <tr>
               <th className={classes.first_head}>Name</th>
-              {/* <th>Last name</th> */}
+             
               <th>Email</th>
               <th className={classes.last_head}>Role</th>
             </tr>
@@ -109,8 +109,7 @@ const ViewList = () => {
               return (
                 <tr key={item.employeeId}>
                   <td className={classes.first_column}>{ item.employeeFirstName }  { item.employeeLastName }</td>
-                  {/* <td>{ item.employeeLastName }</td> */}
-                  <td>{ item.employeeEmail }</td>
+                  <td>{item.employeeEmail}</td>
                   <td className={classes.last_column}>Trainee</td>
                 </tr>
               );
