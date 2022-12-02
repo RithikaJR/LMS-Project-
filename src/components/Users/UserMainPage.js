@@ -22,13 +22,15 @@ const Tab = styled.button`
     `
     font-family: 'Montserrat', sans-serif;
     opacity: 1;
+    color: #1a72be;
   `}
   ${({ active }) =>
     active &&
     `
     font-family: 'Montserrat', sans-serif;
     opacity: 1;
-    background-color: grey;
+    background-color: #6898c3;
+    color: white;
   `}
 `;
 
@@ -36,7 +38,7 @@ const ButtonGroup = styled.div`
   display: flex;
 `;
 
-const types = ['All Users', 'Add New Users', 'Excel Upload'];
+const types = ['All Users', 'Assign Role', 'Excel Upload'];
 
 const UserMainPage = () => {
 
@@ -66,7 +68,7 @@ const UserMainPage = () => {
           <div className={classes.all_tab}>
             {active==='All Users' && <ViewList />}
 
-            {active === "Add New Users" && <AddUser/>}
+            {active === "Assign Role" && <AddUser/>}
 
             {active==='Excel Upload' && <UserPage />}
           </div>

@@ -22,7 +22,7 @@ const AvailableCourses = () => {
           response = await fetch(
             'http://localhost:8080/api/courses');
         }else{
-          response = await fetch('http://localhost:8080/api/courses/search/findAllBycourseName?name='+searchName);
+          response = await fetch('http://localhost:8080/api/courses/search/findBycourseNameContaining?name='+searchName);
         }
         
   

@@ -5,9 +5,9 @@ import Button from "../UI/Button/Button";
 import classes from './Search.module.css';
 
 function Search(props) {
-  const [loading, setLoading] = useState(false);
-  const [posts, setPosts] = useState([]);
-  const [searchTitle, setSearchTitle] = useState("");
+  // const [loading, setLoading] = useState(false);
+  // const [posts, setPosts] = useState([]);
+  // const [searchTitle, setSearchTitle] = useState("");
 
  
 
@@ -80,10 +80,10 @@ function Search(props) {
   //   </div>
   // );
 
- const onsubmitHandler = (event) =>{
-  event.preventDefault();
-  props.search(searchTitle)
- }
+//  const onsubmitHandler = (event) =>{
+//   event.preventDefault();
+//   props.search(searchTitle)
+//  }
 
  const onChangeSearch = (event) => {
   // setSearchTitle(event.target.value)

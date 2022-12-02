@@ -8,7 +8,7 @@ import Courses from './components/Courses/Courses';
 import UserPage from './components/Users/UserPage';
 import UserMainPage from './components/Users/UserMainPage';
 import CourseInterface from './components/Courses/CourseInterface';
-import LearningAdminHome from './components/LearningAdmin/LearningAdminHome';
+import EmployeeHome from './components/Employee/EmployeeHome';
 
 
 function App() {
@@ -30,6 +30,8 @@ function App() {
     setIsLoggedInName(email);
     setIsLoggedIn(true);
   };
+
+
 
   const logoutHandler = () => {
     localStorage.removeItem('isLoggedIn');
@@ -71,6 +73,9 @@ function App() {
           </Route>
           <Route path="/courses/course-module">
             {isLoggedIn ? <CourseInterface onLogout={logoutHandler} /> : <Redirect to='/login' /> }
+          </Route>
+          <Route path="/employee">
+            <EmployeeHome onLogout={logoutHandler} />
           </Route>
 
         </Switch>

@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import classes from './Login.module.css';
 import Button from '../UI/Button/Button';
-import exp_logo from '../images/exp_logo.png';
+import exp_logo_dark from '../images/exp_logo_dark.png';
 
 const Login = (props) => {
   const [enteredEmail, setEnteredEmail] = useState('');
@@ -10,12 +10,61 @@ const Login = (props) => {
   const [passwordIsValid, setPasswordIsValid] = useState();
   const [formIsValid, setFormIsValid] = useState(false);
 
+  const [roleId, setRoleId] = useState()
+  const [roleName, setRoleName] = useState()
+
+
+  useEffect(() => {
+
+    const fetchRole = async () => {
+
+      const response = await fetch(
+
+        'http://localhost:8080/api/roles'
+
+      );
+
+
+
+      if (!response.ok) {
+
+        throw new Error('Something went wrong!');
+
+      }
+
+
+
+      const responseData = await response.json();
+
+
+
+      const loadedCategory = [];
+
+      const newItemList = [...responseData._embedded.courseCategory]
+
+      for (const key in newItemList) {
+
+        loadedCategory.push({
+
+          id: key,
+
+          roleId:newItemList[key].roleId,
+
+          category_name: newItemList[key].roleName,
+
+        });
+
+      }
+    }})
+
+
   
   useEffect(() =>{
     const identifier =setTimeout(() =>{
       console.log("Validity Check");
       setFormIsValid(
-        enteredEmail.includes('.admin') && enteredPassword.trim().length > 6
+          enteredEmail.includes('.') && enteredPassword.trim().length > 6
+        
       );
     }, 500)
 
@@ -24,6 +73,7 @@ const Login = (props) => {
       clearTimeout(identifier);
     };
   }, [enteredEmail,enteredPassword])
+  
   
 
   const emailChangeHandler = (event) => {
@@ -59,13 +109,25 @@ const Login = (props) => {
     
     <div className={classes.loginPage}>
       <div className={classes.login_left}>
-        <div className={classes.headerimage}>
-            <a href=''><img src={exp_logo}/></a>
-        </div>
+          <div className={classes.headerimage}>
+              <a href=''><img src={exp_logo_dark}/></a>
+          </div>
       </div>
       <div className={classes.login}>
         <h2 className='login-text'>Login</h2>
         <form onSubmit={submitHandler}>
+          <div className={classes.drop}>
+            <label className={classes.lbb}>Login as: </label>
+            <select type="text" name="role" 
+                // onChange={this.changeHandler}  
+                // value={role} 
+                placeholder="Choose Role">
+                    <option value="Learning Admin">Super Admin</option>
+                    <option value="Employee">Learning Admin</option>
+                    <option value="Trainee">Employee</option>
+            </select>
+          </div>
+
           <div
             className={`${classes.control} ${
               emailIsValid === false ? classes.invalid : ''

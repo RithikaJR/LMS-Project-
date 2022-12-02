@@ -32,15 +32,25 @@ render() {
     const {employee_id, role} = this.state;
     return(
         <form onSubmit ={this.submitHandler} className={classes.wrap}>
+            <div className={classes.lable}>
             <label >Employee ID</label>
             <input type="text" name="employee_id" 
                 onChange={this.changeHandler}
-                value={employee_id} />
+                value={employee_id} 
+                placeholder="Employee ID"/>
+            </div>
 
-            <label>Role</label>
-            <input type="text" name="role" 
+            <div className={classes.lable}>
+            <label className={classes.lbb}>Role</label>
+            <select type="text" name="role" 
                 onChange={this.changeHandler} 
-                value={role} />
+                value={role} 
+                placeholder="Choose Role">
+                    <option value="Learning Admin">Learning Admin</option>
+                    {/* <option value="Employee">Employee</option>
+                    <option value="Trainee">Trainee</option> */}
+                </select>
+            </div>
 
 {/* <select    value={'ItemType'}  onChange={this.handleChange}  style={{'width':'200px'}}>
                      <option value='0'>Select An Item Type</option>
@@ -52,7 +62,7 @@ render() {
 
             <Button
                 type="submit"
-                className="btn btn-primary">submit
+                className="btn btn-primary">Submit
             </Button>
         </form>
     )
