@@ -5,6 +5,7 @@ import classes from './CourseModuleList.module.css';
 import './ColapStyle.css';
 import Collapsible from 'react-collapsible';
 import video from '../video/sample_video.mp4';
+// import sample_video from 'https://drive.google.com/file/d/19aJicg0EDYGpdsmD4hCGrDC1vGWKg12C/view?usp=share_link';
 
 
 const CourseModuleList = (props) =>{

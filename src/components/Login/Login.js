@@ -10,12 +10,61 @@ const Login = (props) => {
   const [passwordIsValid, setPasswordIsValid] = useState();
   const [formIsValid, setFormIsValid] = useState(false);
 
+  const [roleId, setRoleId] = useState()
+  const [roleName, setRoleName] = useState()
+
+
+  useEffect(() => {
+
+    const fetchRole = async () => {
+
+      const response = await fetch(
+
+        'http://localhost:8080/api/roles'
+
+      );
+
+
+
+      if (!response.ok) {
+
+        throw new Error('Something went wrong!');
+
+      }
+
+
+
+      const responseData = await response.json();
+
+
+
+      const loadedCategory = [];
+
+      const newItemList = [...responseData._embedded.courseCategory]
+
+      for (const key in newItemList) {
+
+        loadedCategory.push({
+
+          id: key,
+
+          roleId:newItemList[key].roleId,
+
+          category_name: newItemList[key].roleName,
+
+        });
+
+      }
+    }})
+
+
   
   useEffect(() =>{
     const identifier =setTimeout(() =>{
       console.log("Validity Check");
       setFormIsValid(
-        enteredEmail.includes('.admin') && enteredPassword.trim().length > 6
+          enteredEmail.includes('.') && enteredPassword.trim().length > 6
+        
       );
     }, 500)
 
@@ -24,6 +73,7 @@ const Login = (props) => {
       clearTimeout(identifier);
     };
   }, [enteredEmail,enteredPassword])
+  
   
 
   const emailChangeHandler = (event) => {
@@ -66,6 +116,18 @@ const Login = (props) => {
       <div className={classes.login}>
         <h2 className='login-text'>Login</h2>
         <form onSubmit={submitHandler}>
+          <div className={classes.drop}>
+            <label className={classes.lbb}>Login as: </label>
+            <select type="text" name="role" 
+                // onChange={this.changeHandler}  
+                // value={role} 
+                placeholder="Choose Role">
+                    <option value="Learning Admin">Super Admin</option>
+                    <option value="Employee">Learning Admin</option>
+                    <option value="Trainee">Employee</option>
+            </select>
+          </div>
+
           <div
             className={`${classes.control} ${
               emailIsValid === false ? classes.invalid : ''

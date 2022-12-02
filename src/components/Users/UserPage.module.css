@@ -18,13 +18,18 @@
     font-size: large;
     background-color: white;
     padding: 0.5rem;
+    padding-left: 0;
     border: 1px;
-    border-radius: 25px;
+    /* border-radius: 0 25px 25px 0 ; */
+}
+
+.userpage h3{
+    color: rgb(51, 0, 255);
 }
 
 .inside_userpage h4 {
     font-size: small;   
-    color: rgb(237, 137, 137); 
+    color: rgb(220, 219, 219); 
 }
 
 .userpage Button {
