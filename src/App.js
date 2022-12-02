@@ -8,10 +8,12 @@ import Courses from './components/Courses/Courses';
 import UserPage from './components/Users/UserPage';
 import UserMainPage from './components/Users/UserMainPage';
 import CourseInterface from './components/Courses/CourseInterface';
+import LearningAdminHome from './components/LearningAdmin/LearningAdminHome';
 
 
 function App() {
   const [isLoggedIn, setIsLoggedIn] = useState(false);
+  const [isLogginName, setIsLoggedInName] = useState(false);
 
   useEffect(() => {
     const storedUserLoggedInInformation = localStorage.getItem('isLoggedIn');
@@ -25,6 +27,7 @@ function App() {
     // We should of course check email and password
     // But it's just a dummy/ demo anyways
     localStorage.setItem('isLoggedIn','1');
+    setIsLoggedInName(email);
     setIsLoggedIn(true);
   };
 
@@ -42,12 +45,24 @@ function App() {
               <Redirect to='/login'/>
           </Route>
 
-          <Route path="/login">
+          {/* <Route path="/login">
             {!isLoggedIn ? <Login onLogin={loginHandler} /> :<Redirect to='/home' />}
+          </Route> */}
+
+          <Route path="/login">
+            {!isLoggedIn ? <Login onLogin={loginHandler} /> :<Redirect to='/learningadmin' />}
           </Route>
-          <Route path="/home">
+
+
+          {/* <Route path="/home">
               {isLoggedIn ? <Home onLogout={logoutHandler} /> : <Redirect to='/login' />}
+          </Route> */}
+
+          <Route path="/learningadmin">
+              {isLoggedIn ? <LearningAdminHome name={isLogginName} onLogout={logoutHandler} /> : <Redirect to='/login' />}
           </Route>
+
+
           <Route path="/courses" exact>
               {isLoggedIn ? <Courses onLogout={logoutHandler} /> : <Redirect to='/login' /> }
           </Route>

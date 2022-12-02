@@ -1,12 +1,13 @@
 @import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;600&display=swap');
 
 .wrap input {
+    margin-left: 50px;
     font-family: 'Montserrat', sans-serif;
     border: 1px;
     border-radius: 25px;
     padding: 0.5rem 0;
     padding-left: 1rem;
-    padding-right: 20rem;
+    padding-right: 10rem;
     text-align: left;
     box-shadow: 0 1px 10px rgb(171, 171, 171);
 }
