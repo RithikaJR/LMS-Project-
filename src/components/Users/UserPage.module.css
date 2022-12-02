@@ -44,3 +44,28 @@
     font-weight: bold;
     color: white;
 }
+
+.sample {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin: 0.5rem;
+}
+
+.sample img {
+    height: 30px;
+    /* width: 100px; */
+    margin-left: 1rem;
+    transition: 100ms ease-in-out;
+}
+
+.sample img:hover {
+    height: 40px;
+    /* width: 100px; */
+    margin-left: 1rem;
+    /* box-shadow: 0 1px 5px white; */
+}
+
+.sample h4 {
+    color:rgb(8, 63, 126);
+}
