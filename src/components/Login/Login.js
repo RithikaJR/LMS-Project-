@@ -11,8 +11,27 @@ const Login = (props) => {
   const [formIsValid, setFormIsValid] = useState(false);
 
   const [roleId, setRoleId] = useState()
-  const [roleName, setRoleName] = useState()
+  const [roleName, setRoleName] = useState();
+  const [isLoading, setIsLoading] = useState(true);
+  const [httpError, setHttpError] = useState();
+  const [category, setCategory] = useState([]);
 
+
+ 
+  useEffect(() =>{
+    const identifier =setTimeout(() =>{
+      console.log("Validity Check");
+      setFormIsValid(
+          enteredEmail.includes('.') && enteredPassword.trim().length > 6
+       
+      );
+    }, 500)
+
+    return () => {
+      console.log('CLEANUP');
+      clearTimeout(identifier);
+    };
+  }, [enteredEmail,enteredPassword])
 
   useEffect(() => {
 
@@ -40,7 +59,7 @@ const Login = (props) => {
 
       const loadedCategory = [];
 
-      const newItemList = [...responseData._embedded.courseCategory]
+      const newItemList = [...responseData._embedded.role]
 
       for (const key in newItemList) {
 
@@ -50,31 +69,56 @@ const Login = (props) => {
 
           roleId:newItemList[key].roleId,
 
-          category_name: newItemList[key].roleName,
+          role_name: newItemList[key].roleName,
 
         });
 
+        setCategory(loadedCategory);
+        setIsLoading(false);
       }
-    }})
 
+      }
+      fetchRole().catch((error) => {
+ 
+        setIsLoading(false);
+ 
+        setHttpError(error.message);
+ 
+      });
+ 
+    }, []);
 
-  
-  useEffect(() =>{
-    const identifier =setTimeout(() =>{
-      console.log("Validity Check");
-      setFormIsValid(
-          enteredEmail.includes('.') && enteredPassword.trim().length > 6
-        
+    if (isLoading) {
+ 
+      return (
+ 
+        <h1>Loading...</h1>
+ 
       );
-    }, 500)
+ 
+    }
+ 
+ 
+ 
+    if (httpError) {
+ 
+      return (
+ 
+        <h1>{httpError}</h1>
+ 
+      );
+ 
+    }
 
-    return () => {
-      console.log('CLEANUP');
-      clearTimeout(identifier);
-    };
-  }, [enteredEmail,enteredPassword])
-  
-  
+    const handleRole = (event) => {
+      setRoleId(event.target.value);
+      setRoleName(event.target.name);
+      console.log("id "+event.target.value)
+      console.log("name "+event.target.name)
+    }
+
+ 
+ 
 
   const emailChangeHandler = (event) => {
     setEnteredEmail(event.target.value);
@@ -106,7 +150,7 @@ const Login = (props) => {
   };
 
   return (
-    
+   
     <div className={classes.loginPage}>
       <div className={classes.login_left}>
           <div className={classes.headerimage}>
@@ -118,13 +162,15 @@ const Login = (props) => {
         <form onSubmit={submitHandler}>
           <div className={classes.drop}>
             <label className={classes.lbb}>Login as: </label>
-            <select type="text" name="role" 
-                // onChange={this.changeHandler}  
-                // value={role} 
+            <select type="text" name="roleName" 
+                onChange={handleRole}
+                value={roleId}
                 placeholder="Choose Role">
-                    <option value="Learning Admin">Super Admin</option>
+                  {category.map(category => (
+                    <option value={category.roleId} name={category.roleId} onChange={handleRole}>{category.role_name}</option>))}
+                    {/* <option value="Learning Admin">Super Admin</option>
                     <option value="Employee">Learning Admin</option>
-                    <option value="Trainee">Employee</option>
+                    <option value="Trainee">Employee</option> */}
             </select>
           </div>
 
@@ -160,11 +206,11 @@ const Login = (props) => {
               onBlur={validatePasswordHandler}
             />
           </div>
-           <div className={classes.actions}>
-             <Button type="submit" className={classes.btn} disabled={!formIsValid}>
+          <div className={classes.actions}>
+            <Button type="submit" className={classes.btn} disabled={!formIsValid}>
               Login
-             </Button>
-           </div>
+            </Button>
+          </div>
         </form>
       </div>
     </div>

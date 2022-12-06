@@ -47,16 +47,10 @@ render() {
                 value={role} 
                 placeholder="Choose Role">
                     <option value="Learning Admin">Learning Admin</option>
-                    {/* <option value="Employee">Employee</option>
-                    <option value="Trainee">Trainee</option> */}
+                    
                 </select>
             </div>
 
-{/* <select    value={'ItemType'}  onChange={this.handleChange}  style={{'width':'200px'}}>
-                     <option value='0'>Select An Item Type</option>
-                     <option value='1'>**Learning Admin**</option>
-                    
-                    </select> */}
 
         
 

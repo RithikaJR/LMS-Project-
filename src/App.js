@@ -56,7 +56,7 @@ function App() {
           </Route> */}
 
           <Route path="/courses" exact>
-              <Courses /> 
+              <Courses  /> 
           </Route>
 
 
