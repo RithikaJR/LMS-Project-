@@ -109,12 +109,30 @@ const loginHandler = () => {
           <Route path="/superadminrouting">
             {isLoggedIn ? <SuperAdminRouting onLogin={loginHandler} /> :<Redirect to='/login' />}
           </Route>
-          <Route path='/learningadminrouting'>
-            {isLoggedIn ? <LearningAdminRouting onLogin={loginHandler} /> :<Redirect to='/login' />}
+          {/* <Route path="/courses" exact>
+              {isLoggedIn ? <Courses onLogout={logoutHandler} /> : <Redirect to='/login' /> }
+          </Route> */}
+
+          <Route path="/courses" exact>
+              <Courses  /> 
           </Route>
-          <Route path='/employeerouting'>
-            {isLoggedIn ? <EmployeeRouting onLogin={loginHandler} /> :<Redirect to='/login' />}
-          </Route>  
+
+
+          {/* <Route path="/courses/course-module">
+              {isLoggedIn ? <CourseModules onLogout={logoutHandler} /> : <Redirect to='/login' /> }
+          </Route> */}
+          <Route path="/users">
+            {isLoggedIn ? <UserMainPage onLogout={logoutHandler} /> : <Redirect to='/login' /> }
+          </Route>
+          <Route path="/courses/course-module">
+            {isLoggedIn ? <CourseInterface onLogout={logoutHandler} /> : <Redirect to='/login' /> }
+          </Route>
+          <Route path="/employee">
+            <EmployeeHome onLogout={logoutHandler} />
+          </Route>
+
+         
+          
         </Switch>
 
 

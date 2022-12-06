@@ -33,6 +33,7 @@ const SuperAdminHome = (props) => {
             </NavLink>
           </li>
 
+<<<<<<< HEAD:src/components/Home/SuperAdminHome.js
           <li>
             <NavLink to ='/reports' className={classes.coursetext}> 
             <div className={classes.image_wrap}>
@@ -41,6 +42,9 @@ const SuperAdminHome = (props) => {
               <h4>Reports</h4>
             </NavLink>
           </li>
+=======
+        
+>>>>>>> origin:src/components/Home/Home.js
         </ul>
       </div>
 

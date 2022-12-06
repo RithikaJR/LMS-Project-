@@ -32,7 +32,94 @@ const Login = (props) => {
     };
   }, [enteredEmail,enteredPassword])
 
-    const emailChangeHandler = (event) => {
+  // useEffect(() => {
+
+  //   const fetchRole = async () => {
+
+  //     const response = await fetch(
+
+  //       'http://localhost:8080/api/roles'
+
+  //     );
+
+
+
+  //     if (!response.ok) {
+
+  //       throw new Error('Something went wrong!');
+
+  //     }
+
+
+
+  //     const responseData = await response.json();
+
+
+
+  //     const loadedCategory = [];
+
+  //     const newItemList = [...responseData._embedded.role]
+
+  //     for (const key in newItemList) {
+
+  //       loadedCategory.push({
+
+  //         id: key,
+
+  //         roleId:newItemList[key].roleId,
+
+  //         role_name: newItemList[key].roleName,
+
+  //       });
+
+  //       setCategory(loadedCategory);
+  //       setIsLoading(false);
+  //     }
+
+  //     }
+  //     fetchRole().catch((error) => {
+ 
+  //       setIsLoading(false);
+ 
+  //       setHttpError(error.message);
+ 
+  //     });
+ 
+  //   }, []);
+
+  //   if (isLoading) {
+ 
+  //     return (
+ 
+  //       <h1>Loading...</h1>
+ 
+  //     );
+ 
+  //   }
+ 
+ 
+ 
+  //   if (httpError) {
+ 
+  //     return (
+ 
+  //       <h1>{httpError}</h1>
+ 
+  //     );
+ 
+  //   }
+
+  //   const handleRole = (event) => {
+  //     setRoleId(event.target.value);
+  //     setRoleName(event.target.name);
+  //     console.log("id "+event.target.value)
+  //     console.log("name "+event.target.name)
+  //   }
+
+ 
+ 
+
+  const emailChangeHandler = (event) => {
     setEnteredEmail(event.target.value);
 
     // setFormIsValid(
@@ -105,7 +192,7 @@ const Login = (props) => {
   // }
 
   return (
-    
+   
     <div className={classes.loginPage}>
       <div className={classes.login_left}>
           <div className={classes.headerimage}>
@@ -115,6 +202,17 @@ const Login = (props) => {
       <div className={classes.login}>
         <h2 className='login-text'>Login</h2>
         <form onSubmit={submitHandler}>
+          {/* <div className={classes.drop}>
+            <label className={classes.lbb}>Login as: </label>
+            <select type="text" name="roleName" 
+                onChange={handleRole}
+                value={roleId}
+                placeholder="Choose Role">
+                  {category.map(category => (
+                    <option value={category.roleId} name={category.roleId} onChange={handleRole}>{category.role_name}</option>))}
+            </select>
+          </div> */}
+
           <div
             className={`${classes.control} ${
               emailIsValid === false ? classes.invalid : ''

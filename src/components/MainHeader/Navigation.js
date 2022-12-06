@@ -10,21 +10,9 @@ const Navigation = (props) => {
       <ul>
         {props.isLoggedIn && (
           <li>
-            {/* <a href="/">Home</a> */}
             <h1>Welcome Super Admin!</h1>
           </li>
         )}
-        {/* {props.isLoggedIn && (
-          <li>
-            <a href="courses">Courses</a>
-            
-          </li>
-        )}
-        {props.isLoggedIn && (
-          <li>
-            <a href="users">Users</a>
-          </li>
-        )} */}
         {props.isLoggedIn && (
           <li>
             <button onClick={props.onLogout}>Logout</button>
