@@ -7,18 +7,7 @@ import CourseInterface from './CourseInterface';
 
 
 const CourseItem = (props) => {
-    // const cartCtx = useContext(CartContext);
-  
-    // const price = `$${props.price.toFixed(2)}`;
-  
-    // const addToCartHandler = amount => {
-    //   cartCtx.addItem({
-    //     id: props.id,
-    //     name: props.name,
-    //     amount: amount,
-    //     price: props.price
-    //   });
-    // };
+    
 
     console.log("CouresItem"+props.id);
     return (
@@ -29,7 +18,12 @@ const CourseItem = (props) => {
         <div>
           <h3>{props.name}</h3>
           <div className={classes.description}>Course Description : {props.description}</div>
-          <div className={classes.view}><NavLink to={{pathname:'/courses/course-module',state:{id:props.id}}}><Button >View</Button></NavLink></div>
+          <div className={classes.view}>
+            <NavLink to={{pathname:'/courses/course-module',state:{id:props.id}}}><Button >View</Button></NavLink>
+            <Button>Edit</Button>
+            <Button>Delete</Button>
+            </div>
+         
         </div>
         
       </li>

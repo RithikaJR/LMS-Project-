@@ -33,92 +33,92 @@ const Login = (props) => {
     };
   }, [enteredEmail,enteredPassword])
 
-  useEffect(() => {
+  // useEffect(() => {
 
-    const fetchRole = async () => {
+  //   const fetchRole = async () => {
 
-      const response = await fetch(
+  //     const response = await fetch(
 
-        'http://localhost:8080/api/roles'
+  //       'http://localhost:8080/api/roles'
 
-      );
-
-
-
-      if (!response.ok) {
-
-        throw new Error('Something went wrong!');
-
-      }
+  //     );
 
 
 
-      const responseData = await response.json();
+  //     if (!response.ok) {
+
+  //       throw new Error('Something went wrong!');
+
+  //     }
 
 
 
-      const loadedCategory = [];
+  //     const responseData = await response.json();
 
-      const newItemList = [...responseData._embedded.role]
 
-      for (const key in newItemList) {
 
-        loadedCategory.push({
+  //     const loadedCategory = [];
 
-          id: key,
+  //     const newItemList = [...responseData._embedded.role]
 
-          roleId:newItemList[key].roleId,
+  //     for (const key in newItemList) {
 
-          role_name: newItemList[key].roleName,
+  //       loadedCategory.push({
 
-        });
+  //         id: key,
 
-        setCategory(loadedCategory);
-        setIsLoading(false);
-      }
+  //         roleId:newItemList[key].roleId,
 
-      }
-      fetchRole().catch((error) => {
-  
-        setIsLoading(false);
-  
-        setHttpError(error.message);
-  
-      });
-  
-    }, []);
+  //         role_name: newItemList[key].roleName,
 
-    if (isLoading) {
-  
-      return (
-  
-        <h1>Loading...</h1>
-  
-      );
-  
-    }
-  
-  
-  
-    if (httpError) {
-  
-      return (
-  
-        <h1>{httpError}</h1>
-  
-      );
-  
-    }
+  //       });
 
-    const handleRole = (event) => {
-      setRoleId(event.target.value);
-      setRoleName(event.target.name);
-      console.log("id "+event.target.value)
-      console.log("name "+event.target.name)
-    }
+  //       setCategory(loadedCategory);
+  //       setIsLoading(false);
+  //     }
 
-  
-  
+  //     }
+  //     fetchRole().catch((error) => {
+ 
+  //       setIsLoading(false);
+ 
+  //       setHttpError(error.message);
+ 
+  //     });
+ 
+  //   }, []);
+
+  //   if (isLoading) {
+ 
+  //     return (
+ 
+  //       <h1>Loading...</h1>
+ 
+  //     );
+ 
+  //   }
+ 
+ 
+ 
+  //   if (httpError) {
+ 
+  //     return (
+ 
+  //       <h1>{httpError}</h1>
+ 
+  //     );
+ 
+  //   }
+
+  //   const handleRole = (event) => {
+  //     setRoleId(event.target.value);
+  //     setRoleName(event.target.name);
+  //     console.log("id "+event.target.value)
+  //     console.log("name "+event.target.name)
+  //   }
+
+ 
+ 
 
   const emailChangeHandler = (event) => {
     setEnteredEmail(event.target.value);
@@ -150,7 +150,7 @@ const Login = (props) => {
   };
 
   return (
-    
+   
     <div className={classes.loginPage}>
       <div className={classes.login_left}>
           <div className={classes.headerimage}>
@@ -160,19 +160,16 @@ const Login = (props) => {
       <div className={classes.login}>
         <h2 className='login-text'>Login</h2>
         <form onSubmit={submitHandler}>
-          <div className={`${classes.control}`}>
-            <label className={classes.lbb}>Login as : </label>
+          {/* <div className={classes.drop}>
+            <label className={classes.lbb}>Login as: </label>
             <select type="text" name="roleName" 
                 onChange={handleRole}
                 value={roleId}
                 placeholder="Choose Role">
                   {category.map(category => (
                     <option value={category.roleId} name={category.roleId} onChange={handleRole}>{category.role_name}</option>))}
-                    {/* <option value="Learning Admin">Super Admin</option>
-                    <option value="Employee">Learning Admin</option>
-                    <option value="Trainee">Employee</option> */}
             </select>
-          </div>
+          </div> */}
 
           <div
             className={`${classes.control} ${

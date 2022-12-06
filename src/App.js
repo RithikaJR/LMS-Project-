@@ -51,9 +51,18 @@ function App() {
           <Route path="/home">
               {isLoggedIn ? <Home onLogout={logoutHandler} /> : <Redirect to='/login' />}
           </Route>
-          <Route path="/courses" exact>
+          {/* <Route path="/courses" exact>
               {isLoggedIn ? <Courses onLogout={logoutHandler} /> : <Redirect to='/login' /> }
+          </Route> */}
+
+          <Route path="/courses" exact>
+              <Courses  /> 
           </Route>
+
+
+          {/* <Route path="/courses/course-module">
+              {isLoggedIn ? <CourseModules onLogout={logoutHandler} /> : <Redirect to='/login' /> }
+          </Route> */}
           <Route path="/users">
             {isLoggedIn ? <UserMainPage onLogout={logoutHandler} /> : <Redirect to='/login' /> }
           </Route>
@@ -64,6 +73,8 @@ function App() {
             <EmployeeHome onLogout={logoutHandler} />
           </Route>
 
+         
+          
         </Switch>
 
      
