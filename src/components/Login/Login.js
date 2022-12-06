@@ -33,89 +33,89 @@ const Login = (props) => {
     };
   }, [enteredEmail,enteredPassword])
 
-  useEffect(() => {
+  // useEffect(() => {
 
-    const fetchRole = async () => {
+  //   const fetchRole = async () => {
 
-      const response = await fetch(
+  //     const response = await fetch(
 
-        'http://localhost:8080/api/roles'
+  //       'http://localhost:8080/api/roles'
 
-      );
-
-
-
-      if (!response.ok) {
-
-        throw new Error('Something went wrong!');
-
-      }
+  //     );
 
 
 
-      const responseData = await response.json();
+  //     if (!response.ok) {
+
+  //       throw new Error('Something went wrong!');
+
+  //     }
 
 
 
-      const loadedCategory = [];
+  //     const responseData = await response.json();
 
-      const newItemList = [...responseData._embedded.role]
 
-      for (const key in newItemList) {
 
-        loadedCategory.push({
+  //     const loadedCategory = [];
 
-          id: key,
+  //     const newItemList = [...responseData._embedded.role]
 
-          roleId:newItemList[key].roleId,
+  //     for (const key in newItemList) {
 
-          role_name: newItemList[key].roleName,
+  //       loadedCategory.push({
 
-        });
+  //         id: key,
 
-        setCategory(loadedCategory);
-        setIsLoading(false);
-      }
+  //         roleId:newItemList[key].roleId,
 
-      }
-      fetchRole().catch((error) => {
+  //         role_name: newItemList[key].roleName,
+
+  //       });
+
+  //       setCategory(loadedCategory);
+  //       setIsLoading(false);
+  //     }
+
+  //     }
+  //     fetchRole().catch((error) => {
  
-        setIsLoading(false);
+  //       setIsLoading(false);
  
-        setHttpError(error.message);
+  //       setHttpError(error.message);
  
-      });
+  //     });
  
-    }, []);
+  //   }, []);
 
-    if (isLoading) {
+  //   if (isLoading) {
  
-      return (
+  //     return (
  
-        <h1>Loading...</h1>
+  //       <h1>Loading...</h1>
  
-      );
+  //     );
  
-    }
+  //   }
  
  
  
-    if (httpError) {
+  //   if (httpError) {
  
-      return (
+  //     return (
  
-        <h1>{httpError}</h1>
+  //       <h1>{httpError}</h1>
  
-      );
+  //     );
  
-    }
+  //   }
 
-    const handleRole = (event) => {
-      setRoleId(event.target.value);
-      setRoleName(event.target.name);
-      console.log("id "+event.target.value)
-      console.log("name "+event.target.name)
-    }
+  //   const handleRole = (event) => {
+  //     setRoleId(event.target.value);
+  //     setRoleName(event.target.name);
+  //     console.log("id "+event.target.value)
+  //     console.log("name "+event.target.name)
+  //   }
 
  
  
@@ -160,7 +160,7 @@ const Login = (props) => {
       <div className={classes.login}>
         <h2 className='login-text'>Login</h2>
         <form onSubmit={submitHandler}>
-          <div className={classes.drop}>
+          {/* <div className={classes.drop}>
             <label className={classes.lbb}>Login as: </label>
             <select type="text" name="roleName" 
                 onChange={handleRole}
@@ -168,11 +168,8 @@ const Login = (props) => {
                 placeholder="Choose Role">
                   {category.map(category => (
                     <option value={category.roleId} name={category.roleId} onChange={handleRole}>{category.role_name}</option>))}
-                    {/* <option value="Learning Admin">Super Admin</option>
-                    <option value="Employee">Learning Admin</option>
-                    <option value="Trainee">Employee</option> */}
             </select>
-          </div>
+          </div> */}
 
           <div
             className={`${classes.control} ${
