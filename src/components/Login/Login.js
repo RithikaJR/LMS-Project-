@@ -17,13 +17,13 @@ const Login = (props) => {
   const [category, setCategory] = useState([]);
 
 
- 
+  
   useEffect(() =>{
     const identifier =setTimeout(() =>{
       console.log("Validity Check");
       setFormIsValid(
           enteredEmail.includes('.') && enteredPassword.trim().length > 6
-       
+        
       );
     }, 500)
 

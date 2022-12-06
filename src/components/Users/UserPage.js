@@ -2,15 +2,9 @@
 // import React,{Component} from 'react';
 import Button from '../UI/Button/Button';
 import classes from "./UserPage.module.css";
-// import Search from "../Search Bar/Search.js";
-
-
-
-
-import React, { useState } from 'react';
-import { Link } from 'react-router-dom';
-import constants from './constants';
-import axios, { AxiosRequestConfig } from 'axios';
+import Search from "../Search Bar/Search.js";
+import { useState } from 'react';
+import image from '../images/excel.png';
 
 const UserPage = () => {
    
@@ -42,31 +36,10 @@ const UserPage = () => {
     //     FileSaver.saveAs(new Blob([blob],{}),"my-excel.xlsx");
     // };
 
-     const downloadXLSFile = async () => {
+    
     
         // Its important to set the 'Content-Type': 'blob' and responseType:'arraybuffer'.
-        const headers = {'Content-Type': 'blob'};
-        const config: AxiosRequestConfig = {method: 'GET', url: "https://experiontechnologies-my.sharepoint.com/:x:/g/personal/drishya_t_experionglobal_com/Ef1HlXZn1qtDumjo2iPG2gABIJPAWydMpFtDDJLyjVeUug?e=GQ6zux", responseType: 'arraybuffer', headers};
-        
-        try {
-            const response = await axios(config);
-            
-            const outputFilename = `${Date.now()}.xls`;
-    
-            // If you want to download file automatically using link attribute.
-            const url = URL.createObjectURL(new Blob([response.data]));
-            const link = document.createElement('a');
-            link.href = url;
-            link.setAttribute('download', outputFilename);
-            document.body.appendChild(link);
-            link.click();
-    
-            // // OR you can save/write file locally.
-            // fs.writeFileSync(outputFilename, response.data);
-        } catch (error) {
-            throw Error(error);
-        }
-    }
+
 
 
 
@@ -121,32 +94,25 @@ const UserPage = () => {
             
 
             <div className={classes.userpage}>
-                 <div>
-                     <h1>
-                         Add User List
-                     </h1>
-                     <h3>
-                         Upload Employee Details
-                     </h3>
-                     <div>
-                         <input type="file" onChange={onFileChange} />
-                         <Button onClick={onFileUpload}>
-                             Upload
-                         </Button>
-
-                         
-
-                    <form action="https://experiontechnologies-my.sharepoint.com/:x:/g/personal/drishya_t_experionglobal_com/Ef1HlXZn1qtDumjo2iPG2gABIJPAWydMpFtDDJLyjVeUug?e=GQ6zux">
-                            <Button type="submit">
-                                Excel Template
-                            </Button>
-                        </form>
-{/* 
-                        <Button onClick={downloadXLSFile}>Template</Button> */}
-                     </div>
-                     {fileData()}
-                 </div>
-             </div>
+                <div>
+                    <h1>
+                        Add User List
+                    </h1>
+                    <div className={classes.sample}>
+                        <h4>Dowload Template here : </h4>
+                        <a href='https://experiontechnologies-my.sharepoint.com/personal/vaishnav_cc_experionglobal_com/_layouts/15/download.aspx?e=Zqt516&share=EbR-k5dxQZdKuJmypTMuHPsBGrcXfz0DnX0nqVdAk76k3Q'>
+                            <img src={image} />
+                        </a>
+                    </div>
+                    <div>
+                        <input type="file" onChange={this.onFileChange} />
+                        <Button onClick={this.onFileUpload}>
+                            Upload
+                        </Button>
+                    </div>
+                    {this.fileData()}
+                </div>
+            </div>
         );
     }
 
