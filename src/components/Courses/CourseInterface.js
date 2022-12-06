@@ -61,10 +61,12 @@ const CourseInterface = (props) => {
       for (const key in moduleArray) {
         loadedCourses.push({
           id: key,
+          // courseId: moduleArray[key].courseId,
           moduleId: moduleArray[key].moduleId,
           name: moduleArray[key].moduleName,
-          image: moduleArray[key].moduleImageUrl,
-          courseUrl: moduleArray[key].moduleUrl,
+          pdf: moduleArray[key].modulePdfUrl,
+          footage: moduleArray[key].moduleVideoUrl,
+          // moduleType: moduleArray[key].moduleType,
           // description: moduleArray[key].courseDescription,
         });
       }
@@ -121,12 +123,18 @@ const CourseInterface = (props) => {
       key={module.id}
       id={module.moduleId}
       name={module.name}
-      image={module.image}
-      url={module.courseUrl}
+      pdf={module.pdf}
+      footage={module.footage}
+      // moduleType={module.moduleType}
+      // url={module.courseUrl}
       // api={module.moduleApi}
       // description={course.description}
     />
+
+
   ));
+
+
 
   
 
@@ -139,11 +147,18 @@ const CourseInterface = (props) => {
         
         <ul>{courseModuleList}</ul>
         <section className={classes.aa}>
-          <iframe src={link} className={classes.player}></iframe>
-          {/* <video className={classes.player} controls autoPlay>
-            { console.log("VideoLink "+link)}
-            <source src={link} type="video/mp4"/>
+
+          <iframe src={link}
+                className={classes.player}
+                  // width="640" 
+                  // height="480" 
+                  >
+          </iframe>
+
+          {/* <video className={classes.player} autoPlay controls onDurationChangeCapture>
+                    <source src={link}  type="video/mp4" />
           </video> */}
+
         </section>
       </section>
       

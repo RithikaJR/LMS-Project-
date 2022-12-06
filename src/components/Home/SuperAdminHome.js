@@ -4,12 +4,12 @@ import Courses from '../Courses/Courses';
 
 import Card from '../UI/Card/Card';
 // import UserTab from '../UserTabs/UserTab';
-import classes from './Home.module.css';
+import classes from './SuperAdminHome.module.css';
 import user_logo from '../images/user_logo.png';
 import course_logo from '../images/course_logo.png';
 import { NavLink } from 'react-router-dom';
 
-const Home = (props) => {
+const SuperAdminHome = (props) => {
   return (
     <div className={classes.home}>      
       <div className={classes.logolinks}>
@@ -32,6 +32,15 @@ const Home = (props) => {
               <h4>Courses</h4>
             </NavLink>
           </li>
+
+          <li>
+            <NavLink to ='/reports' className={classes.coursetext}> 
+            <div className={classes.image_wrap}>
+              <img src={course_logo} className={classes.course}/>
+            </div >
+              <h4>Reports</h4>
+            </NavLink>
+          </li>
         </ul>
       </div>
 
@@ -45,4 +54,4 @@ const Home = (props) => {
 //   textdecoration: "none"
 // };
 
-export default Home;
+export default SuperAdminHome;

@@ -4,9 +4,7 @@ import Button from '../UI/Button/Button';
 import classes from './CourseModuleList.module.css';
 import './ColapStyle.css';
 import Collapsible from 'react-collapsible';
-import video from '../video/sample_video.mp4';
-// import sample_video from 'https://drive.google.com/file/d/19aJicg0EDYGpdsmD4hCGrDC1vGWKg12C/view?usp=share_link';
-
+import ModuleResource from './ModuleResource';
 
 const CourseModuleList = (props) =>{
 // const caurseCtx = useContext(CourseContext);
@@ -25,22 +23,30 @@ const CourseModuleList = (props) =>{
     // const buttonClick =() =>{
     //   <CourseModule/>
     // }
-    const handlVideo = ()=>{
-      props.videoLink(video);
+    const handleVideo = ()=>{
+      props.videoLink(props.pdf);
     }
 
 
-    // console.log(props.url)
+    console.log(props.id);
+    console.log(props.name);
+    console.log(props.footage);
+    console.log(props.pdf);
+    console.log(props.moduleType);
+
     return (
       <div className={classes.wrap}>
           <Collapsible trigger={props.name} className={classes.collapse}>
             <ul>
               <li>
-                <a onClick={handlVideo}> Video </a>
+                {/* <a onClick={handleVideo}> Video </a> */}
+                <ModuleResource 
+                // videoLink1 = {videoLinkHandler}
+                />
               </li>
-              <li>
-                <a href="https://www.tutorialspoint.com/effective_communication/effective_communication_tutorial.pdf" target="_blank"> Resources </a>
-              </li>
+              {/* <li>
+                <a href={props.pdf} target="_blank"> Resources </a>
+              </li> */}
             </ul>
           </Collapsible>
 
