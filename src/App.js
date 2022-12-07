@@ -1,7 +1,6 @@
 import React, { useState, useEffect } from 'react';
 
 import Login from './components/Login/Login';
-// import Home from './components/Home/Home';
 import MainHeader from './components/MainHeader/MainHeader';
 import { Redirect, Route, Switch } from 'react-router-dom';
 import Courses from './components/Courses/Courses';
@@ -9,12 +8,7 @@ import UserPage from './components/Users/UserPage';
 import UserMainPage from './components/Users/UserMainPage';
 import CourseInterface from './components/Courses/CourseInterface';
 import EmployeeHome from './components/Employee/EmployeeHome';
-import RoleItem from './RoleItem';
-import { AiFillPropertySafety } from 'react-icons/ai';
-import SuperAdminRouting from './components/Login/SuperAdminRouting';
 import SuperAdminHome from './components/Home/SuperAdminHome';
-import EmployeeRouting from './components/Login/EmployeeRouting';
-import LearningAdminRouting from './components/Login/LearningAdminRouting';
 // import LearningAdminLogin from './components/Login/LearningAdminLogin.js'
 
 
@@ -24,12 +18,15 @@ function App() {
   const [isLoading, setIsLoading] = useState(true);
   const [httpError, setHttpError] = useState();
   const [searchName, setSearchName] = useState("");
-  const [superLoggedIn, setSuperLoggedIn] = useState(false);
-  const [learningLoggedIn, setLearningLoggedIn] = useState(false);
-  const [employeeLoggedIn, setEmployeeLoggedIn] = useState(false);
   const [isLoggedIn, setIsLoggedIn] = useState(false);
 
+  useEffect(() => {
+    const storedUserLoggedInInformation = localStorage.getItem('isLoggedIn');
 
+    if(storedUserLoggedInInformation === '1'){
+      setIsLoggedIn(true);
+    }
+  },[]);
 //   useEffect(() => {
 //     const fetchModules = async () => {
 //       let response;
@@ -89,32 +86,38 @@ function App() {
 
 // ));
 
-const loginHandler = () => {
+const loginHandler = (email, password) => {
   // We should of course check email and password
   // But it's just a dummy/ demo anyways
-  // localStorage.setItem('isLoggedIn','1');
+  localStorage.setItem('isLoggedIn','1');
   setIsLoggedIn(true);
+};
+
+const logoutHandler = () => {
+  // We should of course check email and password
+  // But it's just a dummy/ demo anyways
+  localStorage.setItem('isLoggedIn','0');
+  setIsLoggedIn(false);
 };
       
 
   return (
     <div>
+
+      {isLoggedIn && <MainHeader />}
        <Switch>
           <Route path="/" exact>
               <Redirect to='/login'/>
           </Route>
           <Route path="/login">
-            {!isLoggedIn ? <Login onLogin={loginHandler} /> :<Redirect to='/learningadminrouting' />}
+            {!isLoggedIn ? <Login onLogin={loginHandler} /> :<Redirect to='/home' />}
           </Route>
-          <Route path="/superadminrouting">
-            {isLoggedIn ? <SuperAdminRouting onLogin={loginHandler} /> :<Redirect to='/login' />}
-          </Route>
-          {/* <Route path="/courses" exact>
-              {isLoggedIn ? <Courses onLogout={logoutHandler} /> : <Redirect to='/login' /> }
-          </Route> */}
-
           <Route path="/courses" exact>
-              <Courses  /> 
+              {isLoggedIn ? <Courses onLogout={logoutHandler} /> : <Redirect to='/login' /> }
+          </Route>
+
+          <Route path="/home" exact>
+              {isLoggedIn ? <SuperAdminHome onLogout={logoutHandler} /> : <Redirect to='/login' /> }
           </Route>
 
 

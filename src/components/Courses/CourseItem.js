@@ -3,7 +3,8 @@ import classes from './CourseItem.module.css';
 import slide_image4 from '../images/slide_image4.jpg';
 import Button from '../UI/Button/Button';
 import { NavLink } from 'react-router-dom';
-import CourseInterface from './CourseInterface';
+import edit from '../images/edit_icon.png';
+import delet from '../images/delete_icon.png';
 
 
 const CourseItem = (props) => {
@@ -20,9 +21,9 @@ const CourseItem = (props) => {
           <div className={classes.description}>Course Description : {props.description}</div>
           <div className={classes.view}>
             <NavLink to={{pathname:'/courses/course-module',state:{id:props.id}}}><Button >View</Button></NavLink>
-            <Button>Edit</Button>
-            <Button>Delete</Button>
-            </div>
+            <Button><img src={edit}/></Button>
+            <Button><img src={delet}/></Button>
+          </div>
          
         </div>
         

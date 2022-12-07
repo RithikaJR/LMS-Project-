@@ -2,9 +2,6 @@ import React, { useEffect, useState } from 'react';
 import classes from './Login.module.css';
 import Button from '../UI/Button/Button';
 import exp_logo_dark from '../images/exp_logo_dark.png';
-import SuperAdminRouting from './SuperAdminRouting';
-import LearningAdminRouting from './LearningAdminRouting';
-import EmployeeRouting from './EmployeeRouting';
 
 const Login = (props) => {
   const [enteredEmail, setEnteredEmail] = useState('');
@@ -146,7 +143,7 @@ const Login = (props) => {
   const submitHandler = async (event) => {
     event.preventDefault();
     props.onLogin(enteredEmail, enteredPassword);
-    let roleId = 1;
+    // let roleId = 1;
 
     // try {
     //       let res = await fetch("http://localhost:8080/api/add-module/add", {
@@ -170,15 +167,6 @@ const Login = (props) => {
     //     }
     //   };
 
-      if(roleId == 1){
-        <SuperAdminRouting />
-      }
-      else if(roleId == 2){
-        <LearningAdminRouting />
-      }
-      else if(roleId == 3){
-        <EmployeeRouting />
-      }
   };
 
   // const userNameChangeHandler = (event) => {

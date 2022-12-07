@@ -3,7 +3,7 @@
 .courses ul{
     border: 1px solid white;
     border-radius: 10px;
-    height: 80%;
+    height: fit-content;
     text-align: center;
     padding: 1rem;
     /* margin: 1rem; */
@@ -18,7 +18,7 @@
     border: 3px solid rgb(0, 0, 0);
     display: flex;
     justify-content: space-evenly;
-    height: 70vh;
+    height: auto;
     background-color: rgb(82, 125, 194);
     
 }
@@ -35,9 +35,10 @@
 .aa{
     /* border: 1px solid black; */
     width: 60%;
-    height: auto;
-    margin: 1rem;
-    background-image: url(../images/login_2.jpg);
+    height: 50%;
+    margin: 1rem;   
+    /* margin-bottom: 3rem; */
+    /* background-image: url(../images/login_2.jpg); */
     background-size: cover;
     border-radius: 10px;
 }
@@ -50,7 +51,22 @@
 
 .player {
     width: 100%;
-    height: 100%;
+    height: 410px;
     border: 2px solid rgb(255, 255, 255);
     border-radius: 10px;
+}
+
+/* .check {
+    font-family: 'Montserrat', sans-serif;
+    font-weight: bold;
+    text-align: right;
+    color: white;
+    margin: 0.5rem;
+} */
+
+.cert {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding-right: 5rem;
 }
