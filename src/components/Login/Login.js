@@ -9,12 +9,8 @@ const Login = (props) => {
   const [enteredPassword, setEnteredPassword] = useState('');
   const [passwordIsValid, setPasswordIsValid] = useState();
   const [formIsValid, setFormIsValid] = useState(false);
-
-  const [roleId, setRoleId] = useState()
-  const [roleName, setRoleName] = useState();
-  const [isLoading, setIsLoading] = useState(true);
-  const [httpError, setHttpError] = useState();
-  const [category, setCategory] = useState([]);
+  const [userName, setUserName] = useState();
+  const [userPassword, setUserPassword] = useState();
 
 
   
@@ -144,10 +140,44 @@ const Login = (props) => {
     setPasswordIsValid(enteredPassword.trim().length > 6);
   };
 
-  const submitHandler = (event) => {
+  const submitHandler = async (event) => {
     event.preventDefault();
     props.onLogin(enteredEmail, enteredPassword);
+    // let roleId = 1;
+
+    // try {
+    //       let res = await fetch("http://localhost:8080/api/add-module/add", {
+    //         method: "POST",
+    //         // dataType: "json",
+    //         // contentType: "application/json; charset=utf-8",
+    //         headers: {"content-type": "application/json"},
+    //         body: JSON.stringify({
+    //             userName:enteredEmail,
+    //             userPassword:enteredPassword,
+    //         }),
+    //       });
+    //       let resJson = await res.json();
+    //       if (res.status === 200) {
+    //         setMessage("User created successfully");
+    //       } else {
+    //         setMessage("Some error occured");
+    //       }
+    //     } catch (err) {
+    //       console.log(err);
+    //     }
+    //   };
+
   };
+
+  // const userNameChangeHandler = (event) => {
+  //   setUserName(event.target.value);
+  //   console.log(event.target.value);
+  // }
+
+  // const userPasswordChangeHandler = (event) => {
+  //   setUserPassword(event.target.value);
+  //   console.log(event.target.value);
+  // }
 
   return (
    
@@ -184,7 +214,7 @@ const Login = (props) => {
               // className={classes.useremail}
               value={enteredEmail}
               onChange={emailChangeHandler}
-              onBlur={validateEmailHandler}
+              // onBlur={validateEmailHandler}
             />
           </div>
           <div
@@ -200,16 +230,17 @@ const Login = (props) => {
               // className={classes.userpassword}
               value={enteredPassword}
               onChange={passwordChangeHandler}
-              onBlur={validatePasswordHandler}
+              // onBlur={validatePasswordHandler}
             />
           </div>
           <div className={classes.actions}>
-            <Button type="submit" className={classes.btn} disabled={!formIsValid}>
+            <Button type="submit" className={classes.btn} disabled={!formIsValid} onClick={submitHandler}>
               Login
             </Button>
           </div>
         </form>
       </div>
+
     </div>
   );
 };

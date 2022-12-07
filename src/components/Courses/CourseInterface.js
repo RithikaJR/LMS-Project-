@@ -3,10 +3,12 @@ import { useLocation } from "react-router-dom";
 import Button from "../UI/Button/Button";
 import classes from './CourseInterface.module.css';
 import CourseModuleList from "./CourseModuleList";
-import video from '../video/sample_video.mp4';
+// import video from '../video/sample_video.mp4';
+import jsPDF from 'jspdf';
 
 
 import Collapsible from 'react-collapsible';
+import { useSSRSafeId } from "@react-aria/ssr";
 
 
 const CourseInterface = (props) => {
@@ -25,6 +27,8 @@ const CourseInterface = (props) => {
   const [searchName, setSearchName] = useState("");
 
   const [link, setLink] = useState("");
+  const [checked, setChecked] = useState(false);
+  const [state, setState] = useState(true);
  
 //   const [courseId, setCurseId] = useState(location.state.id);
   let location = useLocation();
@@ -61,10 +65,12 @@ const CourseInterface = (props) => {
       for (const key in moduleArray) {
         loadedCourses.push({
           id: key,
+          // courseId: moduleArray[key].courseId,
           moduleId: moduleArray[key].moduleId,
           name: moduleArray[key].moduleName,
-          image: moduleArray[key].moduleImageUrl,
-          courseUrl: moduleArray[key].moduleUrl,
+          pdf: moduleArray[key].modulePdfUrl,
+          footage: moduleArray[key].moduleVideoUrl,
+          // moduleType: moduleArray[key].moduleType,
           // description: moduleArray[key].courseDescription,
         });
       }
@@ -91,7 +97,13 @@ const CourseInterface = (props) => {
       setIsLoading(false);
       setHttpError(error.message);
     });
+
+
+    // setTimeout(() => {
+    //   setState(false);
+    //  }, 9000);
   }, []);
+
 
   if (isLoading) {
     return (
@@ -109,6 +121,22 @@ const CourseInterface = (props) => {
     );
   }
 
+  const jsPdfGenerator = () =>{
+    var doc = new jsPDF('p','pt');
+    doc.text(20,20,'Certificate');
+
+    doc.text(80,40,'Course Category : Communication');
+    doc.text(100,60,'Course Name : Leadership Skills');
+
+
+
+    doc.save("generated.pdf");
+   
+}
+
+  const handleChange = () => {
+    setChecked(true);
+  }
 
   const videoLinkHandler = (link1)=>{
    
@@ -117,47 +145,60 @@ const CourseInterface = (props) => {
 
   const courseModuleList = modules.map((module) => (
     <CourseModuleList
-      videoLink = {videoLinkHandler}
+      videooLink = {videoLinkHandler}
       key={module.id}
       id={module.moduleId}
       name={module.name}
-      image={module.image}
-      url={module.courseUrl}
+      pdf={module.pdf}
+      footage={module.footage}
+      // moduleType={module.moduleType}
+      // url={module.courseUrl}
       // api={module.moduleApi}
       // description={course.description}
     />
+
+
   ));
+
+  // onLaunchClicked (event) {
+  //   event.preventDefault();
+  //   this.setState({
+  //       isButtonDisabled: true
+  //   });
+
+
 
   
 
   return (
     <section className={classes.page}>
-
-      {/* <p>{location.state.id}</p> */}
-        <h3>Modules</h3>
+        <div className={classes.cert}>
+          <h3>Modules</h3>
+          <Button  onClick={jsPdfGenerator} disabled={true}>Download PDF</Button>
+        </div>
+        
       <section className={classes.courses}>
         
-        <ul>{courseModuleList}</ul>
+        <ul>{courseModuleList}</ul>     
         <section className={classes.aa}>
-          <iframe src={link} className={classes.player}></iframe>
-          {/* <video className={classes.player} controls autoPlay>
-            { console.log("VideoLink "+link)}
-            <source src={link} type="video/mp4"/>
-          </video> */}
+
+          <iframe src={link}
+                className={classes.player}>
+          </iframe>
+          {/* <div className={classes.check}>
+              <label>Completed?</label>
+              <input type="checkbox"
+                    onChange={handleChange}
+                    disabled={state} />
+          </div> */}
+          
+
         </section>
       </section>
       
       
     </section>
   );
-
-  return(
-    <div>
-      <select>
-
-      </select>
-    </div>
-  )
 }
 
 export default CourseInterface;
