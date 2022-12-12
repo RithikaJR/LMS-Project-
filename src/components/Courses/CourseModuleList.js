@@ -1,12 +1,14 @@
 import Dropdown from 'react-bootstrap/Dropdown';
+import DropdownButton from 'react-bootstrap/DropdownButton';
 // import { Dropdown } from 'bootstrap';
 import Button from '../UI/Button/Button';
 import classes from './CourseModuleList.module.css';
-import './ColapStyle.css';
+import '../Courses/ColapStyle.css';
 import Collapsible from 'react-collapsible';
 import ModuleResource from './ModuleResource';
 import video from '../video/sample_video.mp4';
 import { useEffect, useState } from 'react';
+import down from '../images/down_icon.png';
 
 const CourseModuleList = (props) =>{
 // const caurseCtx = useContext(CourseContext);
@@ -90,6 +92,7 @@ const CourseModuleList = (props) =>{
     console.log(props.name);
     console.log(props.moduleId);
 
+
     const VideoLink = (link)=>{
       props.videooLink(link);
     }
@@ -108,18 +111,17 @@ const CourseModuleList = (props) =>{
 
     return (
       <div className={classes.wrap}>
-          <Collapsible trigger={props.name} className={classes.collapse}>
+          {/* <Collapsible trigger={props.name + <img src={down} />} className={classes.collapse}>
             <ul>
-              {/* <li>
-                <ModuleResource 
-                  // onClick={handleVideo}
-                  id={props.id}
-                />
-              </li> */}
               {listOfResources}
             </ul>
-          </Collapsible>
-
+          </Collapsible> */}
+          <DropdownButton id="dropdown-basic-button" title={props.name}>
+            {/* <Dropdown.Item>Action</Dropdown.Item>
+            <Dropdown.Item>Another action</Dropdown.Item>
+            <Dropdown.Item>Something else</Dropdown.Item> */}
+            {listOfResources}
+          </DropdownButton>
       </div> 
     );
 }

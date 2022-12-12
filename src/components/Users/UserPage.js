@@ -1,4 +1,4 @@
-// import axios from 'axios';
+import Axios from 'axios';
 // import React,{Component} from 'react';
 import Button from '../UI/Button/Button';
 import classes from "./UserPage.module.css";
@@ -12,6 +12,43 @@ import constants from './constants';
 const UserPage = () => {
    
     const [selectedFile,setState] = useState(null);
+    const [addEmployee, setAddEmployee] = useState(false);
+    const [addList, setAddList] = useState(false);
+    const [data,setData] = useState({
+        id:"",
+        firstName:"",
+        lastName:"",
+        email:""      
+      })
+
+    const url = "http://localhost:8080/api/employee";
+
+    function handle(e){
+        const newdata = {...data}
+        newdata[e.target.id] = e.target.value
+        setData(newdata)
+        console.log(newdata)
+    }
+
+    function submit(e){
+        // console.log("hi");
+        e.preventDefault();
+        Axios.post(url,{
+          employeeId:data.id,
+          employeeFirstName:data.firstName,
+          employeeLastName:data.lastName,
+          employeeEmail:data.email      
+        })
+      
+        .then(res=>{
+          if(res.data != null){
+            alert("Employee added successfully!!")
+          }
+          console.log(res.data);
+        })
+      
+      }
+
 
     // On file select (from the pop up)
     const onFileChange = event => {
@@ -56,27 +93,39 @@ const UserPage = () => {
                                          </div>
                                      </div>
             );
-        } else {
-            return (
-                <div>
-                    <br />
-                    <h6>Choose before Pressing the Upload button</h6>
-                </div>
-            );
-        }
+        } 
     };
+
+    const employeeHandler = () => {
+        setAddList(true);
+        setAddEmployee(false);
+    };
+
+    const listHandler = () => {
+        setAddList(false);
+        setAddEmployee(true);
+    };
+
+    const submitHandler = () => {
+
+    }
+
+    
    
         return (
             
 
             <div className={classes.userpage}>
-                 <div>
-                     <h1>
-                         Add User List
-                     </h1>
-                     <h3>
+                <div className={classes.options}>
+                    <Button onClick={employeeHandler}>Add Employee List</Button>
+                    <Button onClick={listHandler}>Add a new Employee</Button>
+                </div>
+
+                {addList && 
+                <div className={classes.employeelist}>
+                     <h2>
                          Upload Employee Details
-                     </h3>
+                     </h2>
                      <div className={classes.sample}>
 
                         <h4>Dowload Template here : </h4>
@@ -95,7 +144,55 @@ const UserPage = () => {
                          </Button>
                      </div>
                      {fileData()}
-                 </div>
+                </div>
+                }
+
+                 {addEmployee &&
+
+                    <div className={classes.addemployee}>
+                        <h3>Add Employee</h3>
+                        <form onSubmit={(e)=>submit(e)}>
+                            <div className={classes.individual}>
+                                <label>Employee ID</label>
+                                <input type="number"
+                                       id="id"
+                                       placeholder='Employee ID'
+                                       onChange={(e)=>handle(e)}
+                                       value={data.employeeId}
+                                       required />
+                            </div>
+                            <div className={classes.individual}>
+                                <label>First Name</label>
+                                <input type="text"
+                                       id="firstName"
+                                       placeholder='Firstname'
+                                       onChange={(e)=>handle(e)}
+                                       value={data.firstName}
+                                       required />
+                            </div>
+                            <div className={classes.individual}>
+                                <label>Last Name</label>
+                                <input type="text"
+                                       id="lastName"
+                                       placeholder='Lastname'
+                                       onChange={(e)=>handle(e)}
+                                       value={data.lastName}
+                                       required />
+                            </div>
+                            <div className={classes.individual}>
+                                <label>Employee Email</label>
+                                <input type="email"
+                                       id="email"
+                                       placeholder='Email'
+                                       onChange={(e)=>handle(e)}
+                                       value={data.employeeEmail}
+                                       required />
+                            </div>
+                            <Button type="submit">Submit</Button>
+                        </form> 
+                    </div> 
+                }
+                 
              </div>
         );
     }

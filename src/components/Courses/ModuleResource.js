@@ -11,6 +11,7 @@ const ModuleResource = (props) => {
 
   const [checked, setChecked] = useState(true);
   const [state, setState] = useState(true);
+  const [checkState, setCheckState] = useState(false);
 
   useEffect(() => {
     if(props.moduleType == "mp4") {
@@ -29,7 +30,8 @@ const ModuleResource = (props) => {
         props.videosLink(props.resourceUrl);
         setTimeout(() => {
           setState(false);
-         }, 9000);
+          setCheckState(true);
+         }, 5000);
       }
 
       console.log(props.moduleType);
@@ -42,19 +44,19 @@ const ModuleResource = (props) => {
     
     return (
       <li className={classes.resource} >
-        <span className={classes.check}>
-              {/* <label>Completed?</label> */}
+        <div className={classes.item}>
+          <span className={classes.check}>
               <input type="checkbox"
                     onChange={handleChange}
-                    // {state}
+                    checked={checkState}
                     disabled={state} />
           </span>
-        {/* <div className={classes.resource}> */}
+        
             {isVideo ? <a onClick={handleAVideo}>{props.moduleName}<img src={icon_video} /></a> 
             : 
             <a onClick={handleAVideo}>{props.moduleName}<img src={icon_pdf} /></a>}
                         
-        {/* </div> */}
+        </div>
         
       </li>
     );

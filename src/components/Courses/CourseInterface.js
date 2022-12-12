@@ -5,6 +5,7 @@ import classes from './CourseInterface.module.css';
 import CourseModuleList from "./CourseModuleList";
 // import video from '../video/sample_video.mp4';
 import jsPDF from 'jspdf';
+import '../Courses/CourseInterface.css';
 
 
 import Collapsible from 'react-collapsible';
@@ -174,7 +175,7 @@ const CourseInterface = (props) => {
     <section className={classes.page}>
         <div className={classes.cert}>
           <h3>Modules</h3>
-          <Button  onClick={jsPdfGenerator} disabled={true}>Download PDF</Button>
+          <Button  onClick={jsPdfGenerator} disabled={true}>Download Certificate</Button>
         </div>
         
       <section className={classes.courses}>
@@ -185,13 +186,6 @@ const CourseInterface = (props) => {
           <iframe src={link}
                 className={classes.player}>
           </iframe>
-          {/* <div className={classes.check}>
-              <label>Completed?</label>
-              <input type="checkbox"
-                    onChange={handleChange}
-                    disabled={state} />
-          </div> */}
-          
 
         </section>
       </section>
