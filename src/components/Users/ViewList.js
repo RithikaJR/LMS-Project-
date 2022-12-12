@@ -1,11 +1,67 @@
 import { useEffect, useState } from 'react';
 import classes from './ViewList.module.css';
 // import BootstrapTable from 'react-bootstrap-table-next';
-
+import DataTable from 'react-data-table-component';
 
 // import classes from './ViewList.module.css';
 import ListItem from './ListItem';
 import Search from '../Search Bar/Search.js';
+
+const columns = [
+  {
+    name: 'First Name',
+    selector: 'employeeFirstName',
+    sortable: true,
+    // style: {
+    //   background: "orange",
+    // },
+  },
+  {
+    name: 'Last Name',
+    selector: 'employeeLastName',
+    sortable: true,
+  },
+  {
+    name: 'Email ids',
+    selector: 'employeeEmail',
+    sortable: true,    
+  },
+  {
+    name: 'Role',
+    // selector: 'Trainee',
+    cell:(row) => (
+      <input
+        // value={row.surname}
+        // value="Trainee"
+        // onChange={(e) => handleInputChange(row, "surname", e)}
+      />
+    ),
+  },
+
+  {
+    name: 'Edit',
+    // selector: 'Trainee',
+    cell:(row) => (
+      <button
+        // value={row.surname}
+        // onClick={(e) => handleInputChange(row, "surname", e)}
+      >🖋</button>
+    ),
+  },
+
+  {
+    name: 'Delete',
+    // selector: 'Trainee',
+    cell:(row) => (
+      <button
+        // value={row.surname}
+        // onClick={(e) => handleInputChange()}
+      >🗑</button>
+    ),
+  },
+
+  
+];
 
 const ViewList = () => {
     const [courses, setMeals] = useState([]);
@@ -94,8 +150,17 @@ const ViewList = () => {
       <div className={classes.viewlist}>
         <Search search={onSearchHandler}/>
          
+        <div className={classes.tablee}>
+          <DataTable 
+              title="Employees"
+              columns={columns}
+              data={courses}
+              pagination
+              highlightOnHover
+            />
+        </div>
 
-        <table className={classes.tablee}>
+        {/* <table className={classes.tablee}>
           <thead>
             <tr>
               <th className={classes.first_head}>Name</th>
@@ -115,7 +180,7 @@ const ViewList = () => {
               );
             })}
           </tbody>
-        </table>
+        </table> */}
         
       </div>
     );

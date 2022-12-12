@@ -10,7 +10,7 @@ const Navigation = (props) => {
       <ul>
         {props.isLoggedIn && (
           <li>
-            <h1>Welcome Super Admin!</h1>
+            <h1>Welcome {props.name}</h1>
           </li>
         )}
         {props.isLoggedIn && (

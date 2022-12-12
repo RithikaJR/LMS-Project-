@@ -1,10 +1,10 @@
 import React, { useEffect, useState } from 'react';
 import Search from '../../Search Bar/Search.js';
 
-import classes from './AvailableCourse.module.css';
-import CourseItem from './CourseItem';
+import classes from './EmployeeAvailableCourses.module.css';
+import EmployeeCourseItem from './EmployeeCourseItem';
 
-const AvailableCourses = () => {
+const EmployeeAvailableCourses = (props) => {
     const [courses, setMeals] = useState([]);
     const [isLoading, setIsLoading] = useState(true);
     const [httpError, setHttpError] = useState();
@@ -76,7 +76,7 @@ const AvailableCourses = () => {
     }
   
     const coursesList = courses.map((course) => (
-      <CourseItem
+      <EmployeeCourseItem
         key={course.id}
         id={course.courseId}
         name={course.name}
@@ -84,6 +84,7 @@ const AvailableCourses = () => {
         // url={course.courseUrl}
         description={course.description}
         // api={module.moduleApi}
+        employeeId={props.employeeId}
       />
     ));
 
@@ -99,5 +100,5 @@ const AvailableCourses = () => {
     );
   };
   
-  export default AvailableCourses;
+  export default EmployeeAvailableCourses;
   

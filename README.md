@@ -76,4 +76,5 @@ This section has moved here: [https://facebook.github.io/create-react-app/docs/t
 npm install react-scripts    
 npm install react-router-dom@5
 npm install axios
+npm install react-data-table-component styled-components
 

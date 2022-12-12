@@ -10,6 +10,7 @@ import '../Courses/CourseInterface.css';
 
 import Collapsible from 'react-collapsible';
 import { useSSRSafeId } from "@react-aria/ssr";
+import CourseRating from "../Users/CourseRating";
 
 
 const CourseInterface = (props) => {
@@ -175,7 +176,11 @@ const CourseInterface = (props) => {
     <section className={classes.page}>
         <div className={classes.cert}>
           <h3>Modules</h3>
-          <Button  onClick={jsPdfGenerator} disabled={true}>Download Certificate</Button>
+          <Button  onClick={jsPdfGenerator} >Download PDF</Button>
+          {/* disabled={true} */}
+        </div>
+        <div>
+        <CourseRating />
         </div>
         
       <section className={classes.courses}>

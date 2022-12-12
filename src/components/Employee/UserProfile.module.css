@@ -1,0 +1,14 @@
+.profile{
+    line-height: 50px;
+}
+
+
+.profileImg{
+    text-align: center;
+}
+
+.profileImg img{
+    text-align: center;
+    border-radius: 50%;
+    height: 100px;
+}

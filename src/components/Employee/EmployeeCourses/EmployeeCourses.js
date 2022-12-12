@@ -1,12 +1,12 @@
 import React, { useState } from "react";
-import AvailableCourses from "./AvailableCourses";
-import classes from "./Courses.module.css";
+import EmployeeAvailableCourses from "./EmployeeAvailableCourses";
+import classes from "./EmployeeCourses.module.css";
 import Button from '../../UI/Button/Button.js';
 import Modal from "../../UI/Modal/Modal.js";
 import AddCourseForm from "../../Courses/Add Course/AddCourseForm.js"
 
 
-const Courses = () => {
+const EmployeeCourses = (props) => {
 
   const [cartIsShown, setCartIsShown] = useState(false);
 
@@ -28,10 +28,10 @@ const Courses = () => {
                     <Button onClick={hideCartHandler}>X</Button>
                 </Modal>} */}
             </div>
-            <AvailableCourses />
+            <EmployeeAvailableCourses employeeId={props.employeeId} />
         </div>
     
     );
 };
 
-export default Courses;
+export default EmployeeCourses;

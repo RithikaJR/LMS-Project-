@@ -7,7 +7,7 @@ export const SidebarData = [
 
   {
     title: 'Courses',
-    path: '/employee/courses',
+    path: '/employee',
     icon: <RiIcons.RiProfileLine />,
     cName: 'nav-text'
   },
@@ -28,7 +28,7 @@ export const SidebarData = [
  
   {
     title: 'Log Out',
-    path: '/logout',
+    path: '/login',
     icon: <AiIcons.AiOutlineLogout />,
     cName: 'nav-text'
   }

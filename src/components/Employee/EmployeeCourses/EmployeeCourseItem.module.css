@@ -1,0 +1,162 @@
+.courses {
+    display: block;
+    /* float: left; */
+    height: 20rem;
+    width: 20rem;
+    justify-content: center;
+    text-transform: capitalize;
+    padding: 0 1rem;
+    padding-top: 3rem;
+    border: 0.5px;
+    border-radius: 40px;
+    background-color: white; 
+    box-shadow: 2px 2px 12px black;
+    transition: 0.3s ease-in-out;
+  }
+  
+  .courses h3 {
+    margin: 0 0 0.5rem 1rem;
+  }
+  
+  .description {
+    /* word-wrap: break-word; */
+    font-style: italic;
+    margin: 1rem 0;
+  }
+  
+  .courseimg img {
+      height: 100px;
+      width: 170px;
+      margin-left: 20px;
+      margin-top: 10px;
+      margin-bottom: 20px;
+    }
+    
+.view button {
+  margin: 10px 0;
+}
+
+.courses:hover {
+  transform: scale(1.1);
+  z-index: 1;
+  /* box-shadow: 2px 2px 25px rgb(133, 132, 132); */
+  /* margin: 1rem; */
+}
+
+
+
+.learn {
+
+  position: fixed;
+
+  top: 50%;
+
+  left: 50%;
+
+  transform: translate(-50%, -50%) scale(0);
+
+  transition: 200ms ease-in-out;
+
+  /* border: 1px solid rgb(173, 3, 3); */
+
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+
+  border-radius: 13px;
+
+  z-index: 10;
+
+  background-color: rgb(241, 244, 238);
+
+  width: 300px;
+
+  max-width: 80%;
+
+}
+
+
+
+.learn.active {
+
+  transform: translate(-50%, -50%) scale(1);
+
+}
+
+
+.learn-header {
+
+  padding: 10px 15px;
+
+  display: flex;
+
+  justify-content: space-between;
+
+  align-items: center;
+
+}
+
+
+
+
+.learn-header .title img {
+
+  position: absolute;
+
+  background-color: rgb(52, 52, 56);
+
+  color: aquamarine;
+
+  border-radius: 50%;
+
+  height: 80px;
+
+  width: 80px;
+
+  margin: 95px;
+
+  margin-top: -55px;
+
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+
+
+
+}
+
+
+
+.learn-body .close-button {
+
+  width: 100%;
+
+  margin-top: 50px;
+
+  padding: 10px 0;
+
+  background-color: var(--maincolor);
+
+  color: #fff;
+
+  border: 0;
+
+  outline: none;
+
+  font-size: 18px;
+
+  border-radius: 4px;
+
+  cursor: pointer;
+
+  box-shadow: 0 5px 5px rgba(0, 0, 0, 0.2);
+
+}
+
+
+
+.learn-body {
+
+  font-size: medium;
+
+  text-align: center;
+
+  padding: 30px 25px;
+
+}

@@ -1,0 +1,9 @@
+.Collapsible{
+    position: fixed;
+    left: 1200px;
+    text-align: left;
+}
+.Collapsible__contentInner{
+ background-color: aliceblue;
+ border-radius: 0%;
+}
