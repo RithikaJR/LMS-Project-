@@ -68,6 +68,9 @@
     padding: 0 16px;
     border-radius: 4px;
   }
+  /* .logout{
+    border-radius: 50%;
+  } */
   
   .nav-text a:hover {
     background-color: rgb(98, 112, 141);
@@ -90,4 +93,10 @@
     height: 90vh;
     /* background-image: url('../images/login_2.jpg'); */
     background-size: cover;
+  }
+
+  .burger{
+    /* z-index: 1000; */
+    margin-top: 300px;
+    background-color: aqua;
   }

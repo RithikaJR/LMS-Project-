@@ -1,7 +1,7 @@
 import Dropdown from 'react-bootstrap/Dropdown';
 // import { Dropdown } from 'bootstrap';
 import Button from '../../UI/Button/Button';
-import classes from './CourseModuleList.module.css';
+import classes from './EmployeeCourseModuleList.module.css';
 import './ColapStyle.css';
 import Collapsible from 'react-collapsible';
 import video from '../../video/sample_video.mp4';

@@ -1,15 +1,15 @@
 import React,{ useEffect, useState } from "react";
 import { useLocation } from "react-router-dom";
 import Button from "../../UI/Button/Button";
-import classes from './CourseInterface.module.css';
-import CourseModuleList from "./CourseModuleList";
+import classes from './EmployeeCourseInterface.module.css';
+import EmployeeCourseModuleList from "./EmployeeCourseModuleList";
 import video from '../../video/sample_video.mp4';
 
 
 import Collapsible from 'react-collapsible';
 
 
-const CourseInterface = (props) => {
+const EmployeeCourseInterface = (props) => {
     
 
     // return (
@@ -116,7 +116,7 @@ const CourseInterface = (props) => {
   }
 
   const courseModuleList = modules.map((module) => (
-    <CourseModuleList
+    <EmployeeCourseModuleList
       videoLink = {videoLinkHandler}
       key={module.id}
       id={module.moduleId}
@@ -152,4 +152,4 @@ const CourseInterface = (props) => {
   );
 }
 
-export default CourseInterface;
+export default EmployeeCourseInterface;
