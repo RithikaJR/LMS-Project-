@@ -40,3 +40,14 @@
     padding: 1rem 0.5rem;
     padding-right: 3rem;
 }
+
+.wrap Button{
+    color: white;
+    border: 1px solid white;
+    background-color: rgb(56, 130, 209);
+}
+
+.wrap Button{
+    color: white;
+    border: 1px solid white;
+}

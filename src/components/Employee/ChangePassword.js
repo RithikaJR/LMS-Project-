@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { Button } from "react-bootstrap";
+import Button from "../UI/Button/Button";
 import './ChangePassword.css'
 const ChangePassword = (props)=>{
     const [changePwd, setChangePwd] = useState("");
@@ -41,28 +41,32 @@ const ChangePassword = (props)=>{
       }
 
     return(
+      <div className="passwordchange">
+        <div className="line">
+        </div>
         <div className="changePassword">
             <form onSubmit={changePasswordHandler}>
               <table>
                 <tr>
-                  <td>Current Password:</td>
+                  <td><b>Current Password:</b></td>
                   <td><input className="input" onChange={currentPasswordChange} type="password" placeholder='********'/><br></br></td>
                 </tr>
                 <tr>
-                  <td>New Password: </td>
+                  <td><b>New Password:</b></td>
                   <td><input className="input" type="password" placeholder='********'/><br></br></td>
                 </tr>
                 <tr>
-                  <td>Confirm Password: </td>
+                  <td><b>Confirm Password:</b></td>
                   <td><input className="input" onChange={passwordChange} type="password" placeholder='********'/><br></br></td>
                 </tr>
               </table>
                  
                 
                 
-                <button>Change Password</button>
+                <Button><b>Change Password</b></Button>
             </form>
         </div>
+      </div>
     )
 
 }

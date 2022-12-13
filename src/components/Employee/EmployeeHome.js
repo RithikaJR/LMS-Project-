@@ -13,6 +13,8 @@ import UserProfile from './UserProfile';
 import Modal from "../UI/Modal/Modal.js";
 import EmployeeCourseInterface from './EmployeeCourses/EmployeeCourseInterface';
 import EnrolledCourses from './EmployeeCourses/EnrolledCourses';
+import EmployeeProfile from './EmployeeProfile';
+import LAModal from '../UI/Modal/LAModal';
 
 import 'bootstrap/dist/css/bootstrap.css';
 import Dropdown from 'react-bootstrap/Dropdown';
@@ -45,7 +47,7 @@ const EmployeeHome = (props) => {
     };
 
   return (
-    <div>
+  <div>
     <div className= "employee">
       <IconContext.Provider value={{ color: '#fff' }}>
         <div className='navbar'>
@@ -111,8 +113,11 @@ const EmployeeHome = (props) => {
       <Route path="/employee/course-module">
             <EmployeeCourseInterface/>
       </Route>
-  </div>
 
+      <Route path="/employee/profile">
+            <EmployeeProfile/>
+      </Route></div>
+    
   );
 }
 

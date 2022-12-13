@@ -24,7 +24,14 @@ export const SidebarData = [
     icon: <IoIcons.IoIosPaper />,
     cName: 'nav-text'
   },
-  
+
+  {
+    title: 'Profile',
+    path: '/employee/profile',
+    icon: <RiIcons.RiAuctionFill />,
+    cName: 'nav-text'
+  },
+ 
   {
     title: 'Log Out',
     path: '/login',

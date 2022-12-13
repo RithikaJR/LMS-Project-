@@ -12,9 +12,6 @@ const columns = [
     name: 'First Name',
     selector: 'employeeFirstName',
     sortable: true,
-    // style: {
-    //   background: "orange",
-    // },
   },
   {
     name: 'Last Name',
@@ -22,7 +19,7 @@ const columns = [
     sortable: true,
   },
   {
-    name: 'Email ids',
+    name: 'Email id',
     selector: 'employeeEmail',
     sortable: true,    
   },
@@ -63,8 +60,10 @@ const columns = [
   
 ];
 
+
+
 const ViewList = () => {
-    const [courses, setMeals] = useState([]);
+    const [users, setUsers] = useState([]);
     const [isLoading, setIsLoading] = useState(true);
     const [httpError, setHttpError] = useState();
   
@@ -104,11 +103,10 @@ const ViewList = () => {
             employeeFirstName: courseArray[key].employeeFirstName,
             employeeLastName: courseArray[key].employeeLastName,
             employeeEmail: courseArray[key].employeeEmail,
-            // description: courseArray[key].courseDescription,
           });
         }
   
-        setMeals(loadedCourses);
+        setUsers(loadedCourses);
         setIsLoading(false);
       };
   
@@ -134,14 +132,13 @@ const ViewList = () => {
       );
     }
   
-    const coursesList = courses.map((course) => (
+    const coursesList = users.map((course) => (
       <ListItem
         key={course.employeeId}
         id={course.employeeId}
         employeeFirstName={course.employeeFirstName}
         employeeLastName={course.employeeLastName}
         employeeEmail={course.employeeEmail}
-        // description={course.description}
       />
     ));
 
@@ -154,7 +151,7 @@ const ViewList = () => {
           <DataTable 
               title="Employees"
               columns={columns}
-              data={courses}
+              data={users}
               pagination
               highlightOnHover
             />
