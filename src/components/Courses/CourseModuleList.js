@@ -59,6 +59,7 @@ const CourseModuleList = (props) =>{
                 name: moduleArray[key].moduleResourceName,
                 type: moduleArray[key].moduleResourceType,
                 url: moduleArray[key].moduleResourceUrl,
+                duration: moduleArray[key].moduleResourceDuration,
               });
             }
             
@@ -105,6 +106,7 @@ const CourseModuleList = (props) =>{
         moduleName={module.name}
         moduleType={module.type}
         resourceUrl={module.url}
+        duration={module.duration}
       />
     ));
 

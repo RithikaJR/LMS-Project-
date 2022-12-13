@@ -1,0 +1,12 @@
+.profile {
+    min-height: 35rem;
+    height: fit-content;
+    width: 50%;
+    border: 1px;
+    border-radius: 25px;
+    text-align: center;
+    position: relative;
+    margin: 5rem auto;
+    padding: 2rem 0;
+    box-shadow: 2px 2px 10px gray;
+}

@@ -13,6 +13,11 @@ const ModuleResource = (props) => {
   const [state, setState] = useState(true);
   const [checkState, setCheckState] = useState(false);
 
+  let duration = parseInt(props.duration, 10);
+  console.log(props.duration);
+  let timer =  duration * 1000;
+  console.log(timer);
+
   useEffect(() => {
     if(props.moduleType == "mp4") {
       setIsVideo(true);
@@ -21,9 +26,6 @@ const ModuleResource = (props) => {
       setIsVideo(false);
     }
 
-    // setTimeout(() => {
-    //   setState(false);
-    //  }, 9000);
   });
 
     const handleAVideo = ()=>{
@@ -31,12 +33,13 @@ const ModuleResource = (props) => {
         setTimeout(() => {
           setState(false);
           setCheckState(true);
-         }, 5000);
+         }, {duration});
       }
 
       console.log(props.moduleType);
       console.log(props.moduleName);
       console.log(props.resourceUrl);
+      console.log(props.duration);
     
       const handleChange = () => {
         setChecked(true);
@@ -52,7 +55,8 @@ const ModuleResource = (props) => {
                     disabled={state} />
           </span>
         
-            {isVideo ? <a onClick={handleAVideo}>{props.moduleName}<img src={icon_video} /></a> 
+            {isVideo ? 
+            <a onClick={handleAVideo}>{props.moduleName}<img src={icon_video} /></a> 
             : 
             <a onClick={handleAVideo}>{props.moduleName}<img src={icon_pdf} /></a>}
                         

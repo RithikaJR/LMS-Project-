@@ -89,13 +89,14 @@ const UserProfile=(props)=> {
                     <h1>{props.name}</h1>
                     <input type="file" name="profileImage" />
                     {/* onChange={this.changeProfileImage} */}
-                    <Button variant="primary">Update Profile</Button>
+                    <Button variant="primary"><b>Update Image</b></Button>
                     {/* onClick={this.UpdateProfileHandler} */}
                 </div>
-                <div>
-                    Employee Id : {props.employeeId}<br></br>
-                    Username : {props.name}.@experionglobal.com<br></br>
-                    Password : **********  <Button onClick={changePasswordForm}>Change Your Password</Button><br></br>
+                <div className={classes.data}>
+                    <b>Employee Id :</b> {props.employeeId}<br></br>
+                    <b>Username :</b> {props.name}@experionglobal.com<br></br>
+                    {/* <b>Password :</b> **********   */}
+                    <Button onClick={changePasswordForm} className={classes.changePassword}><b>Change Your Password</b></Button><br></br>
                     {changePwd && <ChangePassword employeeId={props.employeeId}/> }
                     {/* employeeId={props.employeeId} */}
                 </div>
