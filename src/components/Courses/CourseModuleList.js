@@ -5,6 +5,7 @@ import classes from './CourseModuleList.module.css';
 import './ColapStyle.css';
 import Collapsible from 'react-collapsible';
 import video from '../video/sample_video.mp4';
+import Certificate from '../Employee/Certificate';
 // import sample_video from 'https://drive.google.com/file/d/19aJicg0EDYGpdsmD4hCGrDC1vGWKg12C/view?usp=share_link';
 
 
@@ -42,9 +43,16 @@ const CourseModuleList = (props) =>{
                 <a href="https://www.tutorialspoint.com/effective_communication/effective_communication_tutorial.pdf" target="_blank"> Resources </a>
               </li>
             </ul>
+           
           </Collapsible>
 
+          
+          
+
       </div> 
+      
+
+
     );
 }
 

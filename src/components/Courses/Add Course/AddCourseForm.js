@@ -55,22 +55,12 @@ const AddCourseForm = ()=>{
 
       const fetchChittyCategory = async () => {
   
-        const response = await fetch(
-  
-          'http://localhost:8080/api/course-category'
-  
-        );
-  
-  
+        const response = await fetch( 'http://localhost:8080/api/course-category' );
   
         if (!response.ok) {
-  
-          throw new Error('Something went wrong!');
-  
+          throw new Error('Something went wrong!')
         }
-  
-  
-  
+
         const responseData = await response.json();
   
   
@@ -123,8 +113,7 @@ const AddCourseForm = ()=>{
         try {
           let res = await fetch("http://localhost:8080/api/add-module/add", {
             method: "POST",
-            // dataType: "json",
-            // contentType: "application/json; charset=utf-8",
+           
             headers: {"content-type": "application/json"},
             body: JSON.stringify({
               category:{
@@ -138,37 +127,7 @@ const AddCourseForm = ()=>{
                 courseImageUrl: courseImageUrl,
               },
               "moduleItem":expense
-            //   "moduleItem":[
-
-            //     {
-          
-            //        "moduleId":1,
-          
-            //        "moduleName":"Effective Communication",
-          
-            //        "moduleImageUrl":"https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRHca7CDuJZnIXEiQ4Fntfirii-OCau_EkusQ&usqp=CAU",
-          
-            //        "moduleUrl":"https://www.youtube.com/watch?v=6pYSbdGiDYw"
-          
-                   
-          
-            //     },
-          
-            //     {
-          
-            //        "moduleId":2,
-          
-            //        "moduleName":"Leadership Skills",
-          
-            //        "moduleImageUrl":"https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTql9f7dd3ke97aGuaqXBFANVfjGOGMmAguvw&usqp=CAU",
-          
-            //        "moduleUrl":"https://www.youtube.com/watch?v=0sY3uf3LZZg"
-          
-                   
-          
-            //     }
-          
-            //  ]
+           
 
             }
               

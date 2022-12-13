@@ -3,6 +3,12 @@ import Search from '../../Search Bar/Search.js';
 
 import classes from './AvailableCourse.module.css';
 import CourseItem from './CourseItem';
+import {Swiper, SwiperSlide} from 'swiper/react';
+import { FreeMode } from "swiper";
+import 'swiper/css';
+import "swiper/css/free-mode";
+import 'bootstrap/dist/css/bootstrap.min.css';
+
 
 const AvailableCourses = () => {
     const [courses, setMeals] = useState([]);
@@ -92,9 +98,26 @@ const AvailableCourses = () => {
     return (
       <React.Fragment>
         <Search search={onSearchHandler}/>
+        
         <section className={classes.courses}>
           <ul>{coursesList}</ul>
         </section>
+        {/* <Swiper 
+         freeMode={true}
+         grabCurser={true}
+         modules={[FreeMode]}
+         className="mySwiper"
+         slidesPerView={5}
+         spaceBetween={30}
+         >
+          <SwiperSlide>
+          <ul>{coursesList}</ul>
+          </SwiperSlide>
+
+          <SwiperSlide>
+          <ul>{coursesList}</ul>
+          </SwiperSlide>
+         </Swiper> */}
       </React.Fragment>
     );
   };

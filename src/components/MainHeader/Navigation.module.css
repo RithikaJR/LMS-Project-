@@ -1,4 +1,5 @@
 @import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;600&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;600&display=swap');
 
 .nav ul {
   font-family: 'Montserrat', sans-serif;
@@ -9,6 +10,7 @@
   padding: 0;
   display: flex;
   align-items: center;
+  
 }
 
 .nav li {
@@ -30,6 +32,8 @@
   color: #ffffff;
 }
 
+
+
 .nav button {
   font: inherit;
   background: #ffffff;
@@ -41,6 +45,8 @@
   border-radius: 20px;
 }
 
+
+
 .nav button:focus {
   outline: none;
 }
@@ -49,4 +55,16 @@
 .nav button:active {
   color: white;
   background: #f55858;
+}
+
+.profilepic img{
+  border-radius: 100%;
+  width: 10px;
+  height: 10px;
+  
+}
+
+.bell img {
+  height: 30px;
+  width: 30px;
 }

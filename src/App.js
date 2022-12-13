@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+// import React, { useState, useEffect } from 'react';
 
 import Login from './components/Login/Login';
 import Home from './components/Home/Home';
@@ -9,6 +9,17 @@ import UserPage from './components/Users/UserPage';
 import UserMainPage from './components/Users/UserMainPage';
 import CourseInterface from './components/Courses/CourseInterface';
 import EmployeeHome from './components/Employee/EmployeeHome';
+import HomeLearningAdmin from './components/Learning Admin/HomeLearningAdmin';
+import CoursesLearningAdmin from './components/Courses/CoursesLearningAdmin';
+import MainHeaderLA from './components/MainHeader/MainHeaderLA';
+import UserMainPageLA from './components/Users/UserMainPageLA';
+import Coursess from './components/Courses/Coursess';
+
+import slide1 from './components/images/slide1.jpg';
+import slide4 from './components/images/slide4.jpg';
+import React, { useState,useRef,useEffect } from 'react';
+import Notification from './components/Notification/Notification';
+
 
 
 function App() {
@@ -36,6 +47,26 @@ function App() {
     setIsLoggedIn(false);
   };
 
+  const images = [slide1,slide4];
+  const [currentSlide, setCurrentSlide] = useState(0);
+  // useRef does not cause a re-render
+  let sliderInterval = useRef();
+  let switchImages = () => {
+    if (currentSlide < images.length - 1) {
+      setCurrentSlide(currentSlide + 1);
+    } else {
+      setCurrentSlide(0);
+    }
+  };
+  useEffect(() => {
+    sliderInterval = setInterval(() => {
+      switchImages();
+    }, 5000);
+    return () => {
+      clearInterval(sliderInterval);
+    };
+  });
+
   return (
     <React.Fragment>
        {isLoggedIn && <MainHeader isAuthenticated={isLoggedIn} onLogout={logoutHandler} /> }
@@ -56,8 +87,13 @@ function App() {
           </Route> */}
 
           <Route path="/courses" exact>
+            
               <Courses  /> 
           </Route>
+
+          <Route path="/coursess" exact>
+            <Coursess  /> 
+        </Route>
 
 
           {/* <Route path="/courses/course-module">
@@ -66,15 +102,52 @@ function App() {
           <Route path="/users">
             {isLoggedIn ? <UserMainPage onLogout={logoutHandler} /> : <Redirect to='/login' /> }
           </Route>
-          <Route path="/courses/course-module">
-            {isLoggedIn ? <CourseInterface onLogout={logoutHandler} /> : <Redirect to='/login' /> }
-          </Route>
-          <Route path="/employee">
-            <EmployeeHome onLogout={logoutHandler} />
+
+          <Route path="/notification">
+           <Notification></Notification>
           </Route>
 
-         
-          
+          <Route path="/courses/course-module">
+            {/* {isLoggedIn ? <CourseInterface onLogout={logoutHandler} /> : <Redirect to='/login' /> } */}
+            <CourseInterface></CourseInterface>
+          </Route>
+
+          <Route path="/employee">
+            <EmployeeHome />
+            {/* <div className="imgWrapper">
+            {images.map((img, index) => {
+              return (
+                <img
+                  src={img}
+                  className={index === currentSlide ? "imageActive homeImage" : "image" }
+                />
+              );
+            })}
+         </div> */}
+          </Route>
+
+          <Route path="/learningadmin">
+            <MainHeaderLA></MainHeaderLA>
+            <HomeLearningAdmin  />
+          </Route>
+
+          <Route path="/courseslearningadmin">
+            <MainHeaderLA></MainHeaderLA>
+            <CoursesLearningAdmin/>
+          </Route>
+
+          <Route path="/courseslearningadmin">
+            <CoursesLearningAdmin/>
+            <MainHeaderLA></MainHeaderLA>
+          </Route>
+
+          <Route path="/userslearningadmin">
+            <UserMainPageLA></UserMainPageLA>
+            <MainHeaderLA></MainHeaderLA>
+          </Route>
+
+
+
         </Switch>
 
      

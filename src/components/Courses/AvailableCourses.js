@@ -93,7 +93,9 @@ const AvailableCourses = () => {
       <React.Fragment>
         <Search search={onSearchHandler}/>
         <section className={classes.courses}>
+         
           <ul>{coursesList}</ul>
+          
         </section>
       </React.Fragment>
     );
