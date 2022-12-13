@@ -3,9 +3,10 @@ import Search from '../../Search Bar/Search.js';
 
 import classes from './EmployeeAvailableCourses.module.css';
 import EmployeeCourseItem from './EmployeeCourseItem';
+import EnrolledCourseItem from './EnrolledCourseItem.js';
 
-const EmployeeAvailableCourses = (props) => {
-    const [courses, setCourse] = useState([]);
+const EnrolledCourses = (props) => {
+    const [enrolledCourses, setEnrolledCourse] = useState([]);
     const [isLoading, setIsLoading] = useState(true);
     const [httpError, setHttpError] = useState();
     const [searchName, setSearchName] = useState("");
@@ -20,9 +21,9 @@ const EmployeeAvailableCourses = (props) => {
         let response;
         if(searchName===''){
           response = await fetch(
-            'http://localhost:8080/api/courses');
+            'http://localhost:8080/api/enrolled-courses/'+props.employeeId);
         }else{
-          response = await fetch('http://localhost:8080/api/courses/search/findBycourseNameContaining?name='+searchName);
+        //   response = await fetch('http://localhost:8080/api/courses/search/findBycourseNameContaining?name='+searchName);
         }
         
   
@@ -33,23 +34,23 @@ const EmployeeAvailableCourses = (props) => {
         const responseData = await response.json();
   
         const loadedCourses = [];
-        const courseArray = {...responseData._embedded.course};
+        // const courseArray = {...responseData._embedded};
 
         console.log(responseData);
-        for (const key in courseArray) {
+        for (const key in responseData) {
           loadedCourses.push({
             id: key,
-            courseId: courseArray[key].courseId,
-            name: courseArray[key].courseName,
-            description: courseArray[key].courseDescription,
-            image: courseArray[key].courseImageUrl,
+            courseId: responseData[key].courseId,
+            name: responseData[key].courseName,
+            description: responseData[key].courseDescription,
+            image: responseData[key].courseImageUrl,
             // courseUrl: courseArray[key].courseUrl,
             // moduleApi:courseArray[key]._links.modules.href,
             
           });
         }
   
-        setCourse(loadedCourses);
+        setEnrolledCourse(loadedCourses);
         setIsLoading(false);
       };
   
@@ -75,8 +76,8 @@ const EmployeeAvailableCourses = (props) => {
       );
     }
   
-    const coursesList = courses.map((course) => (
-      <EmployeeCourseItem
+    const coursesList = enrolledCourses.map((course) => (
+      <EnrolledCourseItem
         key={course.id}
         id={course.courseId}
         name={course.name}
@@ -99,6 +100,5 @@ const EmployeeAvailableCourses = (props) => {
       </React.Fragment>
     );
   };
-  
-  export default EmployeeAvailableCourses;
-  
+
+export default EnrolledCourses;

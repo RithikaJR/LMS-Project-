@@ -9,7 +9,7 @@ import { useState } from 'react';
 import TickImage from '../../images/tick.png'
 
 
-const EmployeeCourseItem = (props) => {
+const EnrolledCourseItem = (props) => {
   const [cartIsShown, setCartIsShown] = useState(false);
   const [view, setView] = useState(false);
   
@@ -54,9 +54,9 @@ const EmployeeCourseItem = (props) => {
         <div>
           <h3>{props.name}</h3>
           <div className={classes.description}>Course Description : {props.description}</div>
-          {view && <div className={classes.view}><NavLink to={{pathname:'/employee/course-module',state:{id:props.id}}}><Button >View</Button></NavLink></div>}
+          <div className={classes.view}><NavLink to={{pathname:'/employee/course-module',state:{id:props.id}}}><Button >View</Button></NavLink></div>
           
-          {!view && <div className={classes.view}><NavLink to={{pathname:'',state:{id:props.id}}}><Button onClick={showCartHandler}>Enroll</Button></NavLink></div> }
+          {/* {!view && <div className={classes.view}><NavLink to={{pathname:'',state:{id:props.id}}}><Button onClick={showCartHandler}>Enroll</Button></NavLink></div> }
           {cartIsShown && <Modal>
             <div class="learn" id="learn">
                 <div class="learn-header">
@@ -66,11 +66,11 @@ const EmployeeCourseItem = (props) => {
                     <div><Button data-close-button class="close-button" onClick={hideCartHandler}>OK</Button></div>
                 </div>
              </div>
-            </Modal>}
+            </Modal>} */}
         </div>
       </li>
     );
   };
   
-  export default EmployeeCourseItem;
+  export default EnrolledCourseItem;
   

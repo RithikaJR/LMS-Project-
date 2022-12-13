@@ -9,9 +9,11 @@
 }
 
 .modal {
-  position: relative;
+  position:absolute;
   left: 5%;
   width: 90%;
+  bottom: 1%;
+  /* top: 5%; */
   background-color: white;
   padding: 1rem;
   border-radius: 14px;

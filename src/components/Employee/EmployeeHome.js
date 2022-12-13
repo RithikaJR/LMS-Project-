@@ -12,7 +12,16 @@ import Button from '../UI/Button/Button';
 import UserProfile from './UserProfile';
 import Modal from "../UI/Modal/Modal.js";
 import EmployeeCourseInterface from './EmployeeCourses/EmployeeCourseInterface';
+import EnrolledCourses from './EmployeeCourses/EnrolledCourses';
 
+import 'bootstrap/dist/css/bootstrap.css';
+import Dropdown from 'react-bootstrap/Dropdown';
+// import { Dropdown, Image } from 'semantic-ui-react'
+import {faker} from '@faker-js/faker'
+import image from '../images/team-male.jpg' 
+// const styleLink = document.createElement("link");
+
+// document.head.appendChild(styleLink);
 const EmployeeHome = (props) => {
   const [sidebar, setSidebar] = useState(false);
 
@@ -27,8 +36,6 @@ const EmployeeHome = (props) => {
     }
    
   },[]);
-
-
     const showCartHandler = () => {
       setCartIsShown(true);
     };
@@ -46,7 +53,22 @@ const EmployeeHome = (props) => {
             <FaIcons.FaBars onClick={showSidebar} />
           </Link>
           <h1 className='tagName'>Welcome {props.name}</h1>
-          <Button className='logout' onClick={props.onLogout}>Logout</Button>
+          <Dropdown>
+            <Dropdown.Toggle variant="" className='avatar'>
+            <img src={image} />
+            </Dropdown.Toggle>
+            <Dropdown.Menu>
+              <Dropdown.Item href="/employee">
+                Home Page
+              </Dropdown.Item>
+              <Dropdown.Item href="#" onClick={showCartHandler}>
+                Change Password
+              </Dropdown.Item>
+              <Dropdown.Item href="#">
+              <Button className='logout' onClick={props.onLogout}>Logout</Button> 
+              </Dropdown.Item>
+            </Dropdown.Menu>
+          </Dropdown>
         </div>
         <nav className={sidebar ? 'nav-menu active' : 'nav-menu'}>
           <ul className='nav-menu-items' onClick={showSidebar}>
@@ -68,17 +90,18 @@ const EmployeeHome = (props) => {
           </ul>
         </nav>
       </IconContext.Provider>
-            <div>
-              <Button onClick={showCartHandler}>Change Password</Button>
-              {cartIsShown && <Modal onClose={cartIsShown}>
-              <UserProfile name={props.name} employeeId={props.employeeId} />
-              <Button onClick={hideCartHandler}>Close</Button>
-              {/* name={props.name} employeeId={props.employeeId} */}
-              </Modal>}
-            </div>   
-    <div>
+          {cartIsShown && <Modal onClose={cartIsShown} className="overlay">
+          <UserProfile name={props.name} employeeId={props.employeeId} />
+          <Button onClick={hideCartHandler}>Close</Button>
+          {/* name={props.name} employeeId={props.employeeId} */}
+          </Modal>}
+        </div>   
       <Route path="/employee" exact>
             <EmployeeCourses employeeId={props.employeeId}/>
+      </Route>
+
+      <Route path="/employee/enrolled-courses">
+            <EnrolledCourses employeeId={props.employeeId}/>
       </Route>
 
       <Route path="/employee/feedbackform">
@@ -88,12 +111,8 @@ const EmployeeHome = (props) => {
       <Route path="/employee/course-module">
             <EmployeeCourseInterface/>
       </Route>
-    </div>
-    </div>
-    <div className='below'>
-      
-    </div>
-    </div>
+  </div>
+
   );
 }
 

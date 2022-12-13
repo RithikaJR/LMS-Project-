@@ -11,6 +11,12 @@ export const SidebarData = [
     icon: <RiIcons.RiProfileLine />,
     cName: 'nav-text'
   },
+  {
+    title: 'Enrolled Courses',
+    path: '/employee/enrolled-courses',
+    icon: <IoIcons.IoIosPaper />,
+    cName: 'nav-text'
+  },
 
   {
     title: 'Feedback Form',
@@ -18,14 +24,7 @@ export const SidebarData = [
     icon: <IoIcons.IoIosPaper />,
     cName: 'nav-text'
   },
-
-//   {
-//     title: 'Auction',
-//     path: '/customer/auction',
-//     icon: <RiIcons.RiAuctionFill />,
-//     cName: 'nav-text'
-//   },
- 
+  
   {
     title: 'Log Out',
     path: '/login',

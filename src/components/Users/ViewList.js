@@ -158,30 +158,7 @@ const ViewList = () => {
               pagination
               highlightOnHover
             />
-        </div>
-
-        {/* <table className={classes.tablee}>
-          <thead>
-            <tr>
-              <th className={classes.first_head}>Name</th>
-             
-              <th>Email</th>
-              <th className={classes.last_head}>Role</th>
-            </tr>
-          </thead>
-          <tbody>
-            {courses.map(item => {
-              return (
-                <tr key={item.employeeId}>
-                  <td className={classes.first_column}>{ item.employeeFirstName }  { item.employeeLastName }</td>
-                  <td>{item.employeeEmail}</td>
-                  <td className={classes.last_column}>Trainee</td>
-                </tr>
-              );
-            })}
-          </tbody>
-        </table> */}
-        
+        </div>        
       </div>
     );
   };

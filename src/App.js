@@ -27,18 +27,25 @@ function App() {
 
   useEffect(() => {
     const storedUserLoggedInInformation = localStorage.getItem('isLoggedIn');
+    const storedUserName = localStorage.getItem('LoggedName');
+    const storedEmployeeId = localStorage.getItem('LoggedEmployeeId');
 
     if(storedUserLoggedInInformation === '1'){
-      setIsLoggedIn(true);
-      
+      setIsLoggedIn(true); 
+      setemployeeName(storedUserName);
+      setemployeeId(storedEmployeeId);
     }
     if(storedUserLoggedInInformation === '2'){
       setlearningLoggedIn(true);
+      setemployeeName(storedUserName);
+      setemployeeId(storedEmployeeId);
     }
     if(storedUserLoggedInInformation === '3'){
       setemployeeLoggedIn(true);
+      setemployeeName(storedUserName);
+      setemployeeId(storedEmployeeId);
     }
-  },[]);
+  },[employeeName]);
 
 const loginHandler = (email, password) => {
 
@@ -60,6 +67,8 @@ const loginHandler = (email, password) => {
     if((resJson.roleId ==1)){
       console.log("admin")
       localStorage.setItem('isLoggedIn','1');
+      localStorage.setItem('LoggedName',resJson.employeeName);
+      localStorage.setItem('LoggedEmployeeId',resJson.employeeId);
       setIsLoggedIn(true);
       history.push('/home');
       setemployeeName(resJson.employeeName)
@@ -69,6 +78,8 @@ const loginHandler = (email, password) => {
     else if((resJson.roleId ==2)){
       console.log("learning admin")
       localStorage.setItem('isLoggedIn','2');
+      localStorage.setItem('LoggedName',resJson.employeeName);
+      localStorage.setItem('LoggedEmployeeId',resJson.employeeId);
       setlearningLoggedIn(true);
       history.push('/learaningAdmin');
       setemployeeName(resJson.employeeName)
@@ -78,11 +89,15 @@ const loginHandler = (email, password) => {
     else if((resJson.roleId ==3)){
       console.log("Employee")
       localStorage.setItem('isLoggedIn','3');
+      localStorage.setItem('LoggedName',resJson.employeeName);
+      localStorage.setItem('LoggedEmployeeId',resJson.employeeId);
       setemployeeLoggedIn(true);
       history.push('/employee');
       setemployeeName(resJson.employeeName)
       setemployeeId(resJson.employeeId)
       setemployeeTracker(resJson.userLoginTracker)
+    }else{
+      alert("Enter Valid User Name or Password");
     }
  })
     
@@ -95,11 +110,22 @@ const logoutHandler = () => {
     setlearningLoggedIn(false);
     setemployeeLoggedIn(false);
 };
-      
+
+// const handleRedirection = ()=>{
+//   console.log("hi")
+//   if(isLoggedIn === true){
+//     return <Redirect to='/home' />
+//   }else if(learningLoggedIn === true){
+//     return <Redirect to='/learaningAdmin' />
+//   }else if(employeeLoggedIn === true){
+//     return <Redirect to='/employee' />
+//   }
+ 
+// }
+
 
   return (
     <div>
-
       {isLoggedIn && <MainHeader isAuthenticated={isLoggedIn} onLogout={logoutHandler} name={employeeName} employeeId={employeeId} />}
       
       {learningLoggedIn && <MainHeader isAuthenticated={learningLoggedIn} onLogout={logoutHandler} name={employeeName} employeeId={employeeId}/> }
@@ -109,9 +135,9 @@ const logoutHandler = () => {
               <Redirect to='/login'/>
           </Route>
           <Route path="/login">
-            {!isLoggedIn ? <Login onLogin={loginHandler} /> :<Redirect to='/home' />}
-            {!learningLoggedIn ? <Login onLogin={loginHandler} /> :<Redirect to='/learaningAdmin' /> }
-              {!employeeLoggedIn ? <Login onLogin={loginHandler} /> :<Redirect to='/employee' /> }
+            {!isLoggedIn ? <Login onLogin={loginHandler} />: <Redirect to='/home' />}
+            {learningLoggedIn && <Redirect to='/learaningAdmin' />}
+            {employeeLoggedIn && <Redirect to='/employee' />}
           </Route>
           <Route path="/courses" exact>
               {isLoggedIn ? <Courses onLogout={logoutHandler} /> : <Redirect to='/login' /> }

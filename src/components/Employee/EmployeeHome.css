@@ -100,3 +100,28 @@
     margin-top: 300px;
     background-color: aqua;
   }
+
+  .overlay{
+    position: relative;
+    left: 5%;
+    width: 90%;
+    background-color: rgb(175, 14, 14);
+    padding: 1rem;
+    border-radius: 14px;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.25);
+    z-index: 10;
+    animation: slide-down 300ms ease-out forwards;
+
+  }
+
+  
+  .avatar{
+    background: none;
+    background-color: #a45959;
+    margin-right: 30px;
+  }
+
+  .avatar img{
+    height: 40px;
+    border-radius: 50%;
+  }
