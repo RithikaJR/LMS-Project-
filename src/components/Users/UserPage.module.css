@@ -1,16 +1,17 @@
 .userpage {
     font-family: 'Montserrat', sans-serif;
     box-sizing: border-box;
-    height: auto;
+    height: fit-content;
     /* background-image: url(../images/homepage_background.jpg); */
     /* background-size: cover; */
-    padding-bottom: 8rem;
+    padding-bottom: 2rem;
     text-align: center;
 }
 
 .inside_userpage {
     font: inherit;
     text-align: center; 
+    padding-top: 2rem;
 }
 
 .userpage input {
@@ -24,7 +25,8 @@
 }
 
 .userpage h3{
-    color: rgb(51, 0, 255);
+    color: rgb(255, 255, 255);
+    font-size: 20px;
 }
 
 .inside_userpage h4 {
@@ -37,12 +39,17 @@
     font-size: large;
     padding: 0.6rem;
     margin-left: 1rem;
+    margin-top: 2rem;
 }
 
-.userpage h1 {
-    font-size: 50px;
+.userpage h2 {
+    font-size: 30px;
     font-weight: bold;
     color: white;
+}
+
+.options Button {
+    padding: 1rem;
 }
 
 .sample {
@@ -50,6 +57,7 @@
     align-items: center;
     justify-content: center;
     margin: 0.5rem;
+    margin-bottom: 3rem;
 }
 
 .sample img {
@@ -61,11 +69,67 @@
 
 .sample img:hover {
     height: 40px;
-    /* width: 100px; */
     margin-left: 1rem;
-    /* box-shadow: 0 1px 5px white; */
 }
 
 .sample h4 {
     color:rgb(8, 63, 126);
+    font-size: 15px;
+}
+
+.employeelist {
+    margin: 4rem auto;
+    /* margin-bottom: 5rem; */
+    /* border: 5px solid white; */
+    border-radius: 25px;
+    background-color: #64ace0;
+    width: 90%;
+    min-height: 15rem;
+    padding: 3rem 0;
+}
+
+.addemployee {
+    display: block;
+    width: 50%;
+    text-align: center;
+    height: auto;
+    margin: 3rem auto;
+    padding: 3rem;
+    color: white;
+    /* border: 5px solid white; */
+    border-radius: 25px;
+    background-color: #64ace0;
+    /* box-shadow: 0px 3px 5px rgb(112, 112, 112); */
+}
+
+.addemployee Button {
+    width: 10rem;
+}
+
+.addemployee Button:hover {
+    background-color: #41a3e9;
+}
+
+.addemployee h3 {
+    font-size: 30px;
+    font-weight: bold;
+    padding-bottom: 2rem;
+}
+
+.individual{
+    margin: 1rem 0;
+    justify-content: space-around;
+    text-align: center;
+}
+
+.individual label{
+    margin-right: 0.7rem;
+    display: inline-block;
+    width: 150px;
+    text-align: right;
+}
+
+.individual input {
+    border-radius: 10px;
+    padding-left: 0.8rem;
 }

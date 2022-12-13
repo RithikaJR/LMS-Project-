@@ -19,12 +19,12 @@ export const SidebarData = [
     cName: 'nav-text'
   },
 
-//   {
-//     title: 'Auction',
-//     path: '/customer/auction',
-//     icon: <RiIcons.RiAuctionFill />,
-//     cName: 'nav-text'
-//   },
+  {
+    title: 'Profile',
+    path: '/employee/profile',
+    icon: <RiIcons.RiAuctionFill />,
+    cName: 'nav-text'
+  },
  
   {
     title: 'Log Out',

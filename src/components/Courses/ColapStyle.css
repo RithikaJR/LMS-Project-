@@ -1,19 +1,14 @@
 
-.Collapsible{
-  width: 100%;
-}
 .Collapsible__trigger {
     color: #3b7db7;
     background-color:white;
     font-size: 15px;
     font-weight: bold;
-    padding: 1rem 4rem;
+    padding: 1rem 1rem;
     cursor: pointer;
     margin: 3rem 0;
-    width: 10rem;
+    width: 2rem;
     border: 2px solid black;
-    overflow: auto;
-    /* font-weight: bold; */
   }
 
 .Collapsible__trigger:hover {

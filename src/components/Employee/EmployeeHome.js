@@ -12,6 +12,8 @@ import Button from '../UI/Button/Button';
 import UserProfile from './UserProfile';
 import Modal from "../UI/Modal/Modal.js";
 import EmployeeCourseInterface from './EmployeeCourses/EmployeeCourseInterface';
+import EmployeeProfile from './EmployeeProfile';
+import LAModal from '../UI/Modal/LAModal';
 
 const EmployeeHome = (props) => {
   const [sidebar, setSidebar] = useState(false);
@@ -25,9 +27,8 @@ const EmployeeHome = (props) => {
     }else{
       setCartIsShown(false);
     }
-   
-  },[]);
 
+  },[]);
 
     const showCartHandler = () => {
       setCartIsShown(true);
@@ -69,12 +70,15 @@ const EmployeeHome = (props) => {
         </nav>
       </IconContext.Provider>
             <div>
-              <Button onClick={showCartHandler}>Change Password</Button>
-              {cartIsShown && <Modal onClose={cartIsShown}>
-              <UserProfile name={props.name} employeeId={props.employeeId} />
-              <Button onClick={hideCartHandler}>Close</Button>
-              {/* name={props.name} employeeId={props.employeeId} */}
-              </Modal>}
+              {/* <Button onClick={showCartHandler}>Change Password</Button> */}
+              {cartIsShown && 
+              <div>
+                <Modal onClose={cartIsShown} onClick={showCartHandler}>
+                <UserProfile name={props.name} employeeId={props.employeeId} />
+                <Button onClick={hideCartHandler}>Close</Button>
+                </Modal>
+              </div>}
+              
             </div>   
     <div>
       <Route path="/employee" exact>
@@ -87,6 +91,10 @@ const EmployeeHome = (props) => {
 
       <Route path="/employee/course-module">
             <EmployeeCourseInterface/>
+      </Route>
+
+      <Route path="/employee/profile">
+            <EmployeeProfile/>
       </Route>
     </div>
     </div>

@@ -30,7 +30,6 @@ function App() {
 
     if(storedUserLoggedInInformation === '1'){
       setIsLoggedIn(true);
-      
     }
     if(storedUserLoggedInInformation === '2'){
       setlearningLoggedIn(true);
@@ -111,7 +110,7 @@ const logoutHandler = () => {
           <Route path="/login">
             {!isLoggedIn ? <Login onLogin={loginHandler} /> :<Redirect to='/home' />}
             {!learningLoggedIn ? <Login onLogin={loginHandler} /> :<Redirect to='/learaningAdmin' /> }
-              {!employeeLoggedIn ? <Login onLogin={loginHandler} /> :<Redirect to='/employee' /> }
+            {!employeeLoggedIn ? <Login onLogin={loginHandler} /> :<Redirect to='/employee' /> }
           </Route>
           <Route path="/courses" exact>
               {isLoggedIn ? <Courses onLogout={logoutHandler} /> : <Redirect to='/login' /> }

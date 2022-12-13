@@ -70,7 +70,6 @@ const LAHomePage =(props)=>{
         {cartIsShown && <Modal onClose={cartIsShown}>
         <UserProfile name={props.name} employeeId={props.employeeId} />
         <Button onClick={hideCartHandler}>Close</Button>
-        {/* name={props.name} employeeId={props.employeeId} */}
         </Modal>}
     </div>
         </div>
