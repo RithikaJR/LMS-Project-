@@ -60,14 +60,14 @@ const EmployeeHome = (props) => {
             <img src={image} />
             </Dropdown.Toggle>
             <Dropdown.Menu>
-              <Dropdown.Item href="/employee">
+              <Dropdown.Item className='menu' href="/employee">
                 Home Page
               </Dropdown.Item>
-              <Dropdown.Item href="#" onClick={showCartHandler}>
+              <Dropdown.Item className='menu'href="#" onClick={showCartHandler}>
                 Change Password
               </Dropdown.Item>
-              <Dropdown.Item href="#">
-              <Button className='logout' onClick={props.onLogout}>Logout</Button> 
+              <Dropdown.Item className='menu' href="#" onClick={props.onLogout}>
+              Logout
               </Dropdown.Item>
             </Dropdown.Menu>
           </Dropdown>
@@ -103,7 +103,7 @@ const EmployeeHome = (props) => {
       </Route>
 
       <Route path="/employee/enrolled-courses">
-            <EnrolledCourses employeeId={props.employeeId}/>
+            <EnrolledCourses employeeId={props.employeeId} name={props.name}/>
       </Route>
 
       <Route path="/employee/feedbackform">
@@ -115,7 +115,7 @@ const EmployeeHome = (props) => {
       </Route>
 
       <Route path="/employee/profile">
-            <EmployeeProfile/>
+            <EmployeeProfile employeeId={props.employeeId} name={props.name}/>
       </Route></div>
     
   );

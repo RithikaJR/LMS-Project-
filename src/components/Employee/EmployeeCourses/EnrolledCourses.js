@@ -11,10 +11,10 @@ const EnrolledCourses = (props) => {
     const [httpError, setHttpError] = useState();
     const [searchName, setSearchName] = useState("");
   
-    const onSearchHandler = (name)=>{
-      console.log(name)
-      setSearchName(name);
-    }
+    // const onSearchHandler = (name)=>{
+    //   console.log(name)
+    //   setSearchName(name);
+    // }
 
     useEffect(() => {
       const fetchMeals = async () => {
@@ -93,7 +93,8 @@ const EnrolledCourses = (props) => {
   
     return (
       <React.Fragment>
-        <Search search={onSearchHandler}/>
+        <h2>Enrolled Course By {props.name}</h2>
+        {/* <Search search={onSearchHandler}/> */}
         <section className={classes.courses}>
           <ul>{coursesList}</ul>
         </section>

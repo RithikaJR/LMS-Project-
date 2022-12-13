@@ -1,6 +1,4 @@
-import { useContext } from 'react';
 import classes from './CourseItem.module.css';
-import slide_image4 from '../images/slide_image4.jpg';
 import Button from '../UI/Button/Button';
 import { NavLink } from 'react-router-dom';
 import edit from '../images/edit_icon.png';

@@ -1,7 +1,4 @@
 import React from 'react';
-
-
-
 import classes from './Navigation.module.css';
 
 import 'bootstrap/dist/css/bootstrap.css';
@@ -10,24 +7,27 @@ import image from '../images/team-male.jpg'
 import Button from '../UI/Button/Button';
 import { useState } from 'react';
 import { useEffect } from 'react';
+import UserProfile from '../Employee/UserProfile';
+import Modal from '../UI/Modal/Modal';
 
 const Navigation = (props) => {
-  const [cartIsShown, setCartIsShown] = useState(false);
+  const [overlayShown, setoverlayIsShown] = useState(false);
+  
   useEffect(() => {
     if(props.tracker===1){
-      setCartIsShown(true);
+      setoverlayIsShown(true);
     }else{
-      setCartIsShown(false);
+      setoverlayIsShown(false);
     }
    
   },[]);
 
   const showCartHandler = () => {
-    setCartIsShown(true);
+    setoverlayIsShown(true);
   };
 
   const hideCartHandler = () => {
-    setCartIsShown(false);
+    setoverlayIsShown(false);
   };
   return (
     <nav className={classes.nav}>
@@ -38,26 +38,32 @@ const Navigation = (props) => {
           </li>
         )}
         {props.isLoggedIn && (
-          <li>
+          <li className='avatar'>
+            {/*  <Button className='logout' onClick={props.onLogout}>Logout</Button>  */}
             <Dropdown>
-            <Dropdown.Toggle variant="" className='avatar'>
+            <Dropdown.Toggle variant="">
             <img src={image} />
             </Dropdown.Toggle>
             <Dropdown.Menu>
-              <Dropdown.Item href="/employee">
+              <Dropdown.Item className='menu' href="/employee">
                 Home Page
               </Dropdown.Item>
-              <Dropdown.Item href="#" onClick={showCartHandler}>
+              <Dropdown.Item className='menu'href="#" onClick={showCartHandler}>
                 Change Password
               </Dropdown.Item>
-              <Dropdown.Item href="#">
-              <Button className='logout' onClick={props.onLogout}>Logout</Button> 
+              <Dropdown.Item className='menu' href="#" onClick={props.onLogout}>
+              Logout
               </Dropdown.Item>
             </Dropdown.Menu>
           </Dropdown>
           </li>
         )}
       </ul>
+      {overlayShown && <Modal onClose={overlayShown} className="overlay">
+          <UserProfile name={props.name} employeeId={props.employeeId} />
+          <Button onClick={hideCartHandler}>Close</Button>
+          {/* name={props.name} employeeId={props.employeeId} */}
+          </Modal>}
     </nav>
   );
 };

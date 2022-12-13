@@ -1,42 +1,10 @@
 import UserPage from "./UserPage";
 import classes from "./UserMainPage.module.css";
 import ViewList from "./ViewList";
-import styled from 'styled-components';
 import AddUser from "./AddUser";
 import { useState } from "react";
+import { ButtonGroup, Tab} from "./ComponentStyles";
 
-
-const Tab = styled.button`
-  margin: 30px;
-  height: 5rem;
-  font-size: 20px;
-  padding: 10px 60px;
-  cursor: pointer;
-  opacity: 0.6;
-  background: white;
-  border: 0;
-  outline: 0;
-
-  ${({ active }) =>
-    // active &&
-    `
-    font-family: 'Montserrat', sans-serif;
-    opacity: 1;
-    color: #1a72be;
-  `}
-  ${({ active }) =>
-    active &&
-    `
-    font-family: 'Montserrat', sans-serif;
-    opacity: 1;
-    background-color: #6898c3;
-    color: white;
-  `}
-`;
-
-const ButtonGroup = styled.div`
-  display: flex;
-`;
 
 const types = ['All Users', 'Assign Role', 'Add Employee'];
 
@@ -72,8 +40,6 @@ const UserMainPage = () => {
 
             {active==='Add Employee' && <UserPage />}
           </div>
-
-
 
     </div>
     </div>

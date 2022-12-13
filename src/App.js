@@ -1,5 +1,4 @@
 import React, { useState, useEffect } from 'react';
-
 import Login from './components/Login/Login';
 import MainHeader from './components/MainHeader/MainHeader';
 import { Redirect, Route, Switch, useHistory } from 'react-router-dom';
@@ -10,7 +9,6 @@ import CourseInterface from './components/Courses/CourseInterface';
 import EmployeeHome from './components/Employee/EmployeeHome';
 import SuperAdminHome from './components/Home/SuperAdminHome';
 import LAHomePage from './components/LearningAdmin/LAHomePage';
-import EmployeeCourseInterface from './components/Employee/EmployeeCourses/EmployeeCourseInterface';
 
 
 function App() {
@@ -103,32 +101,17 @@ const loginHandler = (email, password) => {
     
   };
 const logoutHandler = () => {
-  // We should of course check email and password
-  // But it's just a dummy/ demo anyways
     localStorage.removeItem('isLoggedIn');
     setIsLoggedIn(false);
     setlearningLoggedIn(false);
     setemployeeLoggedIn(false);
 };
 
-// const handleRedirection = ()=>{
-//   console.log("hi")
-//   if(isLoggedIn === true){
-//     return <Redirect to='/home' />
-//   }else if(learningLoggedIn === true){
-//     return <Redirect to='/learaningAdmin' />
-//   }else if(employeeLoggedIn === true){
-//     return <Redirect to='/employee' />
-//   }
- 
-// }
-
-
   return (
     <div>
-      {isLoggedIn && <MainHeader isAuthenticated={isLoggedIn} onLogout={logoutHandler} name={employeeName} employeeId={employeeId} />}
+      {isLoggedIn && <MainHeader isAuthenticated={isLoggedIn} onLogout={logoutHandler} name={employeeName} employeeId={employeeId} tracker={employeeTracker}/>}
       
-      {learningLoggedIn && <MainHeader isAuthenticated={learningLoggedIn} onLogout={logoutHandler} name={employeeName} employeeId={employeeId}/> }
+      {learningLoggedIn && <MainHeader isAuthenticated={learningLoggedIn} onLogout={logoutHandler} name={employeeName} employeeId={employeeId} tracker={employeeTracker}/> }
       {/* {employeeLoggedIn && <MainHeader isAuthenticated={employeeLoggedIn} onLogout={logoutHandler} name={employeeName} employeeId={employeeId}/> } */}
        <Switch>
           <Route path="/" exact>
@@ -146,10 +129,6 @@ const logoutHandler = () => {
           <Route path="/home" exact>
               {isLoggedIn ? <SuperAdminHome onLogout={logoutHandler} name={employeeName} employeeId={employeeId} tracker={employeeTracker}/> : <Redirect to='/login' /> }
           </Route>
-
-          {/* <Route path="/courses/course-module">
-              {isLoggedIn ? <CourseModules onLogout={logoutHandler} /> : <Redirect to='/login' /> }
-          </Route> */}
 
           <Route path="/users">
             {isLoggedIn ? <UserMainPage onLogout={logoutHandler} /> : <Redirect to='/login' /> }

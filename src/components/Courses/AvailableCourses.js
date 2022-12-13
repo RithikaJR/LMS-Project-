@@ -5,7 +5,7 @@ import classes from './AvailableCourse.module.css';
 import CourseItem from './CourseItem';
 
 const AvailableCourses = () => {
-    const [courses, setMeals] = useState([]);
+    const [courses, setCourse] = useState([]);
     const [isLoading, setIsLoading] = useState(true);
     const [httpError, setHttpError] = useState();
     const [searchName, setSearchName] = useState("");
@@ -24,8 +24,6 @@ const AvailableCourses = () => {
         }else{
           response = await fetch('http://localhost:8080/api/courses/search/findBycourseNameContaining?name='+searchName);
         }
-        
-  
         if (!response.ok) {
           throw new Error('Something went wrong!');
         }
@@ -49,7 +47,7 @@ const AvailableCourses = () => {
           });
         }
   
-        setMeals(loadedCourses);
+        setCourse(loadedCourses);
         setIsLoading(false);
       };
   

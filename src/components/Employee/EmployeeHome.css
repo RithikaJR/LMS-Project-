@@ -122,11 +122,19 @@
   
   .avatar{
     background: none;
-    background-color: #a45959;
-    margin-right: 30px;
+    margin-left: 60%;
+    /* margin-right: 30px; */
   }
+
+  .menu{
+    /* margin-left: 60%; */
+    width: 80%;
+  }
+
+  
 
   .avatar img{
     height: 40px;
     border-radius: 50%;
+  
   }
