@@ -5,12 +5,22 @@ import classes from './EmployeeAvailableCourses.module.css';
 import EmployeeCourseItem from './EmployeeCourseItem';
 import EnrolledCourseItem from './EnrolledCourseItem.js';
 
+import ReactPaginate from 'react-paginate';
+
 const EnrolledCourses = (props) => {
     const [enrolledCourses, setEnrolledCourse] = useState([]);
     const [isLoading, setIsLoading] = useState(true);
     const [httpError, setHttpError] = useState();
     const [searchName, setSearchName] = useState("");
   
+    // Pagination
+    const [itemOffset, setItemOffset] = useState(0);
+    const itemsPerPage = 3;
+    const endOffset = itemOffset + itemsPerPage;
+    console.log(`Loading items from ${itemOffset} to ${endOffset}`);
+    const currentItems = enrolledCourses.slice(itemOffset, endOffset);
+    const pageCount = Math.ceil(enrolledCourses.length / itemsPerPage);
+
     // const onSearchHandler = (name)=>{
     //   console.log(name)
     //   setSearchName(name);
@@ -76,7 +86,7 @@ const EnrolledCourses = (props) => {
       );
     }
   
-    const coursesList = enrolledCourses.map((course) => (
+    const coursesList = currentItems.map((course) => (
       <EnrolledCourseItem
         key={course.id}
         id={course.courseId}
@@ -89,6 +99,14 @@ const EnrolledCourses = (props) => {
       />
     ));
 
+    // Invoke when user click to request another page.
+    const handlePageClick = (event) => {
+      const newOffset = (event.selected * itemsPerPage) % enrolledCourses.length;
+      console.log(
+        `User requested page number ${event.selected}, which is offset ${newOffset}`
+      );
+      setItemOffset(newOffset);
+    };
     
   
     return (
@@ -98,6 +116,22 @@ const EnrolledCourses = (props) => {
         <section className={classes.courses}>
           <ul>{coursesList}</ul>
         </section>
+
+        {/* Pagination */}
+        <ReactPaginate
+              breakLabel="..."
+              nextLabel="next >"
+              onPageChange={handlePageClick}
+              pageRangeDisplayed={5}
+              pageCount={pageCount}
+              previousLabel="< previous"
+              renderOnZeroPageCount={null}
+              containerClassName="pagination"
+              pageLinkClassName='page-num'
+              previousLinkClassName='page-num'
+              nextLinkClassName='page-num'
+              activeClassName='active'
+            />
       </React.Fragment>
     );
   };

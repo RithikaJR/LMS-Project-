@@ -1,0 +1,77 @@
+/* .courses {
+    display: flex;   
+    max-width: 40rem;
+    text-align: center;
+    padding: 3rem;
+    width: 90%;
+    margin: 2rem 0.2rem;
+    border-radius: 25px;
+  }
+  
+  .coursesLoading {
+    font: inherit;
+    text-align: center;
+    color: white;
+  }
+  
+  .coursesError {
+    text-align: center;
+    color: red;
+  }
+  
+  .courses ul {
+    list-style: none;
+    padding: 0;
+    flex-direction: row;
+    width: auto;
+    display: grid;
+    grid-template-columns: repeat(3, 350px);
+    grid-gap: 60px;
+  }
+  
+  @keyframes meals-appear {
+    from {
+      opacity: 0;
+      transform: translateY(3rem);
+    }
+  
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+
+  .searchbar {
+    background-color: blue;
+  }
+  
+   */
+
+.pagination{
+  list-style: none;  
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-bottom: 5rem;
+  font-size: 1.2rem;
+  gap: 5px;
+}
+
+.pagination .page-num{
+  padding: 8px 15px;
+  cursor: pointer;
+  border-radius: 3px;
+  font-weight: 400;
+  color: black;
+  text-decoration: none;
+}
+
+.pagination .page-num:hover{
+  background-color: #5AB1BB;
+  color: #fff;
+}
+
+.pagination .active{
+  background-color: #5AB1BB;
+
+}
