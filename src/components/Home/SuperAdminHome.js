@@ -14,7 +14,6 @@ import UserProfile from '../Employee/UserProfile';
 const SuperAdminHome = (props) => {
   const [cartIsShown, setCartIsShown] = useState(false);
   useEffect(() => {
-    // const storedUserLoggedInInformation = localStorage.getItem('isLoggedIn');
 
     if(props.tracker===1){
       setCartIsShown(true);
@@ -35,7 +34,7 @@ const SuperAdminHome = (props) => {
   return (
     <div className={classes.home}>   
           <div>
-              <Button onClick={showCartHandler}>Change Password</Button>
+              {/* <Button onClick={showCartHandler}>Change Password</Button> */}
               {cartIsShown && <Modal onClose={cartIsShown}>
               <UserProfile name={props.name} employeeId={props.employeeId} />
               <Button onClick={hideCartHandler}>Close</Button>

@@ -109,8 +109,8 @@ const logoutHandler = () => {
           </Route>
           <Route path="/login">
             {!isLoggedIn ? <Login onLogin={loginHandler} /> :<Redirect to='/home' />}
-            {!learningLoggedIn ? <Login onLogin={loginHandler} /> :<Redirect to='/learaningAdmin' /> }
-            {!employeeLoggedIn ? <Login onLogin={loginHandler} /> :<Redirect to='/employee' /> }
+            {learningLoggedIn && <Redirect to='/learaningAdmin' /> }
+            {employeeLoggedIn && <Redirect to='/employee' /> }
           </Route>
           <Route path="/courses" exact>
               {isLoggedIn ? <Courses onLogout={logoutHandler} /> : <Redirect to='/login' /> }

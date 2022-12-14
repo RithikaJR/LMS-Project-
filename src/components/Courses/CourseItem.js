@@ -32,8 +32,8 @@ const CourseItem = (props) => {
             </Rating></div>
           <div className={classes.view}>
             <NavLink to={{pathname:'/courses/course-module',state:{id:props.id}}}><Button >View</Button></NavLink>
-            <Button><img src={edit}/></Button>
-            <Button><img src={delet}/></Button>
+            <a href='#'><img src={edit}/></a>
+            <a href='#'><img src={delet}/></a>
           </div>
          
         </div>

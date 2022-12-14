@@ -1,0 +1,102 @@
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;600&display=swap');
+
+.session {
+    text-align: center;
+    padding: 1rem;
+    font-family: 'Montserrat', sans-serif;
+    width: 600px;
+}
+
+.session h2 {
+    margin: 1.5rem 0;
+    font-weight: bold;
+    color: #3b7db7;
+}
+
+
+
+.individual label{
+    margin-right: 0.7rem;
+    display: inline-block;
+    width: 200px;
+    text-align: right;
+}
+
+.individual input {
+    border: 1px solid grey;
+    border-radius: 10px;
+    padding: 0.3rem 0;
+    margin: 0.5rem 0;
+    padding-left: 0.5rem;
+    width: 20rem;
+}
+
+.individual label::after {
+    content: "*";
+    opacity: 0.8;
+    color: rgb(246, 94, 94);
+    margin-left: 0.1rem;
+}
+
+.individual textarea{
+    border: 1px solid grey;
+    border-radius: 10px;
+}
+
+.session Button {
+    margin-top: 2rem;
+    background-color: #3b7db7;
+    color: white;
+}
+
+.both {
+    margin-left: 3rem;
+    padding-left: 3rem;
+}
+
+.both label{
+    display: inline-block;
+    width: 100px;
+    margin-right: 0.7rem;
+    text-align: right;
+    /* margin-left: .8rem; */
+}
+
+.both label::after {
+    content: "*";
+    opacity: 0.8;
+    color: rgb(246, 94, 94);
+    margin-left: 0.1rem;
+}
+
+.both input {
+    border: 1px solid grey;
+    border-radius: 10px;
+    padding: 0.3rem 0;
+    margin: 0.5rem 0;
+    padding-left: 0.8rem;
+    width: 6rem;
+}
+
+.date label{
+    margin-right: 0.7rem;
+    display: inline-block;
+    width: 200px;
+    text-align: right;
+}
+
+.date label::after {
+    content: "*";
+    opacity: 0.8;
+    color: rgb(246, 94, 94);
+    margin-left: 0.1rem;
+}
+
+.date input {
+    border: 1px solid grey;
+    border-radius: 10px;
+    padding: 0.3rem 0;
+    margin: 0.5rem 0;
+    padding-left: 0.5rem;
+    width: 20rem;
+}

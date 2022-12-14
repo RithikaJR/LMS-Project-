@@ -37,7 +37,8 @@ render() {
             <input type="text" name="employee_id" 
                 onChange={this.changeHandler}
                 value={employee_id} 
-                placeholder="Employee ID"/>
+                placeholder="Employee ID"
+                required />
             </div>
 
             <div className={classes.lable}>
@@ -45,7 +46,8 @@ render() {
             <select type="text" name="role" 
                 onChange={this.changeHandler} 
                 value={role} 
-                placeholder="Choose Role">
+                placeholder="Choose Role"
+                required>
                     <option value="Learning Admin">Learning Admin</option>
                     
                 </select>
