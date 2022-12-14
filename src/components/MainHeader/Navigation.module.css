@@ -51,3 +51,23 @@
   color: white;
   background: #f55858;
 }
+
+
+.avatar{
+  background: none;
+  margin-left: 60%;
+  /* margin-right: 300px; */
+}
+
+.menu{
+  /* margin-left: 60%; */
+  /* width: 80%; */
+  
+  border-radius: 50%;
+}
+
+.avatar img{
+  height: 40px;
+  border-radius: 50%;
+}
+

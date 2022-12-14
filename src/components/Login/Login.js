@@ -9,8 +9,6 @@ const Login = (props) => {
   const [enteredPassword, setEnteredPassword] = useState('');
   const [passwordIsValid, setPasswordIsValid] = useState();
   const [formIsValid, setFormIsValid] = useState(false);
-  const [userName, setUserName] = useState();
-  const [userPassword, setUserPassword] = useState();
 
 
   
@@ -18,7 +16,7 @@ const Login = (props) => {
     const identifier =setTimeout(() =>{
       console.log("Validity Check");
       setFormIsValid(
-          enteredEmail.includes('@experionglobal.com') && enteredPassword.trim().length > 6
+          enteredEmail.includes('@') && enteredPassword.trim().length > 6
         
       );
     }, 500)
@@ -27,10 +25,8 @@ const Login = (props) => {
       console.log('CLEANUP');
       clearTimeout(identifier);
     };
-  }, [enteredEmail,enteredPassword])
-
-
-  
+  }, [enteredEmail,enteredPassword]) 
+ 
   const emailChangeHandler = (event) => {
     setEnteredEmail(event.target.value);
 
@@ -53,7 +49,6 @@ const Login = (props) => {
     event.preventDefault();
     props.onLogin(enteredEmail, enteredPassword);
   };
-
 
   return (
    

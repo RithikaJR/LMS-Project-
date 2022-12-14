@@ -155,8 +155,7 @@ const ViewList = () => {
               pagination
               highlightOnHover
             />
-        </div>
-        
+        </div>        
       </div>
     );
   };

@@ -10,7 +10,7 @@ import './AddCourseForm.css';
 const AddCourseForm = ()=>{
 
   const [courseCategoryId, setCourseCategoryId] = useState()
-  const [courseCategoryName, setCourseCategoryName] = useState("UI")
+  const [courseCategoryName, setCourseCategoryName] = useState("")
   const [courseId, setcourseId] = useState('')
   
   const [courseName, setcourseName] = useState()
@@ -152,10 +152,17 @@ const AddCourseForm = ()=>{
 
 
     const handleCoureseCategory = (event) => {
-      setCourseCategoryId(event.target.value);
-      setCourseCategoryName(event.target.name);
-      console.log("id "+event.target.value)
-      console.log("name "+event.target.name)
+      const index = event.target.selectedIndex;
+      const el = event.target.childNodes[index]
+      const option =  el.getAttribute('id');  
+      setCourseCategoryId(option);
+      setCourseCategoryName(event.target.value);
+
+
+
+      // const option =  event.target.getAttribute('name');  
+      console.log("id "+option)
+      console.log("name "+event.target.value)
     }
     const CourseIdHandler = (event) => {
       setcourseId(event.target.value);
@@ -203,10 +210,10 @@ return (
       <h1>Add Course</h1>
       <Label className="mt-4 ">
           <span>Course Category</span>
-          <Select className="mt-1 shadow-md" value={courseCategoryId} name={courseCategoryName} onChange={handleCoureseCategory}>
+          <select className="mt-1 shadow-md" onChange={handleCoureseCategory}>
           {category.map(category => (
-          <option value={category.categoryId} name={category.categoryId} onChange={handleCoureseCategory}>{category.category_name}</option>))}
-          </Select>
+          <option id={category.categoryId} value={category.category_name} name={category.category_name} onChange={handleCoureseCategory}>{category.category_name}</option>))}
+          </select>
       </Label>
         <Label >
           <span> Course Name</span>

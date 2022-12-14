@@ -5,28 +5,13 @@ import classes from './CourseInterface.module.css';
 import CourseModuleList from "./CourseModuleList";
 // import video from '../video/sample_video.mp4';
 import jsPDF from 'jspdf';
-import '../Courses/CourseInterface.css';
-
-
-import Collapsible from 'react-collapsible';
-import { useSSRSafeId } from "@react-aria/ssr";
 import CourseRating from "../Users/CourseRating";
 
 
 const CourseInterface = (props) => {
-    
-
-    // return (
-    //     <div className={classes.wrap}>
-    //         <h1>Modules</h1>
-    //         <a href=""><Button>View Course</Button></a>
-    //     </div>
-    // )
-
   const [modules, setModules] = useState([]);
   const [isLoading, setIsLoading] = useState(true);
   const [httpError, setHttpError] = useState();
-  const [searchName, setSearchName] = useState("");
 
   const [link, setLink] = useState("");
   const [checked, setChecked] = useState(false);
@@ -36,22 +21,16 @@ const CourseInterface = (props) => {
   let location = useLocation();
   const propdata = location.state.id;
   console.log("interface "+propdata);
-  // setCurseId();
-
-  // const onSearchHandler = (name)=>{
-  //   console.log(name)
-  //   setSearchName(name);
-  // }
 
   useEffect(() => {
     const fetchModules = async () => {
       let response;
-      if(searchName===''){
+      
         response = await fetch(
           'http://localhost:8080/api/courses/'+propdata+'/modules');
-      }else{
-        response = await fetch('http://localhost:8080/api/courses/search/findAllBycourseName?name='+searchName);
-      }
+      // }else{
+      //   response = await fetch('http://localhost:8080/api/courses/search/findAllBycourseName?name='+searchName);
+      // }
       
 
       if (!response.ok) {
@@ -114,9 +93,6 @@ const CourseInterface = (props) => {
 
     doc.text(80,40,'Course Category : Communication');
     doc.text(100,60,'Course Name : Leadership Skills');
-
-
-
     doc.save("generated.pdf");
    
 }
@@ -153,8 +129,7 @@ const CourseInterface = (props) => {
     <section className={classes.page}>
         <div className={classes.cert}>
           <h3>Modules</h3>
-          <Button  onClick={jsPdfGenerator} >Download PDF</Button>
-          {/* disabled={true} */}
+          <Button  onClick={jsPdfGenerator} disabled={true}>Download PDF</Button>
         </div>
         <div>
         <CourseRating />
@@ -168,6 +143,13 @@ const CourseInterface = (props) => {
           <iframe src={link}
                 className={classes.player}>
           </iframe>
+          {/* <div className={classes.check}>
+              <label>Completed?</label>
+              <input type="checkbox"
+                    onChange={handleChange}
+                    disabled={state} />
+          </div> */}
+          
 
         </section>
       </section>

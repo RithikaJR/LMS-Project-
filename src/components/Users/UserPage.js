@@ -31,7 +31,6 @@ const UserPage = () => {
     }
     
     function submit(e){
-        // console.log("hi");
         e.preventDefault();
         Axios.post(url,{
           employeeId:data.id,
@@ -75,23 +74,21 @@ const UserPage = () => {
    
     const fileData = () => {
         if (selectedFile) {
-            
+            return (
+                <div className={classes.inside_userpage}>
+                    <div>
+                        <h2>File Details:</h2>
+                        <p>File Name: {selectedFile.name}</p>
 
-                return (
-                                     <div className={classes.inside_userpage}>
-                                         <div>
-                                             <h2>File Details:</h2>
-                                             <p>File Name: {selectedFile.name}</p>
-                    
-                                             <p>File Type: {selectedFile.type}</p>
-                    
-                                             <p>
-                                                 Last Modified:{" "}
-                                                 {selectedFile.lastModifiedDate.toDateString()}
-                                             </p>
-                    
-                                         </div>
-                                     </div>
+                        <p>File Type: {selectedFile.type}</p>
+
+                        <p>
+                            Last Modified:{" "}
+                            {selectedFile.lastModifiedDate.toDateString()}
+                        </p>
+
+                    </div>
+                </div>
             );
         } 
     };
@@ -109,12 +106,7 @@ const UserPage = () => {
     const submitHandler = () => {
 
     }
-
-    
-   
         return (
-            
-
             <div className={classes.userpage}>
                 <div className={classes.options}>
                     <Button onClick={employeeHandler}>Add Employee List</Button>
