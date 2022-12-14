@@ -6,15 +6,48 @@ const Notification = (props)=>{
     return(
         <div className={classes.not}>
             <p>Notification</p>
-
-         
-        
-      
+            
+            
             
 
-        </div>
+        <table>
+            <tr>
+            <th>Name</th>
+            <th>Course Name</th>
+            <th>Approval Status</th>
+            </tr>
+            <tr>
+            <td>Drishya</td>
+            <td>HTML Basics</td>
+            <td>
+                <button>Approve</button>
+                <button>Reject</button>
+            </td>
+            </tr>
+            <tr>
+            <td>Anupriya</td>
+            <td>Communication skill</td>
+            <td>
+            <button>Approve</button>
+                <button>Reject</button>
+            </td>
+            </tr>
+            <tr>
+            <td>Megha</td>
+            <td>Core Java</td>
+            <td>
+            <button>Approve</button>
+                <button>Reject</button>
+            </td>
+            </tr>
+       </table>
+
+       
+       </div>
+        
     );
 };
+
 
 
 // const Form = ({submitting, handleSubmit, formData, setFormData}) => {
@@ -76,4 +109,4 @@ const Notification = (props)=>{
 //       />
 //     }
 //   }
- export default Notification;
+  export default Notification;

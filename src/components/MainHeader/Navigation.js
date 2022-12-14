@@ -1,6 +1,6 @@
 import React from 'react';
 import { NavLink } from 'react-router-dom';
-import bell2 from '../images/bell2.png';
+import icon3 from '../images/icon3.png';
 
 import Notification from '../Notification/Notification';
 
@@ -14,7 +14,7 @@ const Navigation = (props) => {
       <ul>
         {props.isLoggedIn && (
           <li>
-            <h1>Welcome Super Admin!</h1>
+            <h1>Welcome {props.name}</h1>
           </li>
         )}
         
@@ -22,15 +22,11 @@ const Navigation = (props) => {
           <li>
             <NavLink to = '/notification' className={classes.usertext}>
             <div className={classes.bell}>
-              <img src={bell2}/>
-              {/* not */}
-            
+              <img src={icon3}/>
               </div>
             </NavLink>
           </li>
         
-       
-
         {props.isLoggedIn && (
           <li>
             <button onClick={props.onLogout}>Logout</button>

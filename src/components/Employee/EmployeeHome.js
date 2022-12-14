@@ -5,8 +5,15 @@ import { Link, Route } from 'react-router-dom';
 import { SidebarData } from './SideBarData';
 import './EmployeeHome.css';
 import { IconContext } from 'react-icons';
-import Courses from './EmployeeCourses/Courses';
+import EmployeeCourses from './EmployeeCourses/EmployeeCourses';
 import FeedbackForm from './Feedbackform';
+
+import Button from '../UI/Button/Button';
+import UserProfile from './UserProfile';
+import Modal from "../UI/Modal/Modal.js";
+import EmployeeCourseInterface from './EmployeeCourses/EmployeeCourseInterface';
+import EmployeeProfile from './EmployeeProfile';
+import LAModal from '../UI/Modal/LAModal';
 
 
 import profilepicture from '../images/profilepic.jpg';
@@ -24,6 +31,7 @@ import {faker} from '@faker-js/faker'
 import Certificate from './Certificate';
 import { RiSlideshow4Fill } from 'react-icons/ri';
 import Coursess from '../Courses/Coursess';
+import Courses from '../Courses/Courses';
 const styleLink = document.createElement("link");
 styleLink.rel = "stylesheet";
 styleLink.href =
@@ -33,7 +41,7 @@ document.head.appendChild(styleLink);
 
 
 
-const EmployeeHome = () => {
+const EmployeeHome = (props) => {
   const [sidebar, setSidebar] = useState(false);
 
   const showSidebar = () => setSidebar(!sidebar);
@@ -75,6 +83,23 @@ const EmployeeHome = () => {
 
 
   
+  const [cartIsShown, setCartIsShown] = useState(false);
+  useEffect(() => {
+    if(props.tracker===1){
+      setCartIsShown(true);
+    }else{
+      setCartIsShown(false);
+    }
+
+  },[]);
+
+    const showCartHandler = () => {
+      setCartIsShown(true);
+    };
+  
+    const hideCartHandler = () => {
+      setCartIsShown(false);
+    };
 
   return (
     <div>
@@ -100,6 +125,8 @@ const EmployeeHome = () => {
 
         
 
+          <h1 className='tagName'>Welcome {props.name}</h1>
+          <Button className='logout' onClick={props.onLogout}>Logout</Button>
         </div>
         <nav className={sidebar ? 'nav-menu active' : 'nav-menu'}>
           <ul className='nav-menu-items' onClick={showSidebar}>
@@ -127,7 +154,23 @@ const EmployeeHome = () => {
 
 
       <Route path="/employee/coursess" exact>
-            <Courses/>
+      <Courses/>
+      </Route>
+           
+            <div>
+              {/* <Button onClick={showCartHandler}>Change Password</Button> */}
+              {cartIsShown && 
+              <div>
+                <Modal onClose={cartIsShown} onClick={showCartHandler}>
+                <UserProfile name={props.name} employeeId={props.employeeId} />
+                <Button onClick={hideCartHandler}>Close</Button>
+                </Modal>
+              </div>}
+              
+            </div>   
+    <div>
+      <Route path="/employee" exact>
+            <EmployeeCourses employeeId={props.employeeId}/>
       </Route>
 
       <Route path="/employee/feedbackform">
@@ -137,6 +180,14 @@ const EmployeeHome = () => {
       <Route path="/employee/certificate">
             <Certificate/>
       </Route>
+      <Route path="/employee/course-module">
+            <EmployeeCourseInterface/>
+      </Route>
+
+      <Route path="/employee/profile">
+            <EmployeeProfile/>
+      </Route>
+    </div>
     </div>
     <div className='below'>
     <div className="imgWrapper">

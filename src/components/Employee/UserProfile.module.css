@@ -1,0 +1,35 @@
+.profile{
+    line-height: 50px;
+}
+
+
+.profileImg{
+    text-align: center;
+}
+
+.profileImg img{
+    text-align: center;
+    border-radius: 50%;
+    height: 150px;
+}
+
+.profileImg h1 {
+    text-transform: capitalize;
+}
+
+.profileImg input{
+    font-size: 15px;
+    /* padding: 0.3rem 0; */
+    margin-top: 1rem;
+}
+
+.profile Button {
+    background-color: rgb(187, 190, 193);
+    border-radius: 25px;
+    padding: 1rem;
+    border: 1px solid rgb(127, 128, 128);
+}
+
+.changePassword {
+   margin-left: 5rem;
+}

@@ -32,10 +32,16 @@ export const SidebarData = [
 //     icon: <RiIcons.RiAuctionFill />,
 //     cName: 'nav-text'
 //   },
+{
+    title: 'Profile',
+    path: '/employee/profile',
+    icon: <RiIcons.RiAuctionFill />,
+    cName: 'nav-text'
+  },
  
   {
     title: 'Log Out',
-    path: '/logout',
+    path: '/login',
     icon: <AiIcons.AiOutlineLogout />,
     cName: 'nav-text'
   }
