@@ -17,6 +17,13 @@
     margin-right: 0.5rem;
 }
 
+.lable label::after {
+    content: "*";
+    opacity: 0.8;
+    color: rgb(246, 94, 94);
+    margin-left: 0.1rem;
+}
+
 .wrap input {
     border: 1px;
     border-radius: 25px;

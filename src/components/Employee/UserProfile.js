@@ -47,15 +47,7 @@ const UserProfile=(props)=> {
     const changePasswordForm=()=>{
         setChangePwd(true)
     }
- 
-// render(
-    // if(this.state.profileImage){
-    //     var imagestr=this.state.profileImage;
-    //     imagestr = imagestr.replace("public/", "");
-    //     var profilePic="http://localhost:5000/"+imagestr;
-    // }else{
-    //      profilePic=DefaultUserPic;
-    // }
+
 
     return (
             <div className={classes.profile}>

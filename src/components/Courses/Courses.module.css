@@ -13,7 +13,8 @@
     font-size: 50px;
     font-weight: bolder;
     color: rgb(85, 84, 84);
-    margin-right: 22rem;
+    /* margin-right: 3rem; */
+    margin-top: 1rem;
 }
 
 .box {
@@ -32,4 +33,28 @@
 
 .close Button {
     align-items: center;
+}
+
+.options {
+    margin: -2rem;
+    margin-right: -25rem;
+}
+
+.display {
+    margin: -7.5rem 0;
+    /* display: block; */
+    float: left;
+    /* transition: 5s ease-in; */
+}
+
+.display Button {
+    font-size: medium;
+    padding: 0.7rem;
+    background-color: #70b4f0;
+    color: white;
+    border: 1px solid white;
+}
+
+.add {
+    float: right;
 }

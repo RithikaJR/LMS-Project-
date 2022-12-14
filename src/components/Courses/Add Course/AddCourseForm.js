@@ -18,32 +18,6 @@ const AddCourseForm = ()=>{
   const [courseImageUrl, setcourseImageUrl] = useState("")
 
   const [message, setMessage] = useState("");
-  // const [cartIsShown, setCartIsShown] = useState(false);
-    // const expenses =[
-    //     {
-    //       // id:'',
-    //       "moduleId":0,
-    //       "moduleName": "",
-    //       "moduleImageUrl":"",
-    //       "moduleUrl": ""
-    //     },];
-
-      //   const expenses1 =[
-      //     {
-      //        "moduleId":1,
-      //        "moduleName":"Effective Communication",
-      //        "moduleImageUrl":"https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRHca7CDuJZnIXEiQ4Fntfirii-OCau_EkusQ&usqp=CAU",
-      //        "moduleUrl":"https://www.youtube.com/watch?v=6pYSbdGiDYw"
-            
-      //     },
-      //     {
-      //        "moduleId":2,
-      //        "moduleName":"Leadership Skills",
-      //        "moduleImageUrl":"https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTql9f7dd3ke97aGuaqXBFANVfjGOGMmAguvw&usqp=CAU",
-      //        "moduleUrl":"https://www.youtube.com/watch?v=0sY3uf3LZZg"
-            
-      //     }
-      //  ]
 
     const[expense, setExpense] =useState([]);
 
@@ -123,8 +97,6 @@ const AddCourseForm = ()=>{
         try {
           let res = await fetch("http://localhost:8080/api/add-module/add", {
             method: "POST",
-            // dataType: "json",
-            // contentType: "application/json; charset=utf-8",
             headers: {"content-type": "application/json"},
             body: JSON.stringify({
               category:{
@@ -138,37 +110,7 @@ const AddCourseForm = ()=>{
                 courseImageUrl: courseImageUrl,
               },
               "moduleItem":expense
-            //   "moduleItem":[
-
-            //     {
-          
-            //        "moduleId":1,
-          
-            //        "moduleName":"Effective Communication",
-          
-            //        "moduleImageUrl":"https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRHca7CDuJZnIXEiQ4Fntfirii-OCau_EkusQ&usqp=CAU",
-          
-            //        "moduleUrl":"https://www.youtube.com/watch?v=6pYSbdGiDYw"
-          
-                   
-          
-            //     },
-          
-            //     {
-          
-            //        "moduleId":2,
-          
-            //        "moduleName":"Leadership Skills",
-          
-            //        "moduleImageUrl":"https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTql9f7dd3ke97aGuaqXBFANVfjGOGMmAguvw&usqp=CAU",
-          
-            //        "moduleUrl":"https://www.youtube.com/watch?v=0sY3uf3LZZg"
-          
-                   
-          
-            //     }
-          
-            //  ]
+           
 
             }
               
@@ -176,8 +118,6 @@ const AddCourseForm = ()=>{
           });
           let resJson = await res.json();
           if (res.status === 200) {
-            // setName("");
-            // setEmail("");
             setMessage("User created successfully");
           } else {
             setMessage("Some error occured");
@@ -186,15 +126,6 @@ const AddCourseForm = ()=>{
           console.log(err);
         }
       };
-    // }, []);
-
-
-
-
-
-
-
-
 
   
     if (isLoading) {
@@ -262,10 +193,6 @@ const AddCourseForm = ()=>{
       console.log(expense);
     }
   
-    // const moduleHandler = (event) => {
-    //   setmoduleHandler(event.target.value)
-    // }
-
 
   const addExpenseHandler = expenses => {
     console.log('in App');
@@ -275,15 +202,10 @@ const AddCourseForm = ()=>{
     console.log(expense);
   }
 
-  // const hideCartHandler = () => {
-  //   setCartIsShown(false);
-  // };
-
 
 return (
   <>
     <div className='all'>
-      {/* <form onSubmit={onAddCoureHandler}> */}
       <div className="px-4 py-3 mb-8 bg-white rounded-lg shadow-md dark:bg-gray-800"> 
       <h1>Add Course</h1>
       <Label className="mt-4 ">

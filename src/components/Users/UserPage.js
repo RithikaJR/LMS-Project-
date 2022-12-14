@@ -29,7 +29,7 @@ const UserPage = () => {
         setData(newdata)
         console.log(newdata)
     }
-
+    
     function submit(e){
         e.preventDefault();
         Axios.post(url,{
@@ -130,7 +130,7 @@ const UserPage = () => {
 
                     </div>
                      <div>
-                         <input type="file" onChange={onFileChange} />
+                         <input type="file" onChange={onFileChange} required />
                          <Button onClick={onFileUpload}>
                              Upload
                          </Button>
@@ -150,7 +150,7 @@ const UserPage = () => {
                                        id="id"
                                        placeholder='Employee ID'
                                        onChange={(e)=>handle(e)}
-                                       value={data.employeeId}
+                                       value={data.id}
                                        required />
                             </div>
                             <div className={classes.individual}>
@@ -177,7 +177,7 @@ const UserPage = () => {
                                        id="email"
                                        placeholder='Email'
                                        onChange={(e)=>handle(e)}
-                                       value={data.employeeEmail}
+                                       value={data.email}
                                        required />
                             </div>
                             <Button type="submit">Submit</Button>

@@ -15,6 +15,13 @@
     margin: 0 3rem;
 }
 
+.px-4 label::after {
+    content: "*";
+    opacity: 0.8;
+    color: rgb(246, 94, 94);
+    margin-left: 0.1rem;
+}
+
 .px-4 select, input, textarea {
     margin: 0 0.5rem;
 }

@@ -51,11 +51,10 @@ const CourseInterface = (props) => {
           name: moduleArray[key].moduleName,
           pdf: moduleArray[key].modulePdfUrl,
           footage: moduleArray[key].moduleVideoUrl,
-          // moduleType: moduleArray[key].moduleType,
-          // description: moduleArray[key].courseDescription,
         });
       }
 
+      
       setModules(loadedCourses);
       setIsLoading(false);
     };
@@ -115,20 +114,17 @@ const CourseInterface = (props) => {
       name={module.name}
       pdf={module.pdf}
       footage={module.footage}
-      // moduleType={module.moduleType}
-      // url={module.courseUrl}
-      // api={module.moduleApi}
-      // description={course.description}
+
     />
 
 
   ));
 
-  // onLaunchClicked (event) {
-  //   event.preventDefault();
-  //   this.setState({
-  //       isButtonDisabled: true
-  //   });
+  
+
+
+  
+
   return (
     <section className={classes.page}>
         <div className={classes.cert}>
