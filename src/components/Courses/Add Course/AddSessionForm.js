@@ -2,9 +2,16 @@ import { useState } from 'react';
 import Axios from 'axios';
 import Button from '../../UI/Button/Button';
 import classes from './AddSessionForm.module.css';
+import SessionMail from './SessionMail';
 
 
-const AddSessionForm = () => {
+const AddSessionForm = (props) => {
+
+        const [cartIsShown, setCartIsShown] = useState(false);
+
+        const showCartHandler = () => {
+                setCartIsShown(true);
+              };
 
         const url = "http://localhost:8080/api/sessions"
 
@@ -32,7 +39,7 @@ function handle(e){
 function submit(e){
   e.preventDefault();
   Axios.post(url,{
-    sessionId:data.sessionId,
+//     sessionId:data.sessionId,
     sessionName:data.sessionName,
     trainerName:data.trainer,
     sessionDescription:data.sessionDescription,
@@ -50,6 +57,7 @@ function submit(e){
     }
     console.log(res.data)
   })
+
 
   console.log(data.endTime);
   console.log(data.startTime);
@@ -73,14 +81,14 @@ function submit(e){
                         value={data.sessionName} />
                 </div>
                 
-                <div className={classes.individual}>
+                {/* <div className={classes.individual}>
                 <label>Session ID</label>
                 <input type="number"
                         placeholder="ID" 
                         id='sessionId'
                         onChange={(e)=>handle(e)}
                         value={data.sessionId}/>
-                </div>
+                </div> */}
                 
                 <div className={classes.individual}>
                 <label>Trainer</label>
@@ -140,10 +148,18 @@ function submit(e){
                         value={data.cost} />
                 </div>
 
-                <Button type="submit">Submit</Button>
-                
-                
+                <Button type="submit" onClick={showCartHandler}>Submit</Button>
             </form>
+
+             {cartIsShown && <SessionMail
+                                name={data.sessionName}
+                                trainerName={data.trainer}
+                                sessionDescription={data.sessionDescription}
+                                sessionDate={data.date}
+                                sessionStartTime={start}
+                                sessionEndTime={end} /> }
+                
+
         </div>
 
     )

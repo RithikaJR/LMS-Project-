@@ -5,6 +5,7 @@ import Button from '../UI/Button/Button.js';
 import Modal from "../UI/Modal/Modal.js";
 import AddCourseForm from "../Courses/Add Course/AddCourseForm.js"
 import AddSessionForm from "./Add Course/AddSessionForm";
+import close from '../images/blue_close.png';
 
 
 const Courses = () => {
@@ -64,17 +65,21 @@ const Courses = () => {
                 </div>}
 
                 {cartIsShown && 
-                <Modal onClose={cartIsShown} className={classes.close}>
-                    <AddCourseForm></AddCourseForm>
-                    <Button onClick={hideCartHandler}>Close</Button>
+                <Modal onClose={cartIsShown} >
+                  <div className={classes.close}>
+                    <Button onClick={hideCartHandler}><img src={close}/></Button>
+                  </div>
+                  <AddCourseForm></AddCourseForm>
                 </Modal>
                 }
                 </div>
 
                 {newCartIsShown && 
-                <Modal onClose={newCartIsShown} className={classes.close}>
-                    <AddSessionForm />
-                    <Button onClick={hideNewCartHandler}>Close</Button>
+                <Modal onClose={newCartIsShown} >
+                  <div className={classes.close}>
+                    <Button onClick={hideNewCartHandler}><img src={close}/></Button>
+                  </div>
+                  <AddSessionForm />
                 </Modal>}
             <AvailableCourses />
         </div>

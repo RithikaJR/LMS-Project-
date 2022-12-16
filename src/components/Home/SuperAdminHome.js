@@ -12,38 +12,11 @@ import Button from '../UI/Button/Button';
 import UserProfile from '../Employee/UserProfile';
 
 const SuperAdminHome = (props) => {
-  // const [cartIsShown, setCartIsShown] = useState(false);
-  // useEffect(() => {
-  //   if(props.tracker===1){
-  //     setCartIsShown(true);
-  //   }else{
-  //     setCartIsShown(false);
-  //   }
-   
-  // },[]);
-
-
-    // const showCartHandler = () => {
-    //   setCartIsShown(true);
-    // };
   
-    // const hideCartHandler = () => {
-    //   setCartIsShown(false);
-    // };
   return (
     <div className={classes.home}>   
-          {/* <div>
-              <Button onClick={showCartHandler}>Change Password</Button>
-              {cartIsShown && <Modal onClose={cartIsShown}>
-              <UserProfile name={props.name} employeeId={props.employeeId} />
-              <Button onClick={hideCartHandler}>Close</Button>
-              </Modal>}
-          </div>    */}
       <div className={classes.logolinks}>
         <ul>
-          <li>
-            
-          </li>
           <li>
             <NavLink to = "/users" className={classes.usertext}>
               <div className={classes.image_wrap}>

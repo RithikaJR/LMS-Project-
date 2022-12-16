@@ -3,9 +3,9 @@ import { useLocation } from "react-router-dom";
 import Button from "../UI/Button/Button";
 import classes from './CourseInterface.module.css';
 import CourseModuleList from "./CourseModuleList";
-// import video from '../video/sample_video.mp4';
 import jsPDF from 'jspdf';
 import CourseRating from "../Users/CourseRating";
+import './CourseInterface.css';
 
 
 const CourseInterface = (props) => {
@@ -28,9 +28,6 @@ const CourseInterface = (props) => {
       
         response = await fetch(
           'http://localhost:8080/api/courses/'+propdata+'/modules');
-      // }else{
-      //   response = await fetch('http://localhost:8080/api/courses/search/findAllBycourseName?name='+searchName);
-      // }
       
 
       if (!response.ok) {
@@ -46,7 +43,6 @@ const CourseInterface = (props) => {
       for (const key in moduleArray) {
         loadedCourses.push({
           id: key,
-          // courseId: moduleArray[key].courseId,
           moduleId: moduleArray[key].moduleId,
           name: moduleArray[key].moduleName,
           pdf: moduleArray[key].modulePdfUrl,
@@ -63,11 +59,6 @@ const CourseInterface = (props) => {
       setIsLoading(false);
       setHttpError(error.message);
     });
-
-
-    // setTimeout(() => {
-    //   setState(false);
-    //  }, 9000);
   }, []);
 
 
@@ -142,14 +133,7 @@ const CourseInterface = (props) => {
 
           <iframe src={link}
                 className={classes.player}>
-          </iframe>
-          {/* <div className={classes.check}>
-              <label>Completed?</label>
-              <input type="checkbox"
-                    onChange={handleChange}
-                    disabled={state} />
-          </div> */}
-          
+          </iframe>       
 
         </section>
       </section>

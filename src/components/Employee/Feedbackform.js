@@ -66,7 +66,7 @@ const FeedbackForm = () => {
          
           type="submit"
         >
-          Send a message
+          Send Feedback
         </Button>
        
       </div>
