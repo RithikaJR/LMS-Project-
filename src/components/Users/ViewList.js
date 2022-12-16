@@ -34,18 +34,6 @@ const columns = [
       />
     ),
   },
-
-  {
-    name: 'Edit',
-    // selector: 'Trainee',
-    cell:(row) => (
-      <button
-        // value={row.surname}
-        // onClick={(e) => handleInputChange(row, "surname", e)}
-      >🖋</button>
-    ),
-  },
-
   {
     name: 'Delete',
     // selector: 'Trainee',
@@ -63,6 +51,8 @@ const columns = [
 
 
 const ViewList = () => {
+
+    let token = `Bearer ${sessionStorage.getItem('jwt')}`;
     const [users, setUsers] = useState([]);
     const [isLoading, setIsLoading] = useState(true);
     const [httpError, setHttpError] = useState();
@@ -79,11 +69,19 @@ const ViewList = () => {
         let response
         if(searchName ===""){
           response = await fetch(
-            'http://localhost:8080/api/employee'
+            'http://localhost:8080/api/employee',{
+              headers:{
+                'Authorization':token
+              }
+            }
           );
         }else{
           response = await fetch(
-            'http://localhost:8080/api/employee/search/findByemployeeFirstNameContaining?name='+searchName
+            'http://localhost:8080/api/employee/search/findByemployeeFirstNameContaining?name='+searchName,{
+              headers:{
+                'Authorization':token
+              }
+            }
           );
         }
   

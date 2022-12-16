@@ -7,10 +7,15 @@ import CourseItem from './CourseItem';
 import ReactPaginate from 'react-paginate';
 
 const AvailableCourses = () => {
+
+    let token = `Bearer ${sessionStorage.getItem('jwt')}`;
+
     const [courses, setCourse] = useState([]);
     const [isLoading, setIsLoading] = useState(true);
     const [httpError, setHttpError] = useState();
     const [searchName, setSearchName] = useState("");
+
+  
   
     // Pagination
     const [itemOffset, setItemOffset] = useState(0);
@@ -30,9 +35,17 @@ const AvailableCourses = () => {
         let response;
         if(searchName===''){
           response = await fetch(
-            'http://localhost:8080/api/courses');
+            'http://localhost:8080/api/courses',{
+              headers:{
+                'Authorization':token
+              }
+            });
         }else{
-          response = await fetch('http://localhost:8080/api/courses/search/findBycourseNameContaining?name='+searchName);
+          response = await fetch('http://localhost:8080/api/courses/search/findBycourseNameContaining?name='+searchName,{
+            headers:{
+              'Authorization':token
+            }
+          });
         }
         if (!response.ok) {
           throw new Error('Something went wrong!');

@@ -81,6 +81,7 @@
 .control.invalid input {
   /* border-color: red; */
   background: #fbdada;
+  
 }
 
 .actions {

@@ -7,6 +7,8 @@ import { useEffect, useState } from 'react';
 
 const CourseModuleList = (props) =>{
 
+    let token = `Bearer ${sessionStorage.getItem('jwt')}`;
+
     const [moduleResource, setModuleResource] = useState([]);
     const [isLoading, setIsLoading] = useState(true);
     const [httpError, setHttpError] = useState();
@@ -16,7 +18,11 @@ const CourseModuleList = (props) =>{
             let response;
             // if(searchName===''){
               response = await fetch(
-                'http://localhost:8080/api/modules/'+props.id+'/moduleResources');
+                'http://localhost:8080/api/modules/'+props.id+'/moduleResources',{
+                  headers:{
+                    'Authorization':token
+                  }
+                });
             // }
             if (!response.ok) {
               throw new Error('Something went wrong!');

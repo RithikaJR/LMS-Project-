@@ -16,7 +16,7 @@ const Login = (props) => {
     const identifier =setTimeout(() =>{
       console.log("Validity Check");
       setFormIsValid(
-          enteredEmail.includes('@') && enteredPassword.trim().length > 6
+          enteredEmail.includes('@experionglobal.com') && enteredPassword.trim().length > 6
         
       );
     }, 500)
@@ -44,7 +44,7 @@ const Login = (props) => {
   };
 
   const validateEmailHandler = () => {
-    setEmailIsValid(enteredEmail.includes('.'));
+    setEmailIsValid(enteredEmail.includes('@experionglobal.com'));
   };
 
   const validatePasswordHandler = () => {
@@ -80,7 +80,7 @@ const Login = (props) => {
               // className={classes.useremail}
               value={enteredEmail}
               onChange={emailChangeHandler}
-              // onBlur={validateEmailHandler}
+              onBlur={validateEmailHandler}
             />
           </div>
           <div
@@ -96,7 +96,7 @@ const Login = (props) => {
               // className={classes.userpassword}
               value={enteredPassword}
               onChange={passwordChangeHandler}
-              // onBlur={validatePasswordHandler}
+              onBlur={validatePasswordHandler}
             />
           </div>
           <div className={classes.actions}>

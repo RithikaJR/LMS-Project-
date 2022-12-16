@@ -8,6 +8,9 @@ import './EmployeeAvailableCourses.css'
 import ReactPaginate from 'react-paginate';
 
 const EmployeeAvailableCourses = (props) => {
+
+    let token = `Bearer ${sessionStorage.getItem('jwt')}`;
+
     const [courses, setCourse] = useState([]);
     const [isLoading, setIsLoading] = useState(true);
     const [httpError, setHttpError] = useState();
@@ -32,9 +35,17 @@ const EmployeeAvailableCourses = (props) => {
         let response;
         if(searchName===''){
           response = await fetch(
-            'http://localhost:8080/api/courses');
+            'http://localhost:8080/api/courses',{
+              headers:{
+                'Authorization':token
+              }
+            });
         }else{
-          response = await fetch('http://localhost:8080/api/courses/search/findBycourseNameContaining?name='+searchName);
+          response = await fetch('http://localhost:8080/api/courses/search/findBycourseNameContaining?name='+searchName,{
+            headers:{
+              'Authorization':token
+            }
+          });
         }
         
   

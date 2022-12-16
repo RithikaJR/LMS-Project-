@@ -4,119 +4,111 @@ import NewCourse from './Module/NewCourse';
 import Modules from './Modules';
 import Button from '../../UI/Button/Button.js'
 import './AddCourseForm.css';
-// import './css/tailwind1.css'
-
 
 const AddCourseForm = ()=>{
-
-  const [courseCategoryId, setCourseCategoryId] = useState()
+  const [courseCategoryId, setCourseCategoryId] = useState(1)
   const [courseCategoryName, setCourseCategoryName] = useState("")
-  const [courseId, setcourseId] = useState('')
-  
+
+  const [category, setCategory] = useState([]);
+  const [isLoading, setIsLoading] = useState(true);
+  const [httpError, setHttpError] = useState();
+
+  const [courses, setcourses] = useState([])
+  const [modules, setmodules] = useState([])
+  const [courseId, setcourseId] = useState(103)
   const [courseName, setcourseName] = useState()
   const [courseDescription, setcourseDescription] = useState("")
   const [courseImageUrl, setcourseImageUrl] = useState("")
 
   const [message, setMessage] = useState("");
-  // const [cartIsShown, setCartIsShown] = useState(false);
-    // const expenses =[
-    //     {
-    //       // id:'',
-    //       "moduleId":0,
-    //       "moduleName": "",
-    //       "moduleImageUrl":"",
-    //       "moduleUrl": ""
-    //     },];
-
-      //   const expenses1 =[
-      //     {
-      //        "moduleId":1,
-      //        "moduleName":"Effective Communication",
-      //        "moduleImageUrl":"https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRHca7CDuJZnIXEiQ4Fntfirii-OCau_EkusQ&usqp=CAU",
-      //        "moduleUrl":"https://www.youtube.com/watch?v=6pYSbdGiDYw"
-            
-      //     },
-      //     {
-      //        "moduleId":2,
-      //        "moduleName":"Leadership Skills",
-      //        "moduleImageUrl":"https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTql9f7dd3ke97aGuaqXBFANVfjGOGMmAguvw&usqp=CAU",
-      //        "moduleUrl":"https://www.youtube.com/watch?v=0sY3uf3LZZg"
-            
-      //     }
-      //  ]
 
     const[expense, setExpense] =useState([]);
 
-    const [category, setCategory] = useState([]);
-    const [isLoading, setIsLoading] = useState(true);
-    const [httpError, setHttpError] = useState();
-
     useEffect(() => {
-
       const fetchChittyCategory = async () => {
-  
         const response = await fetch(
-  
           'http://localhost:8080/api/course-category'
-  
         );
-  
-  
-  
         if (!response.ok) {
-  
           throw new Error('Something went wrong!');
-  
         }
-  
-  
-  
         const responseData = await response.json();
-  
-  
-  
         const loadedCategory = [];
-  
         const newItemList = [...responseData._embedded.courseCategory]
-  
         for (const key in newItemList) {
-  
           loadedCategory.push({
-  
             id: key,
-  
             categoryId:newItemList[key].categoryId,
-  
             category_name: newItemList[key].categoryName,
-  
           });
-  
         }
-  
-  
-  
-  
         setCategory(loadedCategory);
-  
-  
-  
         setIsLoading(false);
-  
       };
-  
-  
-  
       fetchChittyCategory().catch((error) => {
-  
         setIsLoading(false);
-  
         setHttpError(error.message);
-  
       });
-  
-    }, []);
+    },[]);
 
-///////////////////////////////
+    ////Course
+    useEffect(() => {
+    let handleCoureses = async () => {
+      const response = await fetch(
+        'http://localhost:8080/api/course-category/'+courseCategoryId+'/courses'
+      );  
+      if (!response.ok) {
+        throw new Error('Something went wrong!');
+      }
+      const responseData = await response.json();
+      const loadedCategory = [];
+      const newItemList = [...responseData._embedded.course]
+      for (const key in newItemList) {
+        loadedCategory.push({
+          id: key,
+          courseId: newItemList[key].courseId,
+          name: newItemList[key].courseName,
+        });
+      }
+      setcourses(loadedCategory);
+      setIsLoading(false);
+    };
+    handleCoureses().catch((error) => {
+      setIsLoading(false);
+      setHttpError(error.message);
+    });
+  },[courseCategoryId]);
+
+
+      //////Moduless
+      useEffect(() => {
+      const handleModules = async () => {
+        const response = await fetch(
+          'http://localhost:8080/api/courses/'+courseId+'/modules'
+        );  
+        if (!response.ok) {
+          throw new Error('Something went wrong!');
+        }
+        const responseData = await response.json();
+        const loadedCategory = [];
+        const newItemList = [...responseData._embedded.module]
+        for (const key in newItemList) {
+          loadedCategory.push({
+          id: key,
+          moduleId: newItemList[key].moduleId,
+          name: newItemList[key].moduleName,
+          });
+        }
+        setmodules(loadedCategory);
+        setIsLoading(false);
+      };
+      handleModules().catch((error) => {
+        setIsLoading(false);
+        setHttpError(error.message);
+      });
+    },[courseId]);
+
+// ///////////////////////////////
     // useEffect(() => {
       let handleSubmit = async (e) => {
         e.preventDefault();
@@ -138,38 +130,6 @@ const AddCourseForm = ()=>{
                 courseImageUrl: courseImageUrl,
               },
               "moduleItem":expense
-            //   "moduleItem":[
-
-            //     {
-          
-            //        "moduleId":1,
-          
-            //        "moduleName":"Effective Communication",
-          
-            //        "moduleImageUrl":"https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRHca7CDuJZnIXEiQ4Fntfirii-OCau_EkusQ&usqp=CAU",
-          
-            //        "moduleUrl":"https://www.youtube.com/watch?v=6pYSbdGiDYw"
-          
-                   
-          
-            //     },
-          
-            //     {
-          
-            //        "moduleId":2,
-          
-            //        "moduleName":"Leadership Skills",
-          
-            //        "moduleImageUrl":"https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTql9f7dd3ke97aGuaqXBFANVfjGOGMmAguvw&usqp=CAU",
-          
-            //        "moduleUrl":"https://www.youtube.com/watch?v=0sY3uf3LZZg"
-          
-                   
-          
-            //     }
-          
-            //  ]
-
             }
               
               ),
@@ -188,33 +148,14 @@ const AddCourseForm = ()=>{
       };
     // }, []);
 
-
-
-
-
-
-
-
-
-  
     if (isLoading) {
-  
       return (
-  
         <h1>Loading...</h1>
-  
       );
-  
     }
-  
-  
-  
     if (httpError) {
-  
       return (
-  
         <h1>{httpError}</h1>
-  
       );
   
     }
@@ -226,8 +167,18 @@ const AddCourseForm = ()=>{
       const option =  el.getAttribute('id');  
       setCourseCategoryId(option);
       setCourseCategoryName(event.target.value);
+      // const option =  event.target.getAttribute('name');  
+      console.log("id "+option)
+      console.log("name "+event.target.value)
+    }
 
-
+    const handleCourese = (event) => {
+      const index = event.target.selectedIndex;
+      const el = event.target.childNodes[index]
+      const option =  el.getAttribute('id');  
+      // setcourseId(option);
+      setcourseId(event.target.value);
+      setcourseName(event.target.value);
 
       // const option =  event.target.getAttribute('name');  
       console.log("id "+option)
@@ -288,20 +239,36 @@ return (
       <h1>Add Course</h1>
       <Label className="mt-4 ">
           <span>Course Category</span>
-          <select className="mt-1 shadow-md" onChange={handleCoureseCategory}>
+          <select className="mt-1 shadow-md" id={category.categoryId} onChange={handleCoureseCategory}>
           {category.map(category => (
-          <option id={category.categoryId} value={category.category_name} name={category.category_name} onChange={handleCoureseCategory}>{category.category_name}</option>))}
+          <option id={category.categoryId} value={category.category_name} name={category.category_name}>{category.category_name}</option>))}
           </select>
       </Label>
+      <Label className="mt-4 ">
+          <span>Select Course</span>
+          <select className="mt-1 shadow-md" id={courses.course} onChange={handleCourese}>
+          {courses.map(course => (
+          <option id={course.courseId} value={course.courseId} name={course.name}>{course.name}</option>))}
+          </select>
+      </Label>
+
+      <Label className="mt-4 ">
+          <span>Select Module</span>
+          <select className="mt-1 shadow-md" >
+          {modules.map(module => (
+          <option id={module.moduleId} value={module.moduleId} name={module.name}>{module.name}</option>))}
+          </select>
+      </Label>
+
         <Label >
-          <span> Course Name</span>
+          <span> New Course Name</span>
           <Input className="mt-4 shadow-md" value={courseName} placeholder="Course Name" onChange={courseNameHandler}/>
         </Label>
 
         <Label className="mt-4">
         
-          <span> Course Id</span>
-          <Input className="mt-4 shadow-md" value={courseId} placeholder="Course Id" onChange={CourseIdHandler} />
+        <span> Course Id</span>
+        <Input className="mt-4 shadow-md" value={courseId} placeholder="Course Id" onChange={CourseIdHandler} />
         </Label>
         <Label className="mt-4">
           <span>Course Description</span>

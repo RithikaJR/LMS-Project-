@@ -13,37 +13,37 @@ const EnrolledCourseItem = (props) => {
   const [cartIsShown, setCartIsShown] = useState(false);
   const [view, setView] = useState(false);
   
-  const showCartHandler = async (e) => {
-    try {
-      let res = await fetch("http://localhost:8080/api/enroll-course", {
-        method: "POST",
-        headers: {"content-type": "application/json"},
-        body: JSON.stringify({
-          employeeId:{
-            employeeId:props.employeeId,
-          },
-          courseId:{
-            courseId:props.id,
-          },
-          entrolledDate:null
-        } ),
-      });
-      if (res.status === 200) {
-        setCartIsShown(true);
-        setView(true)
-      } else {
-        alert("Some error occured");
-      }
-    } catch (err) {
-      console.log(err);
-    }
+  // const showCartHandler = async (e) => {
+  //   try {
+  //     let res = await fetch("http://localhost:8080/api/enroll-course", {
+  //       method: "POST",
+  //       headers: {"content-type": "application/json"},
+  //       body: JSON.stringify({
+  //         employeeId:{
+  //           employeeId:props.employeeId,
+  //         },
+  //         courseId:{
+  //           courseId:props.id,
+  //         },
+  //         entrolledDate:null
+  //       } ),
+  //     });
+  //     if (res.status === 200) {
+  //       setCartIsShown(true);
+  //       setView(true)
+  //     } else {
+  //       alert("Some error occured");
+  //     }
+  //   } catch (err) {
+  //     console.log(err);
+  //   }
       
-    };
+  //   };
   
 
-    let hideCartHandler =()=>{
-      setCartIsShown(false);
-    };
+  //   let hideCartHandler =()=>{
+  //     setCartIsShown(false);
+  //   };
 
     console.log("CouresItem"+props.id);
     return (

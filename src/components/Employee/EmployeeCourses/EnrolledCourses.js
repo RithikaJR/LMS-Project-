@@ -8,6 +8,8 @@ import EnrolledCourseItem from './EnrolledCourseItem.js';
 import ReactPaginate from 'react-paginate';
 
 const EnrolledCourses = (props) => {
+    let token = `Bearer ${sessionStorage.getItem('jwt')}`;
+
     const [enrolledCourses, setEnrolledCourse] = useState([]);
     const [isLoading, setIsLoading] = useState(true);
     const [httpError, setHttpError] = useState();
@@ -31,7 +33,11 @@ const EnrolledCourses = (props) => {
         let response;
         if(searchName===''){
           response = await fetch(
-            'http://localhost:8080/api/enrolled-courses/'+props.employeeId);
+            'http://localhost:8080/api/enrolled-courses/1005',{
+              headers:{
+                'Authorization':token
+              }
+            });
         }else{
         //   response = await fetch('http://localhost:8080/api/courses/search/findBycourseNameContaining?name='+searchName);
         }
@@ -44,16 +50,16 @@ const EnrolledCourses = (props) => {
         const responseData = await response.json();
   
         const loadedCourses = [];
-        // const courseArray = {...responseData._embedded};
+        const courseArray = {...responseData.enrolledCourseList};
 
         console.log(responseData);
-        for (const key in responseData) {
+        for (const key in courseArray) {
           loadedCourses.push({
             id: key,
-            courseId: responseData[key].courseId,
-            name: responseData[key].courseName,
-            description: responseData[key].courseDescription,
-            image: responseData[key].courseImageUrl,
+            courseId: courseArray[key].courseId,
+            name: courseArray[key].courseName,
+            description: courseArray[key].courseDescription,
+            image: courseArray[key].courseImageUrl,
             // courseUrl: courseArray[key].courseUrl,
             // moduleApi:courseArray[key]._links.modules.href,
             
@@ -61,6 +67,7 @@ const EnrolledCourses = (props) => {
         }
   
         setEnrolledCourse(loadedCourses);
+        console.log(loadedCourses);
         setIsLoading(false);
       };
   
