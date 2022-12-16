@@ -1,7 +1,7 @@
 import { useEffect, useState } from 'react';
 import classes from './ViewList.module.css';
 // import BootstrapTable from 'react-bootstrap-table-next';
-// import DataTable from 'react-data-table-component';
+import DataTable from 'react-data-table-component';
 
 
 // import classes from './ViewList.module.css';
@@ -148,7 +148,7 @@ const ViewList = () => {
       <div className={classes.viewlist}>
         <Search search={onSearchHandler}/>
          
-        {/* <div className={classes.tablee}>
+        <div className={classes.tablee}>
           <DataTable 
               title="Employees"
               columns={columns}
@@ -156,7 +156,7 @@ const ViewList = () => {
               pagination
               highlightOnHover
             />
-        </div> */}
+        </div>
         
       </div>
     );

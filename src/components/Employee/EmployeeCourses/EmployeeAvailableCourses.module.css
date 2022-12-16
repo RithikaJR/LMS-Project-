@@ -22,13 +22,7 @@
   }
   
   .courses ul {
-    /* list-style: none;
-    padding: 0;
-    flex-direction: row;
-    width: auto;
-    display: grid;
-    grid-template-columns: repeat(3, 350px);
-    grid-gap: 60px; */
+
 
     display: flex;
     padding-top: 100px;

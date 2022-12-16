@@ -1,10 +1,11 @@
-import React, {useState}  from 'react'; 
-import axios from 'axios';
+import React, {useState, useEffect}  from 'react'; 
+import axios, { Axios } from 'axios';
 import classes from './AddUser.module.css';
 import Button from '../UI/Button/Button';
+// import classes from "./UserPage.module.css";
 
 const AddUser =()=> {
-
+    const [users, setUser] = useState([])
     const [enteredid, setenteredid] = useState('');
     const [enteredrole, setenteredrole] = useState('');
     
@@ -18,13 +19,12 @@ const changeroleHandler= (e) => {
 
 let submitHandler = async (e) => {
     e.preventDefault();
-    try {
-      let res = await fetch('http://localhost:8080/api/userupdate', {
-        method: "PUT",
-       
-    }
-       
 
+    
+    try {
+      let res = await fetch('http://localhost:8080/api/userupdate/${enteredid}', {
+        method: "PUT",  
+    }
       )
     }
     catch (err) {
@@ -32,13 +32,31 @@ let submitHandler = async (e) => {
       }
   };
 
+    // function submitHandler()
+    // {
+    //   let item={enteredid,enteredrole}
+    //   console.warn("item",item)
+    //   fetch(`http://localhost:8080/api/userupdate/${enteredid}`, {
+    //     method: 'PUT',
+    //     headers:{
+    //       'Accept':'application/json',
+    //       'Content-Type':'application/json'
+    //     },
+    //     body:JSON.stringify(item)
+    //   }).then((result) => {
+    //     result.json().then((resp) => {
+    //       console.warn(resp)
+    //     //   getUsers()
+    //     })
+    //   })
+    // }
 
 
-    return(
+return(
         <form >
             <div className={classes.lable}>
                 <label >Employee ID</label>
-                <input type="text" name="employee_id" 
+                <input type="number" name="employee_id" 
                     onChange={changeidHandler}
                     value={enteredid} 
                     placeholder="Employee ID"/>
@@ -46,22 +64,11 @@ let submitHandler = async (e) => {
 
             <div className={classes.lable}>
                 <label className={classes.lbb}>Role</label>
-                {/* <select type="text" name="role" 
-                    onChange={this.changeHandler} 
-                    value={role} 
-                    placeholder="Choose Role">
-                        <option value="Learning Admin">Learning Admin</option>
-                        
-                    </select> */}
-
-                   <input type="text" name="role" 
+                   <input type="number" name="roleId" 
                     onChange={changeroleHandler}
                     value={enteredrole} 
                     placeholder="Role:1/2/3"/>
             </div>
-
-
-        
 
             <Button
                 type="submit" onSubmit ={submitHandler} 
@@ -72,6 +79,7 @@ let submitHandler = async (e) => {
 }
 
 export default AddUser;
+
 
 
 

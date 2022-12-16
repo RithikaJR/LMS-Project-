@@ -167,7 +167,7 @@ const logoutHandler = () => {
           </Route>
 
           <Route path="/notification">
-           <Notification></Notification>
+          {isLoggedIn ? <Notification onLogout={logoutHandler} /> : <Redirect to='/login' /> }
           </Route>
 
           <Route path="/courses/course-module">
