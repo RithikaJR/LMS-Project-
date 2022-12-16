@@ -2,6 +2,7 @@ import React, { useEffect, useState } from 'react';
 import Search from '../Search Bar/Search.js';
 
 import classes from './AvailableCourse.module.css';
+import './AvailableCourses.css';
 import CourseItem from './CourseItem';
 
 import ReactPaginate from 'react-paginate';
@@ -89,9 +90,7 @@ const AvailableCourses = () => {
         id={course.courseId}
         name={course.name}
         image={course.image}
-        // url={course.courseUrl}
         description={course.description}
-        // api={module.moduleApi}
       />
     ));
 
@@ -116,11 +115,11 @@ const AvailableCourses = () => {
         {/* Pagination */}
         <ReactPaginate
               breakLabel="..."
-              nextLabel="next >"
+              nextLabel="Next >"
               onPageChange={handlePageClick}
               pageRangeDisplayed={5}
               pageCount={pageCount}
-              previousLabel="< previous"
+              previousLabel="< Previous"
               renderOnZeroPageCount={null}
               containerClassName="pagination"
               pageLinkClassName='page-num'
