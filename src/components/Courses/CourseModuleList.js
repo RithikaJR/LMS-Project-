@@ -57,10 +57,6 @@ const CourseModuleList = (props) =>{
         }, []);
       
 
-    const handleVideo = ()=>{
-      props.videoLink(video);
-    }
-
 
     console.log(props.id);
     console.log(props.name);

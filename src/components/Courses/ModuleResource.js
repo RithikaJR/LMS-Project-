@@ -32,7 +32,7 @@ const ModuleResource = (props) => {
         setTimeout(() => {
           setState(false);
           setCheckState(true);
-         }, {duration});
+         }, 9000);
       }
 
       console.log(props.moduleType);

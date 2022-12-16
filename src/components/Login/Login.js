@@ -30,17 +30,11 @@ const Login = (props) => {
   const emailChangeHandler = (event) => {
     setEnteredEmail(event.target.value);
 
-    // setFormIsValid(
-    //   event.target.value.includes('@') && enteredPassword.trim().length > 6
-    // );
   };
 
   const passwordChangeHandler = (event) => {
     setEnteredPassword(event.target.value);
 
-    // setFormIsValid(
-    //   event.target.value.trim().length > 6 && enteredEmail.includes('@')
-    // );
   };
 
   const validateEmailHandler = () => {
@@ -77,7 +71,6 @@ const Login = (props) => {
               type="text"
               id="email"
               placeholder='Username..'
-              // className={classes.useremail}
               value={enteredEmail}
               onChange={emailChangeHandler}
               onBlur={validateEmailHandler}
@@ -93,7 +86,6 @@ const Login = (props) => {
               type="password"
               id="password"
               placeholder='Password..'
-              // className={classes.userpassword}
               value={enteredPassword}
               onChange={passwordChangeHandler}
               onBlur={validatePasswordHandler}

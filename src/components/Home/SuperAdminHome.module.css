@@ -48,6 +48,10 @@
   transition: 0.3s ease-in-out;
 }
 
+.logolinks a{
+  text-decoration: none;
+}
+
 .image_wrap:hover {
   box-shadow: 5px 3px 50px rgb(167, 166, 166);
 }

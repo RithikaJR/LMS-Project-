@@ -13,7 +13,8 @@
     font-size: 50px;
     font-weight: bolder;
     color: rgb(85, 84, 84);
-    margin-right: 22rem;
+    /* margin-right: 3rem; */
+    margin-top: 1rem;
 }
 
 .box {
@@ -30,19 +31,48 @@
     margin-top: 3rem;
 }
 
-.close{
-    position: relative;
-    left: 5%;
-    width: 90%;
-    top: 90%;
-    background-color: rgb(175, 14, 14);
-    padding: 1rem;
-    border-radius: 14px;
-    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.25);
-    z-index: 10;
-    animation: slide-down 300ms ease-out forwards;
-
+.close img{
+    height: 3rem;
+    width: 3rem;
 }
+
 .close Button {
     align-items: center;
+    border: 1px;
+    border-radius: 50%;
+    font-size: 25px;
+    width: 2rem;
+    height: 2rem;
+    padding: 0.1rem;
+    margin-right: 1rem;
+    float: right;
+}
+
+.close Button:hover{
+    transform: scale(1.2);
+    background-color: rgba(134, 205, 250, 0);
+    color: #3886ca;
+    font-size: 26.5px;
+}
+
+.options {
+    margin: -2rem;
+    margin-right: -25rem;
+}
+
+.display {
+    margin: -7.5rem 0;
+    float: left;
+}
+
+.display Button {
+    font-size: medium;
+    padding: 0.7rem;
+    background-color: #70b4f0;
+    color: white;
+    border: 1px solid white;
+}
+
+.add {
+    float: right;
 }

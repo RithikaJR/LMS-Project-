@@ -66,8 +66,6 @@ const EmployeeAvailableCourses = (props) => {
             name: courseArray[key].courseName,
             description: courseArray[key].courseDescription,
             image: courseArray[key].courseImageUrl,
-            // courseUrl: courseArray[key].courseUrl,
-            // moduleApi:courseArray[key]._links.modules.href,
             
           });
         }
@@ -131,11 +129,11 @@ const EmployeeAvailableCourses = (props) => {
         {/* Pagination */}
         <ReactPaginate
               breakLabel="..."
-              nextLabel="next >"
+              nextLabel="Next >"
               onPageChange={handlePageClick}
               pageRangeDisplayed={5}
               pageCount={pageCount}
-              previousLabel="< previous"
+              previousLabel="< Previous"
               renderOnZeroPageCount={null}
               containerClassName="pagination"
               pageLinkClassName='page-num'

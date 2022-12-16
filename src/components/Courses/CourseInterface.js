@@ -3,9 +3,9 @@ import { useLocation } from "react-router-dom";
 import Button from "../UI/Button/Button";
 import classes from './CourseInterface.module.css';
 import CourseModuleList from "./CourseModuleList";
-// import video from '../video/sample_video.mp4';
 import jsPDF from 'jspdf';
 import CourseRating from "../Users/CourseRating";
+import './CourseInterface.css';
 
 
 const CourseInterface = (props) => {
@@ -35,9 +35,6 @@ const CourseInterface = (props) => {
               'Authorization':token
             }
           });
-      // }else{
-      //   response = await fetch('http://localhost:8080/api/courses/search/findAllBycourseName?name='+searchName);
-      // }
       
 
       if (!response.ok) {
@@ -53,16 +50,14 @@ const CourseInterface = (props) => {
       for (const key in moduleArray) {
         loadedCourses.push({
           id: key,
-          // courseId: moduleArray[key].courseId,
           moduleId: moduleArray[key].moduleId,
           name: moduleArray[key].moduleName,
           pdf: moduleArray[key].modulePdfUrl,
           footage: moduleArray[key].moduleVideoUrl,
-          // moduleType: moduleArray[key].moduleType,
-          // description: moduleArray[key].courseDescription,
         });
       }
 
+      
       setModules(loadedCourses);
       setIsLoading(false);
     };
@@ -71,11 +66,6 @@ const CourseInterface = (props) => {
       setIsLoading(false);
       setHttpError(error.message);
     });
-
-
-    // setTimeout(() => {
-    //   setState(false);
-    //  }, 9000);
   }, []);
 
 
@@ -122,20 +112,17 @@ const CourseInterface = (props) => {
       name={module.name}
       pdf={module.pdf}
       footage={module.footage}
-      // moduleType={module.moduleType}
-      // url={module.courseUrl}
-      // api={module.moduleApi}
-      // description={course.description}
+
     />
 
 
   ));
 
-  // onLaunchClicked (event) {
-  //   event.preventDefault();
-  //   this.setState({
-  //       isButtonDisabled: true
-  //   });
+  
+
+
+  
+
   return (
     <section className={classes.page}>
         <div className={classes.cert}>
@@ -153,14 +140,7 @@ const CourseInterface = (props) => {
 
           <iframe src={link}
                 className={classes.player}>
-          </iframe>
-          {/* <div className={classes.check}>
-              <label>Completed?</label>
-              <input type="checkbox"
-                    onChange={handleChange}
-                    disabled={state} />
-          </div> */}
-          
+          </iframe>       
 
         </section>
       </section>
