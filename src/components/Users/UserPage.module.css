@@ -129,6 +129,13 @@
     text-align: right;
 }
 
+.individual label::after {
+    content: "*";
+    opacity: 0.8;
+    color: rgb(246, 94, 94);
+    margin-left: 0.1rem;
+}
+
 .individual input {
     border-radius: 10px;
     padding-left: 0.8rem;

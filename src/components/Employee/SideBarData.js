@@ -11,6 +11,12 @@ export const SidebarData = [
     icon: <RiIcons.RiProfileLine />,
     cName: 'nav-text'
   },
+  {
+    title: 'Enrolled Courses',
+    path: '/employee/enrolled-courses',
+    icon: <IoIcons.IoIosPaper />,
+    cName: 'nav-text'
+  },
 
   {
     title: 'Feedback Form',

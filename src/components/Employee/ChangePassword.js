@@ -4,8 +4,10 @@ import './ChangePassword.css'
 
 
 const ChangePassword = (props)=>{
-    const [changePwd, setChangePwd] = useState("");
+    const [confirmPwd, setConfirmPwd] = useState("");
+    const [newPwd, setNewPwd] = useState("");
     const [currentPwd, setcurrentPwd] = useState("");
+    
     const changePasswordHandler = (event) => {
         event.preventDefault();
 
@@ -16,31 +18,45 @@ const ChangePassword = (props)=>{
           body: JSON.stringify({
             employeeId :props.employeeId,
             // props.employeeId
-            newPassword:changePwd,
+            newPassword:confirmPwd,
             currentPassword:currentPwd,
           })
           
         }).then(response => {
-          console.log("hello change");
-          console.log(props.employeeId)
-          console.log(changePwd)
-          console.log(currentPwd)
-          alert("Password Change Successfully") 
-          console.log("request: ", response);
           
-          return response.json();
+            // console.log(response.statusText)
+            console.log(confirmPwd)
+            console.log(currentPwd)
+            // alert("Password Change Successfully") 
+            console.log("request: ", response);
+          // return response.json();
+          
         })
         
         .then(resJson => {
-          // alert("Password Change Successfully")
+          alert("Password Change Successfully")
+          setcurrentPwd("")
+          setNewPwd("");
+          setConfirmPwd("");
+          // props.changePassword(false)
+          
        })
        
     };
-        const passwordChange=(event)=>{
-            setChangePwd(event.target.value)
+        const comfirmPassword=(event)=>{
+          // if(newPwd === event.target.value){
+            setConfirmPwd(event.target.value)
+          // }else{
+          //   console.log("Your New Password and Confirm password do not match")
+          // }
+          
         }
+        const newPassword=(event)=>{
+          setNewPwd(event.target.value)
+      }
         const currentPasswordChange=(event)=>{
           setcurrentPwd(event.target.value)
+          
       }
 
     return(
@@ -52,21 +68,19 @@ const ChangePassword = (props)=>{
               <table>
                 <tr>
                   <td><b>Current Password:</b></td>
-                  <td><input className="input" onChange={currentPasswordChange} type="password" placeholder='********'/><br></br></td>
+                  <td><input className="input" onChange={currentPasswordChange} value={currentPwd} type="password" placeholder='********' required/><br></br></td>
                 </tr>
                 <tr>
                   <td><b>New Password:</b></td>
-                  <td><input className="input" type="password" placeholder='********'/><br></br></td>
+                  <td><input className="input" onChange={newPassword} value={newPwd} type="password" placeholder='********' required/><br></br></td>
                 </tr>
                 <tr>
                   <td><b>Confirm Password:</b></td>
-                  <td><input className="input" onChange={passwordChange} type="password" placeholder='********'/><br></br></td>
+                  <td><input className="input" onChange={comfirmPassword} value={confirmPwd} type="password" placeholder='********' required/><br></br></td>
                 </tr>
               </table>
                  
-        
                 <Button type="submit"><b>Change Password</b></Button>
-
             </form>
         </div>
       </div>

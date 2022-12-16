@@ -1,5 +1,3 @@
-// import React, { useState, useEffect } from 'react';
-
 import Login from './components/Login/Login';
 import MainHeader from './components/MainHeader/MainHeader';
 import { Redirect, Route, Switch, useHistory } from 'react-router-dom';
@@ -21,7 +19,6 @@ import Notification from './components/Notification/Notification';
 
 import SuperAdminHome from './components/Home/SuperAdminHome';
 import LAHomePage from './components/LearningAdmin/LAHomePage';
-import EmployeeCourseInterface from './components/Employee/EmployeeCourses/EmployeeCourseInterface';
 
 
 function App() {
@@ -38,17 +35,25 @@ function App() {
 
   useEffect(() => {
     const storedUserLoggedInInformation = localStorage.getItem('isLoggedIn');
+    const storedUserName = localStorage.getItem('LoggedName');
+    const storedEmployeeId = localStorage.getItem('LoggedEmployeeId');
 
     if(storedUserLoggedInInformation === '1'){
-      setIsLoggedIn(true);
+      setIsLoggedIn(true); 
+      setemployeeName(storedUserName);
+      setemployeeId(storedEmployeeId);
     }
     if(storedUserLoggedInInformation === '2'){
       setlearningLoggedIn(true);
+      setemployeeName(storedUserName);
+      setemployeeId(storedEmployeeId);
     }
     if(storedUserLoggedInInformation === '3'){
       setemployeeLoggedIn(true);
+      setemployeeName(storedUserName);
+      setemployeeId(storedEmployeeId);
     }
-  },[]);
+  },[employeeName]);
 
 const loginHandler = (email, password) => {
 
@@ -70,6 +75,8 @@ const loginHandler = (email, password) => {
     if((resJson.roleId ==1)){
       console.log("admin")
       localStorage.setItem('isLoggedIn','1');
+      localStorage.setItem('LoggedName',resJson.employeeName);
+      localStorage.setItem('LoggedEmployeeId',resJson.employeeId);
       setIsLoggedIn(true);
       history.push('/home');
       setemployeeName(resJson.employeeName)
@@ -79,6 +86,8 @@ const loginHandler = (email, password) => {
     else if((resJson.roleId ==2)){
       console.log("learning admin")
       localStorage.setItem('isLoggedIn','2');
+      localStorage.setItem('LoggedName',resJson.employeeName);
+      localStorage.setItem('LoggedEmployeeId',resJson.employeeId);
       setlearningLoggedIn(true);
       history.push('/learaningAdmin');
       setemployeeName(resJson.employeeName)
@@ -88,24 +97,25 @@ const loginHandler = (email, password) => {
     else if((resJson.roleId ==3)){
       console.log("Employee")
       localStorage.setItem('isLoggedIn','3');
+      localStorage.setItem('LoggedName',resJson.employeeName);
+      localStorage.setItem('LoggedEmployeeId',resJson.employeeId);
       setemployeeLoggedIn(true);
       history.push('/employee');
       setemployeeName(resJson.employeeName)
       setemployeeId(resJson.employeeId)
       setemployeeTracker(resJson.userLoginTracker)
+    }else{
+      alert("Enter Valid User Name or Password");
     }
  })
     
   };
 const logoutHandler = () => {
-  // We should of course check email and password
-  // But it's just a dummy/ demo anyways
     localStorage.removeItem('isLoggedIn');
     setIsLoggedIn(false);
     setlearningLoggedIn(false);
     setemployeeLoggedIn(false);
 };
-      
 
   const images = [slide1,slide4];
   const [currentSlide, setCurrentSlide] = useState(0);
@@ -129,19 +139,18 @@ const logoutHandler = () => {
 
   return (
     <div>
-
-      {isLoggedIn && <MainHeader isAuthenticated={isLoggedIn} onLogout={logoutHandler} name={employeeName} employeeId={employeeId} />}
+      {isLoggedIn && <MainHeader isAuthenticated={isLoggedIn} onLogout={logoutHandler} name={employeeName} employeeId={employeeId} tracker={employeeTracker}/>}
       
-      {learningLoggedIn && <MainHeader isAuthenticated={learningLoggedIn} onLogout={logoutHandler} name={employeeName} employeeId={employeeId}/> }
+      {learningLoggedIn && <MainHeader isAuthenticated={learningLoggedIn} onLogout={logoutHandler} name={employeeName} employeeId={employeeId} tracker={employeeTracker}/> }
       {/* {employeeLoggedIn && <MainHeader isAuthenticated={employeeLoggedIn} onLogout={logoutHandler} name={employeeName} employeeId={employeeId}/> } */}
        <Switch>
           <Route path="/" exact>
               <Redirect to='/login'/>
           </Route>
           <Route path="/login">
-            {!isLoggedIn ? <Login onLogin={loginHandler} /> :<Redirect to='/home' />}
-            {!learningLoggedIn ? <Login onLogin={loginHandler} /> :<Redirect to='/learaningAdmin' /> }
-            {!employeeLoggedIn ? <Login onLogin={loginHandler} /> :<Redirect to='/employee' /> }
+            {!isLoggedIn ? <Login onLogin={loginHandler} />: <Redirect to='/home' />}
+            {learningLoggedIn && <Redirect to='/learaningAdmin' />}
+            {employeeLoggedIn && <Redirect to='/employee' />}
           </Route>
           <Route path="/courses" exact>
             
@@ -157,10 +166,6 @@ const logoutHandler = () => {
           <Route path="/home" exact>
               {isLoggedIn ? <SuperAdminHome onLogout={logoutHandler} name={employeeName} employeeId={employeeId} tracker={employeeTracker}/> : <Redirect to='/login' /> }
           </Route>
-
-          {/* <Route path="/courses/course-module">
-              {isLoggedIn ? <CourseModules onLogout={logoutHandler} /> : <Redirect to='/login' /> }
-          </Route> */}
 
           <Route path="/users">
             {isLoggedIn ? <UserMainPage onLogout={logoutHandler} /> : <Redirect to='/login' /> }

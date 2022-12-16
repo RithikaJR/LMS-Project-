@@ -24,6 +24,7 @@
     "react-icons": "^4.7.1",
     "react-multilevel-dropdown": "^3.0.3",
     "react-native-card-stack": "^0.2.8",
+    "react-paginate": "^8.1.4",
     "react-pro-sidebar": "^1.0.0-alpha.9",
     "react-router-dom": "^5.3.4",
     "react-scripts": "^5.0.1",

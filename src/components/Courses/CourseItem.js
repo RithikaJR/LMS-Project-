@@ -1,6 +1,4 @@
-import { useContext } from 'react';
 import classes from './CourseItem.module.css';
-import slide_image4 from '../images/slide_image4.jpg';
 import Button from '../UI/Button/Button';
 import { NavLink } from 'react-router-dom';
 import edit from '../images/edit_icon.png';
@@ -32,8 +30,8 @@ const CourseItem = (props) => {
             </Rating></div>
           <div className={classes.view}>
             <NavLink to={{pathname:'/courses/course-module',state:{id:props.id}}}><Button >View</Button></NavLink>
-            <Button><img src={edit}/></Button>
-            <Button><img src={delet}/></Button>
+            <a href='#'><img src={edit}/></a>
+            <a href='#'><img src={delet}/></a>
           </div>
          
         </div>

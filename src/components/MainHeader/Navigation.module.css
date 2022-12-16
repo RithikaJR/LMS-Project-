@@ -69,3 +69,15 @@
   height: 30px;
   width: 30px;
 }
+
+.profilepic img{
+  border-radius: 100%;
+  width: 10px;
+  height: 10px;
+  
+}
+
+.bell img {
+  height: 30px;
+  width: 30px;
+}

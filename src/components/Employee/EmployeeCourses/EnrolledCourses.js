@@ -1,48 +1,39 @@
 import React, { useEffect, useState } from 'react';
 import Search from '../../Search Bar/Search.js';
 
-// import classes from './AvailableCourse.module.css';
-// import CourseItem from './CourseItem';
-import {Swiper, SwiperSlide} from 'swiper/react';
-import { FreeMode } from "swiper";
-import 'swiper/css';
-import "swiper/css/free-mode";
-import 'bootstrap/dist/css/bootstrap.min.css';
-
 import classes from './EmployeeAvailableCourses.module.css';
 import EmployeeCourseItem from './EmployeeCourseItem';
-import './EmployeeAvailableCourses.css'
+import EnrolledCourseItem from './EnrolledCourseItem.js';
 
 import ReactPaginate from 'react-paginate';
 
-const EmployeeAvailableCourses = (props) => {
-    const [courses, setCourse] = useState([]);
+const EnrolledCourses = (props) => {
+    const [enrolledCourses, setEnrolledCourse] = useState([]);
     const [isLoading, setIsLoading] = useState(true);
     const [httpError, setHttpError] = useState();
     const [searchName, setSearchName] = useState("");
-    
+  
     // Pagination
     const [itemOffset, setItemOffset] = useState(0);
     const itemsPerPage = 3;
     const endOffset = itemOffset + itemsPerPage;
     console.log(`Loading items from ${itemOffset} to ${endOffset}`);
-    const currentItems = courses.slice(itemOffset, endOffset);
-    const pageCount = Math.ceil(courses.length / itemsPerPage);
+    const currentItems = enrolledCourses.slice(itemOffset, endOffset);
+    const pageCount = Math.ceil(enrolledCourses.length / itemsPerPage);
 
-
-    const onSearchHandler = (name)=>{
-      console.log(name)
-      setSearchName(name);
-    }
+    // const onSearchHandler = (name)=>{
+    //   console.log(name)
+    //   setSearchName(name);
+    // }
 
     useEffect(() => {
       const fetchMeals = async () => {
         let response;
         if(searchName===''){
           response = await fetch(
-            'http://localhost:8080/api/courses');
+            'http://localhost:8080/api/enrolled-courses/'+props.employeeId);
         }else{
-          response = await fetch('http://localhost:8080/api/courses/search/findBycourseNameContaining?name='+searchName);
+        //   response = await fetch('http://localhost:8080/api/courses/search/findBycourseNameContaining?name='+searchName);
         }
         
   
@@ -53,21 +44,23 @@ const EmployeeAvailableCourses = (props) => {
         const responseData = await response.json();
   
         const loadedCourses = [];
-        const courseArray = {...responseData._embedded.course};
+        // const courseArray = {...responseData._embedded};
 
         console.log(responseData);
-        for (const key in courseArray) {
+        for (const key in responseData) {
           loadedCourses.push({
             id: key,
-            courseId: courseArray[key].courseId,
-            name: courseArray[key].courseName,
-            description: courseArray[key].courseDescription,
-            image: courseArray[key].courseImageUrl,
+            courseId: responseData[key].courseId,
+            name: responseData[key].courseName,
+            description: responseData[key].courseDescription,
+            image: responseData[key].courseImageUrl,
+            // courseUrl: courseArray[key].courseUrl,
+            // moduleApi:courseArray[key]._links.modules.href,
             
           });
         }
   
-        setCourse(loadedCourses);
+        setEnrolledCourse(loadedCourses);
         setIsLoading(false);
       };
   
@@ -94,7 +87,7 @@ const EmployeeAvailableCourses = (props) => {
     }
   
     const coursesList = currentItems.map((course) => (
-      <EmployeeCourseItem
+      <EnrolledCourseItem
         key={course.id}
         id={course.courseId}
         name={course.name}
@@ -103,23 +96,23 @@ const EmployeeAvailableCourses = (props) => {
         description={course.description}
         // api={module.moduleApi}
         employeeId={props.employeeId}
-        currentItems={currentItems}
       />
     ));
 
     // Invoke when user click to request another page.
     const handlePageClick = (event) => {
-      const newOffset = (event.selected * itemsPerPage) % courses.length;
+      const newOffset = (event.selected * itemsPerPage) % enrolledCourses.length;
       console.log(
         `User requested page number ${event.selected}, which is offset ${newOffset}`
       );
       setItemOffset(newOffset);
     };
+    
   
     return (
       <React.Fragment>
-        <Search search={onSearchHandler}/>
-        
+        <h2>Enrolled Course By {props.name}</h2>
+        {/* <Search search={onSearchHandler}/> */}
         <section className={classes.courses}>
           <ul>{coursesList}</ul>
         </section>
@@ -127,11 +120,11 @@ const EmployeeAvailableCourses = (props) => {
         {/* Pagination */}
         <ReactPaginate
               breakLabel="..."
-              nextLabel="Next >"
+              nextLabel="next >"
               onPageChange={handlePageClick}
               pageRangeDisplayed={5}
               pageCount={pageCount}
-              previousLabel="< Previous"
+              previousLabel="< previous"
               renderOnZeroPageCount={null}
               containerClassName="pagination"
               pageLinkClassName='page-num'
@@ -142,6 +135,5 @@ const EmployeeAvailableCourses = (props) => {
       </React.Fragment>
     );
   };
-  
-  export default EmployeeAvailableCourses;
-  
+
+export default EnrolledCourses;

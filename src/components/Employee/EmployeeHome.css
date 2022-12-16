@@ -153,9 +153,35 @@
     background-color: aqua;
   }
 
- /* .modaloverlay{
-    margin: auto;
-    margin-top: -55rem; 
-    margin-right: 55rem;
-    /* text-align: center;
- } */
+  .overlay{
+    position: relative;
+    left: 5%;
+    width: 90%;
+    background-color: rgb(175, 14, 14);
+    padding: 1rem;
+    border-radius: 14px;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.25);
+    z-index: 10;
+    animation: slide-down 300ms ease-out forwards;
+
+  }
+
+  
+  .avatar{
+    background: none;
+    margin-left: 60%;
+    /* margin-right: 30px; */
+  }
+
+  .menu{
+    /* margin-left: 60%; */
+    width: 80%;
+  }
+
+  
+
+  .avatar img{
+    height: 40px;
+    border-radius: 50%;
+  
+  }

@@ -9,10 +9,10 @@ import { useState } from 'react';
 import TickImage from '../../images/tick.png'
 
 
-const EmployeeCourseItem = (props) => {
+const EnrolledCourseItem = (props) => {
   const [cartIsShown, setCartIsShown] = useState(false);
   const [view, setView] = useState(false);
-
+  
   const showCartHandler = async (e) => {
     try {
       let res = await fetch("http://localhost:8080/api/enroll-course", {
@@ -36,7 +36,8 @@ const EmployeeCourseItem = (props) => {
       }
     } catch (err) {
       console.log(err);
-    }    
+    }
+      
     };
   
 
@@ -46,35 +47,30 @@ const EmployeeCourseItem = (props) => {
 
     console.log("CouresItem"+props.id);
     return (
-    <div>
-      {/* {props.currentItem &&
-      props.currentItem.map((item)=>( */}
       <li className={classes.courses}>
-          <div className={classes.courseimg}>
-            <img src={props.image}/>
-          </div>
-          <div>
-            <h3>{props.name}</h3>
-            <div className={classes.description}>Course Description : {props.description}</div>
-            {view && <div className={classes.view}><NavLink to={{pathname:'/employee/course-module',state:{id:props.id}}}><Button >View</Button></NavLink></div>}
-            
-            {!view && <div className={classes.view}><NavLink to={{pathname:'',state:{id:props.id}}}><Button onClick={showCartHandler}>Enroll</Button></NavLink></div> }
-            {cartIsShown && <Modal>
-              <div class="learn" id="learn">
-                  <div class="learn-header">
-                      <div class="title"><image src={TickImage} alt=""/></div>
-                  </div>
-                  <div class="learn-body">Enrolled Successfully
-                      <div><Button data-close-button class="close-button" onClick={hideCartHandler}>OK</Button></div>
-                  </div>
-              </div>
-              </Modal>}
-          </div>
-        </li>
-        {/* ))} */}
-      </div>
+        <div className={classes.courseimg}>
+          <img src={props.image}/>
+        </div>
+        <div>
+          <h3>{props.name}</h3>
+          <div className={classes.description}>Course Description : {props.description}</div>
+          <div className={classes.view}><NavLink to={{pathname:'/employee/course-module',state:{id:props.id}}}><Button >View</Button></NavLink></div>
+          
+          {/* {!view && <div className={classes.view}><NavLink to={{pathname:'',state:{id:props.id}}}><Button onClick={showCartHandler}>Enroll</Button></NavLink></div> }
+          {cartIsShown && <Modal>
+            <div class="learn" id="learn">
+                <div class="learn-header">
+                    <div class="title"><image src={TickImage} alt=""/></div>
+                </div>
+                <div class="learn-body">Enrolled Successfully
+                    <div><Button data-close-button class="close-button" onClick={hideCartHandler}>OK</Button></div>
+                </div>
+             </div>
+            </Modal>} */}
+        </div>
+      </li>
     );
   };
   
-  export default EmployeeCourseItem;
+  export default EnrolledCourseItem;
   

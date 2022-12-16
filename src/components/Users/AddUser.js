@@ -55,19 +55,24 @@ let submitHandler = async (e) => {
 return(
         <form >
             <div className={classes.lable}>
-                <label >Employee ID</label>
-                <input type="number" name="employee_id" 
-                    onChange={changeidHandler}
-                    value={enteredid} 
-                    placeholder="Employee ID"/>
+            <label >Employee ID</label>
+            <input type="text" name="employee_id" 
+                onChange={this.changeHandler}
+                value={employee_id} 
+                placeholder="Employee ID"
+                required />
             </div>
 
             <div className={classes.lable}>
-                <label className={classes.lbb}>Role</label>
-                   <input type="number" name="roleId" 
-                    onChange={changeroleHandler}
-                    value={enteredrole} 
-                    placeholder="Role:1/2/3"/>
+            <label className={classes.lbb}>Role</label>
+            <select type="text" name="role" 
+                onChange={this.changeHandler} 
+                value={role} 
+                placeholder="Choose Role"
+                required>
+                    <option value="Learning Admin">Learning Admin</option>
+                    
+                </select>
             </div>
 
             <Button

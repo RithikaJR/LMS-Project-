@@ -1,10 +1,9 @@
-import icon_video from '../images/icon_video.png';
-import icon_pdf from '../images/icon_pdf.png';
+import icon_video from '../../images/icon_video.png';
+import icon_pdf from '../../images/icon_pdf.png';
 import { useEffect, useState } from 'react';
-import classes from './ModuleResource.module.css';
-// import video from '../video/java.mp4';
+import classes from './EmployeeModuleResource.module.css';
 
-const ModuleResource = (props) => {
+const EmployeeModuleResource = (props) => {
 
   const [isVideo, setIsVideo] = useState(false)
 
@@ -32,7 +31,7 @@ const ModuleResource = (props) => {
         setTimeout(() => {
           setState(false);
           setCheckState(true);
-         }, 9000);
+         }, {duration});
       }
 
       console.log(props.moduleType);
@@ -65,4 +64,4 @@ const ModuleResource = (props) => {
     );
 }
 
-export default ModuleResource;
+export default EmployeeModuleResource;

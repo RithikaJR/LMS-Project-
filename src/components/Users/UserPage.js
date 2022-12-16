@@ -29,9 +29,8 @@ const UserPage = () => {
         setData(newdata)
         console.log(newdata)
     }
-
+    
     function submit(e){
-        // console.log("hi");
         e.preventDefault();
         Axios.post(url,{
           employeeId:data.id,
@@ -75,23 +74,21 @@ const UserPage = () => {
    
     const fileData = () => {
         if (selectedFile) {
-            
+            return (
+                <div className={classes.inside_userpage}>
+                    <div>
+                        <h2>File Details:</h2>
+                        <p>File Name: {selectedFile.name}</p>
 
-                return (
-                                     <div className={classes.inside_userpage}>
-                                         <div>
-                                             <h2>File Details:</h2>
-                                             <p>File Name: {selectedFile.name}</p>
-                    
-                                             <p>File Type: {selectedFile.type}</p>
-                    
-                                             <p>
-                                                 Last Modified:{" "}
-                                                 {selectedFile.lastModifiedDate.toDateString()}
-                                             </p>
-                    
-                                         </div>
-                                     </div>
+                        <p>File Type: {selectedFile.type}</p>
+
+                        <p>
+                            Last Modified:{" "}
+                            {selectedFile.lastModifiedDate.toDateString()}
+                        </p>
+
+                    </div>
+                </div>
             );
         } 
     };
@@ -109,12 +106,7 @@ const UserPage = () => {
     const submitHandler = () => {
 
     }
-
-    
-   
         return (
-            
-
             <div className={classes.userpage}>
                 <div className={classes.options}>
                     <Button onClick={employeeHandler}>Add Employee List</Button>
@@ -138,7 +130,7 @@ const UserPage = () => {
 
                     </div>
                      <div>
-                         <input type="file" onChange={onFileChange} />
+                         <input type="file" onChange={onFileChange} required />
                          <Button onClick={onFileUpload}>
                              Upload
                          </Button>
@@ -158,7 +150,7 @@ const UserPage = () => {
                                        id="id"
                                        placeholder='Employee ID'
                                        onChange={(e)=>handle(e)}
-                                       value={data.employeeId}
+                                       value={data.id}
                                        required />
                             </div>
                             <div className={classes.individual}>
@@ -185,7 +177,7 @@ const UserPage = () => {
                                        id="email"
                                        placeholder='Email'
                                        onChange={(e)=>handle(e)}
-                                       value={data.employeeEmail}
+                                       value={data.email}
                                        required />
                             </div>
                             <Button type="submit">Submit</Button>

@@ -1,50 +1,26 @@
-import Dropdown from 'react-bootstrap/Dropdown';
 import DropdownButton from 'react-bootstrap/DropdownButton';
-// import { Dropdown } from 'bootstrap';
-import Button from '../UI/Button/Button';
 import classes from './CourseModuleList.module.css';
 import '../Courses/ColapStyle.css';
-import Collapsible from 'react-collapsible';
 import ModuleResource from './ModuleResource';
 import video from '../video/sample_video.mp4';
 import Certificate from '../Employee/Certificate';
 // import sample_video from 'https://drive.google.com/file/d/19aJicg0EDYGpdsmD4hCGrDC1vGWKg12C/view?usp=share_link';
 
 import { useEffect, useState } from 'react';
-import down from '../images/down_icon.png';
 
 const CourseModuleList = (props) =>{
-// const caurseCtx = useContext(CourseContext);
-  
-//     // const price = `$${props.price.toFixed(2)}`;
-  
-//     const addToCartHandler = () => {
-//       caurseCtx.addItem({
-//         id:props.id,
-//         name:props.name,
-//         image:props.image,
-//         description:props.description
-//     });
-//     };
-  
-    // const buttonClick =() =>{
-    //   <CourseModule/>
-    // }
 
-    const [modules, setModules] = useState([]);
+    const [moduleResource, setModuleResource] = useState([]);
     const [isLoading, setIsLoading] = useState(true);
     const [httpError, setHttpError] = useState();
-    const [searchName, setSearchName] = useState("");
   
       useEffect(() => {
           const fetchModules = async () => {
             let response;
-            if(searchName===''){
+            // if(searchName===''){
               response = await fetch(
                 'http://localhost:8080/api/modules/'+props.id+'/moduleResources');
-            }
-            
-      
+            // }
             if (!response.ok) {
               throw new Error('Something went wrong!');
             }
@@ -66,9 +42,7 @@ const CourseModuleList = (props) =>{
               });
             }
             
-      
-      
-            setModules(loadedCourses);
+            setModuleResource(loadedCourses);
             setIsLoading(false);
           };
       
@@ -77,19 +51,8 @@ const CourseModuleList = (props) =>{
             setHttpError(error.message);
           });
   
-          // const items = modules.map(module => {
-          //   <div
-          //   name ={module.name},
-  
-          // })
-  
-  
         }, []);
       
-
-    const handleVideo = ()=>{
-      props.videoLink(video);
-    }
 
 
     console.log(props.id);
@@ -101,7 +64,7 @@ const CourseModuleList = (props) =>{
       props.videooLink(link);
     }
 
-    const listOfResources = modules.map((module) => (
+    const listOfResources = moduleResource.map((module) => (
       <ModuleResource
         videosLink={VideoLink}
         key={module.id}
@@ -113,18 +76,9 @@ const CourseModuleList = (props) =>{
       />
     ));
 
-
     return (
       <div className={classes.wrap}>
-          {/* <Collapsible trigger={props.name + <img src={down} />} className={classes.collapse}>
-            <ul>
-              {listOfResources}
-            </ul>
-          </Collapsible> */}
           <DropdownButton id="dropdown-basic-button" title={props.name}>
-            {/* <Dropdown.Item>Action</Dropdown.Item>
-            <Dropdown.Item>Another action</Dropdown.Item>
-            <Dropdown.Item>Something else</Dropdown.Item> */}
             {listOfResources}
           </DropdownButton>
       </div> 
