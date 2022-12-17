@@ -4,7 +4,7 @@ import classes from './SessionMail.module.css';
 import Button from '../../UI/Button/Button';
 
 const SessionMail = (props) => {
-
+    let token = `Bearer ${sessionStorage.getItem('jwt')}`;
     const url = "http://localhost:8080/api/scheduleEmail";
 
     // const name = JSON.stringify(props.name);
@@ -46,7 +46,10 @@ function submit(e){
     body:data.emailBody,
     dateTime:data.scheduleDate,
     timeZone:data.emailTimeZone,
-})
+},
+{headers:{
+    'Authorization':token
+  }})
 
 
 

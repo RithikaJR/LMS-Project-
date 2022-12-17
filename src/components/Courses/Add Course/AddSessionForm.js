@@ -7,13 +7,15 @@ import SessionMail from './SessionMail';
 
 const AddSessionForm = (props) => {
 
+        let token = `Bearer ${sessionStorage.getItem('jwt')}`;
+
         const [cartIsShown, setCartIsShown] = useState(false);
 
         const showCartHandler = () => {
                 setCartIsShown(true);
               };
 
-        const url = "http://localhost:8080/api/sessions"
+        const url = "http://localhost:8080/api/session"
 
         const [data,setData] = useState({
                 sessionName:"",
@@ -47,7 +49,10 @@ function submit(e){
     sessionStartTime:start,
     sessionEndTime:end,
     sessionCost:data.cost
-  })
+  },
+  {headers:{
+      'Authorization':token
+    }})
 
  
 

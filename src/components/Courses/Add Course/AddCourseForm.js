@@ -10,6 +10,8 @@ import close from '../../images/close.png'
 
 const AddCourseForm = ()=>{
 
+  let token = `Bearer ${sessionStorage.getItem('jwt')}`;
+
   const [courseCategoryId, setCourseCategoryId] = useState()
   const [selectedCategoryId, setSelectedCategoryId] = useState(1);
   const [selectedCourseId, setSelectedCourseId] = useState(100);
@@ -42,7 +44,11 @@ const AddCourseForm = ()=>{
     useEffect(() => {
       const fetchCourseCategory = async () => {
         const response = await fetch(
-          'http://localhost:8080/api/course-category'
+          'http://localhost:8080/api/course-category',{
+            headers:{
+              'Authorization':token
+            }
+          }
         );  
         if (!response.ok) {
           throw new Error('Something went wrong!');
@@ -88,7 +94,10 @@ function submitCategory(e1){
   e1.preventDefault();
   Axios.post(url_category,{
     categoryName:categoryData.categoryName
-  })
+  },
+  {headers:{
+      'Authorization':token
+    }})
 
  
 
@@ -107,7 +116,11 @@ function submitCategory(e1){
       // console.log("sssd");
       let fetchCourse = async () => {
         const response = await fetch(
-          'http://localhost:8080/api/course-category/'+selectedCategoryId+'/courses'
+          'http://localhost:8080/api/course-category/'+selectedCategoryId+'/courses',{
+            headers:{
+              'Authorization':token
+            }
+          }
         ); 
         if (!response.ok) {
           throw new Error('Something went wrong!');
@@ -158,7 +171,10 @@ function submitCourse(e2){
     courseName:courseData.course_name,
     courseDescription:courseData.course_description,
     courseImageURL:courseData.course_imageUrl
-  })
+  },
+  {headers:{
+      'Authorization':token
+    }})
 
  
 
@@ -181,7 +197,11 @@ useEffect(() => {
   // console.log("dfsdf");
   let fetchModule = async () => {
     const response = await fetch(
-      'http://localhost:8080/api/courses/'+selectedCourseId+'/modules'
+      'http://localhost:8080/api/courses/'+selectedCourseId+'/modules',{
+        headers:{
+          'Authorization':token
+        }
+      }
     ); 
     if (!response.ok) {
       throw new Error('Something went wrong!');

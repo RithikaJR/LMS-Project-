@@ -7,6 +7,9 @@ import { Button } from "react-bootstrap";
 import EmployeeCourseModuleList from "./EmployeeCourseModuleList";
 
 const EmployeeCourseInterface = (props) => {
+
+  let token = `Bearer ${sessionStorage.getItem('jwt')}`;
+  
   const [modules, setModules] = useState([]);
   const [isLoading, setIsLoading] = useState(true);
   const [httpError, setHttpError] = useState();
@@ -24,7 +27,11 @@ const EmployeeCourseInterface = (props) => {
     const fetchModules = async () => {
       let response;
         response = await fetch(
-          'http://localhost:8080/api/courses/'+propdata+'/modules');
+          'http://localhost:8080/api/courses/'+propdata+'/modules',{
+            headers:{
+              'Authorization':token
+            }
+          });
 
       if (!response.ok) {
         throw new Error('Something went wrong!');

@@ -16,7 +16,7 @@ const Login = (props) => {
     const identifier =setTimeout(() =>{
       console.log("Validity Check");
       setFormIsValid(
-          enteredEmail.includes('@') && enteredPassword.trim().length > 6
+          enteredEmail.includes('@experionglobal.com') && enteredPassword.trim().length > 6
         
       );
     }, 500)
@@ -73,6 +73,7 @@ const Login = (props) => {
               placeholder='Username..'
               value={enteredEmail}
               onChange={emailChangeHandler}
+              onBlur={validateEmailHandler}
             />
           </div>
           <div
@@ -87,6 +88,7 @@ const Login = (props) => {
               placeholder='Password..'
               value={enteredPassword}
               onChange={passwordChangeHandler}
+              onBlur={validatePasswordHandler}
             />
           </div>
           <div className={classes.actions}>

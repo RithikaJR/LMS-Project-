@@ -9,6 +9,9 @@ import './CourseInterface.css';
 
 
 const CourseInterface = (props) => {
+  
+  let token = `Bearer ${sessionStorage.getItem('jwt')}`;
+
   const [modules, setModules] = useState([]);
   const [isLoading, setIsLoading] = useState(true);
   const [httpError, setHttpError] = useState();
@@ -27,7 +30,11 @@ const CourseInterface = (props) => {
       let response;
       
         response = await fetch(
-          'http://localhost:8080/api/courses/'+propdata+'/modules');
+          'http://localhost:8080/api/courses/'+propdata+'/modules',{
+            headers:{
+              'Authorization':token
+            }
+          });
       
 
       if (!response.ok) {

@@ -11,6 +11,8 @@ import { Link } from 'react-router-dom';
 
 const UserPage = () => {
    
+    let token = `Bearer ${sessionStorage.getItem('jwt')}`;
+    
     const [selectedFile,setState] = useState(null);
     const [addEmployee, setAddEmployee] = useState(false);
     const [addList, setAddList] = useState(false);
@@ -37,7 +39,10 @@ const UserPage = () => {
           employeeFirstName:data.firstName,
           employeeLastName:data.lastName,
           employeeEmail:data.email      
-        })
+        },
+        {headers:{
+            'Authorization':token
+          }})
       
         .then(res=>{
           if(res.data != null){

@@ -8,6 +8,8 @@ import EmployeeModuleResource from './EmployeeModuleResource';
 
 const EmployeeCourseModuleList = (props) =>{
 
+  let token = `Bearer ${sessionStorage.getItem('jwt')}`;
+  
   const [moduleResource, setModuleResource] = useState([]);
   const [isLoading, setIsLoading] = useState(true);
   const [httpError, setHttpError] = useState();
@@ -15,7 +17,11 @@ const EmployeeCourseModuleList = (props) =>{
     useEffect(() => {
         const fetchModules = async () => {
           let response = await fetch(
-              'http://localhost:8080/api/modules/'+props.id+'/moduleResources');
+              'http://localhost:8080/api/modules/'+props.id+'/moduleResources',{
+                headers:{
+                  'Authorization':token
+                }
+              });
               
           if (!response.ok) {
             throw new Error('Something went wrong!');
