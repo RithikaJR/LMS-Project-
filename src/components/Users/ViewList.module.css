@@ -53,3 +53,34 @@
     border: 2px;
     border-radius: 0 0 12px 0 ;
 }
+
+.view {
+    font-size: small;
+    margin-left: 2rem;
+    padding: 0.5rem;
+    border: 1px solid white;
+    color: white;
+    background-color: rgb(250, 158, 30);
+}
+
+.view:hover {
+    border: 2px solid white;
+    color: white;
+    background-color: rgb(246, 177, 80);
+}
+
+.delete {
+    width: 30px;
+    margin-left: 1rem;
+    cursor: pointer;
+}
+
+.delete img{
+    height: 2rem;
+    width: 2rem;
+}
+
+.delete img:hover{
+    transform: scale(0.9);
+    opacity: 0.5;
+}

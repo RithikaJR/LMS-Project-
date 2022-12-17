@@ -1,6 +1,6 @@
 import React from 'react';
 import { NavLink } from 'react-router-dom';
-import icon3 from '../images/icon3.png';
+import icon from '../images/notification bell.png';
 
 
 import Notification from '../Notification/Notification';
@@ -50,7 +50,7 @@ const Navigation = (props) => {
           <li>
             <NavLink to = '/notification' className={classes.usertext}>
             <div className={classes.bell}>
-              <img src={icon3}/>
+              <img src={icon}/>
               </div>
             </NavLink>
           </li>

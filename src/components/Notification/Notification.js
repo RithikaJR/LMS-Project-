@@ -71,48 +71,48 @@ const Notification = ()=>{
     const [date, setDate] = useState(null);
 
     const approveHandler = (event) =>{
-      console.log("empid"+ event.target.value);    
-      console.log('clicked'); 
+      // console.log("empid"+ event.target.value);    
+      // console.log('clicked'); 
   
-      event.preventDefault();
-      fetch("http://localhost:8080/api/enroll-course", {
+      // event.preventDefault();
+      // fetch("http://localhost:8080/api/enroll-course", {
         
-            headers: { "Content-Type": "application/json" },
-            method: "POST",
-            body: JSON.stringify({
-              // employeeId:{
-              //   employeeId:employeeId,
-              // },
-              // employeeId: employeeId,
-              // courseId: courseId,
-              // enrolledDate:date
+      //       headers: { "Content-Type": "application/json" },
+      //       method: "POST",
+      //       body: JSON.stringify({
+      //         // employeeId:{
+      //         //   employeeId:employeeId,
+      //         // },
+      //         // employeeId: employeeId,
+      //         // courseId: courseId,
+      //         // enrolledDate:date
 
-              courseId:{
+      //         courseId:{
     
-                courseId:courseId
+      //           courseId:courseId
                 
-                },
-                employeeId:{
+      //           },
+      //           employeeId:{
                     
-                    employeeId:employeeId
-                    },
-                enrolledDate:date
-            })
+      //               employeeId:employeeId
+      //               },
+      //           enrolledDate:date
+      //       })
             
-          }).then(response => {
-            console.log("hello change");
-            console.log(employeeId)
-            // console.log(changePwd)
-            // console.log(currentPwd)
-            alert("Status approved Successfully") 
-            console.log("request: ", response);
+      //     }).then(response => {
+      //       console.log("hello change");
+      //       console.log(employeeId)
+      //       // console.log(changePwd)
+      //       // console.log(currentPwd)
+      //       alert("Status approved Successfully") 
+      //       console.log("request: ", response);
             
-            return response.json();
-          })
+      //       return response.json();
+      //     })
           
-          .then(resJson => {
-            // alert("Password Change Successfully")
-         })
+      //     .then(resJson => {
+      //       // alert("Password Change Successfully")
+      //    })
     }
   
     const rejectHandler = (event) =>{
