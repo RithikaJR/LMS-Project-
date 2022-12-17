@@ -117,7 +117,7 @@ const logoutHandler = () => {
     localStorage.removeItem('LoggedName');
     localStorage.removeItem('LoggedEmployeeId');
     sessionStorage.removeItem('jwt');
-    localStorage.removeItem('jwt');
+    // localStorage.removeItem('jwt');
     setIsLoggedIn(false);
     setlearningLoggedIn(false);
     setemployeeLoggedIn(false);

@@ -67,7 +67,10 @@ const UserPage = () => {
 
         const formData = new FormData();
         formData.append('file',selectedFile);
-        fetch('http://localhost:8080/api/employee/upload', {method: 'post',body: formData})
+        fetch('http://localhost:8080/api/employee/upload', 
+        {method: 'post',body: formData,headers:{
+            'Authorization':token
+          }})
         .then(res => {
             if (res.ok) {
                 console.log(res.data);
