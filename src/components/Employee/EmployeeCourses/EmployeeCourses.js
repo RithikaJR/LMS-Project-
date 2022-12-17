@@ -20,16 +20,12 @@ const EmployeeCourses = (props) => {
     return (
         <div className={classes.coursepage}>
             <div className={classes.box}>
-                <h1>Courses</h1>
-                {/* <Button onClick={showCartHandler}>Add +</Button>
-                {cartIsShown && 
-                <Modal onClose={cartIsShown}>
-                    <AddCourseForm></AddCourseForm>
-                    <Button onClick={hideCartHandler}>X</Button>
-                </Modal>} */}
+                <h1>Featured Courses</h1>
             </div>
             <EmployeeAvailableCourses employeeId={props.employeeId} />
         </div>
+
+        
     
     );
 };

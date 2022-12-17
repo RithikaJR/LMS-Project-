@@ -3,6 +3,7 @@ import classes from './ViewList.module.css';
 // import BootstrapTable from 'react-bootstrap-table-next';
 import DataTable from 'react-data-table-component';
 
+
 // import classes from './ViewList.module.css';
 import ListItem from './ListItem';
 import Search from '../Search Bar/Search.js';

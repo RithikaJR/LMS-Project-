@@ -6,7 +6,7 @@ import classes from "./UserPage.module.css";
 import image from '../images/excel.png';
 import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
-import constants from './constants';
+
 
 
 const UserPage = () => {
@@ -54,9 +54,9 @@ const UserPage = () => {
       }
 
 
-    // On file select (from the pop up)
+    
     const onFileChange = event => {
-    // Update the state
+   
         setState(event.target.files[0]);
     };
 

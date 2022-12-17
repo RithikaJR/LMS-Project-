@@ -7,6 +7,15 @@
     padding-bottom: 3rem;
     padding-top: 5rem;
     text-align: center;
+
+    /* display: flex;
+    padding-top: 100px;
+    padding-bottom: 100px;
+    flex-direction: row;
+    align-items: flex-start;
+    flex-direction: row;
+    align-items: flex-start; */
+    
 }
 
 .coursepage h1 {
@@ -25,10 +34,11 @@
 }
 
 .box Button {
-    position: static;
+    position:static;
     margin-right: -30rem;
     height: 3rem;
     margin-top: 3rem;
+    margin-left:9rem;
 }
 
 .close img{
@@ -37,6 +47,7 @@
 }
 
 .close Button {
+    
     align-items: center;
     border: 1px;
     border-radius: 50%;
