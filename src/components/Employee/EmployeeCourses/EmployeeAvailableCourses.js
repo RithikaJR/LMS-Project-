@@ -1,6 +1,14 @@
 import React, { useEffect, useState } from 'react';
 import Search from '../../Search Bar/Search.js';
 
+// import classes from './AvailableCourse.module.css';
+// import CourseItem from './CourseItem';
+import {Swiper, SwiperSlide} from 'swiper/react';
+import { FreeMode } from "swiper";
+import 'swiper/css';
+import "swiper/css/free-mode";
+import 'bootstrap/dist/css/bootstrap.min.css';
+
 import classes from './EmployeeAvailableCourses.module.css';
 import EmployeeCourseItem from './EmployeeCourseItem';
 import './EmployeeAvailableCourses.css'
@@ -122,6 +130,7 @@ const EmployeeAvailableCourses = (props) => {
     return (
       <React.Fragment>
         <Search search={onSearchHandler}/>
+        
         <section className={classes.courses}>
           <ul>{coursesList}</ul>
         </section>

@@ -1,0 +1,94 @@
+/* 
+
+
+.certificate{
+    text-align: center;
+    justify-content: center;
+    display: flex;
+    align-items: center; 
+    margin-left: 100PX;
+}
+
+.pdf{
+          margin: "50px";
+          padding: "10px";
+          background-color: "black";
+          color: "white";
+          font-family: "Anton";
+          font-size: "5rem";
+          text-transform: "uppercase";
+          letter-spacing: "0.1rem";
+          cursor: "pointer";
+          width: "200px";
+          text-align: center;
+          
+         
+} */
+
+* {
+    box-sizing: border-box;
+  }
+
+  .app {
+    font-family: "Hachi Maru Pop", cursive;
+    display: flex;
+    padding: 15px;
+  }
+
+  .meta {
+    flex-grow: 1;
+    padding-right: 15px;
+  }
+
+  .app .meta input {
+    font-family: inherit;
+    padding: 5px;
+    width: 200px;
+    box-shadow: 0 0 2px rgba(0, 0, 0, 0.25);
+    border: 2px solid rgba(0, 0, 0, 0.25);
+    border-radius: 5px;
+  }
+
+  .app .meta button {
+    padding: 10px 15px;
+    border: 2px solid #87ceeb;
+    background-color: #33f3fb;
+    font-family: inherit;
+    margin: 20px 0;
+    border-radius: 10px;
+    cursor: pointer;
+  }
+
+  .downloadWrapper {
+    padding: 10px;
+  }
+
+  .certificateWrapper {
+    box-shadow: 0 0 5px #000;
+    border-radius: 10px;
+    overflow: hidden;
+    position: relative;
+  }
+
+  .certificateWrapper img {
+    display: block;
+    height: 618px;
+  }
+
+  .certificateWrapper p1 {
+    font-family: "Staatliches", cursive;
+    margin: 0;
+    position: absolute;
+    left: 350px;
+    top: 220px;
+    font-size: 20pt;
+  }
+
+  .certificateWrapper p2 {
+    font-family: "Staatliches", cursive;
+    margin: 0;
+    position: absolute;
+    left: 343px;
+    top: 315px;
+    font-size: 20pt;
+  }

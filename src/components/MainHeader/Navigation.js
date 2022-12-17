@@ -1,4 +1,12 @@
 import React from 'react';
+import { NavLink } from 'react-router-dom';
+import icon3 from '../images/icon3.png';
+
+
+import Notification from '../Notification/Notification';
+
+
+
 import classes from './Navigation.module.css';
 
 import 'bootstrap/dist/css/bootstrap.css';
@@ -37,6 +45,16 @@ const Navigation = (props) => {
             <h1>Welcome {props.name}</h1>
           </li>
         )}
+        
+      
+          <li>
+            <NavLink to = '/notification' className={classes.usertext}>
+            <div className={classes.bell}>
+              <img src={icon3}/>
+              </div>
+            </NavLink>
+          </li>
+        
         {props.isLoggedIn && (
           <li className='avatar'>
             {/*  <Button className='logout' onClick={props.onLogout}>Logout</Button>  */}
@@ -58,6 +76,7 @@ const Navigation = (props) => {
           </Dropdown>
           </li>
         )}
+
       </ul>
       {overlayShown && <Modal onClose={overlayShown} className="overlay">
           <UserProfile name={props.name} employeeId={props.employeeId} />

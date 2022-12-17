@@ -1,6 +1,8 @@
 import { useState } from "react";
 import Button from "../UI/Button/Button";
 import './ChangePassword.css'
+
+
 const ChangePassword = (props)=>{
     const [confirmPwd, setConfirmPwd] = useState("");
     const [newPwd, setNewPwd] = useState("");
@@ -30,6 +32,7 @@ const ChangePassword = (props)=>{
           // return response.json();
           
         })
+        
         .then(resJson => {
           alert("Password Change Successfully")
           setcurrentPwd("")
