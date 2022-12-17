@@ -1,17 +1,11 @@
 import React from 'react';
 
 import profilepicture from '../images/profilepic.jpg';
-import Avatar from 'react-avatar';
+// import Avatar from 'react-avatar';
 import classes from './Navigation.module.css';
 import Collapsible from 'react-collapsible';
 
 import { Dropdown, Image } from 'semantic-ui-react'
-import {faker} from '@faker-js/faker'
-const styleLink = document.createElement("link");
-styleLink.rel = "stylesheet";
-styleLink.href =
-"https://cdn.jsdelivr.net/npm/semantic-ui/dist/semantic.min.css";
-document.head.appendChild(styleLink);
 
 //npm install @faker-js/faker --save-dev
 //npm install semantic-ui-react

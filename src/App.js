@@ -65,15 +65,15 @@ const loginHandler = (email, password) => {
     body: JSON.stringify({
       userName :email,
       userPassword:password,
-    })
+    })  
   }).then(response => {
     console.log("hello");
     console.log("request: ", response);
     return response.json();
   })
   .then(resJson => {
-    
-    if((resJson.roleId ==1)){
+    console.log("hello");
+    if((resJson.roleId == 1)){
       console.log("admin")
       sessionStorage.setItem("jwt",resJson.jwtToken);
       // localStorage.setItem("jwt",resJson.jwtToken);
@@ -133,25 +133,25 @@ const logoutHandler = () => {
     setemployeeLoggedIn(false);
 };
 
-  const images = [slide1,slide4];
-  const [currentSlide, setCurrentSlide] = useState(0);
-  // useRef does not cause a re-render
-  let sliderInterval = useRef();
-  let switchImages = () => {
-    if (currentSlide < images.length - 1) {
-      setCurrentSlide(currentSlide + 1);
-    } else {
-      setCurrentSlide(0);
-    }
-  };
-  useEffect(() => {
-    sliderInterval = setInterval(() => {
-      switchImages();
-    }, 5000);
-    return () => {
-      clearInterval(sliderInterval);
-    };
-  });
+  // const images = [slide1,slide4];
+  // const [currentSlide, setCurrentSlide] = useState(0);
+  // // useRef does not cause a re-render
+  // let sliderInterval = useRef();
+  // let switchImages = () => {
+  //   if (currentSlide < images.length - 1) {
+  //     setCurrentSlide(currentSlide + 1);
+  //   } else {
+  //     setCurrentSlide(0);
+  //   }
+  // };
+  // useEffect(() => {
+  //   sliderInterval = setInterval(() => {
+  //     switchImages();
+  //   }, 5000);
+  //   return () => {
+  //     clearInterval(sliderInterval);
+  //   };
+  // });
 
   return (
     <div>
@@ -169,7 +169,6 @@ const logoutHandler = () => {
             {employeeLoggedIn && <Redirect to='/employee' />}
           </Route>
           <Route path="/courses" exact>
-            
           {isLoggedIn ? <Courses onLogout={logoutHandler} /> : <Redirect to='/login' /> }
           </Route>
 
@@ -191,10 +190,9 @@ const logoutHandler = () => {
           {isLoggedIn ? <Notification onLogout={logoutHandler} /> : <Redirect to='/login' /> }
           </Route>
 
-          <Route path="/courses/course-module">
-            {/* {isLoggedIn ? <CourseInterface onLogout={logoutHandler} /> : <Redirect to='/login' /> } */}
+          {/* <Route path="/courses/course-module">
             <CourseInterface></CourseInterface>
-          </Route>
+          </Route> */}
 
           {/* <Route path="/employee">
             <EmployeeHome />

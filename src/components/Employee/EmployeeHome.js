@@ -23,7 +23,7 @@ import slide2 from '../images/slide2.jpg';
 import slide3 from '../images/slide3.jpg';
 import slide4 from '../images/slide4.jpg';
 
-import Avatar from 'react-avatar';
+// import Avatar from 'react-avatar';
 import classes from '../MainHeader/Navigation.module.css';
 
 import Certificate from './Certificate';
@@ -37,11 +37,11 @@ import image from '../images/team-male.jpg'
 // const styleLink = document.createElement("link");
 
 // document.head.appendChild(styleLink);
-const styleLink = document.createElement("link");
-styleLink.rel = "stylesheet";
-styleLink.href =
-"https://cdn.jsdelivr.net/npm/semantic-ui/dist/semantic.min.css";
-document.head.appendChild(styleLink);
+// const styleLink = document.createElement("link");
+// styleLink.rel = "stylesheet";
+// styleLink.href =
+// "https://cdn.jsdelivr.net/npm/semantic-ui/dist/semantic.min.css";
+// document.head.appendChild(styleLink);
 
 
 
