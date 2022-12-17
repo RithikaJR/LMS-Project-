@@ -2,51 +2,14 @@ import { useEffect, useState } from 'react';
 import classes from './ViewList.module.css';
 // import BootstrapTable from 'react-bootstrap-table-next';
 import DataTable from 'react-data-table-component';
+import image from '../images/trashbin.png';
+
 
 // import classes from './ViewList.module.css';
 import ListItem from './ListItem';
 import Search from '../Search Bar/Search.js';
-
-const columns = [
-  {
-    name: 'First Name',
-    selector: 'employeeFirstName',
-    sortable: true,
-  },
-  {
-    name: 'Last Name',
-    selector: 'employeeLastName',
-    sortable: true,
-  },
-  {
-    name: 'Email id',
-    selector: 'employeeEmail',
-    sortable: true,    
-  },
-  {
-    name: 'Role',
-    // selector: 'Trainee',
-    cell:(row) => (
-      <input
-        // value={row.surname}
-        // value="Trainee"
-        // onChange={(e) => handleInputChange(row, "surname", e)}
-      />
-    ),
-  },
-  {
-    name: 'Delete',
-    // selector: 'Trainee',
-    cell:(row) => (
-      <button
-        // value={row.surname}
-        // onClick={(e) => handleInputChange()}
-      >🗑</button>
-    ),
-  },
-
-  
-];
+import Button from '../UI/Button/Button';
+import { handleRef } from '@fluentui/react-component-ref';
 
 
 
@@ -58,6 +21,53 @@ const ViewList = () => {
     const [httpError, setHttpError] = useState();
   
     const [searchName, setSearchName] = useState("");
+    const [deleteEmployee, setDeleteEmployee] = useState(false);
+    const [selectedEmployeeId, setSelectedEmployeeId] = useState();
+    let columns = [];
+
+{users.map(user => {
+columns = [
+  {
+    name: 'Employee ID',
+    selector: 'employeeId',
+    sortable: true,
+  },
+  {
+    name: 'First Name',
+    selector: 'employeeFirstName',
+    sortable: true,
+  },
+  {
+    name: 'Last Name',
+    selector: 'employeeLastName',
+    sortable: true,
+  },
+  {
+    name: 'Email',
+    selector: 'employeeEmail',
+    sortable: true,    
+  },
+  {
+    name: '',
+    cell:(row) => (
+      <Button className={classes.view}
+        // value={row.surname}
+        // value="Trainee"
+        // onChange={(e) => handleInputChange(row, "surname", e)}
+      >View</Button>
+    ),
+  },
+  {
+    name: '',
+    cell:(row) => (
+      <a className={classes.delete}
+        value={user.employeeId}
+        onClick={handleEmployeeDelete}
+      ><img src={image} /></a>
+    ),
+  },
+];
+})}
   
     const onSearchHandler = (name)=>{
       console.log(name)
@@ -98,12 +108,13 @@ const ViewList = () => {
         for (const key in courseArray) {
           loadedCourses.push({
             id: key,
+            employeeId:courseArray[key].employeeId,
             employeeFirstName: courseArray[key].employeeFirstName,
             employeeLastName: courseArray[key].employeeLastName,
             employeeEmail: courseArray[key].employeeEmail,
           });
         }
-  
+
         setUsers(loadedCourses);
         setIsLoading(false);
       };
@@ -112,7 +123,7 @@ const ViewList = () => {
         setIsLoading(false);
         setHttpError(error.message);
       });
-    }, [searchName]);
+    }, []);
   
     if (isLoading) {
       return (
@@ -129,6 +140,41 @@ const ViewList = () => {
         </section>
       );
     }
+
+  const handleEmployeeDelete = (event) => {
+    setSelectedEmployeeId(event.target.value);
+    console.log(event.target.value);
+    if(window.confirm("Do you want to remove this employee?") == true){
+      setDeleteEmployee(true);
+      deleteHandler();
+    }
+    else{
+      setDeleteEmployee(false);
+    }
+  }
+
+  // if(deleteEmployee == true){
+    const deleteHandler=async (e)=>{
+      console.log(selectedEmployeeId);
+  //     try {
+  //         let res=await fetch("http://localhost:8080/api/employee/"+selectedEmployeeId, 
+  //         { 
+  //           method: 'DELETE', 
+  //           headers:{ 'Authorization':token} 
+  //         })
+
+  //               if (res.status === 204 ) {
+  //                   alert("Employee Deleted!");
+  //               } else {
+  //                   alert("Some error occured");
+  //                   console.log(res.status);
+  //               }
+  //         } 
+  //     catch (err) {
+  //           console.log(err);
+  //         }
+  // // };
+}
   
     const coursesList = users.map((course) => (
       <ListItem

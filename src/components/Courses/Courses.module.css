@@ -7,6 +7,15 @@
     padding-bottom: 3rem;
     padding-top: 5rem;
     text-align: center;
+
+    /* display: flex;
+    padding-top: 100px;
+    padding-bottom: 100px;
+    flex-direction: row;
+    align-items: flex-start;
+    flex-direction: row;
+    align-items: flex-start; */
+    
 }
 
 .coursepage h1 {
@@ -25,10 +34,11 @@
 }
 
 .box Button {
-    position: static;
-    margin-right: -30rem;
+    position:static;
+    margin-right: -25rem;
     height: 3rem;
-    margin-top: 3rem;
+    margin-top: 2rem;
+    margin-left:9rem;
 }
 
 .close img{
@@ -37,6 +47,7 @@
 }
 
 .close Button {
+    
     align-items: center;
     border: 1px;
     border-radius: 50%;
@@ -57,11 +68,12 @@
 
 .options {
     margin: -2rem;
-    margin-right: -25rem;
+    margin-right: -21rem;
+    margin-bottom: 0.5rem;
 }
 
 .display {
-    margin: -7.5rem 0;
+    margin: -4.5rem 0;
     float: left;
 }
 

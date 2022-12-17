@@ -2,6 +2,7 @@ import React, {Component, useState}  from 'react';
 import axios from 'axios';
 import classes from './AddUser.module.css';
 import Button from '../UI/Button/Button';
+// import classes from "./UserPage.module.css";
 
 const AddUser =()=> {
 
@@ -65,7 +66,7 @@ let submitHandler = async (e) => {
             </div>
 
             <Button
-                type="submit"
+                type="submit" onSubmit ={submitHandler} 
                 className="btn btn-primary">Submit
             </Button>
         </form>

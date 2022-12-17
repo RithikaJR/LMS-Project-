@@ -34,7 +34,6 @@ const ModuleForm = (props) => {
             moduleUrl: enteredAmount
         };
         props.onSaveExpenseData(expensesData);
-        // console.log(expensesData)
         setModuleId('');
         setModuleImage('');
         setEnteredTitle('');
@@ -45,30 +44,38 @@ const ModuleForm = (props) => {
         <form onSubmit={submitHandler}>
             <div className='new-expense__controls'>
             <div className='new-expense__control'>
-                    <label>Module Id</label>
+                    <label>Module Resource Id</label>
                     <input type='text' 
                     value={enteredModuleId}
                     onChange={ModuleIdHandler} />
                 </div>
                 <div className='new-expense__control'>
-                    <label>Module Name</label>
+                    <label>Module Resource Name</label>
                     <input type='text' 
                     value={enteredTitle}
                     onChange={titleChangeHandler} />
                 </div>
                 <div className='new-expense__control'>
-                    <label>Module Image URL</label>
+                    <label>Resource URL</label>
                     <input 
                     type='text'
                     value={enteredModuleImage}
                     onChange={moduelImageHandler} />
                 </div>
                 <div className='new-expense__control'>
-                    <label>Module URL</label>
+                    <label>Resource Type</label>
                     <input 
                     type='text'
                     value={enteredAmount}
                     onChange={amountChangeHandler} />
+                </div>
+                <div className='new-expense__control'>
+                    <label>Resource Duration</label>
+                    <input 
+                    type='time'
+                    step='00:00:01'
+                    value={enteredModuleImage}
+                    onChange={moduelImageHandler} />
                 </div>
 
                 <div className='new-expense__actions'>

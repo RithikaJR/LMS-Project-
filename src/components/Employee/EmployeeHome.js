@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState,useRef,useEffect } from 'react';
 import * as FaIcons from 'react-icons/fa';
 import * as AiIcons from 'react-icons/ai';
 import { Link, Route } from 'react-router-dom';
@@ -7,7 +7,7 @@ import './EmployeeHome.css';
 import { IconContext } from 'react-icons';
 import EmployeeCourses from './EmployeeCourses/EmployeeCourses';
 import FeedbackForm from './Feedbackform';
-import { useEffect } from 'react';
+
 import Button from '../UI/Button/Button';
 import UserProfile from './UserProfile';
 import Modal from "../UI/Modal/Modal.js";
@@ -16,19 +16,76 @@ import EnrolledCourses from './EmployeeCourses/EnrolledCourses';
 import EmployeeProfile from './EmployeeProfile';
 import LAModal from '../UI/Modal/LAModal';
 
+
+import profilepicture from '../images/profilepic.jpg';
+import slide1 from '../images/slide1.jpg';
+import slide2 from '../images/slide2.jpg';
+import slide3 from '../images/slide3.jpg';
+import slide4 from '../images/slide4.jpg';
+
+// import Avatar from 'react-avatar';
+import classes from '../MainHeader/Navigation.module.css';
+
+import Certificate from './Certificate';
+import { RiSlideshow4Fill } from 'react-icons/ri';
+import Coursess from '../Courses/Coursess';
+import Courses from '../Courses/Courses';
 import 'bootstrap/dist/css/bootstrap.css';
 import Dropdown from 'react-bootstrap/Dropdown';
 // import { Dropdown, Image } from 'semantic-ui-react'
-import {faker} from '@faker-js/faker'
 import image from '../images/team-male.jpg' 
 // const styleLink = document.createElement("link");
 
 // document.head.appendChild(styleLink);
+// const styleLink = document.createElement("link");
+// styleLink.rel = "stylesheet";
+// styleLink.href =
+// "https://cdn.jsdelivr.net/npm/semantic-ui/dist/semantic.min.css";
+// document.head.appendChild(styleLink);
+
+
+
 const EmployeeHome = (props) => {
   const [sidebar, setSidebar] = useState(false);
 
   const showSidebar = () => setSidebar(!sidebar);
 
+ 
+  const trigger = (
+    <span className={classes.avatar}>
+      <img src={profilepicture}   />
+      {'justin'}
+     </span>
+
+  )
+
+  const options = [
+    
+    { key: 'settings', text: 'Status: active'},
+    { key: 'sign-out', text: 'Log Out'},
+  ]
+
+  const images = [slide1,slide4];
+  const [currentSlide, setCurrentSlide] = useState(0);
+  // useRef does not cause a re-render
+  let sliderInterval = useRef();
+  let switchImages = () => {
+    if (currentSlide < images.length - 1) {
+      setCurrentSlide(currentSlide + 1);
+    } else {
+      setCurrentSlide(0);
+    }
+  };
+  useEffect(() => {
+    sliderInterval = setInterval(() => {
+      switchImages();
+    }, 5000);
+    return () => {
+      clearInterval(sliderInterval);
+    };
+  });
+
+  
   const [cartIsShown, setCartIsShown] = useState(false);
   useEffect(() => {
     if(props.tracker===1){
@@ -54,6 +111,21 @@ const EmployeeHome = (props) => {
           <Link to='#' className='menu-bars'>
             <FaIcons.FaBars onClick={showSidebar} />
           </Link>
+         
+          <h1 className='tagName'>Welcome </h1>
+         
+          
+          <div className={classes.profilepic}>
+            
+                <Dropdown
+                  trigger={trigger}
+                  options={options}
+                  pointing='top left'
+                />
+        </div>
+
+        
+
           <h1 className='tagName'>Welcome {props.name}</h1>
           <Dropdown>
             <Dropdown.Toggle variant="" className='avatar'>
@@ -91,6 +163,9 @@ const EmployeeHome = (props) => {
             })}
           </ul>
         </nav>
+
+        
+         
       </IconContext.Provider>
           {cartIsShown && <Modal onClose={cartIsShown} className="overlay">
           <UserProfile name={props.name} employeeId={props.employeeId} />
@@ -110,6 +185,9 @@ const EmployeeHome = (props) => {
             <FeedbackForm/>
       </Route>
 
+      <Route path="/employee/certificate">
+            <Certificate/>
+      </Route>
       <Route path="/employee/course-module">
             <EmployeeCourseInterface/>
       </Route>

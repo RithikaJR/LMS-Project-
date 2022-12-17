@@ -3,6 +3,9 @@ import classes from './CourseModuleList.module.css';
 import '../Courses/ColapStyle.css';
 import ModuleResource from './ModuleResource';
 import video from '../video/sample_video.mp4';
+import Certificate from '../Employee/Certificate';
+// import sample_video from 'https://drive.google.com/file/d/19aJicg0EDYGpdsmD4hCGrDC1vGWKg12C/view?usp=share_link';
+
 import { useEffect, useState } from 'react';
 
 const CourseModuleList = (props) =>{
@@ -85,6 +88,9 @@ const CourseModuleList = (props) =>{
             {listOfResources}
           </DropdownButton>
       </div> 
+      
+
+
     );
 }
 
