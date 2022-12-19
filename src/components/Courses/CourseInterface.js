@@ -119,10 +119,6 @@ const CourseInterface = (props) => {
   ));
 
   
-
-
-  
-
   return (
     <section className={classes.page}>
         <div className={classes.cert}>
