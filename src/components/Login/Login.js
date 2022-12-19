@@ -2,6 +2,7 @@ import React, { useEffect, useState } from 'react';
 import classes from './Login.module.css';
 import Button from '../UI/Button/Button';
 import exp_logo_dark from '../images/exp_logo_dark.png';
+import ForgotPassword from './ForgotPassword';
 
 const Login = (props) => {
   const [enteredEmail, setEnteredEmail] = useState('');
@@ -91,12 +92,14 @@ const Login = (props) => {
               onBlur={validatePasswordHandler}
             />
           </div>
+          <ForgotPassword/>
           <div className={classes.actions}>
             <Button type="submit" className={classes.btn} disabled={!formIsValid} onClick={submitHandler}>
               Login
             </Button>
           </div>
         </form>
+        
       </div>
 
     </div>

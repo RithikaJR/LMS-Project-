@@ -80,8 +80,8 @@ const loginHandler = (email, password) => {
       // localStorage.setItem("jwt",resJson.jwtToken);
       localStorage.setItem('isLoggedIn',resJson.roleId);
       localStorage.setItem('LoggedName',resJson.user.employeeName);
-      localStorage.setItem('LoggedEmployeeId',resJson.user.employee.employeeId);
-
+      // localStorage.setItem('LoggedEmployeeId',resJson.user.employee.employeeId);
+      localStorage.setItem('LoggedEmployeeId',resJson.employeeId);
       setIsLoggedIn(true);
       history.push('/home');
       
@@ -96,7 +96,8 @@ const loginHandler = (email, password) => {
       // localStorage.setItem("jwt",resJson.jwtToken);
       localStorage.setItem('isLoggedIn',resJson.roleId);
       localStorage.setItem('LoggedName',resJson.user.employeeName);
-      localStorage.setItem('LoggedEmployeeId',resJson.user.employee.employeeId);
+      // localStorage.setItem('LoggedEmployeeId',resJson.user.employee.employeeId);
+      localStorage.setItem('LoggedEmployeeId',resJson.employeeId);
 
       setlearningLoggedIn(true);
       history.push('/learaningAdmin');
@@ -111,7 +112,8 @@ const loginHandler = (email, password) => {
       sessionStorage.setItem("jwt",resJson.jwtToken);
       localStorage.setItem('isLoggedIn',resJson.roleId);
       localStorage.setItem('LoggedName',resJson.user.employeeName);
-      localStorage.setItem('LoggedEmployeeId',resJson.user.employee.employeeId);
+      // localStorage.setItem('LoggedEmployeeId',resJson.user.employee.employeeId);
+      localStorage.setItem('LoggedEmployeeId',resJson.employeeId);
 
       setemployeeLoggedIn(true);
       history.push('/employee');
