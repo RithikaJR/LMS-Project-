@@ -61,7 +61,7 @@ const UserProfile=(props)=> {
                     <b>Employee Id :</b> {props.employeeId}<br></br>
                     <b>Username :</b> {props.name}@experionglobal.com<br></br>
                     <Button onClick={changePasswordForm} className={classes.changePassword}><b>Change Your Password</b></Button><br></br>
-                    {changePwd && <ChangePassword employeeId={props.employeeId}/> }
+                    {changePwd && <ChangePassword employeeId={props.employeeId} userId={props.userId}/> }
                 </div>
             </div>
     );

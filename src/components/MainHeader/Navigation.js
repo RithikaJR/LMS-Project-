@@ -21,9 +21,10 @@ import Modal from '../UI/Modal/Modal';
 const Navigation = (props) => {
   let Username = localStorage.getItem('LoggedName');
   const [overlayShown, setoverlayIsShown] = useState(false);
+  console.log("userId"+props.userId)
   
   useEffect(() => {
-    if(props.tracker===1){
+    if(props.tracker===false){
       setoverlayIsShown(true);
     }else{
       setoverlayIsShown(false);
@@ -80,7 +81,7 @@ const Navigation = (props) => {
 
       </ul>
       {overlayShown && <Modal onClose={overlayShown} className="overlay">
-          <UserProfile name={props.name} employeeId={props.employeeId} />
+          <UserProfile name={props.name} employeeId={props.employeeId} userId={props.userId} />
           <Button onClick={hideCartHandler}>Close</Button>
           {/* name={props.name} employeeId={props.employeeId} */}
           </Modal>}
