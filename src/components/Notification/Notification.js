@@ -32,27 +32,33 @@ const Notification = ()=>{
     
       {
         name: 'Approve',      
-        cell:(row) => (
+        cell:({id}) => (
           <button 
-            value={row}
+            value={id}
             // onClick={(e) => handleInputChange(row, "surname", e)}
             onClick={approveHandler}
-          ><img src={approval}/></button>
+          >Approve</button>
         ),
     
       }, 
       {
           name: 'Reject',
-          cell:(row) => (
+          cell:({id}) => (
             <button
-              // value={row.surname}
+              value={id}
               // onClick={(e) => handleInputChange(row, "surname", e)}
               onClick={rejectHandler}
   
-            ><img src={reject}/></button>
+            >Reject</button>
            
           ),
       
+        },
+
+        {
+          name: 'Status',
+          selector: 'approvalStatus',
+          sortable: true,
         },
   
   
@@ -67,7 +73,8 @@ const Notification = ()=>{
     const [httpError, setHttpError] = useState();
     const [date, setDate] = useState(null);
 
-
+   
+   
     useEffect(() => {
       const courseApprovalList = async () => { 
         let response = await fetch(
@@ -87,15 +94,17 @@ const Notification = ()=>{
           for (const key in listArray) {
             loadedApprovalList.push({
               id: key,
+              courseApprovalId:listArray[key].courseApprovalId,
               employeeName: listArray[key].employeeName,
               employeeId: listArray[key].employeeId,
+              courseId: listArray[key].courseId,
               courseName: listArray[key].courseName,
+              approvalStatus:listArray[key].approvalStatus
             });
           }
     
           setApprovalList(loadedApprovalList);
-          // setemployeeId(employeeId);
-          // setcourseId(courseId);
+        
           setIsLoading(false);
         };
     
@@ -104,81 +113,83 @@ const Notification = ()=>{
           setHttpError(error.message);
         });
 
-        {approvalList.map((user) =>{
-          setemployeeId(user.employeeId);
-        })}
-        console.log(employeeId);
+      
 
     }, []);
-    
+
+   
 
     const approveHandler = (event) =>{
-      console.log("empid"+ event.target.value);    
-      console.log('clicked'); 
-  
       event.preventDefault();
-      fetch("http://localhost:8080/api/enroll-course", {
+      fetch("http://localhost:8080/api/enrolled-course", {
         
-            headers: { "Content-Type": "application/json" },
+            headers: { "Content-Type": "application/json", 'Authorization':token },
             method: "POST",
             body: JSON.stringify({
-              // employeeId:{
-              //   employeeId:employeeId,
-              // },
-              // employeeId: employeeId,
-              // courseId: courseId,
-              // enrolledDate:date
-
-              courseId:{
-    
-                courseId:courseId
-                
-                },
-                employeeId:{
-                    
-                    employeeId:employeeId
-                    },
+                courseId:approvalList[event.target.value].courseId,
+                employeeId:approvalList[event.target.value].employeeId,
                 enrolledDate:date
             })
             
           }).then(response => {
             console.log("hello change");
             console.log(employeeId)
-            // console.log(changePwd)
-            // console.log(currentPwd)
-            alert("Status approved Successfully") 
+          
+            alert("Status approved") 
             console.log("request: ", response);
             
             return response.json();
           })
           
-          .then(resJson => {
-            // alert("Password Change Successfully")
+          .then(resJson => { // alert("Password Change Successfully")
          })
+
+         fetch("http://localhost:8080/api/course-approval/"+approvalList[event.target.value].courseApprovalId, {
+        
+         headers: { "Content-Type": "application/json", 'Authorization':token },
+         method: "PUT",
+         body: JSON.stringify({
+          
+             approvalStatus : "Approved"
+         })
+         
+       }).then(response => {
+         console.log("Approved");
+        
+         
+         return response.json();
+       })
+      
     }
   
-    const rejectHandler = (event) =>{
-      console.log('clicked'); 
+    const rejectHandler = (event) =>{   
+      console.log('clicked'+approvalList[event.target.value].courseApprovalId); 
+      setemployeeId(approvalList[event.target.value].employeeId);
+      console.log("zcfd"+employeeId);
+      event.preventDefault();
+
+
+         fetch("http://localhost:8080/api/course-approval/"+approvalList[event.target.value].courseApprovalId, {
+        
+         headers: { "Content-Type": "application/json", 'Authorization':token },
+         method: "PUT",
+         body: JSON.stringify({
+          
+             approvalStatus : "Rejected"
+         })
+         
+       }).then(response => {
+         console.log("Rejected");
+
+         alert("Status rejected") 
+         console.log("request: ", response);
+         return response.json();
+       }) 
     }
 
 
+    
 
-    // users.map((course) => {
-    //     setemployeeId(course.employeeId)
-    //     // setcourseId(course.courseId)
-    //     // <ApprovalList
-    //     //   key={course.courseApprovalId}
-    //     //   id={course.courseApprovalId}
-    //     //   employeeName={course.employeeName}
-    //     //   employeeId={course.employeeId}
-    //     //   // employeeLastName={course.employeeLastName}
-    //     //   courseName={course.courseName}
-    //     // />
-    //   });
-
-    // {users.map((user) =>{
-    //   setemployeeId(user.employeeId);
-    // })}
 
     
 
