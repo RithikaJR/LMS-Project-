@@ -23,7 +23,7 @@ import slide2 from '../images/slide2.jpg';
 import slide3 from '../images/slide3.jpg';
 import slide4 from '../images/slide4.jpg';
 
-import Avatar from 'react-avatar';
+// import Avatar from 'react-avatar';
 import classes from '../MainHeader/Navigation.module.css';
 
 import Certificate from './Certificate';
@@ -37,11 +37,11 @@ import image from '../images/team-male.jpg'
 // const styleLink = document.createElement("link");
 
 // document.head.appendChild(styleLink);
-const styleLink = document.createElement("link");
-styleLink.rel = "stylesheet";
-styleLink.href =
-"https://cdn.jsdelivr.net/npm/semantic-ui/dist/semantic.min.css";
-document.head.appendChild(styleLink);
+// const styleLink = document.createElement("link");
+// styleLink.rel = "stylesheet";
+// styleLink.href =
+// "https://cdn.jsdelivr.net/npm/semantic-ui/dist/semantic.min.css";
+// document.head.appendChild(styleLink);
 
 
 
@@ -88,7 +88,7 @@ const EmployeeHome = (props) => {
   
   const [cartIsShown, setCartIsShown] = useState(false);
   useEffect(() => {
-    if(props.tracker===1){
+    if(props.tracker===false){
       setCartIsShown(true);
     }else{
       setCartIsShown(false);
@@ -112,7 +112,7 @@ const EmployeeHome = (props) => {
             <FaIcons.FaBars onClick={showSidebar} />
           </Link>
          
-          <h1 className='tagName'>Welcome </h1>
+          {/* <h1 className='tagName'>Welcome </h1> */}
          
           
           <div className={classes.profilepic}>
@@ -168,7 +168,7 @@ const EmployeeHome = (props) => {
          
       </IconContext.Provider>
           {cartIsShown && <Modal onClose={cartIsShown} className="overlay">
-          <UserProfile name={props.name} employeeId={props.employeeId} />
+          <UserProfile name={props.name} employeeId={props.employeeId} userId={props.userId} />
           <Button onClick={hideCartHandler}>Close</Button>
           {/* name={props.name} employeeId={props.employeeId} */}
           </Modal>}
@@ -193,7 +193,7 @@ const EmployeeHome = (props) => {
       </Route>
 
       <Route path="/employee/profile">
-            <EmployeeProfile employeeId={props.employeeId} name={props.name}/>
+            <EmployeeProfile employeeId={props.employeeId} name={props.name} userId={props.userId}/>
       </Route></div>
     
   );

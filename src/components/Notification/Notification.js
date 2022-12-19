@@ -9,10 +9,6 @@ import reject from '../images/reject.png';
 import App from '../../App';
 import ApprovalList from './ApprovalList';
 
-
-
-
-
 const Notification = ()=>{
   const columns =
     [
@@ -38,9 +34,8 @@ const Notification = ()=>{
         name: 'Approve',      
         cell:(row) => (
           <button 
-            value={employeeId}
+            value={row}
             // onClick={(e) => handleInputChange(row, "surname", e)}
-  
             onClick={approveHandler}
           ><img src={approval}/></button>
         ),
@@ -63,12 +58,59 @@ const Notification = ()=>{
   
     ];
   
-    const [users, setUsers] = useState([]);
+    let token = `Bearer ${sessionStorage.getItem('jwt')}`;
+
+    const [approvalList, setApprovalList] = useState([]);
     const [employeeId, setemployeeId] = useState();
     const [courseId, setcourseId] = useState(100);
     const [isLoading, setIsLoading] = useState(true);
     const [httpError, setHttpError] = useState();
     const [date, setDate] = useState(null);
+
+
+    useEffect(() => {
+      const courseApprovalList = async () => { 
+        let response = await fetch(
+              'http://localhost:8080/api/course-approval',{
+            headers:{
+              'Authorization':token
+            }
+          });
+          if (!response.ok) {
+            throw new Error('Something went wrong!');
+          }
+          const responseData = await response.json();
+          const loadedApprovalList = [];
+          const listArray = {...responseData._embedded.courseApproval};
+
+          console.log(responseData);
+          for (const key in listArray) {
+            loadedApprovalList.push({
+              id: key,
+              employeeName: listArray[key].employeeName,
+              employeeId: listArray[key].employeeId,
+              courseName: listArray[key].courseName,
+            });
+          }
+    
+          setApprovalList(loadedApprovalList);
+          // setemployeeId(employeeId);
+          // setcourseId(courseId);
+          setIsLoading(false);
+        };
+    
+        courseApprovalList().catch((error) => {
+          setIsLoading(false);
+          setHttpError(error.message);
+        });
+
+        {approvalList.map((user) =>{
+          setemployeeId(user.employeeId);
+        })}
+        console.log(employeeId);
+
+    }, []);
+    
 
     const approveHandler = (event) =>{
       console.log("empid"+ event.target.value);    
@@ -119,53 +161,7 @@ const Notification = ()=>{
       console.log('clicked'); 
     }
 
-    useEffect(() => {
-        const fetchMeals = async () => {
-          
-         
-         let response = await fetch(
-              'http://localhost:8080/api/course-approval'
-            );
-         
-    
-          if (!response.ok) {
-            throw new Error('Something went wrong!');
-          }
-    
-          const responseData = await response.json();
-    
-          const loadedCourses = [];
-          const courseArray = {...responseData._embedded.courseApproval};
-  
-          console.log(responseData);
-          for (const key in courseArray) {
-            loadedCourses.push({
-              id: key,
-              employeeName: courseArray[key].employeeName,
-              employeeId: courseArray[key].employeeId,
-              courseName: courseArray[key].courseName,
 
-            });
-          }
-    
-          setUsers(loadedCourses);
-          // setemployeeId(employeeId);
-          // setcourseId(courseId);
-          setIsLoading(false);
-        };
-    
-        fetchMeals().catch((error) => {
-          setIsLoading(false);
-          setHttpError(error.message);
-        });
-
-        {users.map((user) =>{
-          setemployeeId(user.employeeId);
-        })}
-        console.log(employeeId);
-
-      }, []);
-      
 
     // users.map((course) => {
     //     setemployeeId(course.employeeId)
@@ -191,7 +187,7 @@ const Notification = ()=>{
         <DataTable 
             title="Approval Request"
             columns={columns}
-            data={users}
+            data={approvalList}
             pagination
             highlightOnHover
             

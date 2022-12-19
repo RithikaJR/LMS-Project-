@@ -35,9 +35,9 @@
 
 .box Button {
     position:static;
-    margin-right: -30rem;
+    margin-right: -25rem;
     height: 3rem;
-    margin-top: 3rem;
+    margin-top: 2rem;
     margin-left:9rem;
 }
 
@@ -68,11 +68,12 @@
 
 .options {
     margin: -2rem;
-    margin-right: -25rem;
+    margin-right: -21rem;
+    margin-bottom: 0.5rem;
 }
 
 .display {
-    margin: -7.5rem 0;
+    margin: -4.5rem 0;
     float: left;
 }
 

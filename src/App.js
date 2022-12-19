@@ -30,7 +30,8 @@ function App() {
   const [employeeLoggedIn, setemployeeLoggedIn] = useState(false);
   const [employeeName, setemployeeName] = useState('');
   const [employeeId, setemployeeId] = useState('');
-  const [employeeTracker, setemployeeTracker] = useState('');
+  const [userStatus, setuserStatus] = useState('');
+  const [userId, setuserId] = useState('');
   const history = useHistory()
 
   useEffect(() => {
@@ -65,15 +66,15 @@ const loginHandler = (email, password) => {
     body: JSON.stringify({
       userName :email,
       userPassword:password,
-    })
+    })  
   }).then(response => {
     console.log("hello");
     console.log("request: ", response);
     return response.json();
   })
   .then(resJson => {
-    
-    if((resJson.roleId ==1)){
+    console.log("hello");
+    if((resJson.roleId == 1)){
       console.log("admin")
       sessionStorage.setItem("jwt",resJson.jwtToken);
       // localStorage.setItem("jwt",resJson.jwtToken);
@@ -86,7 +87,8 @@ const loginHandler = (email, password) => {
       
       setemployeeName(resJson.user.employeeName)
       setemployeeId(resJson.user.employee.employeeId)
-      // setemployeeTracker(resJson.userLoginTracker)
+      setuserStatus(resJson.initialStatus)
+      setuserId(resJson.user.userId)
     }
     else if((resJson.roleId ==2)){
       console.log("learning admin")
@@ -101,7 +103,8 @@ const loginHandler = (email, password) => {
       
       setemployeeName(resJson.user.employeeName)
       setemployeeId(resJson.user.employee.employeeId)
-      // setemployeeTracker(resJson.userLoginTracker)
+      setuserStatus(resJson.initialStatus)
+      setuserId(resJson.user.userId)
     }
     else if((resJson.roleId ==3)){
       console.log("Employee")
@@ -115,7 +118,8 @@ const loginHandler = (email, password) => {
       
       setemployeeName(resJson.user.employeeName)
       setemployeeId(resJson.user.employee.employeeId)
-      // setemployeeTracker(resJson.userLoginTracker)
+      setuserStatus(resJson.initialStatus)
+      setuserId(resJson.user.userId)
     }else{
       alert("Enter Valid User Name or Password");
     }
@@ -127,37 +131,37 @@ const logoutHandler = () => {
     localStorage.removeItem('LoggedName');
     localStorage.removeItem('LoggedEmployeeId');
     sessionStorage.removeItem('jwt');
-    localStorage.removeItem('jwt');
+    // localStorage.removeItem('jwt');
     setIsLoggedIn(false);
     setlearningLoggedIn(false);
     setemployeeLoggedIn(false);
 };
 
-  const images = [slide1,slide4];
-  const [currentSlide, setCurrentSlide] = useState(0);
-  // useRef does not cause a re-render
-  let sliderInterval = useRef();
-  let switchImages = () => {
-    if (currentSlide < images.length - 1) {
-      setCurrentSlide(currentSlide + 1);
-    } else {
-      setCurrentSlide(0);
-    }
-  };
-  useEffect(() => {
-    sliderInterval = setInterval(() => {
-      switchImages();
-    }, 5000);
-    return () => {
-      clearInterval(sliderInterval);
-    };
-  });
+  // const images = [slide1,slide4];
+  // const [currentSlide, setCurrentSlide] = useState(0);
+  // // useRef does not cause a re-render
+  // let sliderInterval = useRef();
+  // let switchImages = () => {
+  //   if (currentSlide < images.length - 1) {
+  //     setCurrentSlide(currentSlide + 1);
+  //   } else {
+  //     setCurrentSlide(0);
+  //   }
+  // };
+  // useEffect(() => {
+  //   sliderInterval = setInterval(() => {
+  //     switchImages();
+  //   }, 5000);
+  //   return () => {
+  //     clearInterval(sliderInterval);
+  //   };
+  // });
 
   return (
     <div>
-      {isLoggedIn && <MainHeader isAuthenticated={isLoggedIn} onLogout={logoutHandler} name={employeeName} employeeId={employeeId} tracker={employeeTracker}/>}
+      {isLoggedIn && <MainHeader isAuthenticated={isLoggedIn} onLogout={logoutHandler} name={employeeName} employeeId={employeeId} tracker={userStatus} userId={userId}/>}
       
-      {learningLoggedIn && <MainHeader isAuthenticated={learningLoggedIn} onLogout={logoutHandler} name={employeeName} employeeId={employeeId} tracker={employeeTracker}/> }
+      {learningLoggedIn && <MainHeader isAuthenticated={learningLoggedIn} onLogout={logoutHandler} name={employeeName} employeeId={employeeId} tracker={userStatus} userId={userId}/> }
       {/* {employeeLoggedIn && <MainHeader isAuthenticated={employeeLoggedIn} onLogout={logoutHandler} name={employeeName} employeeId={employeeId}/> } */}
        <Switch>
           <Route path="/" exact>
@@ -169,7 +173,6 @@ const logoutHandler = () => {
             {employeeLoggedIn && <Redirect to='/employee' />}
           </Route>
           <Route path="/courses" exact>
-            
           {isLoggedIn ? <Courses onLogout={logoutHandler} /> : <Redirect to='/login' /> }
           </Route>
 
@@ -180,7 +183,7 @@ const logoutHandler = () => {
               
 
           <Route path="/home" exact>
-              {isLoggedIn ? <SuperAdminHome onLogout={logoutHandler} name={employeeName} employeeId={employeeId} tracker={employeeTracker}/> : <Redirect to='/login' /> }
+              {isLoggedIn ? <SuperAdminHome onLogout={logoutHandler} name={employeeName} employeeId={employeeId}/> : <Redirect to='/login' /> }
           </Route>
 
           <Route path="/users">
@@ -191,10 +194,9 @@ const logoutHandler = () => {
           {isLoggedIn ? <Notification onLogout={logoutHandler} /> : <Redirect to='/login' /> }
           </Route>
 
-          <Route path="/courses/course-module">
-            {/* {isLoggedIn ? <CourseInterface onLogout={logoutHandler} /> : <Redirect to='/login' /> } */}
+          {/* <Route path="/courses/course-module">
             <CourseInterface></CourseInterface>
-          </Route>
+          </Route> */}
 
           {/* <Route path="/employee">
             <EmployeeHome />
@@ -229,12 +231,12 @@ const logoutHandler = () => {
 
           {/* Employee */}
           <Route path="/employee">
-            {employeeLoggedIn ? <EmployeeHome isAuthenticated={employeeLoggedIn} onLogout={logoutHandler} name={employeeName} employeeId={employeeId} tracker={employeeTracker}/> : <Redirect to='/login' /> }
+            {employeeLoggedIn ? <EmployeeHome isAuthenticated={employeeLoggedIn} onLogout={logoutHandler} name={employeeName} employeeId={employeeId} tracker={userStatus} userId={userId}/> : <Redirect to='/login' /> }
           </Route>
         
           {/* //Learning Admin */}
           <Route path="/learaningAdmin">
-            {learningLoggedIn ? <LAHomePage onLogout={logoutHandler} name={employeeName} employeeId={employeeId} tracker={employeeTracker}/>: <Redirect to='/login' /> }
+            {learningLoggedIn ? <LAHomePage onLogout={logoutHandler} name={employeeName} employeeId={employeeId}/>: <Redirect to='/login' /> }
           </Route>
           
         </Switch>
