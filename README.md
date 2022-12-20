@@ -78,3 +78,5 @@ npm install react-router-dom@5
 npm install axios
 npm install react-data-table-component styled-components
 npm install react-paginate --save 
+npm i react-component-export-image
+npm install jspdf --save 
