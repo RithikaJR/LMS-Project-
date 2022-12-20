@@ -92,7 +92,9 @@ const Login = (props) => {
               onBlur={validatePasswordHandler}
             />
           </div>
-          <ForgotPassword/>
+          <div>
+            <ForgotPassword/>
+          </div>
           <div className={classes.actions}>
             <Button type="submit" className={classes.btn} disabled={!formIsValid} onClick={submitHandler}>
               Login

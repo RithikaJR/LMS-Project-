@@ -74,7 +74,7 @@ const EmployeeAvailableCourses = (props) => {
             name: courseArray[key].courseName,
             description: courseArray[key].courseDescription,
             image: courseArray[key].courseImageUrl,
-            
+            duration: courseArray[key].courseDuration
           });
         }
   
@@ -110,9 +110,8 @@ const EmployeeAvailableCourses = (props) => {
         id={course.courseId}
         name={course.name}
         image={course.image}
-        // url={course.courseUrl}
+        course_duration={course.duration}
         description={course.description}
-        // api={module.moduleApi}
         employeeId={props.employeeId}
         currentItems={currentItems}
       />

@@ -10,7 +10,12 @@
     width: 20px;
 }
 
+.check{
+    margin: 0 1rem;
+}
+
 .item:hover {
+    font-weight: bold;
     transform: scale(1.01);
 }
 

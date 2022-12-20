@@ -102,7 +102,9 @@ const EnrolledCourses = (props) => {
         // url={course.courseUrl}
         description={course.description}
         // api={module.moduleApi}
+        duration={course.duration}
         employeeId={props.employeeId}
+        // emp_name={props.name}
       />
     ));
 

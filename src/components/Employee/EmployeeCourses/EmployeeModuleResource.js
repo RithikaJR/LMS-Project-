@@ -11,9 +11,11 @@ const EmployeeModuleResource = (props) => {
   const [state, setState] = useState(true);
   const [checkState, setCheckState] = useState(false);
 
-  let duration = parseInt(props.duration, 10);
-  console.log(props.duration);
-  let timer =  duration * 1000;
+ 
+  let arr = props.duration.split(":");
+  let pre_timer = arr[0]*3600000 + arr[1]*60000 +arr[2]*1000;
+  let timer = (pre_timer * 80)/100;
+  console.log(pre_timer)
   console.log(timer);
 
   useEffect(() => {
@@ -31,7 +33,8 @@ const EmployeeModuleResource = (props) => {
         setTimeout(() => {
           setState(false);
           setCheckState(true);
-         }, {duration});
+          props.resourceCheck(true);
+         }, timer);
       }
 
       console.log(props.moduleType);
@@ -39,16 +42,18 @@ const EmployeeModuleResource = (props) => {
       console.log(props.resourceUrl);
       console.log(props.duration);
     
-      const handleChange = () => {
-        setChecked(true);
-      }
+      // const handleChange = () => {
+      //   // setChecked(true);
+      //   console.log("trueeee")
+      //   props.resourceCheck("dfaf");
+      // }
     
     return (
       <li className={classes.resource} >
         <div className={classes.item}>
           <span className={classes.check}>
               <input type="checkbox"
-                    onChange={handleChange}
+                    // onChange={handleChange}
                     checked={checkState}
                     disabled={state} />
           </span>

@@ -66,7 +66,7 @@ const Notification = ()=>{
   
     let token = `Bearer ${sessionStorage.getItem('jwt')}`;
     const current = new Date();
-    const date1 = `${current.getFullYear()}/${current.getMonth()+1}/${current.getDate()}`;
+    const date1 = `${current.getFullYear()}-${current.getMonth()+1}-${current.getDate()}`;
 
     const [approvalList, setApprovalList] = useState([]);
     const [employeeId, setemployeeId] = useState();
@@ -140,7 +140,7 @@ const Notification = ()=>{
                 courseId:{
                    courseId:approvalList[event.target.value].courseId
                     },
-                enrolledDate:date
+                enrolledDate:date1
             })
             
           }).then(response => {
