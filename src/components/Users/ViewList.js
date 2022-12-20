@@ -12,6 +12,7 @@ import Button from '../UI/Button/Button';
 import { handleRef } from '@fluentui/react-component-ref';
 import { NavLink } from 'react-router-dom';
 import ViewEmployeeData from '../CourseTracking/ViewEmployeeData';
+import { FaBeer} from 'react-icons/fa';
 
 
 
@@ -51,12 +52,8 @@ const ViewList = (props) => {
       },
       {
         name: '',
-        cell:(row) => (
-          <Button className={classes.view}
-            // value={row.surname}
-            // value="Trainee"
-            // onChange={(e) => handleInputChange(row, "surname", e)}
-          >View</Button>
+        cell:({id}) => (
+          <NavLink to={{pathname:'/users/report',state:{id:users[id].employeeId,fname:users[id].employeeFirstName,email:users[id].employeeEmail}}}><Button className={classes.view}>View</Button></NavLink>  
         ),
       },
       {
@@ -65,7 +62,7 @@ const ViewList = (props) => {
           <button className={classes.delete}
             value={id}
             onClick={handleEmployeeDelete}
-          >Delete</button>
+          ><FaBeer/></button>
         ),
       },
     ];
@@ -147,20 +144,20 @@ const ViewList = (props) => {
   const handleEmployeeDelete = (event) => {
     // console.log(users[event.target.value].employeeId)
     // console.log(event.target.value);
-    setSelectedEmployeeId(users[event.target.value].employeeId);
+    // setSelectedEmployeeId(users[event.target.value].employeeId);
     if(window.confirm("Do you want to remove this employee?") == true){
       setDeleteEmployee(true);
-      deleteHandler();
+      deleteHandler(event);
     }
     else{
       setDeleteEmployee(false);
     }
   }
 
-    const deleteHandler=async (e)=>{
-      console.log(selectedEmployeeId);
+    const deleteHandler=async (event)=>{
+      console.log(users[event.target.value].employeeId);
       try {
-          let res=await fetch("http://localhost:8080/api/employee/"+selectedEmployeeId, 
+          let res=await fetch("http://localhost:8080/api/employee/"+users[event.target.value].employeeId, 
           { 
             method: 'DELETE', 
             headers:{ 'Authorization':token} 
@@ -191,6 +188,7 @@ const ViewList = (props) => {
         employeeLastName={course.employeeLastName}
         employeeEmail={course.employeeEmail}
       />
+    
     ));
 
   

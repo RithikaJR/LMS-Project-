@@ -24,15 +24,15 @@ const ForgotPassword = (props) => {
         fetch("http://localhost:8080/api/user/forget-password", {
             headers: {'content-type': 'application/x-www-form-urlencoded'},
             method: "POST",
-            body: 
-            // JSON.stringify({
-            {employeeEmail: enteredEmailId}
-            // })  
+            body: new FormData(enteredEmailId)
+            // // JSON.stringify({
+            // {employeeEmail: enteredEmailId}
+            // // })  
         }).then(response => {
             console.log("hello");
             console.log("request: ", response);
             alert("Check Your Registered mail Id")
-            return response.json();
+            // return response.json();
         })
         
       }

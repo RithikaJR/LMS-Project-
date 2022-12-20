@@ -177,8 +177,12 @@ const logoutHandler = () => {
               {isLoggedIn ? <SuperAdminHome onLogout={logoutHandler} name={employeeName} employeeId={employeeId}/> : <Redirect to='/login' /> }
           </Route>
 
-          <Route path="/users">
+          <Route path="/users" exact>
             {isLoggedIn ? <UserMainPage onLogout={logoutHandler} /> : <Redirect to='/login' /> }
+          </Route>
+
+          <Route path="/users/report">
+            {isLoggedIn ? <ViewEmployeeData onLogout={logoutHandler} /> : <Redirect to='/login' /> }
           </Route>
 
           <Route path="/notification">
