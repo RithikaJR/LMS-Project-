@@ -5,12 +5,8 @@ import { exportComponentAsPNG } from "react-component-export-image";
 import Certificatepng from '../images/Certificatepng.png';
 
 import classes from "./Certificate.module.css";
-
  
-
 const Certificate = () => {
-
-
   const [certificateWrapper, setdata] = useState({
        Name: "vf",
       course:""})
@@ -21,7 +17,6 @@ const Certificate = () => {
     <div className={classes.app}>
       <div className={classes.meta}>
         <h1>Certificate</h1>
-
         <button
           onClick={(e) => {
             e.preventDefault();

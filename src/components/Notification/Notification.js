@@ -103,7 +103,8 @@ const Notification = ()=>{
               employeeId: listArray[key].employeeId,
               courseId: listArray[key].courseId,
               courseName: listArray[key].courseName,
-              approvalStatus:listArray[key].approvalStatus
+              approvalStatus:listArray[key].approvalStatus,
+              employeeEmail:listArray[key].employeeEmail
             });
           }
           }
@@ -178,6 +179,7 @@ const Notification = ()=>{
   
     const rejectHandler = (event) =>{   
       console.log('clicked'+approvalList[event.target.value].courseApprovalId); 
+       
       setemployeeId(approvalList[event.target.value].employeeId);
       console.log("zcfd"+employeeId);
       
@@ -195,22 +197,32 @@ const Notification = ()=>{
          
        }).then(response => {
          console.log("Rejected");
-
+         console.log('clicked'+approvalList[event.target.value].employeeEmail);
+         console.log('clicked'+approvalList[event.target.value].employeeName);
+         console.log('clicked'+approvalList[event.target.value].courseName);
          alert("Status rejected") 
          console.log("request: ", response);
          return response.json();
        }) 
 
-       //put api 
+       //post api for email
 
-       fetch("http://localhost:8080/api/course-approval/"+approvalList[event.target.value].courseApprovalId, {
+       fetch("http://localhost:8080/api/course/reject-mail-notify", {
         
        headers: { "Content-Type": "application/json", 'Authorization':token },
-       method: "PUT",
-       body: JSON.stringify({
+       method: "POST",
+       body: JSON.stringify(
         
-           //email : email
-       })
+        {
+
+          employeeEmail:approvalList[event.target.value].employeeEmail,
+      
+          employeeName:approvalList[event.target.value].employeeName,
+      
+          courseName:approvalList[event.target.value].courseName
+      
+      }
+       )
        
      }).then(response => {
        console.log("Rejected");
@@ -220,9 +232,6 @@ const Notification = ()=>{
        return response.json();
      }) 
     }
-
-
-    
 
 
     

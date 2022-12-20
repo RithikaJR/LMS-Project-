@@ -177,8 +177,12 @@ const logoutHandler = () => {
               {isLoggedIn ? <SuperAdminHome onLogout={logoutHandler} name={employeeName} employeeId={employeeId}/> : <Redirect to='/login' /> }
           </Route>
 
-          <Route path="/users">
+          <Route path="/users" exact>
             {isLoggedIn ? <UserMainPage onLogout={logoutHandler} /> : <Redirect to='/login' /> }
+          </Route>
+
+          <Route path="/users/report">
+            {isLoggedIn ? <ViewEmployeeData onLogout={logoutHandler} /> : <Redirect to='/login' /> }
           </Route>
 
           <Route path="/notification">
@@ -213,7 +217,7 @@ const logoutHandler = () => {
             {isLoggedIn ? <CourseInterface onLogout={logoutHandler} /> : <Redirect to='/login' /> }
           </Route>
 
-          {/* Employee */}
+    
           <Route path="/employee">
             {employeeLoggedIn ? <EmployeeHome isAuthenticated={employeeLoggedIn} onLogout={logoutHandler} name={employeeName} employeeId={employeeId} tracker={userStatus} userId={userId}/> : <Redirect to='/login' /> }
           </Route>
