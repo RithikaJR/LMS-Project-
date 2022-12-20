@@ -7,7 +7,7 @@ export const SidebarData = [
 
   {
     title: 'Coursess',
-    path: '/employee/coursess',
+    path: '/employee',
     icon: <RiIcons.RiProfileLine />,
     cName: 'nav-text'
   },

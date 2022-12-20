@@ -4,6 +4,10 @@ import './ChangePassword.css'
 
 
 const ChangePassword = (props)=>{
+
+    
+    let token = `Bearer ${sessionStorage.getItem('jwt')}`;
+
     const [confirmPwd, setConfirmPwd] = useState("");
     const [newPwd, setNewPwd] = useState("");
     const [currentPwd, setcurrentPwd] = useState("");
@@ -13,7 +17,7 @@ const ChangePassword = (props)=>{
 
         fetch("http://localhost:8080/api/user/change-password", {
       
-          headers: { "Content-Type": "application/json" },
+          headers: { "Content-Type": "application/json", 'Authorization':token},
           method: "POST",
           body: JSON.stringify({
             employeeId :props.employeeId,
@@ -29,16 +33,32 @@ const ChangePassword = (props)=>{
             console.log(currentPwd)
             // alert("Password Change Successfully") 
             console.log("request: ", response);
-          // return response.json();
+            // console.log("request: ", response.changePasswordStatus);
+          return response.json();
           
         })
         
         .then(resJson => {
-          alert("Password Change Successfully")
-          setcurrentPwd("")
-          setNewPwd("");
-          setConfirmPwd("");
-          // props.changePassword(false)
+          if(resJson.changePasswordStatus !== null){
+            alert(resJson.changePasswordStatus)
+            // console.log("resonse: ", resJson.changePasswordStatus);
+            fetch("http://localhost:8080/api/status-update/"+props.userId, {
+        
+            headers: { "Content-Type": "application/json", 'Authorization':token},
+            method: "PUT",
+            body: JSON.stringify({
+              initialStatus : true,
+            })
+          })
+
+            setcurrentPwd("")
+            setNewPwd("");
+            setConfirmPwd("");
+            // props.changePassword(false)
+          }else{
+            alert("Current password is wrong")
+          }
+          
           
        })
        

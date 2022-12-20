@@ -10,25 +10,30 @@ import TickImage from '../../images/tick.png'
 
 
 const EmployeeCourseItem = (props) => {
+  let Username = localStorage.getItem('LoggedName');
+
   const [cartIsShown, setCartIsShown] = useState(false);
   const [view, setView] = useState(false);
 
   const showCartHandler = async (e) => {
+    let token = `Bearer ${sessionStorage.getItem('jwt')}`;
+
+    console.log("employeeId:"+props.employeeId)
+    console.log("employeeName:"+Username)
+    console.log("courseId:"+props.id)
+    console.log("courseName:"+props.name)
     try {
-      let res = await fetch("http://localhost:8080/api/enroll-course", {
+      let res = await fetch("http://localhost:8080/api/course-approval", {
         method: "POST",
-        headers: {"content-type": "application/json"},
+        headers: {"content-type": "application/json" ,'Authorization':token},
         body: JSON.stringify({
-          employeeId:{
             employeeId:props.employeeId,
-          },
-          courseId:{
+            employeeName:Username,
             courseId:props.id,
-          },
-          entrolledDate:null
+            courseName:props.name,
         } ),
       });
-      if (res.status === 200) {
+      if (res.status === 201) {
         setCartIsShown(true);
         setView(true)
       } else {
@@ -64,7 +69,7 @@ const EmployeeCourseItem = (props) => {
                   <div class="learn-header">
                       <div class="title"><image src={TickImage} alt=""/></div>
                   </div>
-                  <div class="learn-body">Enrolled Successfully
+                  <div class="learn-body">Enroll Request Sent
                       <div><Button data-close-button class="close-button" onClick={hideCartHandler}>OK</Button></div>
                   </div>
               </div>

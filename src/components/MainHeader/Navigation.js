@@ -14,11 +14,12 @@ import UserProfile from '../Employee/UserProfile';
 import Modal from '../UI/Modal/Modal';
 
 const Navigation = (props) => {
+  let Username = localStorage.getItem('LoggedName');
   const [overlayShown, setoverlayIsShown] = useState(false);
   const [notify, setNotify] = useState(false);
   
   useEffect(() => {
-    if(props.tracker===1){
+    if(props.tracker===false){
       setoverlayIsShown(true);
     }else{
       setoverlayIsShown(false);
@@ -50,7 +51,7 @@ const Navigation = (props) => {
       <ul>
         {props.isLoggedIn && (
           <li>
-            <h1>Welcome {props.name}</h1>
+            <h1>Welcome {Username}</h1>
           </li>
         )}
         
@@ -113,7 +114,7 @@ const Navigation = (props) => {
 
       </ul>
       {overlayShown && <Modal onClose={overlayShown} className="overlay">
-          <UserProfile name={props.name} employeeId={props.employeeId} />
+          <UserProfile name={props.name} employeeId={props.employeeId} userId={props.userId} />
           <Button onClick={hideCartHandler}>Close</Button>
           {/* name={props.name} employeeId={props.employeeId} */}
           </Modal>}

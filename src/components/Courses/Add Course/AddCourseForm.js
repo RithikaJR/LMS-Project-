@@ -202,41 +202,41 @@ function submitCourse(e2){
 
 
 ////////////////////////////// GET MODULE /////////////////////////////
-useEffect(() => {
-  // console.log("dfsdf");
-  let fetchModule = async () => {
-    const response = await fetch(
-      'http://localhost:8080/api/courses/'+selectedCourseId+'/modules',{
-        headers:{
-          'Authorization':token
-        }
-      }
-    ); 
-    if (!response.ok) {
-      throw new Error('Something went wrong!');
-    }
-    const responseData = await response.json();
-    const loadedCategory = [];
-    const newItemList = [...responseData._embedded.module]
+// useEffect(() => {
+//   // console.log("dfsdf");
+//   let fetchModule = async () => {
+//     const response = await fetch(
+//       'http://localhost:8080/api/courses/'+selectedCourseId+'/modules',{
+//         headers:{
+//           'Authorization':token
+//         }
+//       }
+//     ); 
+//     if (!response.ok) {
+//       throw new Error('Something went wrong!');
+//     }
+//     const responseData = await response.json();
+//     const loadedCategory = [];
+//     const newItemList = [...responseData._embedded.module]
     
-    for (const key in newItemList) {
-      loadedCategory.push({
-        id: key,
-        module_id:newItemList[key].moduleId,
-        module_name:newItemList[key].moduleName,
-      })
-    }
+//     for (const key in newItemList) {
+//       loadedCategory.push({
+//         id: key,
+//         module_id:newItemList[key].moduleId,
+//         module_name:newItemList[key].moduleName,
+//       })
+//     }
 
-    setModules(loadedCategory);
-    setIsLoading(false);
-  };
+//     setModules(loadedCategory);
+//     setIsLoading(false);
+//   };
 
-    fetchModule().catch((error) => {
-      setIsLoading(false);
-      setHttpError(error.message);
-    });
+//     fetchModule().catch((error) => {
+//       setIsLoading(false);
+//       setHttpError(error.message);
+//     });
 
-}, [selectedCourseId]);
+// }, [selectedCourseId]);
 
 //////////////////////////////////////////////////////////
 

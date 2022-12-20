@@ -33,7 +33,7 @@ const EnrolledCourses = (props) => {
         let response;
         if(searchName===''){
           response = await fetch(
-            'http://localhost:8080/api/enrolled-courses/1005',{
+            'http://localhost:8080/api/enrolled-course/search/findAllByemployeeId?name=1001',{
               headers:{
                 'Authorization':token
               }
@@ -50,7 +50,7 @@ const EnrolledCourses = (props) => {
         const responseData = await response.json();
   
         const loadedCourses = [];
-        const courseArray = {...responseData.enrolledCourseList};
+        const courseArray = {...responseData._embedded.enrolledCourse};
 
         console.log(responseData);
         for (const key in courseArray) {

@@ -88,7 +88,7 @@ const EmployeeHome = (props) => {
   
   const [cartIsShown, setCartIsShown] = useState(false);
   useEffect(() => {
-    if(props.tracker===1){
+    if(props.tracker===false){
       setCartIsShown(true);
     }else{
       setCartIsShown(false);
@@ -168,7 +168,7 @@ const EmployeeHome = (props) => {
          
       </IconContext.Provider>
           {cartIsShown && <Modal onClose={cartIsShown} className="overlay">
-          <UserProfile name={props.name} employeeId={props.employeeId} />
+          <UserProfile name={props.name} employeeId={props.employeeId} userId={props.userId} />
           <Button onClick={hideCartHandler}>Close</Button>
           {/* name={props.name} employeeId={props.employeeId} */}
           </Modal>}
@@ -193,7 +193,7 @@ const EmployeeHome = (props) => {
       </Route>
 
       <Route path="/employee/profile">
-            <EmployeeProfile employeeId={props.employeeId} name={props.name}/>
+            <EmployeeProfile employeeId={props.employeeId} name={props.name} userId={props.userId}/>
       </Route></div>
     
   );

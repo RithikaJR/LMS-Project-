@@ -20,7 +20,7 @@ const EmployeeCourses = (props) => {
     return (
         <div className={classes.coursepage}>
             <div className={classes.box}>
-                <h1>Featured Courses</h1>
+                <h1>Courses</h1>
             </div>
             <EmployeeAvailableCourses employeeId={props.employeeId} />
         </div>

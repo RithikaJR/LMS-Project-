@@ -24,55 +24,52 @@ const ViewList = (props) => {
   
     const [searchName, setSearchName] = useState("");
     const [deleteEmployee, setDeleteEmployee] = useState(false);
-    const [selectedEmployeeId, setSelectedEmployeeId] = useState();
-    const [viewReport, setViewReport] = useState(false);
+    const [selectedEmployeeId, setSelectedEmployeeId] = useState(1005);
     let columns = [];
 
-{users.map(user => {
-columns = [
-  {
-    name: 'Employee ID',
-    selector: 'employeeId',
-    sortable: true,
-  },
-  {
-    name: 'First Name',
-    selector: 'employeeFirstName',
-    sortable: true,
-  },
-  {
-    name: 'Last Name',
-    selector: 'employeeLastName',
-    sortable: true,
-  },
-  {
-    name: 'Email',
-    selector: 'employeeEmail',
-    sortable: true,    
-  },
-  {
-    name: 'Reports',
-    cell:(row) => (
-      <NavLink to= '/reports'>
-      <Button className={classes.view}
-        // value={row.surname}
-        // value="Trainee"
-        // onClick={reportHandler}
-      >View</Button>
-      </NavLink>
-    ),
-  },
-  {
-    name: '',
-    cell:(row) => (
-      <a className={classes.delete}
-        value={user.employeeId}
-        onClick={handleEmployeeDelete}
-      ><img src={image} /></a>
-    ),
-  },
-];
-})}
+    {users.map(user => {
+    columns = [
+      {
+        name: 'Employee ID',
+        selector: 'employeeId',
+        sortable: true,
+      },
+      {
+        name: 'First Name',
+        selector: 'employeeFirstName',
+        sortable: true,
+      },
+      {
+        name: 'Last Name',
+        selector: 'employeeLastName',
+        sortable: true,
+      },
+      {
+        name: 'Email',
+        selector: 'employeeEmail',
+        sortable: true,    
+      },
+      {
+        name: '',
+        cell:(row) => (
+          <Button className={classes.view}
+            // value={row.surname}
+            // value="Trainee"
+            // onChange={(e) => handleInputChange(row, "surname", e)}
+          >View</Button>
+        ),
+      },
+      {
+        name: '',
+        cell:({id}) => (
+          <button className={classes.delete}
+            value={id}
+            onClick={handleEmployeeDelete}
+          >Delete</button>
+        ),
+      },
+    ];
+    })}
   
     const onSearchHandler = (name)=>{
       console.log(name)
@@ -82,7 +79,7 @@ columns = [
     useEffect(() => {
       const fetchMeals = async () => {
         let response
-        if(searchName ===""){
+        if(searchName === ""){
           response = await fetch(
             'http://localhost:8080/api/employee',{
               headers:{
@@ -148,8 +145,9 @@ columns = [
     }
 
   const handleEmployeeDelete = (event) => {
-    setSelectedEmployeeId(event.target.value);
-    console.log(event.target.value);
+    // console.log(users[event.target.value].employeeId)
+    // console.log(event.target.value);
+    setSelectedEmployeeId(users[event.target.value].employeeId);
     if(window.confirm("Do you want to remove this employee?") == true){
       setDeleteEmployee(true);
       deleteHandler();
@@ -159,9 +157,26 @@ columns = [
     }
   }
 
-  // if(deleteEmployee == true){
     const deleteHandler=async (e)=>{
       console.log(selectedEmployeeId);
+      try {
+          let res=await fetch("http://localhost:8080/api/employee/"+selectedEmployeeId, 
+          { 
+            method: 'DELETE', 
+            headers:{ 'Authorization':token} 
+          })
+
+                if (res.status === 204 ) {
+                    alert("Employee Deleted!");
+                } else {
+                    alert("Some error occured");
+                    console.log(res.status);
+                }
+          } 
+      catch (err) {
+            console.log(err);
+          }
+  // };
 }
 
     // const reportHandler = () => {

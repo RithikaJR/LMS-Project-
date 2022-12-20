@@ -12,7 +12,7 @@ const EmployeeProfile = (props) => {
     return(
         <div className="profile">
               <h2>Update Profile</h2>
-              <UserProfile name={props.name} employeeId={props.employeeId}/>
+              <UserProfile name={props.name} employeeId={props.employeeId} userId={props.userId}/>
         </div> 
 
     )

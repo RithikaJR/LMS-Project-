@@ -9,10 +9,6 @@ import reject from '../images/reject.png';
 import App from '../../App';
 import ApprovalList from './ApprovalList';
 
-
-
-
-
 const Notification = ()=>{
   const columns =
     [
@@ -36,109 +32,164 @@ const Notification = ()=>{
     
       {
         name: 'Approve',      
-        cell:(row) => (
+        cell:({id}) => (
           <button 
-            value={employeeId}
+            value={id}
             // onClick={(e) => handleInputChange(row, "surname", e)}
-  
             onClick={approveHandler}
-          ><img src={approval}/></button>
+          >Approve</button>
         ),
     
       }, 
       {
           name: 'Reject',
-          cell:(row) => (
+          cell:({id}) => (
             <button
-              // value={row.surname}
+              value={id}
               // onClick={(e) => handleInputChange(row, "surname", e)}
               onClick={rejectHandler}
   
-            ><img src={reject}/></button>
+            >Reject</button>
            
           ),
       
+        },
+
+        {
+          name: 'Status',
+          selector: 'approvalStatus',
+          sortable: true,
         },
   
   
     ];
   
-    const [users, setUsers] = useState([]);
+    let token = `Bearer ${sessionStorage.getItem('jwt')}`;
+
+    const [approvalList, setApprovalList] = useState([]);
     const [employeeId, setemployeeId] = useState();
     const [courseId, setcourseId] = useState(100);
     const [isLoading, setIsLoading] = useState(true);
     const [httpError, setHttpError] = useState();
     const [date, setDate] = useState(null);
 
-    const approveHandler = (event) =>{
-    }
-  
-    const rejectHandler = (event) =>{
-      console.log('clicked'); 
-    }
-
+   
+   
     useEffect(() => {
-        const fetchMeals = async () => {
-          
-         
-         let response = await fetch(
-              'http://localhost:8080/api/course-approval'
-            );
-         
-    
+      const courseApprovalList = async () => { 
+        let response = await fetch(
+              'http://localhost:8080/api/course-approval',{
+            headers:{
+              'Authorization':token
+            }
+          });
           if (!response.ok) {
             throw new Error('Something went wrong!');
           }
-    
           const responseData = await response.json();
-    
-          const loadedCourses = [];
-          const courseArray = {...responseData._embedded.courseApproval};
-  
-          console.log(responseData);
-          for (const key in courseArray) {
-            loadedCourses.push({
-              id: key,
-              employeeName: courseArray[key].employeeName,
-              employeeId: courseArray[key].employeeId,
-              courseName: courseArray[key].courseName,
+          const loadedApprovalList = [];
+          const listArray = {...responseData._embedded.courseApproval};
 
+          console.log(responseData);
+          for (const key in listArray) {
+            loadedApprovalList.push({
+              id: key,
+              courseApprovalId:listArray[key].courseApprovalId,
+              employeeName: listArray[key].employeeName,
+              employeeId: listArray[key].employeeId,
+              courseId: listArray[key].courseId,
+              courseName: listArray[key].courseName,
+              approvalStatus:listArray[key].approvalStatus
             });
           }
     
-          setUsers(loadedCourses);
+          setApprovalList(loadedApprovalList);
+        
           setIsLoading(false);
         };
     
-        fetchMeals().catch((error) => {
+        courseApprovalList().catch((error) => {
           setIsLoading(false);
           setHttpError(error.message);
         });
 
-        {users.map((user) =>{
-          setemployeeId(user.employeeId);
-        })}
-        console.log(employeeId);
-
-      }, []);
       
 
-    // users.map((course) => {
-    //     setemployeeId(course.employeeId)
-    //     // setcourseId(course.courseId)
-    //     // <ApprovalList
-    //     //   key={course.courseApprovalId}
-    //     //   id={course.courseApprovalId}
-    //     //   employeeName={course.employeeName}
-    //     //   employeeId={course.employeeId}
-    //     //   // employeeLastName={course.employeeLastName}
-    //     //   courseName={course.courseName}
-    //     // />
-    //   });
+    }, []);
 
-    // {users.map((user) =>{
-    //   setemployeeId(user.employeeId);
-    // })}
+   
+
+    const approveHandler = (event) =>{
+      event.preventDefault();
+      fetch("http://localhost:8080/api/enrolled-course", {
+        
+            headers: { "Content-Type": "application/json", 'Authorization':token },
+            method: "POST",
+            body: JSON.stringify({
+                courseId:approvalList[event.target.value].courseId,
+                employeeId:approvalList[event.target.value].employeeId,
+                enrolledDate:date
+            })
+            
+          }).then(response => {
+            console.log("hello change");
+            console.log(employeeId)
+          
+            alert("Status approved") 
+            console.log("request: ", response);
+            
+            return response.json();
+          })
+          
+          .then(resJson => { // alert("Password Change Successfully")
+         })
+
+         fetch("http://localhost:8080/api/course-approval/"+approvalList[event.target.value].courseApprovalId, {
+        
+         headers: { "Content-Type": "application/json", 'Authorization':token },
+         method: "PUT",
+         body: JSON.stringify({
+          
+             approvalStatus : "Approved"
+         })
+         
+       }).then(response => {
+         console.log("Approved");
+        
+         
+         return response.json();
+       })
+      
+    }
+  
+    const rejectHandler = (event) =>{   
+      console.log('clicked'+approvalList[event.target.value].courseApprovalId); 
+      setemployeeId(approvalList[event.target.value].employeeId);
+      console.log("zcfd"+employeeId);
+      event.preventDefault();
+
+
+         fetch("http://localhost:8080/api/course-approval/"+approvalList[event.target.value].courseApprovalId, {
+        
+         headers: { "Content-Type": "application/json", 'Authorization':token },
+         method: "PUT",
+         body: JSON.stringify({
+          
+             approvalStatus : "Rejected"
+         })
+         
+       }).then(response => {
+         console.log("Rejected");
+
+         alert("Status rejected") 
+         console.log("request: ", response);
+         return response.json();
+       }) 
+    }
+
+
+    
+
 
     
 
@@ -147,7 +198,7 @@ const Notification = ()=>{
         <DataTable 
             title="Approval Request"
             columns={columns}
-            data={users}
+            data={approvalList}
             pagination
             highlightOnHover
             
