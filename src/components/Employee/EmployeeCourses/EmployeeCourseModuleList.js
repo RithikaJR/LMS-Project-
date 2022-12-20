@@ -13,6 +13,7 @@ const EmployeeCourseModuleList = (props) =>{
   const [moduleResource, setModuleResource] = useState([]);
   const [isLoading, setIsLoading] = useState(true);
   const [httpError, setHttpError] = useState();
+  const [moduleCheck, setModuleCheck] = useState(false);  
 
     useEffect(() => {
         const fetchModules = async () => {
@@ -51,26 +52,57 @@ const EmployeeCourseModuleList = (props) =>{
           setIsLoading(false);
           setHttpError(error.message);
         });
+       
+        // for(i; i<moduleResource.length; i++){
 
-      }, []);
+        // }
+        if(moduleCheck===true){
+          checkedHandler();
+        } 
+        
+
+      }, [moduleCheck]);
     
 
-  const handleVideo = ()=>{
-    props.videoLink(video);
+  // const handleChecks = ()=>{
+  //   if(props.checked == true){
+  //     setModuleCheck(true)
+  //   }
+  //   else{
+  //     setModuleCheck(false);
+  //   }
+  // }
+
+  const checkedHandler = () =>{
+    console.log("hjfsjafjfj")
+    props.moduleCheck(true)
   }
 
 
   console.log(props.id);
   console.log(props.name);
-  console.log(props.moduleId);
+  // console.log(props.moduleId);
 
 
   const VideoLink = (link)=>{
     props.videooLink(link);
   }
 
+  const resourceCheck=(value)=>{
+    console.log("aa"+value)
+    if(value === true){
+      setModuleCheck(true)
+      return true
+    }
+    else{
+      setModuleCheck(false);
+      return false
+    }
+  }
+
   const listOfResources = moduleResource.map((module) => (
     <EmployeeModuleResource
+      resourceCheck={resourceCheck}
       videosLink={VideoLink}
       key={module.id}
       id={module.moduleId}
@@ -83,6 +115,13 @@ const EmployeeCourseModuleList = (props) =>{
 
     return (
       <div className={classes.wrap}>
+        <div className={classes.check}>
+          {/* <form> */}
+            <input type="checkbox" 
+                   onChange={checkedHandler}
+                   checked={moduleCheck}/>
+          {/* </form> */}
+        </div>
           <DropdownButton id="dropdown-basic-button" title={props.name}>
             {listOfResources}
           </DropdownButton>

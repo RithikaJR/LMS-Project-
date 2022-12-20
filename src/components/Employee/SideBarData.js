@@ -6,7 +6,7 @@ import * as RiIcons from 'react-icons/ri';
 export const SidebarData = [
 
   {
-    title: 'Coursess',
+    title: 'Courses',
     path: '/employee',
     icon: <RiIcons.RiProfileLine />,
     cName: 'nav-text'
@@ -25,12 +25,12 @@ export const SidebarData = [
     cName: 'nav-text'
   },
 
-  {
-    title: 'Certificates',
-    path: '/employee/certificate',
-    icon: <IoIcons.IoIosPaper />,
-    cName: 'nav-text'
-  },
+  // {
+  //   title: 'Certificates',
+  //   path: '/employee/certificate',
+  //   icon: <IoIcons.IoIosPaper />,
+  //   cName: 'nav-text'
+  // },
 
 //   {
 //     title: 'Auction',

@@ -28,8 +28,8 @@
 
 .page h3 {
     font-family: 'Montserrat', sans-serif;
-    margin-top: 8rem;
-    margin-left: 30rem;
+    /* margin-top: 8rem; */
+    margin-left: 35rem;
     color: rgb(66, 66, 66);
     font-size: 3rem;
     font-weight: bold;
@@ -38,7 +38,7 @@
 
 .page Button {
     margin: 1.5rem 0;
-    width: 16rem;
+    /* width: 16rem; */
 }
 
 .aa{
@@ -63,14 +63,34 @@
 .cert {
     display: flex;
     align-items: center;
-    justify-content: center;
+    justify-content: space-between;
     /* padding-right: -1rem; */
-    margin-bottom: 1.5rem;
+    /* margin-bottom: 1.5rem; */
 }
 
 .cert Button {
-    margin-top: 7rem;
-    margin-left: 12rem;
+    margin-top: 3rem;
+    margin-right: 1rem;
+    padding: 0.7rem 0.7rem;
+    color: white;
+    background-color: #69a9e1;
+    /* border: 2px solid gray;  */
+    font-weight: bold;
+}
+
+.cert Button:disabled {
+    background-color: gray;
+    cursor: not-allowed;
+}
+
+.cert img{
+    height: 4rem;
+    width: 4rem;
+    margin-left: 0.5rem;
+}
+
+.rating{
+    padding-right: 2rem;
 }
 
 .close img{

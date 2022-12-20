@@ -35,7 +35,7 @@ const FeedbackForm = () => {
 
 <div className={classes.login}>
         <h2>Feedback</h2>
-      <div className={classes.control}>
+      {/* <div className={classes.control}>
         <input
           type="text"
           placeholder="Your name"
@@ -52,7 +52,7 @@ const FeedbackForm = () => {
          
           required
         />
-      </div>
+      </div> */}
       <div className={classes.controll}>
         <textarea
           placeholder="Your message"

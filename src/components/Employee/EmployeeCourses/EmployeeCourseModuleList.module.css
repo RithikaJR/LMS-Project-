@@ -6,3 +6,6 @@
   font-family: 'Montserrat', sans-serif;
 }
 
+.check {
+  visibility: hidden;
+}

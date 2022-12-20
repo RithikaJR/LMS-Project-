@@ -95,3 +95,7 @@
     top: 315px;
     font-size: 20pt;
   }
+
+  .downloadWrapper{
+    visibility: hidden;
+  }

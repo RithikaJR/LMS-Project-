@@ -15,19 +15,75 @@ import Modal from '../UI/Modal/Modal';
 
 const Navigation = (props) => {
   let Username = localStorage.getItem('LoggedName');
+  let token = `Bearer ${sessionStorage.getItem('jwt')}`;
+
   const [overlayShown, setoverlayIsShown] = useState(false);
-  const [notify, setNotify] = useState(false);
+  const [notify, setNotify] = useState(true);
+  const [approvalList, setApprovalList] = useState([]);
+  const [feedbackList, setFeedbackList] = useState([]);
+  const [isLoading, setIsLoading] = useState(true);
+  const [httpError, setHttpError] = useState();
   
   useEffect(() => {
+      const courseApprovalList = async () => { 
+        let response = await fetch(
+              'http://localhost:8080/api/course-approval',{
+            headers:{
+              'Authorization':token
+            }
+          });
+          if (!response.ok) {
+            throw new Error('Something went wrong!');
+          }
+          const responseData = await response.json();
+          const loadedApprovalList = [];
+          const listArray = {...responseData._embedded.courseApproval};
+
+          console.log(responseData);
+          for (const key in listArray) {
+            if(listArray[key].approvalStatus === "pending"){
+            loadedApprovalList.push({
+              id: key,
+              courseApprovalId:listArray[key].courseApprovalId,
+              employeeName: listArray[key].employeeName,
+              employeeId: listArray[key].employeeId,
+              courseId: listArray[key].courseId,
+              courseName: listArray[key].courseName,
+              approvalStatus:listArray[key].approvalStatus
+            });
+          }
+          }
+    
+          setApprovalList(loadedApprovalList);
+        
+          setIsLoading(false);
+        };
+    
+        courseApprovalList().catch((error) => {
+          setIsLoading(false);
+          setHttpError(error.message);
+        });
+
+
     if(props.tracker===false){
       setoverlayIsShown(true);
     }else{
       setoverlayIsShown(false);
     }
 
-    setNotify(true);
+    if(approvalList.length != 0){
+      setNotify(true);
+    }
+    else {
+      setNotify(false);
+    }
+    
    
-  },[]);
+  },[approvalList.length]);
+  // approvalList.length
+
+  let approval_length = approvalList.length;
+  let feedback_length = feedbackList.length;
 
   const showCartHandler = () => {
     setoverlayIsShown(true);
@@ -36,15 +92,6 @@ const Navigation = (props) => {
   const hideCartHandler = () => {
     setoverlayIsShown(false);
   };
-
-  const notificationHandler = () => {
-    if(notify == true){
-      setNotify(false);
-    }
-    else{
-      setNotify(true);
-    }
-  }
 
   return (
     <nav className={classes.nav}>
@@ -75,7 +122,7 @@ const Navigation = (props) => {
               <Dropdown.Item>
                 <div className='item'>
                   <NavLink to='/notification'>
-                    <h5>You have <span className={classes.number}>{}3</span> new approvals</h5>
+                    <h5>You have <span className={classes.number}>{approval_length}</span> new approvals</h5>
                   </NavLink>
                 </div>
               </Dropdown.Item>

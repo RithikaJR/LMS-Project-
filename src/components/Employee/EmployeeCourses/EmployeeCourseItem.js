@@ -24,6 +24,8 @@ const EmployeeCourseItem = (props) => {
     console.log("courseId:"+props.id)
     console.log("courseName:"+props.name)
     console.log("EmailId:"+EmailId)
+    console.log("course Duration"+props.course_duration)
+
     try {
       let res = await fetch("http://localhost:8080/api/course-approval", {
         method: "POST",

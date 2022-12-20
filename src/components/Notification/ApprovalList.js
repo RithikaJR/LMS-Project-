@@ -11,7 +11,7 @@ const ApprovalList = (props) => {
         <div className={classes.wrap}>
           <div className={classes.element}>Name : {props.employeeName}</div>
           {/* <div className={classes.element}>Lastname : {props.employeeLastName}</div> */}
-          <div className={classes.element}>CousreName: {props.courseName}</div>
+          <div className={classes.element}>CourseName: {props.courseName}</div>
         </div>
         
       </li>

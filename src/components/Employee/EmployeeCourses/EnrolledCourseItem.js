@@ -44,8 +44,12 @@ const EnrolledCourseItem = (props) => {
   //   let hideCartHandler =()=>{
   //     setCartIsShown(false);
   //   };
+  const propsHandler =()=>{
+    sessionStorage.setItem("courseId",props.id);
+    sessionStorage.setItem("courseDuration",props.duration);
+  }
 
-    console.log("CouresItem"+props.id);
+    console.log("CourseItem"+props.id);
     return (
       <li className={classes.courses}>
         <div className={classes.courseimg}>
@@ -54,7 +58,7 @@ const EnrolledCourseItem = (props) => {
         <div>
           <h3>{props.name}</h3>
           <div className={classes.description}>Course Description : {props.description}</div>
-          <div className={classes.view}><NavLink to={{pathname:'/employee/course-module',state:{id:props.id}}}><Button >View</Button></NavLink></div>
+          <div className={classes.view}><NavLink to={{pathname:'/employee/course-module',state:{id:props.id}}}><Button onClick={propsHandler}>View</Button></NavLink></div>
           
           {/* {!view && <div className={classes.view}><NavLink to={{pathname:'',state:{id:props.id}}}><Button onClick={showCartHandler}>Enroll</Button></NavLink></div> }
           {cartIsShown && <Modal>
