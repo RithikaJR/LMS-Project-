@@ -13,7 +13,7 @@ const Notification = ()=>{
   const columns =
     [
       {
-        name: ' ID',
+        name: 'Employee ID',
         selector: 'employeeId',
         sortable: true,
       },
@@ -65,6 +65,8 @@ const Notification = ()=>{
     ];
   
     let token = `Bearer ${sessionStorage.getItem('jwt')}`;
+    const current = new Date();
+    const date1 = `${current.getFullYear()}/${current.getMonth()+1}/${current.getDate()}`;
 
     const [approvalList, setApprovalList] = useState([]);
     const [employeeId, setemployeeId] = useState();
@@ -93,6 +95,7 @@ const Notification = ()=>{
 
           console.log(responseData);
           for (const key in listArray) {
+            if(listArray[key].approvalStatus === "pending"){
             loadedApprovalList.push({
               id: key,
               courseApprovalId:listArray[key].courseApprovalId,
@@ -102,6 +105,7 @@ const Notification = ()=>{
               courseName: listArray[key].courseName,
               approvalStatus:listArray[key].approvalStatus
             });
+          }
           }
     
           setApprovalList(loadedApprovalList);
@@ -116,11 +120,12 @@ const Notification = ()=>{
 
       
 
-    }, []);
+    }, [employeeId]);
 
    
 
     const approveHandler = (event) =>{
+      console.log(date1)
       event.preventDefault();
       //post api for enrolled course
       fetch("http://localhost:8080/api/course/enroll-course", {
