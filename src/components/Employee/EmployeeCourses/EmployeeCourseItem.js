@@ -11,6 +11,7 @@ import TickImage from '../../images/tick.png'
 
 const EmployeeCourseItem = (props) => {
   let Username = localStorage.getItem('LoggedName');
+  let EmailId= localStorage.getItem('LoggedEmail');
 
   const [cartIsShown, setCartIsShown] = useState(false);
   const [view, setView] = useState(false);
@@ -22,6 +23,7 @@ const EmployeeCourseItem = (props) => {
     console.log("employeeName:"+Username)
     console.log("courseId:"+props.id)
     console.log("courseName:"+props.name)
+    console.log("EmailId:"+EmailId)
     try {
       let res = await fetch("http://localhost:8080/api/course-approval", {
         method: "POST",
@@ -31,6 +33,7 @@ const EmployeeCourseItem = (props) => {
             employeeName:Username,
             courseId:props.id,
             courseName:props.name,
+            employeeEmail:EmailId,
         } ),
       });
       if (res.status === 201) {
