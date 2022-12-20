@@ -49,11 +49,12 @@ const Courses = () => {
                 <div className={classes.add}>
                   <Button onClick={buttonHandler}>Add +</Button>
                 </div>
+                <div>
                 {buttonIsShown &&
-                <div className={classes.add}>
-                  <div>
+                <div className={classes.addagain}>
+                  {/* <div>
                     <Button onClick={buttonHandler}>Add +</Button>
-                  </div>
+                  </div> */}
                   <div className={classes.display}>
                     <div className={classes.options}>
                       <Button onClick={showCartHandler}>Add Course</Button>
@@ -63,6 +64,7 @@ const Courses = () => {
                     </div>
                 </div>
                 </div>}
+                </div>
 
                 {cartIsShown && 
                 <Modal onClose={cartIsShown} >

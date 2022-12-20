@@ -21,7 +21,7 @@
 .coursepage h1 {
     font-size: 50px;
     font-weight: bolder;
-    color: rgb(85, 84, 84);
+    color: #555454;
     /* margin-right: 3rem; */
     margin-top: 1rem;
 }
@@ -73,18 +73,37 @@
 }
 
 .display {
-    margin: -4.5rem 0;
+    margin: -7.5rem 0;
     float: left;
 }
 
 .display Button {
     font-size: medium;
-    padding: 0.7rem;
+    padding: 0.5rem;
     background-color: #70b4f0;
     color: white;
     border: 1px solid white;
 }
 
 .add {
-    float: right;
+    margin-top: 5.3rem;
+    margin-right: -4rem;
+}
+
+.add Button{
+    font-weight: bold;
+    position: relative;
+    padding: 0.7rem 0.9rem;
+    margin-right: -13rem;
+    border: 2px ;
+}
+
+.add Button:hover{
+    /* border: 2px solid #ffffff; */
+    box-shadow: 0 1px 4px gray;
+}
+
+.addagain{
+    margin-top: 13rem;
+    margin-left: -5rem;
 }

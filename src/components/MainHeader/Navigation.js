@@ -1,16 +1,11 @@
 import React from 'react';
 import { NavLink } from 'react-router-dom';
 import icon from '../images/notification bell.png';
-
-
-import Notification from '../Notification/Notification';
-
-
-
+import icon_notify from '../images/notification bell_notify.png';
 import classes from './Navigation.module.css';
-
 import 'bootstrap/dist/css/bootstrap.css';
 import Dropdown from 'react-bootstrap/Dropdown';
+import './Nav-Dropdown.css';
 import image from '../images/team-male.jpg' 
 import Button from '../UI/Button/Button';
 import { useState } from 'react';
@@ -21,7 +16,7 @@ import Modal from '../UI/Modal/Modal';
 const Navigation = (props) => {
   let Username = localStorage.getItem('LoggedName');
   const [overlayShown, setoverlayIsShown] = useState(false);
-  console.log("userId"+props.userId)
+  const [notify, setNotify] = useState(false);
   
   useEffect(() => {
     if(props.tracker===false){
@@ -29,6 +24,8 @@ const Navigation = (props) => {
     }else{
       setoverlayIsShown(false);
     }
+
+    setNotify(true);
    
   },[]);
 
@@ -39,6 +36,16 @@ const Navigation = (props) => {
   const hideCartHandler = () => {
     setoverlayIsShown(false);
   };
+
+  const notificationHandler = () => {
+    if(notify == true){
+      setNotify(false);
+    }
+    else{
+      setNotify(true);
+    }
+  }
+
   return (
     <nav className={classes.nav}>
       <ul>
@@ -49,19 +56,45 @@ const Navigation = (props) => {
         )}
         
       
-          <li>
+          {/* <li>
             <NavLink to = '/notification' className={classes.usertext}>
             <div className={classes.bell}>
               <img src={icon}/>
               </div>
             </NavLink>
+          </li> */}
+
+          <li className={classes.notify}>
+          <Dropdown>
+            <Dropdown.Toggle variant="" className='toggle'>
+              {notify ? 
+              <img src={icon_notify}/> :
+              <img src={icon}/>}
+            </Dropdown.Toggle>
+            <Dropdown.Menu className='menu'>
+              <Dropdown.Item>
+                <div className='item'>
+                  <NavLink to='/notification'>
+                    <h5>You have <span className={classes.number}>{}3</span> new approvals</h5>
+                  </NavLink>
+                </div>
+              </Dropdown.Item>
+              <Dropdown.Item className='menu'>
+                <div className='item'>
+                  <NavLink to='/feedbacks' className='navv'>
+                    <h5>You have <span className={classes.number}>{}5</span> new feedbacks</h5>
+                  </NavLink>
+                </div>
+              </Dropdown.Item>
+            </Dropdown.Menu>
+          </Dropdown>
           </li>
         
         {props.isLoggedIn && (
           <li className='avatar'>
             {/*  <Button className='logout' onClick={props.onLogout}>Logout</Button>  */}
             <Dropdown>
-            <Dropdown.Toggle variant="">
+            <Dropdown.Toggle variant="" className='toggle'>
             <img src={image} />
             </Dropdown.Toggle>
             <Dropdown.Menu>

@@ -10,10 +10,12 @@ import ListItem from './ListItem';
 import Search from '../Search Bar/Search.js';
 import Button from '../UI/Button/Button';
 import { handleRef } from '@fluentui/react-component-ref';
+import { NavLink } from 'react-router-dom';
+import ViewEmployeeData from '../CourseTracking/ViewEmployeeData';
 
 
 
-const ViewList = () => {
+const ViewList = (props) => {
 
     let token = `Bearer ${sessionStorage.getItem('jwt')}`;
     const [users, setUsers] = useState([]);
@@ -123,6 +125,7 @@ const ViewList = () => {
         setIsLoading(false);
         setHttpError(error.message);
       });
+      
     }, []);
   
     if (isLoading) {
@@ -154,7 +157,6 @@ const ViewList = () => {
     }
   }
 
-  // if(deleteEmployee == true){
     const deleteHandler=async (e)=>{
       console.log(selectedEmployeeId);
       try {
@@ -176,9 +178,13 @@ const ViewList = () => {
           }
   // };
 }
+
+    // const reportHandler = () => {
+    //   <NavLink to='/reports' />
+    // }
   
     const coursesList = users.map((course) => (
-      <ListItem
+      <ViewEmployeeData
         key={course.employeeId}
         id={course.employeeId}
         employeeFirstName={course.employeeFirstName}
@@ -200,7 +206,7 @@ const ViewList = () => {
               pagination
               highlightOnHover
             />
-        </div>        
+        </div> 
       </div>
     );
   };
