@@ -123,13 +123,18 @@ const Notification = ()=>{
     const approveHandler = (event) =>{
       event.preventDefault();
       //post api for enrolled course
-      fetch("http://localhost:8080/api/enrolled-course", {
+      fetch("http://localhost:8080/api/course/enroll-course", {
         
             headers: { "Content-Type": "application/json", 'Authorization':token },
             method: "POST",
-            body: JSON.stringify({
-                courseId:approvalList[event.target.value].courseId,
-                employeeId:approvalList[event.target.value].employeeId,
+            body: JSON.stringify(
+              {
+                employeeId:{
+                   employeeId: approvalList[event.target.value].employeeId
+                    },
+                courseId:{
+                   courseId:approvalList[event.target.value].courseId
+                    },
                 enrolledDate:date
             })
             
