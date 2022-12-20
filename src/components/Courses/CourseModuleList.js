@@ -17,7 +17,7 @@ const CourseModuleList = (props) =>{
     const [httpError, setHttpError] = useState();
   
       useEffect(() => {
-          const fetchModules = async () => {
+          const fetchModuleResources = async () => {
             let response;
             // if(searchName===''){
               response = await fetch(
@@ -34,7 +34,7 @@ const CourseModuleList = (props) =>{
             const responseData = await response.json();
       
             const loadedCourses = [];
-            const moduleArray = {...responseData._embedded.moduleResource};
+            const moduleArray = {...responseData._embedded.moduleResources};
       
             // console.log(responseData);
             for (const key in moduleArray) {
@@ -47,12 +47,13 @@ const CourseModuleList = (props) =>{
                 duration: moduleArray[key].moduleResourceDuration,
               });
             }
-            
+            // console.log("dfsdf")
             setModuleResource(loadedCourses);
+            console.log(moduleResource);
             setIsLoading(false);
           };
       
-          fetchModules().catch((error) => {
+          fetchModuleResources().catch((error) => {
             setIsLoading(false);
             setHttpError(error.message);
           });

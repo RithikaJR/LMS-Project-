@@ -19,6 +19,7 @@ import Notification from './components/Notification/Notification';
 
 import SuperAdminHome from './components/Home/SuperAdminHome';
 import LAHomePage from './components/LearningAdmin/LAHomePage';
+import ViewEmployeeData from './components/CourseTracking/ViewEmployeeData';
 
 
 function App() {
@@ -188,6 +189,10 @@ const logoutHandler = () => {
 
           <Route path="/notification">
           {isLoggedIn ? <Notification onLogout={logoutHandler} /> : <Redirect to='/login' /> }
+          </Route>
+
+          <Route path="/reports">
+          {isLoggedIn ? <ViewEmployeeData onLogout={logoutHandler} /> : <Redirect to='/login' /> }
           </Route>
 
           {/* <Route path="/courses/course-module">

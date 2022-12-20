@@ -10,10 +10,12 @@ import ListItem from './ListItem';
 import Search from '../Search Bar/Search.js';
 import Button from '../UI/Button/Button';
 import { handleRef } from '@fluentui/react-component-ref';
+import { NavLink } from 'react-router-dom';
+import ViewEmployeeData from '../CourseTracking/ViewEmployeeData';
 
 
 
-const ViewList = () => {
+const ViewList = (props) => {
 
     let token = `Bearer ${sessionStorage.getItem('jwt')}`;
     const [users, setUsers] = useState([]);
@@ -23,6 +25,7 @@ const ViewList = () => {
     const [searchName, setSearchName] = useState("");
     const [deleteEmployee, setDeleteEmployee] = useState(false);
     const [selectedEmployeeId, setSelectedEmployeeId] = useState();
+    const [viewReport, setViewReport] = useState(false);
     let columns = [];
 
 {users.map(user => {
@@ -48,13 +51,15 @@ columns = [
     sortable: true,    
   },
   {
-    name: '',
+    name: 'Reports',
     cell:(row) => (
+      <NavLink to= '/reports'>
       <Button className={classes.view}
         // value={row.surname}
         // value="Trainee"
-        // onChange={(e) => handleInputChange(row, "surname", e)}
+        // onClick={reportHandler}
       >View</Button>
+      </NavLink>
     ),
   },
   {
@@ -123,6 +128,7 @@ columns = [
         setIsLoading(false);
         setHttpError(error.message);
       });
+      
     }, []);
   
     if (isLoading) {
@@ -156,28 +162,14 @@ columns = [
   // if(deleteEmployee == true){
     const deleteHandler=async (e)=>{
       console.log(selectedEmployeeId);
-  //     try {
-  //         let res=await fetch("http://localhost:8080/api/employee/"+selectedEmployeeId, 
-  //         { 
-  //           method: 'DELETE', 
-  //           headers:{ 'Authorization':token} 
-  //         })
-
-  //               if (res.status === 204 ) {
-  //                   alert("Employee Deleted!");
-  //               } else {
-  //                   alert("Some error occured");
-  //                   console.log(res.status);
-  //               }
-  //         } 
-  //     catch (err) {
-  //           console.log(err);
-  //         }
-  // // };
 }
+
+    // const reportHandler = () => {
+    //   <NavLink to='/reports' />
+    // }
   
     const coursesList = users.map((course) => (
-      <ListItem
+      <ViewEmployeeData
         key={course.employeeId}
         id={course.employeeId}
         employeeFirstName={course.employeeFirstName}
@@ -199,7 +191,7 @@ columns = [
               pagination
               highlightOnHover
             />
-        </div>        
+        </div> 
       </div>
     );
   };

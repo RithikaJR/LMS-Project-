@@ -45,10 +45,10 @@ export const SidebarData = [
     cName: 'nav-text'
   },
  
-  {
-    title: 'Log Out',
-    path: '/login',
-    icon: <AiIcons.AiOutlineLogout />,
-    cName: 'nav-text'
-  }
+  // {
+  //   title: 'Log Out',
+  //   path: '/login',
+  //   icon: <AiIcons.AiOutlineLogout />,
+  //   cName: 'nav-text'
+  // }
 ];

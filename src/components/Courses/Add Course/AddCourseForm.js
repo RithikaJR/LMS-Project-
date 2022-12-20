@@ -150,11 +150,13 @@ function submitCategory(e1){
 
 //////////////////POST COURSE////////////////////////
 
-const url_course = "http://localhost:8080/api/course-category";
+const url_course = "http://localhost:8080/api/add-course/add";
 const [courseData,setCourseData] = useState({
+        categoryId:"",
         course_name:"",
         course_description:"",
-        course_imageUrl:""
+        course_imageUrl:"",
+        course_duration:""
       });
 
 function handleCourse(e2){
@@ -168,9 +170,16 @@ function handleCourse(e2){
 function submitCourse(e2){
   e2.preventDefault();
   Axios.post(url_course,{
-    courseName:courseData.course_name,
-    courseDescription:courseData.course_description,
-    courseImageURL:courseData.course_imageUrl
+    category: {
+      categoryId:selectedCategoryId
+    },
+    course: {
+      courseName:courseData.course_name,
+      courseDescription:courseData.course_description,
+      courseImageURL:courseData.course_imageUrl,
+      courseDuration:courseData.course_duration
+    }
+    
   },
   {headers:{
       'Authorization':token
@@ -182,7 +191,7 @@ function submitCourse(e2){
     if(res.data != null){
       alert("Course added successfully!")
     }
-    console.log(res.data)
+    console.log("hb"+res.data)
   })
 
   setAddNewCategory(false);
@@ -517,8 +526,9 @@ return (
           <h3>{module.module_name}</h3>
           {/* <Button onClick={deleteModule}><img src={close} /></Button> */}
         </div>))}
-
-        <Button onClick={newModuleHandler}>Add +</Button>
+        {!addNewModule &&
+          <Button onClick={newModuleHandler}>Add +</Button>
+        }
         {addNewModule && 
       
         <div>
@@ -526,7 +536,7 @@ return (
               <label>Module Number</label>
               <input type="number"
                     placeholder="Module Number"
-                    id='course_description'
+                    id='module_number'
                     // onChange={(e2)=>handleCourse(e2)}
                     />
             </div>
@@ -535,13 +545,13 @@ return (
               <label>Module Name</label>
               <input type="text"
                     placeholder="Module Name"
-                    id='course_imageUrl'
+                    id='module_name'
                     // onChange={(e2)=>handleCourse(e2)}
                     />
             </div> 
-            <Button onClick={newModuleResourceHandler}>Add +</Button>  
+            {/* <Button onClick={newModuleResourceHandler}>Add +</Button>   */}
             <NewCourse onAddExpense={addExpenseHandler}/>
-          {/* <Modules items={expense} /> */}
+            <Modules items={expense} />
 
           
         </div>}
@@ -623,13 +633,24 @@ return (
                   />
           </div>
 
+          <div className="individual">
+            <label>Course Duration</label>
+            <input type="time"
+                  // placeholder="Image URL"
+                  step="1"
+                  id='course_duration'
+                  onChange={(e2)=>handleCourse(e2)}
+                  // value={data.trainer} 
+                  />
+          </div>
+
         <div className="last">
           <Button type='submit' onClick={(e2)=>submitCourse(e2)}>Submit</Button>
           {/* set to setAddNewCourse(false) in the function */}
         </div>
     </div>}
 
-    {addNewModule && 
+    {/* {addNewModule && 
       
       <div>
         <div className="individual">
@@ -650,10 +671,9 @@ return (
                   />
           </div>   
           <NewCourse onAddExpense={addExpenseHandler}/>
-        {/* <Modules items={expense} /> */}
 
         
-      </div>}
+      </div>} */}
 
        
         

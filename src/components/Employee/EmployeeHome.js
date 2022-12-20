@@ -112,7 +112,7 @@ const EmployeeHome = (props) => {
             <FaIcons.FaBars onClick={showSidebar} />
           </Link>
          
-          <h1 className='tagName'>Welcome </h1>
+          {/* <h1 className='tagName'>Welcome </h1> */}
          
           
           <div className={classes.profilepic}>
