@@ -19,6 +19,7 @@ const CourseInterface = (props) => {
   const [link, setLink] = useState("");
   const [checked, setChecked] = useState(false);
   const [state, setState] = useState(true);
+  const [downloadCertificate, setDownloadCertificate] = useState(true);
  
 //   const [courseId, setCurseId] = useState(location.state.id);
   let location = useLocation();
@@ -55,9 +56,7 @@ const CourseInterface = (props) => {
           pdf: moduleArray[key].modulePdfUrl,
           footage: moduleArray[key].moduleVideoUrl,
         });
-      }
-
-      
+      }      
       setModules(loadedCourses);
       setIsLoading(false);
     };
@@ -112,10 +111,7 @@ const CourseInterface = (props) => {
       name={module.name}
       pdf={module.pdf}
       footage={module.footage}
-
     />
-
-
   ));
 
   
@@ -123,7 +119,7 @@ const CourseInterface = (props) => {
     <section className={classes.page}>
         <div className={classes.cert}>
           <h3>Modules</h3>
-          <Button  onClick={jsPdfGenerator} disabled={true}>Download PDF</Button>
+          <Button  onClick={jsPdfGenerator} disabled={downloadCertificate}>Download Certificate</Button>
         </div>
         <div>
         <CourseRating />
@@ -135,7 +131,9 @@ const CourseInterface = (props) => {
         <section className={classes.aa}>
 
           <iframe src={link}
-                className={classes.player}>
+                className={classes.player}
+                allow="autoplay;"
+                allowFullScreen="true">
           </iframe>       
 
         </section>

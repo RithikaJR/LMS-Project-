@@ -1,5 +1,4 @@
 @import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;600&display=swap');
-@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;600&display=swap');
 
 .nav ul {
   font-family: 'Montserrat', sans-serif;
@@ -15,7 +14,7 @@
 
 .nav li {
   margin: 0;
-  margin-left: 3rem;
+  margin-left: 2rem;
 }
 
 .nav h1 {
@@ -25,24 +24,29 @@
 
 .nav a {
   text-decoration: none;
-  color: rgb(163, 162, 162);
+  color: rgb(72, 72, 72);
 }
 
 .nav a:hover,
 .nav a:active {
-  color: #ffffff;
+  /* color: #ffffff; */
+  /* background-color: none; */
+  opacity: 0.7;
+}
+
+.number {
+  font-weight: bold;
 }
 
 
 
 .nav button {
   font: inherit;
-  background: #ffffff;
-  border: 1px;
+  background: #6898c3;
+  /* border: 1px solid black; */
   padding: 0.5rem 1.5rem;
-  color: #f55858;
+  /* color: #f55858;   */
   cursor: pointer;
-  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.26);
   border-radius: 20px;
 }
 
@@ -54,8 +58,10 @@
 
 .nav button:hover,
 .nav button:active {
-  color: white;
-  background: #f55858;
+  /* color: white; */
+  /* background: #f55858; */
+  border: 1px;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.178);
 }
 
 .profilepic img{
@@ -80,4 +86,9 @@
 .bell img {
   height: 30px;
   width: 30px;
+}
+
+.notify img {
+  height: 35px;
+  width: 35px;
 }

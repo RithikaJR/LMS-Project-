@@ -16,6 +16,7 @@ import Notification from './components/Notification/Notification';
 
 import SuperAdminHome from './components/Home/SuperAdminHome';
 import LAHomePage from './components/LearningAdmin/LAHomePage';
+import ViewEmployeeData from './components/CourseTracking/ViewEmployeeData';
 
 
 function App() {
@@ -89,9 +90,12 @@ const loginHandler = (email, password) => {
       history.push('/home');
       
       setemployeeName(resJson.user.employeeName)
-      setemployeeId(resJson.user.employee.employeeId)
+      // setemployeeId(resJson.user.employee.employeeId)
+      setemployeeId(resJson.employeeId)
       setuserStatus(resJson.initialStatus)
       setuserId(resJson.user.userId)
+
+      
     }
     else if((resJson.roleId ==2)){
       console.log("learning admin")
@@ -107,7 +111,8 @@ const loginHandler = (email, password) => {
       history.push('/learaningAdmin');
       
       setemployeeName(resJson.user.employeeName)
-      setemployeeId(resJson.user.employee.employeeId)
+      // setemployeeId(resJson.user.employee.employeeId)
+      setemployeeId(resJson.employeeId)
       setuserStatus(resJson.initialStatus)
       setuserId(resJson.user.userId)
     }
@@ -124,7 +129,8 @@ const loginHandler = (email, password) => {
       history.push('/employee');
       
       setemployeeName(resJson.user.employeeName)
-      setemployeeId(resJson.user.employee.employeeId)
+      // setemployeeId(resJson.user.employee.employeeId)
+      setemployeeId(resJson.employeeId)
       setuserStatus(resJson.initialStatus)
       setuserId(resJson.user.userId)
     }else{
@@ -177,6 +183,10 @@ const logoutHandler = () => {
 
           <Route path="/notification">
           {isLoggedIn ? <Notification onLogout={logoutHandler} /> : <Redirect to='/login' /> }
+          </Route>
+
+          <Route path="/reports">
+          {isLoggedIn ? <ViewEmployeeData onLogout={logoutHandler} /> : <Redirect to='/login' /> }
           </Route>
 
           <Route path="/learningadmin">

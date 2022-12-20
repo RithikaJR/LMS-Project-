@@ -66,12 +66,12 @@
       font-family: 'Montserrat', sans-serif;
       border: 2px solid rgb(45, 45, 45);
       /* border-radius: 15px; */
-      width:800px;
+      width: 62rem;
       box-shadow: 0 5px 5px gray;
       margin-top: 2rem;
       position: relative;
-      left: 355px;
-      top: 165px;
+      left: 10rem;
+      top: 8rem;
       
       text-align: center;
       }

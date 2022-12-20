@@ -5,6 +5,9 @@ import jsPDF from 'jspdf';
 import CourseRating from "../../Users/CourseRating";
 import { Button } from "react-bootstrap";
 import EmployeeCourseModuleList from "./EmployeeCourseModuleList";
+import Modal from "../../UI/Modal/Modal";
+import Certificate from "../Certificate";
+import close from '../../images/blue_close.png';
 
 const EmployeeCourseInterface = (props) => {
 
@@ -17,6 +20,8 @@ const EmployeeCourseInterface = (props) => {
   const [link, setLink] = useState("");
   const [checked, setChecked] = useState(false);
   const [state, setState] = useState(true);
+  const [downloadCertificate, setDownloadCertificate] = useState(false);
+  const [cartIsShown, setCartIsShown] = useState(false);
  
 //   const [courseId, setCurseId] = useState(location.state.id);
   let location = useLocation();
@@ -84,14 +89,22 @@ const EmployeeCourseInterface = (props) => {
     );
   }
 
-  const jsPdfGenerator = () =>{
-    var doc = new jsPDF('p','pt');
-    doc.text(20,20,'Certificate');
+//   const jsPdfGenerator = () =>{
+//     var doc = new jsPDF('p','pt');
+//     doc.text(20,20,'Certificate');
 
-    doc.text(80,40,'Course Category : Communication');
-    doc.text(100,60,'Course Name : Leadership Skills');
-    doc.save("Certificate.pdf");
-   
+//     doc.text(80,40,'Course Category : Communication');
+//     doc.text(100,60,'Course Name : Leadership Skills');
+//     doc.save("Certificate.pdf");
+// }
+
+const hideCartHandler = () => {
+  setCartIsShown(false);
+};
+
+const downloadHandler = () => {
+  setDownloadCertificate(true);
+  setCartIsShown(true);
 }
 
   const handleChange = () => {
@@ -122,11 +135,19 @@ const EmployeeCourseInterface = (props) => {
     <section className={classes.page}>
     <div className={classes.cert}>
       <h3>Modules</h3>
-      <Button  onClick={jsPdfGenerator} disabled={true}>Download Certificate ⬇</Button>
+      <Button  onClick={downloadHandler} disabled={true}>Download Certificate</Button>
     </div>
     <div disabled={true}>
     <CourseRating />
     </div>
+
+    {downloadCertificate && 
+    <Modal onClose={cartIsShown} >
+    <div className={classes.close}>
+      <Button onClick={hideCartHandler}><img src={close}/></Button>
+    </div>
+    <Certificate  />
+  </Modal>}
     
   <section className={classes.courses}>
     
@@ -136,12 +157,6 @@ const EmployeeCourseInterface = (props) => {
       <iframe src={link}
             className={classes.player}>
       </iframe>
-      {/* <div className={classes.check}>
-          <label>Completed?</label>
-          <input type="checkbox"
-                onChange={handleChange}
-                disabled={state} />
-      </div> */}
       
 
     </section>

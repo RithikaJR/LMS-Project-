@@ -1,3 +1,5 @@
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;600&display=swap');
+
 /* 
 
 
@@ -27,6 +29,7 @@
 
 * {
     box-sizing: border-box;
+    font-family: 'Montserrat', sans-serif;;
   }
 
   .app {
@@ -76,7 +79,7 @@
   }
 
   .certificateWrapper p1 {
-    font-family: "Staatliches", cursive;
+    /* font-family: "Staatliches", cursive; */
     margin: 0;
     position: absolute;
     left: 350px;
@@ -85,7 +88,7 @@
   }
 
   .certificateWrapper p2 {
-    font-family: "Staatliches", cursive;
+    /* font-family: "Staatliches", cursive; */
     margin: 0;
     position: absolute;
     left: 343px;

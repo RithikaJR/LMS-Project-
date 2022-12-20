@@ -20,7 +20,7 @@ class Certificate extends Component{
         <div className={classes.meta}>
           <h1>Certificate</h1>
           {/* <p>Please enter your name</p> */}
-          <input
+          {/* <input
             type="text"
             placeholder="Please enter your name..."
             value={this.state.Name}
@@ -36,7 +36,7 @@ class Certificate extends Component{
             onChange={(e) => {
               this.setState({ course: e.target.value });
             }}
-          />
+          /> */}
           
           <button
             onClick={(e) => {
