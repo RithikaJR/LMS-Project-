@@ -81,6 +81,8 @@ const loginHandler = (email, password) => {
       localStorage.setItem('isLoggedIn',resJson.roleId);
       localStorage.setItem('LoggedName',resJson.user.employeeName);
       localStorage.setItem('LoggedEmployeeId',resJson.user.employee.employeeId);
+     
+      
 
       setIsLoggedIn(true);
       history.push('/home');
@@ -89,6 +91,8 @@ const loginHandler = (email, password) => {
       setemployeeId(resJson.user.employee.employeeId)
       setuserStatus(resJson.initialStatus)
       setuserId(resJson.user.userId)
+
+      
     }
     else if((resJson.roleId ==2)){
       console.log("learning admin")

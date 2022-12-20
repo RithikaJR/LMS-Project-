@@ -31,6 +31,7 @@ const EmployeeCourseItem = (props) => {
             employeeName:Username,
             courseId:props.id,
             courseName:props.name,
+            
         } ),
       });
       if (res.status === 201) {

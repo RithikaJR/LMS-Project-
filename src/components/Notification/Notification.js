@@ -78,6 +78,7 @@ const Notification = ()=>{
     useEffect(() => {
       const courseApprovalList = async () => { 
         let response = await fetch(
+          //get api for course approval
               'http://localhost:8080/api/course-approval',{
             headers:{
               'Authorization':token
@@ -121,6 +122,7 @@ const Notification = ()=>{
 
     const approveHandler = (event) =>{
       event.preventDefault();
+      //post api for enrolled course
       fetch("http://localhost:8080/api/enrolled-course", {
         
             headers: { "Content-Type": "application/json", 'Authorization':token },
@@ -144,6 +146,8 @@ const Notification = ()=>{
           .then(resJson => { // alert("Password Change Successfully")
          })
 
+         //put api for course approval 
+
          fetch("http://localhost:8080/api/course-approval/"+approvalList[event.target.value].courseApprovalId, {
         
          headers: { "Content-Type": "application/json", 'Authorization':token },
@@ -166,9 +170,10 @@ const Notification = ()=>{
       console.log('clicked'+approvalList[event.target.value].courseApprovalId); 
       setemployeeId(approvalList[event.target.value].employeeId);
       console.log("zcfd"+employeeId);
+      
       event.preventDefault();
-
-
+       
+        //put api for course approval
          fetch("http://localhost:8080/api/course-approval/"+approvalList[event.target.value].courseApprovalId, {
         
          headers: { "Content-Type": "application/json", 'Authorization':token },
@@ -185,6 +190,25 @@ const Notification = ()=>{
          console.log("request: ", response);
          return response.json();
        }) 
+
+       //put api 
+
+       fetch("http://localhost:8080/api/course-approval/"+approvalList[event.target.value].courseApprovalId, {
+        
+       headers: { "Content-Type": "application/json", 'Authorization':token },
+       method: "PUT",
+       body: JSON.stringify({
+        
+           //email : email
+       })
+       
+     }).then(response => {
+       console.log("Rejected");
+
+      //  alert("Status rejected") 
+       console.log("request: ", response);
+       return response.json();
+     }) 
     }
 
 
@@ -207,9 +231,6 @@ const Notification = ()=>{
         
     );
 };
-
-
-
 
   export default Notification;
 

@@ -55,9 +55,7 @@ const CourseInterface = (props) => {
           pdf: moduleArray[key].modulePdfUrl,
           footage: moduleArray[key].moduleVideoUrl,
         });
-      }
-
-      
+      }      
       setModules(loadedCourses);
       setIsLoading(false);
     };
@@ -112,10 +110,7 @@ const CourseInterface = (props) => {
       name={module.name}
       pdf={module.pdf}
       footage={module.footage}
-
     />
-
-
   ));
 
   
