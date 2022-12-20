@@ -28,6 +28,7 @@ function App() {
   const [employeeLoggedIn, setemployeeLoggedIn] = useState(false);
   const [employeeName, setemployeeName] = useState('');
   const [employeeId, setemployeeId] = useState('');
+  const [employeeEmail, setemployeeEmail] = useState('');
   const [userStatus, setuserStatus] = useState('');
   const [userId, setuserId] = useState('');
   const history = useHistory()
@@ -37,21 +38,25 @@ function App() {
     const storedUserLoggedInInformation = localStorage.getItem('isLoggedIn');
     const storedUserName = localStorage.getItem('LoggedName');
     const storedEmployeeId = localStorage.getItem('LoggedEmployeeId');
+    const storedEmail= localStorage.getItem('LoggedEmail');
 
     if(storedUserLoggedInInformation === '1' && Token != null){
       setIsLoggedIn(true); 
       setemployeeName(storedUserName);
       setemployeeId(storedEmployeeId);
+      setemployeeEmail(storedEmail);
     }
     if(storedUserLoggedInInformation === '2' && Token != null){
       setlearningLoggedIn(true);
       setemployeeName(storedUserName);
       setemployeeId(storedEmployeeId);
+      setemployeeEmail(storedEmail);
     }
     if(storedUserLoggedInInformation === '3' && Token != null){
       setemployeeLoggedIn(true);
       setemployeeName(storedUserName);
       setemployeeId(storedEmployeeId);
+      setemployeeEmail(storedEmail);
     }
   },[employeeName]);
 
@@ -80,13 +85,17 @@ const loginHandler = (email, password) => {
       localStorage.setItem('LoggedName',resJson.user.employeeName);
       // localStorage.setItem('LoggedEmployeeId',resJson.user.employee.employeeId);
       localStorage.setItem('LoggedEmployeeId',resJson.employeeId);
+      localStorage.setItem('LoggedEmail',resJson.user.userName);
       setIsLoggedIn(true);
       history.push('/home');
       
       setemployeeName(resJson.user.employeeName)
+      // setemployeeId(resJson.user.employee.employeeId)
       setemployeeId(resJson.employeeId)
       setuserStatus(resJson.initialStatus)
       setuserId(resJson.user.userId)
+
+      
     }
     else if((resJson.roleId ==2)){
       console.log("learning admin")
@@ -96,11 +105,13 @@ const loginHandler = (email, password) => {
       localStorage.setItem('LoggedName',resJson.user.employeeName);
       // localStorage.setItem('LoggedEmployeeId',resJson.user.employee.employeeId);
       localStorage.setItem('LoggedEmployeeId',resJson.employeeId);
+      localStorage.setItem('LoggedEmail',resJson.user.userName);
 
       setlearningLoggedIn(true);
       history.push('/learaningAdmin');
       
       setemployeeName(resJson.user.employeeName)
+      // setemployeeId(resJson.user.employee.employeeId)
       setemployeeId(resJson.employeeId)
       setuserStatus(resJson.initialStatus)
       setuserId(resJson.user.userId)
@@ -112,11 +123,13 @@ const loginHandler = (email, password) => {
       localStorage.setItem('LoggedName',resJson.user.employeeName);
       // localStorage.setItem('LoggedEmployeeId',resJson.user.employee.employeeId);
       localStorage.setItem('LoggedEmployeeId',resJson.employeeId);
+      localStorage.setItem('LoggedEmail',resJson.user.userName);
 
       setemployeeLoggedIn(true);
       history.push('/employee');
       
       setemployeeName(resJson.user.employeeName)
+      // setemployeeId(resJson.user.employee.employeeId)
       setemployeeId(resJson.employeeId)
       setuserStatus(resJson.initialStatus)
       setuserId(resJson.user.userId)

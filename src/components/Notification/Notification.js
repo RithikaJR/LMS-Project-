@@ -13,7 +13,7 @@ const Notification = ()=>{
   const columns =
     [
       {
-        name: ' ID',
+        name: 'Employee ID',
         selector: 'employeeId',
         sortable: true,
       },
@@ -65,6 +65,8 @@ const Notification = ()=>{
     ];
   
     let token = `Bearer ${sessionStorage.getItem('jwt')}`;
+    const current = new Date();
+    const date1 = `${current.getFullYear()}/${current.getMonth()+1}/${current.getDate()}`;
 
     const [approvalList, setApprovalList] = useState([]);
     const [employeeId, setemployeeId] = useState();
@@ -78,6 +80,7 @@ const Notification = ()=>{
     useEffect(() => {
       const courseApprovalList = async () => { 
         let response = await fetch(
+          //get api for course approval
               'http://localhost:8080/api/course-approval',{
             headers:{
               'Authorization':token
@@ -117,19 +120,26 @@ const Notification = ()=>{
 
       
 
-    }, []);
+    }, [employeeId]);
 
    
 
     const approveHandler = (event) =>{
+      console.log(date1)
       event.preventDefault();
-      fetch("http://localhost:8080/api/enrolled-course", {
+      //post api for enrolled course
+      fetch("http://localhost:8080/api/course/enroll-course", {
         
             headers: { "Content-Type": "application/json", 'Authorization':token },
             method: "POST",
-            body: JSON.stringify({
-                courseId:approvalList[event.target.value].courseId,
-                employeeId:approvalList[event.target.value].employeeId,
+            body: JSON.stringify(
+              {
+                employeeId:{
+                   employeeId: approvalList[event.target.value].employeeId
+                    },
+                courseId:{
+                   courseId:approvalList[event.target.value].courseId
+                    },
                 enrolledDate:date
             })
             
@@ -145,6 +155,8 @@ const Notification = ()=>{
           
           .then(resJson => { // alert("Password Change Successfully")
          })
+
+         //put api for course approval 
 
          fetch("http://localhost:8080/api/course-approval/"+approvalList[event.target.value].courseApprovalId, {
         
@@ -168,9 +180,10 @@ const Notification = ()=>{
       console.log('clicked'+approvalList[event.target.value].courseApprovalId); 
       setemployeeId(approvalList[event.target.value].employeeId);
       console.log("zcfd"+employeeId);
+      
       event.preventDefault();
-
-
+       
+        //put api for course approval
          fetch("http://localhost:8080/api/course-approval/"+approvalList[event.target.value].courseApprovalId, {
         
          headers: { "Content-Type": "application/json", 'Authorization':token },
@@ -187,6 +200,25 @@ const Notification = ()=>{
          console.log("request: ", response);
          return response.json();
        }) 
+
+       //put api 
+
+       fetch("http://localhost:8080/api/course-approval/"+approvalList[event.target.value].courseApprovalId, {
+        
+       headers: { "Content-Type": "application/json", 'Authorization':token },
+       method: "PUT",
+       body: JSON.stringify({
+        
+           //email : email
+       })
+       
+     }).then(response => {
+       console.log("Rejected");
+
+      //  alert("Status rejected") 
+       console.log("request: ", response);
+       return response.json();
+     }) 
     }
 
 
@@ -209,9 +241,6 @@ const Notification = ()=>{
         
     );
 };
-
-
-
 
   export default Notification;
 

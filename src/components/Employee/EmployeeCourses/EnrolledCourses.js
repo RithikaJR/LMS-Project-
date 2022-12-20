@@ -50,7 +50,7 @@ const EnrolledCourses = (props) => {
         const responseData = await response.json();
   
         const loadedCourses = [];
-        const courseArray = {...responseData._embedded};
+        const courseArray = {...responseData};
 
         console.log(responseData);
         for (const key in courseArray) {
