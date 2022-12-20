@@ -92,6 +92,7 @@ const Notification = ()=>{
 
           console.log(responseData);
           for (const key in listArray) {
+            if(listArray[key].approvalStatus === "pending"){
             loadedApprovalList.push({
               id: key,
               courseApprovalId:listArray[key].courseApprovalId,
@@ -101,6 +102,7 @@ const Notification = ()=>{
               courseName: listArray[key].courseName,
               approvalStatus:listArray[key].approvalStatus
             });
+          }
           }
     
           setApprovalList(loadedApprovalList);

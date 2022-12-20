@@ -33,7 +33,7 @@ const EnrolledCourses = (props) => {
         let response;
         if(searchName===''){
           response = await fetch(
-            'http://localhost:8080/api/enrolled-course/search/findAllByemployeeId?name=1001',{
+            'http://localhost:8080/api/course/get-enrolled-course/'+props.employeeId,{
               headers:{
                 'Authorization':token
               }
@@ -50,7 +50,7 @@ const EnrolledCourses = (props) => {
         const responseData = await response.json();
   
         const loadedCourses = [];
-        const courseArray = {...responseData._embedded.enrolledCourse};
+        const courseArray = {...responseData._embedded};
 
         console.log(responseData);
         for (const key in courseArray) {
@@ -60,8 +60,8 @@ const EnrolledCourses = (props) => {
             name: courseArray[key].courseName,
             description: courseArray[key].courseDescription,
             image: courseArray[key].courseImageUrl,
-            // courseUrl: courseArray[key].courseUrl,
-            // moduleApi:courseArray[key]._links.modules.href,
+            duration: courseArray[key].courseDuration,
+            rating:courseArray[key].courseRating,
             
           });
         }
@@ -118,7 +118,7 @@ const EnrolledCourses = (props) => {
   
     return (
       <React.Fragment>
-        <h2>Enrolled Course By {props.name}</h2>
+        <h2>Enrolled Courses</h2>
         {/* <Search search={onSearchHandler}/> */}
         <section className={classes.courses}>
           <ul>{coursesList}</ul>

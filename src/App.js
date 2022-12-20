@@ -84,7 +84,7 @@ const loginHandler = (email, password) => {
       history.push('/home');
       
       setemployeeName(resJson.user.employeeName)
-      setemployeeId(resJson.user.employee.employeeId)
+      setemployeeId(resJson.employeeId)
       setuserStatus(resJson.initialStatus)
       setuserId(resJson.user.userId)
     }
@@ -101,7 +101,7 @@ const loginHandler = (email, password) => {
       history.push('/learaningAdmin');
       
       setemployeeName(resJson.user.employeeName)
-      setemployeeId(resJson.user.employee.employeeId)
+      setemployeeId(resJson.employeeId)
       setuserStatus(resJson.initialStatus)
       setuserId(resJson.user.userId)
     }
@@ -117,7 +117,7 @@ const loginHandler = (email, password) => {
       history.push('/employee');
       
       setemployeeName(resJson.user.employeeName)
-      setemployeeId(resJson.user.employee.employeeId)
+      setemployeeId(resJson.employeeId)
       setuserStatus(resJson.initialStatus)
       setuserId(resJson.user.userId)
     }else{

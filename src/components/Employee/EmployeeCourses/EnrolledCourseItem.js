@@ -45,7 +45,7 @@ const EnrolledCourseItem = (props) => {
   //     setCartIsShown(false);
   //   };
 
-    console.log("CouresItem"+props.id);
+    console.log("CourseItem"+props.id);
     return (
       <li className={classes.courses}>
         <div className={classes.courseimg}>
