@@ -12,9 +12,12 @@ const ModuleResource = (props) => {
   const [state, setState] = useState(true);
   const [checkState, setCheckState] = useState(false);
 
-  let duration = parseInt(props.duration, 10);
-  console.log(props.duration);
-  let timer =  duration * 1000;
+  // const duration = parseInt(props.duration, 10);
+  let arr = props.duration.split(":");
+// let arr = 08:32:09;
+  let pre_timer = arr[0]*3600000 + arr[1]*60000 +arr[2]*1000;
+  let timer = (pre_timer * 80)/100;
+  console.log(pre_timer)
   console.log(timer);
 
   useEffect(() => {
@@ -32,7 +35,7 @@ const ModuleResource = (props) => {
         setTimeout(() => {
           setState(false);
           setCheckState(true);
-         }, 9000);
+         }, timer);
       }
 
       console.log(props.moduleType);

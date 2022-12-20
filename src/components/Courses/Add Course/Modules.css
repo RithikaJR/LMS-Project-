@@ -10,5 +10,5 @@
   .expenses h2{
     text-align: center;
     color: rgb(171, 172, 173);
-    text-decoration: underline;
+    /* text-decoration: underline; */
   }

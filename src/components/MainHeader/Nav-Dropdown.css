@@ -1,11 +1,19 @@
-.dropdown-menu {
-    min-width: 16.4rem;
+.menu.dropdown-menu {
+    min-width: 22rem;
     justify-content: center;
     margin: 0;
     padding: 0.5rem 0;
-    padding-left: 1rem;
+    padding-left: 0.5rem;
     text-align: left;
     background-color: rgb(239, 239, 239);
+}
+
+.item{
+    margin: 0.4rem 0;
+}
+
+.item a{
+    width: 30px;
 }
 
 .dropdown-menu.show {
@@ -36,4 +44,8 @@
 
 .btn-primary:focus {
     box-shadow: 0 0 0;
+}
+
+.toggle.dropdown-toggle::after {
+    display: none;
 }

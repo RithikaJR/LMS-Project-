@@ -72,3 +72,28 @@
     margin-top: 7rem;
     margin-left: 12rem;
 }
+
+.close img{
+    height: 3rem;
+    width: 3rem;
+}
+
+.close Button {
+    
+    align-items: center;
+    border: 1px;
+    border-radius: 50%;
+    font-size: 25px;
+    width: 2rem;
+    height: 2rem;
+    padding: 0.1rem;
+    margin-right: 1rem;
+    float: right;
+}
+
+.close Button:hover{
+    transform: scale(1.2);
+    background-color: rgba(134, 205, 250, 0);
+    color: #3886ca;
+    font-size: 26.5px;
+}
