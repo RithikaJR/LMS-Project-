@@ -5,9 +5,6 @@ import Certificatepng from '../images/Certificatepng.png';
 import classes from "./Certificate.module.css";
 
 
-
-
-
 class Certificate extends Component{
   certificateWrapper = React.createRef();
   state = {
@@ -19,25 +16,7 @@ class Certificate extends Component{
       <div className={classes.app}>
         <div className={classes.meta}>
           <h1>Certificate</h1>
-          {/* <p>Please enter your name</p> */}
-          {/* <input
-            type="text"
-            placeholder="Please enter your name..."
-            value={this.state.Name}
-            onChange={(e) => {
-              this.setState({ Name: e.target.value });
-            }}
-          />
-
-           <input
-            type="text"
-            placeholder="Please enter your course..."
-            value={this.state.course}
-            onChange={(e) => {
-              this.setState({ course: e.target.value });
-            }}
-          /> */}
-          
+      
           <button
             onClick={(e) => {
               e.preventDefault();
