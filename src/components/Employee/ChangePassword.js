@@ -25,12 +25,9 @@ const ChangePassword = (props)=>{
           
         }).then(response => {
           
-            // console.log(response.statusText)
             console.log(confirmPwd)
             console.log(currentPwd)
-            // alert("Password Change Successfully") 
             console.log("request: ", response);
-            // console.log("request: ", response.changePasswordStatus);
           return response.json();
           
         })
@@ -61,12 +58,9 @@ const ChangePassword = (props)=>{
        
     };
         const comfirmPassword=(event)=>{
-          // if(newPwd === event.target.value){
+      
             setConfirmPwd(event.target.value)
-          // }else{
-          //   console.log("Your New Password and Confirm password do not match")
-          // }
-          
+        
         }
         const newPassword=(event)=>{
           setNewPwd(event.target.value)

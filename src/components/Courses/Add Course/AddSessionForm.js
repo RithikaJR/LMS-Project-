@@ -41,7 +41,6 @@ function handle(e){
 function submit(e){
   e.preventDefault();
   Axios.post(url,{
-//     sessionId:data.sessionId,
     sessionName:data.sessionName,
     trainerName:data.trainer,
     sessionDescription:data.sessionDescription,
@@ -85,15 +84,6 @@ function submit(e){
                         onChange={(e)=>handle(e)}
                         value={data.sessionName} />
                 </div>
-                
-                {/* <div className={classes.individual}>
-                <label>Session ID</label>
-                <input type="number"
-                        placeholder="ID" 
-                        id='sessionId'
-                        onChange={(e)=>handle(e)}
-                        value={data.sessionId}/>
-                </div> */}
                 
                 <div className={classes.individual}>
                 <label>Trainer</label>

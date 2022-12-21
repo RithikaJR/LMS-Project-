@@ -7,11 +7,9 @@ const SessionMail = (props) => {
     let token = `Bearer ${sessionStorage.getItem('jwt')}`;
     const url = "http://localhost:8080/api/scheduleEmail";
 
-    // const name = JSON.stringify(props.name);
     const name = props.name;
     const trainer = "Sri."+props.trainerName;
     const desc = props.sessionDescription;
-    // const eventDate = props.sessionDate;
     const start = props.sessionStartTime;
     const end = props.sessionEndTime;
 
@@ -60,10 +58,7 @@ function submit(e){
     console.log(res.data)
 })
 
-// console.log(data.endTime);
-// console.log(data.startTime);
-// console.log(end);
-// console.log(start);
+
 
 }
     return (

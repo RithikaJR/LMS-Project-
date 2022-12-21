@@ -25,19 +25,6 @@ export const SidebarData = [
     cName: 'nav-text'
   },
 
-  // {
-  //   title: 'Certificates',
-  //   path: '/employee/certificate',
-  //   icon: <IoIcons.IoIosPaper />,
-  //   cName: 'nav-text'
-  // },
-
-//   {
-//     title: 'Auction',
-//     path: '/customer/auction',
-//     icon: <RiIcons.RiAuctionFill />,
-//     cName: 'nav-text'
-//   },
 {
     title: 'Profile',
     path: '/employee/profile',
@@ -45,10 +32,5 @@ export const SidebarData = [
     cName: 'nav-text'
   },
  
-  // {
-  //   title: 'Log Out',
-  //   path: '/login',
-  //   icon: <AiIcons.AiOutlineLogout />,
-  //   cName: 'nav-text'
-  // }
+
 ];

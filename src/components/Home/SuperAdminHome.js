@@ -45,10 +45,5 @@ const SuperAdminHome = (props) => {
   );
 };
 
-// const textstyle = {
-//   color: "black",
-//   textAlign: "center",
-//   textdecoration: "none"
-// };
 
 export default SuperAdminHome;

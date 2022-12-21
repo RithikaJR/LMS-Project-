@@ -29,9 +29,6 @@ const EmployeeCourseInterface = (props) => {
   const [cartIsShown, setCartIsShown] = useState(false);
   const [check, setCheck] = useState(false);
  
-//   const [courseId, setCurseId] = useState(location.state.id);
-  // let location = useLocation();
-  // const propdata = location.state.id;
   let propdata = sessionStorage.getItem('courseId')
   let duration = sessionStorage.getItem('courseDuration')
 
@@ -68,11 +65,8 @@ const EmployeeCourseInterface = (props) => {
       for (const key in moduleArray) {
         loadedCourses.push({
           id: key,
-          // courseId: moduleArray[key].courseId,
           moduleId: moduleArray[key].moduleId,
           name: moduleArray[key].moduleName,
-          // pdf: moduleArray[key].modulePdfUrl,
-          // footage: moduleArray[key].moduleVideoUrl,
         });
       }
       setModules(loadedCourses);
@@ -89,12 +83,7 @@ const EmployeeCourseInterface = (props) => {
         setCheck(true)
      }, pre_timer);
 
-    // if(props.moduleCheck === true){
-    //   setCheck(true)
-    // }
-    // else{
-    //   setCheck(false)
-    // }
+ 
 
   }, []);
 
@@ -120,10 +109,6 @@ const hideCartHandler = () => {
   setChecked(false);
 };
 
-// const downloadHandler = () => {
-//   setDownloadCertificate(true);
-//   setCartIsShown(true);
-// }
 
   const handleChange = () => {
     setChecked(true);
@@ -134,24 +119,14 @@ const hideCartHandler = () => {
     setLink(link1)
   }
 
-  // const moduleCheck =(value)=> {
-  //   if(value===true){
-  //     setCheck(true)
-  //     setDownloadCertificate(false);
-  //   }else{
-  //     setCheck(false)
-  //   }
-  // }
+ 
 
   const courseModuleList = modules.map((module) => (
     <EmployeeCourseModuleList
-      // moduleCheck={moduleCheck}
       videooLink = {videoLinkHandler}
       key={module.id}
       id={module.moduleId}
       name={module.name}
-      // pdf={module.pdf}
-      // footage={module.footage}
     />
     ));
 

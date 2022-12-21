@@ -48,8 +48,5 @@ const UserMainPage = () => {
 
 }
 
-// // Usage
-
-// <TabGroup/>
 
 export default UserMainPage;
