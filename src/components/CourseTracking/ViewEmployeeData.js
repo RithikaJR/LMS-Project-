@@ -71,7 +71,7 @@ const ViewEmployeeData = (props) => {
         const fetchCompletedCourses = async () => {
             let response;
               response = await fetch(
-                'http://localhost:8080/api/course/get-enrolled-course/'+employeeId,{
+                'http://localhost:8080/api/completed-course/search/findByemployeeId?id='+employeeId,{
                   headers:{
                     'Authorization':token
                   }

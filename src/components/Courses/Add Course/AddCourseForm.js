@@ -14,8 +14,8 @@ const AddCourseForm = ()=>{
 
   const [courseCategoryId, setCourseCategoryId] = useState()
   const [selectedCategoryId, setSelectedCategoryId] = useState(1);
-  const [selectedCourseId, setSelectedCourseId] = useState(100);
-  const [selectedModuleId, setSelectedModuleId] = useState(200);
+  const [selectedCourseId, setSelectedCourseId] = useState(8);
+  const [selectedModuleId, setSelectedModuleId] = useState(27);
   const [courseCategoryName, setCourseCategoryName] = useState("")
   const [courseId, setcourseId] = useState('')
   const [courseName, setCourseName] = useState();
@@ -31,6 +31,7 @@ const AddCourseForm = ()=>{
   const [addNewCourse, setAddNewCourse] = useState(false);
   const [addNewCategory, setAddNewCategory] = useState(false);
   const [addNewModule, setAddNewModule] = useState(false);
+  const [selectedResourceType, setSelectedResourceType] = useState("");
 
   const [message, setMessage] = useState("");
 
@@ -202,188 +203,117 @@ function submitCourse(e2){
 
 
 ////////////////////////////// GET MODULE /////////////////////////////
-// useEffect(() => {
-//   // console.log("dfsdf");
-//   let fetchModule = async () => {
-//     const response = await fetch(
-//       'http://localhost:8080/api/courses/'+selectedCourseId+'/modules',{
-//         headers:{
-//           'Authorization':token
-//         }
-//       }
-//     ); 
-//     if (!response.ok) {
-//       throw new Error('Something went wrong!');
-//     }
-//     const responseData = await response.json();
-//     const loadedCategory = [];
-//     const newItemList = [...responseData._embedded.module]
+useEffect(() => {
+  // console.log("dfsdf");
+  let fetchModule = async () => {
+    const response = await fetch(
+      'http://localhost:8080/api/courses/'+selectedCourseId+'/modules',{
+        headers:{
+          'Authorization':token
+        }
+      }
+    ); 
+    if (!response.ok) {
+      throw new Error('Something went wrong!');
+    }
+    const responseData = await response.json();
+    const loadedCategory = [];
+    const newItemList = [...responseData._embedded.module]
     
-//     for (const key in newItemList) {
-//       loadedCategory.push({
-//         id: key,
-//         module_id:newItemList[key].moduleId,
-//         module_name:newItemList[key].moduleName,
-//       })
-//     }
+    for (const key in newItemList) {
+      loadedCategory.push({
+        id: key,
+        module_id:newItemList[key].moduleId,
+        module_name:newItemList[key].moduleName,
+      })
+    }
 
-//     setModules(loadedCategory);
-//     setIsLoading(false);
-//   };
+    setModules(loadedCategory);
+    setIsLoading(false);
+  };
 
-//     fetchModule().catch((error) => {
-//       setIsLoading(false);
-//       setHttpError(error.message);
-//     });
+    fetchModule().catch((error) => {
+      setIsLoading(false);
+      setHttpError(error.message);
+    });
 
-// }, [selectedCourseId]);
+}, [selectedCourseId]);
 
 //////////////////////////////////////////////////////////
 
 
-/////////////////////// DELETE MODULE ////////////////////
+/////////////////////// ADD MODULE + RESOURCE ////////////////////
 
-// const deleteModule = async (e) => {
-//     e.preventDefault();
-//     try {
-//       let res = await fetch("http://localhost:8080/api/modules/"+selectedModuleId, {
-//         method: "DELETE",
-//       //   headers: {"content-type": "application/json"},
-//       //   body: JSON.stringify({
-//       //     category:{
-//       //       categoryId:courseCategoryId,
-//       //       categoryName:courseCategoryName,
-//       //     },
-//       //     course:{
-//       //       courseId: courseId,
-//       //       courseName: courseName,
-//       //       courseDescription: courseDescription,
-//       //       courseImageUrl: courseImageUrl,
-//       //     },
-//       //  }
-//       //     ),
-//       });
-//       let resJson = await res.json();
-//       if (res.status === 200) {
-//         alert("Successfull!");
-//       } else {
-//         alert("Some error occured");
-//       }
-//     } catch (err) {
-//       console.log(err);
-//     }
-//   };
+const url_module = "http://localhost:8080/api/module/add-module";
+const [moduleData,setModuleData] = useState({
+        course_id:"",
+        module_id:"",
+        module_number:"",
+        module_name:"",
+        resource_name:"",
+        resource_type:"",
+        resource_url:"",
+        resource_duration:"",
+      });
+
+function handleModule(e3){
+  const newdata = {...moduleData}
+  newdata[e3.target.id] = e3.target.value
+  setModuleData(newdata)
+  console.log(newdata)
+}
 
 
-// if (isLoading) {
-//   return (
-//     <h1>Loading...</h1>
-//   );
-// }
+function submitModule(e3){
+  e3.preventDefault();
+  Axios.post(url_module,{
+      courseId:{
+          courseId:selectedCourseId
+      },
+      module:{
+          moduleId:moduleData.module_id,
+          moduleSerialNumber:moduleData.module_number,
+          moduleName:moduleData.module_name
+      },
+      moduleResourceItem:[
+          {
+              moduleResourceName:moduleData.resource_name,
+              moduleResourceType:selectedResourceType,
+              moduleResourceUrl:moduleData.resource_url,
+              moduleResourceDuration:moduleData.resource_duration
+          }
+      ]
+  },
+  {headers:{
+      'Authorization':token
+    }})
 
-// if (httpError) {
-//   return (
-//     <h1>{httpError}</h1>
-//   );
-// }
+ 
+
+  .then(res=>{
+    if(res.data != null){
+      alert("Module & resource added successfully!")
+    }
+    console.log("hb"+res.data)
+    // console.log("iubih"+selectedCourseId);
+  })
+
+  setAddNewCategory(false);
+  setAddNewCourse(false);
+  setAddNewModule(false);
+}
+
+
 /////////////////////////////////////////////////////////////////////////////
 
-
-// ////////////////////////////// GET RESOURCES /////////////////////////////
-// useEffect(() => {
-//   // console.log("dfsdf");
-//   let fetchResource = async () => {
-//     const response = await fetch(
-//       'http://localhost:8080/api/modules/'+selectedModuleId+'/moduleResources'
-//     ); 
-//     if (!response.ok) {
-//       throw new Error('Something went wrong!');
-//     }
-//     const responseData = await response.json();
-//     const loadedCategory = [];
-//     const newItemList = [...responseData._embedded.moduleResource]
-    
-//     for (const key in newItemList) {
-//       loadedCategory.push({
-//         id: key,
-//         resource_id:newItemList[key].moduleResourceId,
-//         resource_name:newItemList[key].moduleResourceName,
-//         resource_type:newItemList[key].moduleResourceType
-//       });
-//     }
-//     setResources(loadedCategory);
-//     setIsLoading(false);
-//   };
-//     fetchResource().catch((error) => {
-//       setIsLoading(false);
-//       setHttpError(error.message);
-//     });
-
-// }, [selectedModuleId]);
-
-//////////////////////////////////////////////////
-
-
-///////////////////////////////////////////////////////
-
-      const handleSubmit = async (e) => {
-        e.preventDefault();
-        try {
-          let res = await fetch("http://localhost:8080/api/add-module/add", {
-            method: "POST",
-            headers: {"content-type": "application/json"},
-            body: JSON.stringify({
-              category:{
-                categoryId:courseCategoryId,
-                categoryName:courseCategoryName,
-              },
-              course:{
-                courseId: courseId,
-                courseName: courseName,
-                courseDescription: courseDescription,
-                courseImageUrl: courseImageUrl,
-              },
-           }
-              ),
-          });
-          let resJson = await res.json();
-          if (res.status === 200) {
-            setMessage("User created successfully");
-          } else {
-            setMessage("Some error occured");
-          }
-        } catch (err) {
-          console.log(err);
-        }
-      };
-
-  
-    if (isLoading) {
-      return (
-        <h1>Loading...</h1>
-      );
-    }
-  
-    if (httpError) {
-      return (
-        <h1>{httpError}</h1>
-      );
-    }
-
+/////////////////////////////////////////////////////////////////////////////
 
     const handleCourseCategory = (event) => {
-      // const index = event.target.selectedIndex;
-      // const el = event.target.childNodes[index]
-      // const option =  el.getAttribute('id');  
-      // setCourseCategoryId(option);
-      // setCourseCategoryName(event.target.value);
       setSelectedCategoryId(event.target.value);
       setShowCourse(true);
       setAddNewCategory(false);
       setShowModules(false);
 
-      // const option =  event.target.getAttribute('name');  
-      // console.log("id "+option)
       console.log("name "+event.target.value)
     }
 
@@ -439,30 +369,8 @@ function submitCourse(e2){
       }
     }
 
-    const newModuleResourceHandler = () => {
-
-    }
-
-    const resourceDisplayHandler = (event) => {
-      console.log(selectedModuleId);
-    }
-
-    const CourseIdHandler = (event) => {
-      setcourseId(event.target.value);
-    }
-  
-    const courseNameHandler = (event) => {
-      setCourse(event.target.value)
-    }
-  
-    const courseDescriptionHandler = (event) => {
-      setcourseDescription(event.target.value)
-      console.log(event.target.value)
-    }
-  
-    const courseImageUrlHandler = (event) => {
-      setcourseImageUrl(event.target.value)
-      
+    const handleResourceType = (event) => {
+        setSelectedResourceType(event.target.value);
     }
   
 
@@ -510,21 +418,11 @@ return (
 {/* /////////////////////////DISPLAY MODULES///////////////////////// */}
 
       {showModules && 
-
-      // <Label className="mt-4 ">
-      //   <span>Modules</span>
-      //   <select className="mt-1 shadow-md" onChange={handleCourses}>  
-      //   {courseName.map(courses => (
-      //   <option id={courses.courseId} value={courses.name} name={courses.name}>{courses.name}</option>))}
-      //   </select>
-      //   <Button onClick={newModuleHandler}>Add +</Button>
-      // </Label>
       <div className='module_wrap'>
         <h2>Modules</h2>
         {modules.map(module => (
         <div id={module.module_id} value={module.module_id} name={module.module_name} className="module" onClick={handleModules}>
           <h3>{module.module_name}</h3>
-          {/* <Button onClick={deleteModule}><img src={close} /></Button> */}
         </div>))}
         {!addNewModule &&
           <Button onClick={newModuleHandler}>Add +</Button>
@@ -533,11 +431,19 @@ return (
       
         <div>
           <div className="individual">
+              <label>Module ID</label>
+              <input type="number"
+                    placeholder="Module ID"
+                    id='module_id'
+                    onChange={(e3)=>handleModule(e3)}
+                    />
+          </div>
+          <div className="individual">
               <label>Module Number</label>
               <input type="number"
                     placeholder="Module Number"
                     id='module_number'
-                    // onChange={(e2)=>handleCourse(e2)}
+                    onChange={(e3)=>handleModule(e3)}
                     />
             </div>
 
@@ -546,29 +452,51 @@ return (
               <input type="text"
                     placeholder="Module Name"
                     id='module_name'
-                    // onChange={(e2)=>handleCourse(e2)}
+                    onChange={(e3)=>handleModule(e3)}
                     />
             </div> 
-            {/* <Button onClick={newModuleResourceHandler}>Add +</Button>   */}
-            <NewCourse onAddExpense={addExpenseHandler}/>
-            <Modules items={expense} />
+            <div className="individual">
+              <label>Resource Name</label>
+              <input type="text"
+                    placeholder="Module Resource Name"
+                    id='resource_name'
+                    onChange={(e3)=>handleModule(e3)}
+                    />
+            </div> 
+            <div className="individuals">
+              <label>Resource Type</label>
+               <select onChange={handleResourceType}>
+                  <option>Select Resource Type</option>
+                  <option id="resource_type" value="mp4" >Video</option>
+                  <option id="resource_type" value="pdf" >Reading Material</option>
+            </select>
+            </div> 
+            <div className="individual">
+              <label>Resource URL</label>
+              <input type="text"
+                    placeholder="Resource URL"
+                    id='resource_url'
+                    onChange={(e3)=>handleModule(e3)}
+                    />
+            </div> 
+            <div className="individual">
+              <label>Resource Duration</label>
+              <input type="time"
+                    id='resource_duration'
+                    step="1"
+                    onChange={(e3)=>handleModule(e3)}
+                    />
+            </div> 
+            <div className="last">
+              <Button type='submit' onClick={(e3)=>submitModule(e3)}>Submit</Button>
+            </div>
 
           
         </div>}
       </div>
     }
 
-{/* ////////////////////////DISPLAY MODULE RESOURCES/////////////////////////////////// */}
 
-{/* {showModuleResources && 
-<div className='resource_wrap'>
-  {resources.map(resource => (
-  <div id={resource.resource_id} value={resource.resource_id} name={resource.resource_name} className="resource">
-    <h4>{resource.resource_name}</h4>
-    <h4>Type : {resource.resource_type}</h4>
-  </div>))}
-</div>
-} */}
 
 
 {/* //////////////////ADD NEW CATEGORIES///////////////////////// */}
@@ -586,22 +514,14 @@ return (
           </div>
         <div className="last">
           <Button type='submit' onClick={(e1)=>submitCategory(e1)}>Submit</Button>
-          {/* set to setAddNewCategory(false) in the function; */}
+
         </div>
     </div>}
 {/* ///////////////////////////ADD NEW COURSE/////////////////////// */}
     {addNewCourse && 
       
       <div>
-        {/* <Label className="mt-4">
-          <span> Course Category ID</span>
-          <Input className="mt-4 shadow-md" value={courseId} placeholder="Course Id" onChange={CourseIdHandler} />
-        </Label>
-
-        <Label className="mt-4">
-          <span> Course Category Name</span>
-          <Input className="mt-4 shadow-md" value={courseId} placeholder="Course Id" onChange={CourseIdHandler} />
-        </Label> */}
+        
 
           <div className="individual">
             <label>Course Name</label>
@@ -609,7 +529,7 @@ return (
                   placeholder="Course"
                   id='course_name'
                   onChange={(e2)=>handleCourse(e2)}
-                  // value={data.trainer} 
+
                   />
           </div>
 
@@ -619,7 +539,7 @@ return (
                   placeholder="Course Description"
                   id='course_description'
                   onChange={(e2)=>handleCourse(e2)}
-                  // value={data.trainer} 
+
                   />
           </div>
 
@@ -629,51 +549,25 @@ return (
                   placeholder="Image URL"
                   id='course_imageUrl'
                   onChange={(e2)=>handleCourse(e2)}
-                  // value={data.trainer} 
+
                   />
           </div>
 
           <div className="individual">
             <label>Course Duration</label>
             <input type="time"
-                  // placeholder="Image URL"
                   step="1"
                   id='course_duration'
                   onChange={(e2)=>handleCourse(e2)}
-                  // value={data.trainer} 
+ 
                   />
           </div>
 
         <div className="last">
           <Button type='submit' onClick={(e2)=>submitCourse(e2)}>Submit</Button>
-          {/* set to setAddNewCourse(false) in the function */}
+
         </div>
     </div>}
-
-    {/* {addNewModule && 
-      
-      <div>
-        <div className="individual">
-            <label>Module Number</label>
-            <input type="number"
-                  placeholder="Module Number"
-                  id='course_description'
-                  onChange={(e2)=>handleCourse(e2)}
-                  />
-          </div>
-
-          <div className="individual">
-            <label>Module Name</label>
-            <input type="text"
-                  placeholder="Module Name"
-                  id='course_imageUrl'
-                  onChange={(e2)=>handleCourse(e2)}
-                  />
-          </div>   
-          <NewCourse onAddExpense={addExpenseHandler}/>
-
-        
-      </div>} */}
 
        
         

@@ -2,7 +2,6 @@ import Login from './components/Login/Login';
 import MainHeader from './components/MainHeader/MainHeader';
 import { Redirect, Route, Switch, useHistory } from 'react-router-dom';
 import Courses from './components/Courses/Courses';
-import UserPage from './components/Users/UserPage';
 import UserMainPage from './components/Users/UserMainPage';
 import CourseInterface from './components/Courses/CourseInterface';
 import EmployeeHome from './components/Employee/EmployeeHome';
@@ -159,10 +158,6 @@ const logoutHandler = () => {
           {isLoggedIn ? <Courses onLogout={logoutHandler} /> : <Redirect to='/login' /> }
           </Route>
 
-          <Route path="/coursess" exact>
-            <Coursess  /> 
-          </Route>
-
           <Route path="/home" exact>
               {isLoggedIn ? <SuperAdminHome onLogout={logoutHandler} name={employeeName} employeeId={employeeId}/> : <Redirect to='/login' /> }
           </Route>
@@ -179,29 +174,6 @@ const logoutHandler = () => {
           {isLoggedIn ? <Notification onLogout={logoutHandler} /> : <Redirect to='/login' /> }
           </Route>
 
-          <Route path="/reports">
-          {isLoggedIn ? <ViewEmployeeData onLogout={logoutHandler} /> : <Redirect to='/login' /> }
-          </Route>
-
-          <Route path="/learningadmin">
-            <MainHeaderLA></MainHeaderLA>
-            <HomeLearningAdmin  />
-          </Route>
-
-          <Route path="/courseslearningadmin">
-            <MainHeaderLA></MainHeaderLA>
-            <CoursesLearningAdmin/>
-          </Route>
-
-          <Route path="/courseslearningadmin">
-            <CoursesLearningAdmin/>
-            <MainHeaderLA></MainHeaderLA>
-          </Route>
-
-          <Route path="/userslearningadmin">
-            <UserMainPageLA></UserMainPageLA>
-            <MainHeaderLA></MainHeaderLA>
-          </Route>
 
           <Route path="/courses/course-module">
             {isLoggedIn ? <CourseInterface onLogout={logoutHandler} /> : <Redirect to='/login' /> }
