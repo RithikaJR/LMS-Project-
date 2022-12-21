@@ -34,7 +34,7 @@ const CourseModuleList = (props) =>{
             const responseData = await response.json();
       
             const loadedCourses = [];
-            const moduleArray = {...responseData._embedded.moduleResources};
+            const moduleArray = {...responseData._embedded.moduleResource};
       
             // console.log(responseData);
             for (const key in moduleArray) {

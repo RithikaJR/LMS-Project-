@@ -24,7 +24,6 @@ const ForgotPassword = (props) => {
 
 
       const changePasswordHandler = (event)=>{
-        // const formdata = new FormData({employeeEmail: enteredEmailId})
         event.preventDefault()
         fetch("http://localhost:8080/api/user/forget-password", {
             headers: {'content-type': 'application/x-www-form-urlencoded'},
@@ -33,12 +32,7 @@ const ForgotPassword = (props) => {
 
         }).then(response => {
             alert("Check Your Registered mail Id")
-            // return response.json();
-        }).then(resjs => {
-          // alert(resjs.data)
-          // return response.json();
-      })
-
+        })
         setenteredEmailId("")
         setoverlayIsShown(false)
       }
@@ -54,7 +48,7 @@ const ForgotPassword = (props) => {
               </div>
               <div className='password_change'>
                 <h2>Change Password</h2>
-                <form onSubmit={changePasswordHandler}>
+                <form >
                   <label>
                     Registered Mail Id
                   </label>
@@ -64,7 +58,7 @@ const ForgotPassword = (props) => {
                                              placeholder='Enter your email id' 
                                              onChange={emailHandler}/>
                 <div className='password_submit'>
-                  <Button type='submit'>Submit</Button>
+                  <Button onClick={changePasswordHandler} type='submit'>Submit</Button>
                 </div>
                 </form>
               </div>

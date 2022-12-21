@@ -15,7 +15,7 @@ const AddSessionForm = (props) => {
                 setCartIsShown(true);
               };
 
-        const url = "http://localhost:8080/api/session"
+        const url = "http://localhost:8080/api/sessions"
 
         const [data,setData] = useState({
                 sessionName:"",
