@@ -4,8 +4,6 @@ import DataTable from 'react-data-table-component';
 import approval from '../images/approval.png';
 import reject from '../images/reject.png';
 
-
-// import classes from '../Employee/EmployeeCourses/EmployeeAvailableCourses.module.css'
 import App from '../../App';
 import ApprovalList from './ApprovalList';
 
@@ -111,7 +109,6 @@ const Notification = ()=>{
             // count+=1
           }
           }
-    
           setApprovalList(loadedApprovalList);
         
           setIsLoading(false);
@@ -129,7 +126,7 @@ const Notification = ()=>{
    
 
     const approveHandler = (event) =>{
-      console.log(date1)
+      console.log("empId"+approvalList[event.target.value].employeeId)
       event.preventDefault();
       //post api for enrolled course
       fetch("http://localhost:8080/api/course/enroll-course", {
@@ -149,7 +146,7 @@ const Notification = ()=>{
             
           }).then(response => {
             console.log("hello change");
-            console.log(employeeId)
+            console.log(approvalList[event.target.value].employeeId)
           
             alert("Status approved") 
             console.log("request: ", response);
@@ -157,9 +154,6 @@ const Notification = ()=>{
             return response.json();
           })
           
-          .then(resJson => { // alert("Password Change Successfully")
-         })
-
          //put api for course approval 
 
          fetch("http://localhost:8080/api/course-approval/"+approvalList[event.target.value].courseApprovalId, {

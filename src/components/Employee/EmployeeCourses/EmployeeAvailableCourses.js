@@ -1,14 +1,5 @@
 import React, { useEffect, useState } from 'react';
 import Search from '../../Search Bar/Search.js';
-
-// import classes from './AvailableCourse.module.css';
-// import CourseItem from './CourseItem';
-// import {Swiper, SwiperSlide} from 'swiper/react';
-// import { FreeMode } from "swiper";
-// import 'swiper/css';
-// import "swiper/css/free-mode";
-// import 'bootstrap/dist/css/bootstrap.min.css';
-
 import classes from './EmployeeAvailableCourses.module.css';
 import EmployeeCourseItem from './EmployeeCourseItem';
 import './EmployeeAvailableCourses.css'
@@ -20,6 +11,7 @@ const EmployeeAvailableCourses = (props) => {
     let token = `Bearer ${sessionStorage.getItem('jwt')}`;
 
     const [courses, setCourse] = useState([]);
+
     const [isLoading, setIsLoading] = useState(true);
     const [httpError, setHttpError] = useState();
     const [searchName, setSearchName] = useState("");
@@ -39,7 +31,7 @@ const EmployeeAvailableCourses = (props) => {
     }
 
     useEffect(() => {
-      const fetchMeals = async () => {
+      const fetchCourses = async () => {
         let response;
         if(searchName===''){
           response = await fetch(
@@ -68,6 +60,7 @@ const EmployeeAvailableCourses = (props) => {
 
         console.log(responseData);
         for (const key in courseArray) {
+          // if(courseArray[key].courseId==){
           loadedCourses.push({
             id: key,
             courseId: courseArray[key].courseId,
@@ -76,13 +69,14 @@ const EmployeeAvailableCourses = (props) => {
             image: courseArray[key].courseImageUrl,
             duration: courseArray[key].courseDuration
           });
+        // }
         }
   
         setCourse(loadedCourses);
         setIsLoading(false);
       };
   
-      fetchMeals().catch((error) => {
+      fetchCourses().catch((error) => {
         setIsLoading(false);
         setHttpError(error.message);
       });

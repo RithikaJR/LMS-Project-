@@ -10,15 +10,12 @@ const Login = (props) => {
   const [enteredPassword, setEnteredPassword] = useState('');
   const [passwordIsValid, setPasswordIsValid] = useState();
   const [formIsValid, setFormIsValid] = useState(false);
-
-
   
   useEffect(() =>{
     const identifier =setTimeout(() =>{
       console.log("Validity Check");
       setFormIsValid(
           enteredEmail.includes('@experionglobal.com') && enteredPassword.trim().length > 6
-        
       );
     }, 500)
 

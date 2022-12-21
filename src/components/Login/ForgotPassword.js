@@ -22,22 +22,25 @@ const ForgotPassword = (props) => {
         setenteredEmailId(event.target.value);
       }
 
+
       const changePasswordHandler = (event)=>{
+        // const formdata = new FormData({employeeEmail: enteredEmailId})
         event.preventDefault()
         fetch("http://localhost:8080/api/user/forget-password", {
             headers: {'content-type': 'application/x-www-form-urlencoded'},
             method: "POST",
-            body: new FormData(enteredEmailId)
-            // // JSON.stringify({
-            // {employeeEmail: enteredEmailId}
-            // // })  
+            body:"employeeEmail="+enteredEmailId
+
         }).then(response => {
-            console.log("hello");
-            console.log("request: ", response);
             alert("Check Your Registered mail Id")
             // return response.json();
-        })
-        
+        }).then(resjs => {
+          // alert(resjs.data)
+          // return response.json();
+      })
+
+        setenteredEmailId("")
+        setoverlayIsShown(false)
       }
 
     return(
