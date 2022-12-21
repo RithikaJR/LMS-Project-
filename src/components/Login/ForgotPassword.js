@@ -21,22 +21,25 @@ const ForgotPassword = (props) => {
         setenteredEmailId(event.target.value);
       }
 
+
       const changePasswordHandler = (event)=>{
+        // const formdata = new FormData({employeeEmail: enteredEmailId})
         event.preventDefault()
         fetch("http://localhost:8080/api/user/forget-password", {
             headers: {'content-type': 'application/x-www-form-urlencoded'},
             method: "POST",
-            body: new FormData(enteredEmailId)
-            // // JSON.stringify({
-            // {employeeEmail: enteredEmailId}
-            // // })  
+            body:"employeeEmail="+enteredEmailId
+
         }).then(response => {
-            console.log("hello");
-            console.log("request: ", response);
             alert("Check Your Registered mail Id")
             // return response.json();
-        })
-        
+        }).then(resjs => {
+          // alert(resjs.data)
+          // return response.json();
+      })
+
+        setenteredEmailId("")
+        setoverlayIsShown(false)
       }
 
     return(
@@ -50,10 +53,9 @@ const ForgotPassword = (props) => {
               </div>
               <div>
                 <h2>Change Password</h2>
-                <form onSubmit={changePasswordHandler}>
-                  Registered Mail Id: <input type="email" 
-                                             value={enteredEmailId} required placeholder='Enter your email id' onChange={emailHandler}/>
-                <button type='submit'>Submit</button>
+                <form>
+                  Registered Mail Id: <input type="email" value={enteredEmailId} required placeholder='Enter your email id' onChange={emailHandler}/>
+                <button onClick={changePasswordHandler} type='submit'>Submit</button>
                 </form>
               </div>
             </Modal>}

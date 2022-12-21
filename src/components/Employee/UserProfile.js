@@ -7,9 +7,6 @@ import { useState } from 'react';
 import ChangePassword from './ChangePassword';
 import axios from 'axios';
 
-// import boote from'bootstrap/dist/css/bootstrap.css';
-// import {Container,Row,Col,Form ,Button } from 'reactstrap';
-// const axios = require('axios');
 
 const UserProfile=(props)=> {
     const [changePwd, setChangePwd] = useState(false);

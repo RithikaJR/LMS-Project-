@@ -30,7 +30,7 @@ let submitHandler = async (e) => {
         }),
         headers: {
             "Content-type": "application/json; charset=UTF-8",
-            // 'Authorization':token
+            'Authorization':token
           }}
       ).then(response => {
         if (!response.ok) {

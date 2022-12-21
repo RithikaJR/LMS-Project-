@@ -4,8 +4,6 @@ import './ChangePassword.css'
 
 
 const ChangePassword = (props)=>{
-
-    
     let token = `Bearer ${sessionStorage.getItem('jwt')}`;
 
     const [confirmPwd, setConfirmPwd] = useState("");
@@ -21,7 +19,6 @@ const ChangePassword = (props)=>{
           method: "POST",
           body: JSON.stringify({
             employeeId :props.employeeId,
-            // props.employeeId
             newPassword:confirmPwd,
             currentPassword:currentPwd,
           })

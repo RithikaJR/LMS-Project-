@@ -11,7 +11,7 @@ import CoursesLearningAdmin from './components/Courses/CoursesLearningAdmin';
 import MainHeaderLA from './components/MainHeader/MainHeaderLA';
 import UserMainPageLA from './components/Users/UserMainPageLA';
 import Coursess from './components/Courses/Coursess';
-import React, { useState,useRef,useEffect } from 'react';
+import React, { useState,useEffect } from 'react';
 import Notification from './components/Notification/Notification';
 
 import SuperAdminHome from './components/Home/SuperAdminHome';
@@ -20,8 +20,6 @@ import ViewEmployeeData from './components/CourseTracking/ViewEmployeeData';
 
 
 function App() {
-  const [isLoading, setIsLoading] = useState(true);
-  const [httpError, setHttpError] = useState();
   const [isLoggedIn, setIsLoggedIn] = useState(false);
   
   const [learningLoggedIn, setlearningLoggedIn] = useState(false);
@@ -70,27 +68,28 @@ const loginHandler = (email, password) => {
       userName :email,
       userPassword:password,
     })  
-  }).then(response => {
-    console.log("hello");
-    console.log("request: ", response);
-    return response.json();
+  }).then(response1 => {
+    if(response1.status === 401){
+      alert("Enter Valid User Name or Password")
+    }
+    console.log("request: ", response1);
+    return response1.json();
   })
   .then(resJson => {
     console.log("hello");
+    
     if((resJson.roleId == 1)){
       console.log("admin")
       sessionStorage.setItem("jwt",resJson.jwtToken);
-      // localStorage.setItem("jwt",resJson.jwtToken);
       localStorage.setItem('isLoggedIn',resJson.roleId);
       localStorage.setItem('LoggedName',resJson.user.employeeName);
-      // localStorage.setItem('LoggedEmployeeId',resJson.user.employee.employeeId);
       localStorage.setItem('LoggedEmployeeId',resJson.employeeId);
       localStorage.setItem('LoggedEmail',resJson.user.userName);
+      
       setIsLoggedIn(true);
       history.push('/home');
       
       setemployeeName(resJson.user.employeeName)
-      // setemployeeId(resJson.user.employee.employeeId)
       setemployeeId(resJson.employeeId)
       setuserStatus(resJson.initialStatus)
       setuserId(resJson.user.userId)
@@ -100,10 +99,8 @@ const loginHandler = (email, password) => {
     else if((resJson.roleId ==2)){
       console.log("learning admin")
       sessionStorage.setItem("jwt",resJson.jwtToken);
-      // localStorage.setItem("jwt",resJson.jwtToken);
       localStorage.setItem('isLoggedIn',resJson.roleId);
       localStorage.setItem('LoggedName',resJson.user.employeeName);
-      // localStorage.setItem('LoggedEmployeeId',resJson.user.employee.employeeId);
       localStorage.setItem('LoggedEmployeeId',resJson.employeeId);
       localStorage.setItem('LoggedEmail',resJson.user.userName);
 
@@ -111,7 +108,6 @@ const loginHandler = (email, password) => {
       history.push('/learaningAdmin');
       
       setemployeeName(resJson.user.employeeName)
-      // setemployeeId(resJson.user.employee.employeeId)
       setemployeeId(resJson.employeeId)
       setuserStatus(resJson.initialStatus)
       setuserId(resJson.user.userId)
@@ -121,7 +117,6 @@ const loginHandler = (email, password) => {
       sessionStorage.setItem("jwt",resJson.jwtToken);
       localStorage.setItem('isLoggedIn',resJson.roleId);
       localStorage.setItem('LoggedName',resJson.user.employeeName);
-      // localStorage.setItem('LoggedEmployeeId',resJson.user.employee.employeeId);
       localStorage.setItem('LoggedEmployeeId',resJson.employeeId);
       localStorage.setItem('LoggedEmail',resJson.user.userName);
 
@@ -129,12 +124,9 @@ const loginHandler = (email, password) => {
       history.push('/employee');
       
       setemployeeName(resJson.user.employeeName)
-      // setemployeeId(resJson.user.employee.employeeId)
       setemployeeId(resJson.employeeId)
       setuserStatus(resJson.initialStatus)
       setuserId(resJson.user.userId)
-    }else{
-      alert("Enter Valid User Name or Password");
     }
  })
     
@@ -144,7 +136,6 @@ const logoutHandler = () => {
     localStorage.removeItem('LoggedName');
     localStorage.removeItem('LoggedEmployeeId');
     sessionStorage.removeItem('jwt');
-    // localStorage.removeItem('jwt');
     setIsLoggedIn(false);
     setlearningLoggedIn(false);
     setemployeeLoggedIn(false);
@@ -155,7 +146,6 @@ const logoutHandler = () => {
       {isLoggedIn && <MainHeader isAuthenticated={isLoggedIn} onLogout={logoutHandler} name={employeeName} employeeId={employeeId} tracker={userStatus} userId={userId}/>}
       
       {learningLoggedIn && <MainHeader isAuthenticated={learningLoggedIn} onLogout={logoutHandler} name={employeeName} employeeId={employeeId} tracker={userStatus} userId={userId}/> }
-      {/* {employeeLoggedIn && <MainHeader isAuthenticated={employeeLoggedIn} onLogout={logoutHandler} name={employeeName} employeeId={employeeId}/> } */}
        <Switch>
           <Route path="/" exact>
               <Redirect to='/login'/>
