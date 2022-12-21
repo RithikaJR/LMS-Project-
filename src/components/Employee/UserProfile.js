@@ -9,6 +9,7 @@ import axios from 'axios';
 
 
 const UserProfile=(props)=> {
+    
     const [changePwd, setChangePwd] = useState(false);
     const [state, setState] = useState({employeeId: '',
                                         username:'',
@@ -49,7 +50,7 @@ const UserProfile=(props)=> {
     return (
             <div className={classes.profile}>
                 <div className={classes.profileImg}>
-                    <img src={DefaultUserPic} alt="profils pic" />
+                    <img src={DefaultUserPic} alt="profile pic" />
                     <h1>{props.name}</h1>
                     <input type="file" name="profileImage"  onChange={changeProfileImage}/>
                     <Button variant="primary" onClick={UpdateProfileHandler} ><b>Update Image</b></Button>

@@ -7,34 +7,22 @@ import './EmployeeHome.css';
 import { IconContext } from 'react-icons';
 import EmployeeCourses from './EmployeeCourses/EmployeeCourses';
 import FeedbackForm from './Feedbackform';
-
 import Button from '../UI/Button/Button';
 import UserProfile from './UserProfile';
 import Modal from "../UI/Modal/Modal.js";
 import EmployeeCourseInterface from './EmployeeCourses/EmployeeCourseInterface';
 import EnrolledCourses from './EmployeeCourses/EnrolledCourses';
 import EmployeeProfile from './EmployeeProfile';
-import LAModal from '../UI/Modal/LAModal';
-
-
 import profilepicture from '../images/profilepic.jpg';
 import slide1 from '../images/slide1.jpg';
-import slide2 from '../images/slide2.jpg';
-import slide3 from '../images/slide3.jpg';
 import slide4 from '../images/slide4.jpg';
-
-// import Avatar from 'react-avatar';
 import classes from '../MainHeader/Navigation.module.css';
-
 import Certificate from './Certificate';
 import { RiSlideshow4Fill } from 'react-icons/ri';
-import Coursess from '../Courses/Coursess';
-import Courses from '../Courses/Courses';
 import 'bootstrap/dist/css/bootstrap.css';
 import Dropdown from 'react-bootstrap/Dropdown';
-// import { Dropdown, Image } from 'semantic-ui-react'
 import image from '../images/team-male.jpg' 
-// const styleLink = document.createElement("link");
+import close from '../images/blue_close.png';
 
 // document.head.appendChild(styleLink);
 // const styleLink = document.createElement("link");
@@ -167,10 +155,12 @@ const EmployeeHome = (props) => {
         
          
       </IconContext.Provider>
-          {cartIsShown && <Modal onClose={cartIsShown} className="overlay">
+          {cartIsShown && 
+          <Modal onClose={cartIsShown} className="overlay">
+            <div className='close_employee'>
+              <Button onClick={hideCartHandler}><img src={close}/></Button>
+            </div>
           <UserProfile name={props.name} employeeId={props.employeeId} userId={props.userId} />
-          <Button onClick={hideCartHandler}>Close</Button>
-          {/* name={props.name} employeeId={props.employeeId} */}
           </Modal>}
         </div>   
       <Route path="/employee" exact>
@@ -182,7 +172,7 @@ const EmployeeHome = (props) => {
       </Route>
 
       <Route path="/employee/feedbackform">
-            <FeedbackForm/>
+            <FeedbackForm employeeId={props.employeeId} name={props.name}/>
       </Route>
 
       <Route path="/employee/certificate">

@@ -119,7 +119,7 @@ const CourseInterface = (props) => {
     <section className={classes.page}>
         <div className={classes.cert}>
           <h3>Modules</h3>
-          <Button  onClick={jsPdfGenerator} disabled={downloadCertificate}>Download Certificate</Button>
+          {/* <Button  onClick={jsPdfGenerator} disabled={downloadCertificate}>Download Certificate</Button> */}
         </div>
         <div>
         <CourseRating />

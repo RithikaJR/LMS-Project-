@@ -1,10 +1,12 @@
 .profile{
     line-height: 50px;
+    padding-top: 3rem;
 }
 
 
 .profileImg{
     text-align: center;
+    margin: 2rem 0;
 }
 
 .profileImg img{
@@ -19,15 +21,25 @@
 
 .profileImg input{
     font-size: 15px;
-    /* padding: 0.3rem 0; */
     margin-top: 1rem;
+    /* width: 10rem; */
 }
 
 .profile Button {
-    background-color: rgb(210, 211, 212);
+    background-color: #7ab9f0;
     border-radius: 25px;
     padding: 1rem;
-    border: 1px solid rgb(127, 128, 128);
+    width: 10rem;
+    margin: 0;
+    border: 1px solid rgb(163, 163, 163);
+}
+
+
+
+.data Button{
+    margin: 0 35%;
+    margin-top: 2rem;
+    width: 13rem;
 }
 
 .changePassword {

@@ -12,6 +12,7 @@ import { useState } from 'react';
 import { useEffect } from 'react';
 import UserProfile from '../Employee/UserProfile';
 import Modal from '../UI/Modal/Modal';
+import close from '../images/blue_close.png'
 
 const Navigation = (props) => {
   let Username = localStorage.getItem('LoggedName');
@@ -129,7 +130,7 @@ const Navigation = (props) => {
               <Dropdown.Item className='menu'>
                 <div className='item'>
                   <NavLink to='/feedbacks' className='navv'>
-                    <h5>You have <span className={classes.number}>{}5</span> new feedbacks</h5>
+                    <h5>You have <span className={classes.number}>{}-</span> new feedbacks</h5>
                   </NavLink>
                 </div>
               </Dropdown.Item>
@@ -160,9 +161,13 @@ const Navigation = (props) => {
         )}
 
       </ul>
-      {overlayShown && <Modal onClose={overlayShown} className="overlay">
+      {overlayShown && 
+          <Modal onClose={overlayShown} className={classes.overlay}>
+            <div className={classes.close_nav}>
+              <Button onClick={hideCartHandler}><img src={close}/></Button>
+            </div>
           <UserProfile name={props.name} employeeId={props.employeeId} userId={props.userId} />
-          <Button onClick={hideCartHandler}>Close</Button>
+          {/* <Button onClick={hideCartHandler}>Close</Button> */}
           {/* name={props.name} employeeId={props.employeeId} */}
           </Modal>}
     </nav>

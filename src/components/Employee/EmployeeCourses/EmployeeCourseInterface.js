@@ -1,6 +1,7 @@
 import React,{ useEffect, useState } from "react";
 import { useLocation } from "react-router-dom";
 import classes from './EmployeeCourseInterface.module.css';
+import './EmployeeCourseInterface.css';
 import jsPDF from 'jspdf';
 import CourseRating from "../../Users/CourseRating";
 import { Button } from "react-bootstrap";
@@ -15,6 +16,7 @@ const EmployeeCourseInterface = (props) => {
 
   let token = `Bearer ${sessionStorage.getItem('jwt')}`;
   let Username = localStorage.getItem('LoggedName');
+  let course_name = sessionStorage.getItem("coursename");
   
   const [modules, setModules] = useState([]);
   const [isLoading, setIsLoading] = useState(true);
@@ -38,6 +40,7 @@ const EmployeeCourseInterface = (props) => {
   let timer = (pre_timer * 80)/100;
   console.log(pre_timer)
   console.log(timer);
+  console.log(course_name);
 
 
   console.log("interface "+propdata);
@@ -81,9 +84,10 @@ const EmployeeCourseInterface = (props) => {
       setHttpError(error.message);
     });
 
-    //   setTimeout(() => {
-    //     setDownloadCertificate(false);
-    //  }, pre_timer);
+      setTimeout(() => {
+        setDownloadCertificate(false);
+        setCheck(true)
+     }, pre_timer);
 
     // if(props.moduleCheck === true){
     //   setCheck(true)
@@ -113,7 +117,7 @@ const EmployeeCourseInterface = (props) => {
   
 
 const hideCartHandler = () => {
-  setCartIsShown(false);
+  setChecked(false);
 };
 
 // const downloadHandler = () => {
@@ -130,18 +134,18 @@ const hideCartHandler = () => {
     setLink(link1)
   }
 
-  const moduleCheck =(value)=> {
-    if(value===true){
-      setCheck(true)
-      setDownloadCertificate(false);
-    }else{
-      setCheck(false)
-    }
-  }
+  // const moduleCheck =(value)=> {
+  //   if(value===true){
+  //     setCheck(true)
+  //     setDownloadCertificate(false);
+  //   }else{
+  //     setCheck(false)
+  //   }
+  // }
 
   const courseModuleList = modules.map((module) => (
     <EmployeeCourseModuleList
-      moduleCheck={moduleCheck}
+      // moduleCheck={moduleCheck}
       videooLink = {videoLinkHandler}
       key={module.id}
       id={module.moduleId}
@@ -159,7 +163,18 @@ const hideCartHandler = () => {
             <img src={complete} />
             }
           </h3>
-          <Button  disabled={downloadCertificate}>Download Certificate</Button>
+          <Button onClick={handleChange} disabled={downloadCertificate}>Download Certificate</Button>
+          {checked &&
+          <div className="certt">
+            <Modal onClose={cartIsShown}>
+              <div className={classes.close}>
+                <Button onClick={hideCartHandler}><img src={close}/></Button>
+              </div>
+              <Certificate  name={Username}
+                            courseName={course_name}/>
+            </Modal>
+        </div>
+        }
       </div>
       {/* onClick={downloadHandler} */}
       <div className={classes.rating}>
