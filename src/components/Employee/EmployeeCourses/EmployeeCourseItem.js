@@ -41,6 +41,7 @@ const EmployeeCourseItem = (props) => {
       if (res.status === 201) {
         setCartIsShown(true);
         setView(true)
+        alert("Enroll request Sent")
       } else {
         alert("Some error occured");
       }
@@ -66,10 +67,11 @@ const EmployeeCourseItem = (props) => {
           <div>
             <h3>{props.name}</h3>
             <div className={classes.description}>Course Description : {props.description}</div>
-            {view && <div className={classes.view}><NavLink to={{pathname:'/employee/course-module',state:{id:props.id}}}><Button >View</Button></NavLink></div>}
+            {view && <div className={classes.view}><Button disabled>Requested</Button></div>}
             
             {!view && <div className={classes.view}><NavLink to={{pathname:'',state:{id:props.id}}}><Button onClick={showCartHandler}>Enroll</Button></NavLink></div> }
-            {cartIsShown && <Modal>
+            {/* {cartIsShown && 
+            <Modal>
               <div class="learn" id="learn">
                   <div class="learn-header">
                       <div class="title"><image src={TickImage} alt=""/></div>
@@ -78,7 +80,8 @@ const EmployeeCourseItem = (props) => {
                       <div><Button data-close-button class="close-button" onClick={hideCartHandler}>OK</Button></div>
                   </div>
               </div>
-              </Modal>}
+              </Modal>
+          } */}
           </div>
         </li>
         {/* ))} */}

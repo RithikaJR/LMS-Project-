@@ -1,32 +1,5 @@
 @import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;600&display=swap');
-
-/* 
-
-
-.certificate{
-    text-align: center;
-    justify-content: center;
-    display: flex;
-    align-items: center; 
-    margin-left: 100PX;
-}
-
-.pdf{
-          margin: "50px";
-          padding: "10px";
-          background-color: "black";
-          color: "white";
-          font-family: "Anton";
-          font-size: "5rem";
-          text-transform: "uppercase";
-          letter-spacing: "0.1rem";
-          cursor: "pointer";
-          width: "200px";
-          text-align: center;
-          
-         
-} */
-
+@import url('https://fonts.googleapis.com/css2?family=Aboreto&display=swap');
 * {
     box-sizing: border-box;
     font-family: 'Montserrat', sans-serif;;
@@ -34,13 +7,20 @@
 
   .app {
     font-family: "Hachi Maru Pop", cursive;
-    display: flex;
+    /* display: flex; */
     padding: 15px;
   }
+  
 
   .meta {
     flex-grow: 1;
     padding-right: 15px;
+  }
+
+  .app h1{
+    width: 200px;
+    margin: 0.5rem auto;
+    /* height: 3rem; */
   }
 
   .app .meta input {
@@ -70,32 +50,51 @@
     box-shadow: 0 0 5px #000;
     border-radius: 10px;
     overflow: hidden;
+    width: fit-content;
     position: relative;
   }
 
   .certificateWrapper img {
     display: block;
-    height: 618px;
+    height: 420px;
   }
 
   .certificateWrapper p1 {
+    font-family: 'Aboreto', cursive;
     /* font-family: "Staatliches", cursive; */
+    text-transform: uppercase;
+    font-weight: bold;
     margin: 0;
     position: absolute;
-    left: 350px;
-    top: 220px;
-    font-size: 20pt;
+    left: 245px;
+    top: 185px;
+    font-size: 25pt;
   }
 
   .certificateWrapper p2 {
+    font-family: 'Aboreto', cursive;
     /* font-family: "Staatliches", cursive; */
+    text-transform: uppercase;
+    font-weight: bold;
     margin: 0;
     position: absolute;
-    left: 343px;
-    top: 315px;
-    font-size: 20pt;
+    left: 215px;
+    top: 260px;
+    font-size: 13pt;
   }
 
-  .downloadWrapper{
-    visibility: hidden;
+  .certificateWrapper p3 {
+    font-family: 'Aboreto', cursive;
+    /* font-family: "Staatliches", cursive; */
+    text-transform: uppercase;
+    font-weight: bold;
+    margin: 0;
+    position: absolute;
+    left: 90px;
+    top: 350px;
+    font-size: 10pt;
+  }
+
+  .app Button{
+    margin: 0.5rem 35%;
   }

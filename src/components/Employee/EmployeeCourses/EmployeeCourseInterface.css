@@ -1,0 +1,10 @@
+
+@media (min-width: 768px){
+    .certt .modal{
+        width: 57rem;
+    }
+}
+
+.close{
+    margin: 1rem 40%;
+}

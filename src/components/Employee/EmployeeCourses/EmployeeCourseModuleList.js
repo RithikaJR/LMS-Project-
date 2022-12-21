@@ -75,7 +75,7 @@ const EmployeeCourseModuleList = (props) =>{
 
   const checkedHandler = () =>{
     console.log("hjfsjafjfj")
-    props.moduleCheck(true)
+    // props.moduleCheck(true)
   }
 
 

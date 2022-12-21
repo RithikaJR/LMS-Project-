@@ -29,7 +29,7 @@
 .page h3 {
     font-family: 'Montserrat', sans-serif;
     margin-top: 8rem;
-    margin-left: 30rem;
+    /* margin-left: 30rem; */
     color: rgb(66, 66, 66);
     font-size: 3rem;
     font-weight: bold;
@@ -68,7 +68,7 @@
     margin-bottom: 1.5rem;
 }
 
-.cert Button {
+/* .cert Button {
     margin-top: 7rem;
     margin-left: 12rem;
-}
+} */

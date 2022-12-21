@@ -1,7 +1,8 @@
 import { useState } from 'react';
-import { Alert, Button } from 'react-bootstrap';
+import { Alert} from 'react-bootstrap';
+import Button from '../UI/Button/Button';
 import Modal from '../UI/Modal/Modal';
-import classes from './ForgotPassword.module.css';
+import './ForgotPassword.css';
 import close from '../images/blue_close.png';
 
 
@@ -40,20 +41,28 @@ const ForgotPassword = (props) => {
       }
 
     return(
-        <div className={classes.forgotpassword}>
+        <div className='forgotpassword'>
             <a href='#' onClick={showOverlayHandler}>Forgot Password</a>
             <div>
             {overlayShown && 
             <Modal onClose={overlayShown} className="overlay">
-              <div className={classes.close}>
+              <div className='close_password'>
                 <Button onClick={hideOverlayHandler}><img src={close}/></Button>
               </div>
-              <div>
+              <div className='password_change'>
                 <h2>Change Password</h2>
                 <form onSubmit={changePasswordHandler}>
-                  Registered Mail Id: <input type="email" 
-                                             value={enteredEmailId} required placeholder='Enter your email id' onChange={emailHandler}/>
-                <button type='submit'>Submit</button>
+                  <label>
+                    Registered Mail Id
+                  </label>
+                  <input type="email" 
+                                             value={enteredEmailId} 
+                                             required 
+                                             placeholder='Enter your email id' 
+                                             onChange={emailHandler}/>
+                <div className='password_submit'>
+                  <Button type='submit'>Submit</Button>
+                </div>
                 </form>
               </div>
             </Modal>}

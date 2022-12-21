@@ -12,7 +12,7 @@ import Button from '../UI/Button/Button';
 import { handleRef } from '@fluentui/react-component-ref';
 import { NavLink } from 'react-router-dom';
 import ViewEmployeeData from '../CourseTracking/ViewEmployeeData';
-import { FaBeer} from 'react-icons/fa';
+import { FaRegTrashAlt} from 'react-icons/fa';
 
 
 
@@ -53,7 +53,7 @@ const ViewList = (props) => {
       {
         name: '',
         cell:({id}) => (
-          <NavLink to={{pathname:'/users/report',state:{id:users[id].employeeId,fname:users[id].employeeFirstName,email:users[id].employeeEmail}}}><Button className={classes.view}>View</Button></NavLink>  
+          <NavLink to={{pathname:'/users/report',state:{id:users[id].employeeId,fname:users[id].employeeFirstName, lname:users[id].employeeLastName,email:users[id].employeeEmail}}}><Button className={classes.view}>View</Button></NavLink>  
         ),
       },
       {
@@ -62,7 +62,7 @@ const ViewList = (props) => {
           <button className={classes.delete}
             value={id}
             onClick={handleEmployeeDelete}
-          ><FaBeer/></button>
+          ><FaRegTrashAlt/></button>
         ),
       },
     ];
