@@ -156,6 +156,7 @@ const UserPage = () => {
                                 <label>Employee ID</label>
                                 <input type="number"
                                        id="id"
+                                       min="0"
                                        placeholder='Employee ID'
                                        onChange={(e)=>handle(e)}
                                        value={data.id}
