@@ -4,7 +4,6 @@ import DataTable from 'react-data-table-component';
 import approval from '../images/approval.png';
 import reject from '../images/reject.png';
 
-import App from '../../App';
 import ApprovalList from './ApprovalList';
 
 const Notification = ()=>{
@@ -33,7 +32,6 @@ const Notification = ()=>{
         cell:({id}) => (
           <button 
             value={id}
-            // onClick={(e) => handleInputChange(row, "surname", e)}
             onClick={approveHandler}
           >Approve</button>
         ),
@@ -44,7 +42,6 @@ const Notification = ()=>{
           cell:({id}) => (
             <button
               value={id}
-              // onClick={(e) => handleInputChange(row, "surname", e)}
               onClick={rejectHandler}
   
             >Reject</button>
@@ -222,16 +219,13 @@ const Notification = ()=>{
        )
        
      }).then(response => {
-       console.log("Rejected");
-
-      //  alert("Status rejected") 
+       console.log("Rejected"); 
        console.log("request: ", response);
        return response.json();
      }) 
     }
 
 
-    
 
     return(
         <div className={classes.tablee}>

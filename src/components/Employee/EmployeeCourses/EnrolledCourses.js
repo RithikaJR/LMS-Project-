@@ -1,5 +1,4 @@
 import React, { useEffect, useState } from 'react';
-import Search from '../../Search Bar/Search.js';
 
 import classes from './EmployeeAvailableCourses.module.css';
 import EmployeeCourseItem from './EmployeeCourseItem';
@@ -38,8 +37,6 @@ const EnrolledCourses = (props) => {
                 'Authorization':token
               }
             });
-        }else{
-        //   response = await fetch('http://localhost:8080/api/courses/search/findBycourseNameContaining?name='+searchName);
         }
         
   
@@ -119,9 +116,8 @@ const EnrolledCourses = (props) => {
     
   
     return (
-      <React.Fragment>
+      <div className={classes.enroll_page}>
         <h2>Enrolled Courses</h2>
-        {/* <Search search={onSearchHandler}/> */}
         <section className={classes.courses}>
           <ul>{coursesList}</ul>
         </section>
@@ -141,7 +137,7 @@ const EnrolledCourses = (props) => {
               nextLinkClassName='page-num'
               activeClassName='active'
             />
-      </React.Fragment>
+      </div>
     );
   };
 

@@ -18,18 +18,11 @@ import slide1 from '../images/slide1.jpg';
 import slide4 from '../images/slide4.jpg';
 import classes from '../MainHeader/Navigation.module.css';
 import Certificate from './Certificate';
-import { RiSlideshow4Fill } from 'react-icons/ri';
 import 'bootstrap/dist/css/bootstrap.css';
 import Dropdown from 'react-bootstrap/Dropdown';
 import image from '../images/team-male.jpg' 
 import close from '../images/blue_close.png';
 
-// document.head.appendChild(styleLink);
-// const styleLink = document.createElement("link");
-// styleLink.rel = "stylesheet";
-// styleLink.href =
-// "https://cdn.jsdelivr.net/npm/semantic-ui/dist/semantic.min.css";
-// document.head.appendChild(styleLink);
 
 
 
@@ -100,9 +93,6 @@ const EmployeeHome = (props) => {
             <FaIcons.FaBars onClick={showSidebar} />
           </Link>
          
-          {/* <h1 className='tagName'>Welcome </h1> */}
-         
-          
           <div className={classes.profilepic}>
             
                 <Dropdown

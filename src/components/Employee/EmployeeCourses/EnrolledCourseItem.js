@@ -62,17 +62,6 @@ const EnrolledCourseItem = (props) => {
           <div className={classes.description}>Course Description : {props.description}</div>
           <div className={classes.view}><NavLink to={{pathname:'/employee/course-module',state:{course_name:props.name}}}><Button onClick={propsHandler}>View</Button></NavLink></div>
           
-          {/* {!view && <div className={classes.view}><NavLink to={{pathname:'',state:{id:props.id}}}><Button onClick={showCartHandler}>Enroll</Button></NavLink></div> }
-          {cartIsShown && <Modal>
-            <div class="learn" id="learn">
-                <div class="learn-header">
-                    <div class="title"><image src={TickImage} alt=""/></div>
-                </div>
-                <div class="learn-body">Enrolled Successfully
-                    <div><Button data-close-button class="close-button" onClick={hideCartHandler}>OK</Button></div>
-                </div>
-             </div>
-            </Modal>} */}
         </div>
       </li>
     );

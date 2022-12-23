@@ -102,15 +102,6 @@ const Navigation = (props) => {
             <h1>Welcome {Username}</h1>
           </li>
         )}
-        
-      
-          {/* <li>
-            <NavLink to = '/notification' className={classes.usertext}>
-            <div className={classes.bell}>
-              <img src={icon}/>
-              </div>
-            </NavLink>
-          </li> */}
 
           <li className={classes.notify}>
           <Dropdown>
