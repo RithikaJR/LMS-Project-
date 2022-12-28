@@ -1,7 +1,7 @@
 .courses {
     display: block;
     /* float: left; */
-    height: 20rem;
+    height: 22rem;
     width: 20rem;
     justify-content: center;
     text-transform: capitalize;
@@ -31,9 +31,30 @@
       margin-top: 10px;
       margin-bottom: 20px;
     }
+
+.view {
+  width: 100%;
+}
     
-.view button {
-  margin: 10px 0;
+.view Button {
+  margin: 1rem 0.3rem;
+  padding: 8px;
+  margin-left: 1rem;
+  border: 1px solid grey;
+  /* margin-left: 10px; */
+}
+
+.view Button:hover {
+  background-color: rgb(75, 165, 243);
+}
+
+.view a{
+  margin: 1rem 0.5rem;
+}
+
+.view img:hover{
+  opacity: 0.5;
+  transform: scale(1.2);
 }
 
 .courses:hover {

@@ -8,13 +8,23 @@
     padding-bottom: 3rem;
     padding-top: 5rem;
     text-align: center;
+
+    /* display: flex;
+    padding-top: 100px;
+    padding-bottom: 100px;
+    flex-direction: row;
+    align-items: flex-start;
+    flex-direction: row;
+    align-items: flex-start; */
+    
 }
 
 .coursepage h1 {
     font-size: 50px;
     font-weight: bolder;
-    color: rgb(85, 84, 84);
-    margin-right: 22rem;
+    color: #555454;
+    /* margin-right: 3rem; */
+    margin-top: 1rem;
 }
 
 .box {
@@ -25,12 +35,76 @@
 }
 
 .box Button {
-    position: static;
-    margin-right: -30rem;
+    position:static;
+    margin-right: -25rem;
     height: 3rem;
-    margin-top: 3rem;
+    margin-top: 2rem;
+    margin-left:9rem;
+}
+
+.close img{
+    height: 3rem;
+    width: 3rem;
 }
 
 .close Button {
+    
     align-items: center;
+    border: 1px;
+    border-radius: 50%;
+    font-size: 25px;
+    width: 2rem;
+    height: 2rem;
+    padding: 0.1rem;
+    margin-right: 1rem;
+    float: right;
+}
+
+.close Button:hover{
+    transform: scale(1.2);
+    background-color: rgba(134, 205, 250, 0);
+    color: #3886ca;
+    font-size: 26.5px;
+}
+
+.options {
+    margin: -2rem;
+    margin-right: -21rem;
+    margin-bottom: 0.5rem;
+}
+
+.display {
+    margin: -7.5rem 0;
+    float: left;
+}
+
+.display Button {
+    font-size: medium;
+    padding: 0.5rem;
+    background-color: #70b4f0;
+    color: white;
+    border: 1px solid white;
+}
+
+.add {
+    margin-top: 5.3rem;
+    margin-right: -4rem;
+}
+
+.add Button{
+    font-weight: bold;
+    position: relative;
+    padding: 0.7rem 0.9rem;
+    margin-right: -13rem;
+    border: 2px ;
+}
+
+.add Button:hover{
+    /* border: 2px solid #ffffff; */
+    box-shadow: 0 1px 4px gray;
+}
+
+.addagain{
+    margin-top: 13rem;
+    margin-left: -5rem;
 }

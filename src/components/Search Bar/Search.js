@@ -5,6 +5,7 @@ import Button from "../UI/Button/Button";
 import classes from './Search.module.css';
 
 function Search(props) {
+<<<<<<< HEAD
   // const [loading, setLoading] = useState(false);
   // const [posts, setPosts] = useState([]);
   // const [searchTitle, setSearchTitle] = useState("");
@@ -85,22 +86,22 @@ function Search(props) {
 //   props.search(searchTitle)
 //  }
 
+=======
+  
+>>>>>>> 52aec4ba95660a3c440edeb846296270b5c7e375
  const onChangeSearch = (event) => {
-  // setSearchTitle(event.target.value)
+ 
   props.search(event.target.value)
  } 
  
 return(
   <div className={classes.wrap}>
-     {/* <form onSubmit={onsubmitHandler}> */}
+  
       <input
           type="text"
           placeholder="Search.."
           onChange={onChangeSearch}
-          // onChange={(e) => setSearchTitle(e.target.value)}
           />
-          {/* <button type="submit">Search</button> */}
-      {/* </form> */}
     </div>
 
 );

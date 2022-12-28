@@ -1,0 +1,77 @@
+.employeedata{
+    margin-top: 10rem;
+}
+
+.employeedata h1{
+    text-transform: capitalize;
+    font-weight: bold;
+}
+
+.head_employeedata{
+    display: flex;
+    margin-left: 2rem;
+    justify-content: space-between;
+}
+
+.progressbar{
+    margin-right: 5rem;
+}
+
+.emp_text{
+    display: block;
+}
+
+.report{
+    text-align: center;
+    background-color: #bce0ff;
+    padding: 1rem 0;
+    margin: 8rem 1rem;
+    width: auto;
+    min-height: 10rem;
+    /* border: 1px solid black; */
+    box-shadow: 0px 2px 4px grey;
+    border-radius: 25px;
+}
+
+.report h2{
+    font-weight: bold;
+}
+
+.enroll{
+    border-radius: 25px;
+    background-color: rgb(250, 187, 69);
+    box-shadow: 0px 2px 4px grey;
+}
+
+.heading_enroll{
+    padding: 1.5rem 5rem;
+    padding-bottom: 0.5rem;
+    border-radius: 25px 25px 0 0;
+    background-color: rgb(163, 122, 46)
+}
+
+.enroll_list{
+    min-height: 10rem;
+    padding: 1rem 0;
+}
+
+.heading_complete{
+    padding: 1.5rem 5rem;
+    padding-bottom: 0.5rem;
+    border-radius: 25px 25px 0 0;
+    background-color: rgb(165, 165, 165);
+}
+
+.complete{
+    /* border: 1px solid black; */
+    /* padding: 2rem 5rem; */
+    border-radius: 25px;
+    background-color: rgb(225, 225, 225);
+    box-shadow: 0px 2px 4px grey;
+}
+
+.tables{
+    display: flex;
+    justify-content: space-between;
+    margin: 1rem 5rem;
+}

@@ -1,50 +1,96 @@
-import Dropdown from 'react-bootstrap/Dropdown';
-// import { Dropdown } from 'bootstrap';
-import Button from '../UI/Button/Button';
+import DropdownButton from 'react-bootstrap/DropdownButton';
 import classes from './CourseModuleList.module.css';
-import './ColapStyle.css';
-import Collapsible from 'react-collapsible';
+import '../Courses/ColapStyle.css';
+import ModuleResource from './ModuleResource';
 import video from '../video/sample_video.mp4';
-// import sample_video from 'https://drive.google.com/file/d/19aJicg0EDYGpdsmD4hCGrDC1vGWKg12C/view?usp=share_link';
+import Certificate from '../Employee/Certificate';
 
+import { useEffect, useState } from 'react';
 
 const CourseModuleList = (props) =>{
-// const caurseCtx = useContext(CourseContext);
+
+    let token = `Bearer ${sessionStorage.getItem('jwt')}`;
+
+    const [moduleResource, setModuleResource] = useState([]);
+    const [isLoading, setIsLoading] = useState(true);
+    const [httpError, setHttpError] = useState();
   
-//     // const price = `$${props.price.toFixed(2)}`;
+      useEffect(() => {
+          const fetchModuleResources = async () => {
+            let response;
+            // if(searchName===''){
+              response = await fetch(
+                'http://localhost:8080/api/modules/'+props.id+'/moduleResources',{
+                  headers:{
+                    'Authorization':token
+                  }
+                });
+            // }
+            if (!response.ok) {
+              throw new Error('Something went wrong!');
+            }
+      
+            const responseData = await response.json();
+      
+            const loadedCourses = [];
+            const moduleArray = {...responseData._embedded.moduleResource};
+      
+            // console.log(responseData);
+            for (const key in moduleArray) {
+              loadedCourses.push({
+                id: key,
+                moduleId: moduleArray[key].moduleResourceId,
+                name: moduleArray[key].moduleResourceName,
+                type: moduleArray[key].moduleResourceType,
+                url: moduleArray[key].moduleResourceUrl,
+                duration: moduleArray[key].moduleResourceDuration,
+              });
+            }
+            // console.log("dfsdf")
+            setModuleResource(loadedCourses);
+            console.log(moduleResource);
+            setIsLoading(false);
+          };
+      
+          fetchModuleResources().catch((error) => {
+            setIsLoading(false);
+            setHttpError(error.message);
+          });
   
-//     const addToCartHandler = () => {
-//       caurseCtx.addItem({
-//         id:props.id,
-//         name:props.name,
-//         image:props.image,
-//         description:props.description
-//     });
-//     };
-  
-    // const buttonClick =() =>{
-    //   <CourseModule/>
-    // }
-    const handlVideo = ()=>{
-      props.videoLink(video);
+        }, []);
+      
+
+
+    console.log(props.id);
+    console.log(props.name);
+    console.log(props.moduleId);
+
+
+    const VideoLink = (link)=>{
+      props.videooLink(link);
     }
 
+    const listOfResources = moduleResource.map((module) => (
+      <ModuleResource
+        videosLink={VideoLink}
+        key={module.id}
+        id={module.moduleId}
+        moduleName={module.name}
+        moduleType={module.type}
+        resourceUrl={module.url}
+        duration={module.duration}
+      />
+    ));
 
-    // console.log(props.url)
     return (
       <div className={classes.wrap}>
-          <Collapsible trigger={props.name} className={classes.collapse}>
-            <ul>
-              <li>
-                <a onClick={handlVideo}> Video </a>
-              </li>
-              <li>
-                <a href="https://www.tutorialspoint.com/effective_communication/effective_communication_tutorial.pdf" target="_blank"> Resources </a>
-              </li>
-            </ul>
-          </Collapsible>
-
+          <DropdownButton id="dropdown-basic-button" title={props.name}>
+            {listOfResources}
+          </DropdownButton>
       </div> 
+      
+
+
     );
 }
 

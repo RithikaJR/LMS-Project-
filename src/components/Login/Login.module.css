@@ -81,6 +81,7 @@
 .control.invalid input {
   /* border-color: red; */
   background: #fbdada;
+  
 }
 
 .actions {
@@ -94,4 +95,8 @@
     flex-direction: row;
   }
 
+}
+
+.forgotpasswword{
+  margin-left: 290px;
 }

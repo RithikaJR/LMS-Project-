@@ -1,0 +1,56 @@
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;600&display=swap');
+
+
+.home {
+  font-family: 'Montserrat', sans-serif;
+  box-sizing: border-box;
+  height: 100vh;
+  padding-top: 4rem;
+  background-image: url(../images/homepage_background.jpg);
+}
+
+.logolinks ul {
+  display: flex;
+  justify-content: center;
+  list-style: none;
+  padding-top: 5rem;
+}
+
+.logolinks img {
+  height: 100px;
+  width: 100px;
+  padding: 2rem 0;
+}
+
+.usertext{
+  text-decoration: none;
+  color: #3b7db7;
+  /* text-align: center; */
+  
+  padding-left: 2rem;
+}
+
+.coursetext{
+  text-decoration: none;
+  color: #3b7db7;
+  text-align: center;
+}
+
+.image_wrap {
+  height: 10rem;
+  width: 10rem;
+  align-items: center;
+  border: 0.5px;
+  border-radius: 50%;
+  background-color: white;
+  margin: 0 1rem;
+  transition: 0.3s ease-in-out;
+}
+
+.image_wrap:hover {
+  box-shadow: 5px 3px 50px rgb(167, 166, 166);
+}
+
+.coursetext .image_wrap {
+  margin-top: 1.3rem;
+}

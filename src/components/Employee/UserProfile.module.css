@@ -1,0 +1,50 @@
+.profile{
+    line-height: 50px;
+    padding-top: 3rem;
+}
+
+
+.profileImg{
+    text-align: center;
+    margin: 2rem 0;
+}
+
+.profileImg img{
+    text-align: center;
+    border-radius: 50%;
+    height: 150px;
+}
+
+.profileImg h1 {
+    text-transform: capitalize;
+}
+
+.profileImg input{
+    font-size: 15px;
+    margin-top: 1rem;
+    /* width: 10rem; */
+}
+
+.profile Button {
+    background-color: #7ab9f0;
+    border-radius: 25px;
+    padding: 1rem;
+    width: 10rem;
+    margin: 0;
+    border: 1px solid rgb(163, 163, 163);
+}
+
+
+
+.data Button{
+    margin: 0 35%;
+    margin-top: 2rem;
+    width: 13rem;
+}
+
+.changePassword {
+   margin-left: 5rem;
+}
+.data{
+    justify-content: center;
+}

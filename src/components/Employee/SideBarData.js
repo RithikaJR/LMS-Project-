@@ -7,8 +7,14 @@ export const SidebarData = [
 
   {
     title: 'Courses',
-    path: '/employee/courses',
+    path: '/employee',
     icon: <RiIcons.RiProfileLine />,
+    cName: 'nav-text'
+  },
+  {
+    title: 'Enrolled Courses',
+    path: '/employee/enrolled-courses',
+    icon: <IoIcons.IoIosPaper />,
     cName: 'nav-text'
   },
 
@@ -19,17 +25,12 @@ export const SidebarData = [
     cName: 'nav-text'
   },
 
-//   {
-//     title: 'Auction',
-//     path: '/customer/auction',
-//     icon: <RiIcons.RiAuctionFill />,
-//     cName: 'nav-text'
-//   },
- 
-  {
-    title: 'Log Out',
-    path: '/logout',
-    icon: <AiIcons.AiOutlineLogout />,
+{
+    title: 'Profile',
+    path: '/employee/profile',
+    icon: <RiIcons.RiAuctionFill />,
     cName: 'nav-text'
-  }
+  },
+ 
+
 ];

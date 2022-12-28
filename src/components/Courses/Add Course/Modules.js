@@ -1,14 +1,11 @@
 
 import Card from "../../UI/Card/Card.js";
-// import ExpenseItem from "./Expenseitem";
 import './Modules.css';
-
-// import ExpenseFilter from './ExpensesFilter';
 
 import ModuleList from "./ModuleList";
 
 
-function Modules(props)
+const Modules = (props) =>
 {
 
     const filteredExpenses = props.items.filter((expense) =>
@@ -18,7 +15,7 @@ function Modules(props)
     })
     return (
     <Card className="expenses">
-        <h2>Modules</h2>
+        <h2>Module Resources</h2>
         <ModuleList items={filteredExpenses}></ModuleList>
       
      </Card>

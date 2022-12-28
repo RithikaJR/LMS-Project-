@@ -1,18 +1,72 @@
 import { useEffect, useState } from 'react';
 import classes from './ViewList.module.css';
 // import BootstrapTable from 'react-bootstrap-table-next';
+import DataTable from 'react-data-table-component';
+import image from '../images/trashbin.png';
 
 
 // import classes from './ViewList.module.css';
 import ListItem from './ListItem';
 import Search from '../Search Bar/Search.js';
+import Button from '../UI/Button/Button';
+import { handleRef } from '@fluentui/react-component-ref';
+import { NavLink } from 'react-router-dom';
+import ViewEmployeeData from '../CourseTracking/ViewEmployeeData';
+import { FaRegTrashAlt} from 'react-icons/fa';
 
-const ViewList = () => {
-    const [courses, setMeals] = useState([]);
+
+
+const ViewList = (props) => {
+
+    let token = `Bearer ${sessionStorage.getItem('jwt')}`;
+    const [users, setUsers] = useState([]);
     const [isLoading, setIsLoading] = useState(true);
     const [httpError, setHttpError] = useState();
   
     const [searchName, setSearchName] = useState("");
+    const [deleteEmployee, setDeleteEmployee] = useState(false);
+    const [selectedEmployeeId, setSelectedEmployeeId] = useState(1005);
+    let columns = [];
+
+    {users.map(user => {
+    columns = [
+      {
+        name: 'Employee ID',
+        selector: 'employeeId',
+        sortable: true,
+      },
+      {
+        name: 'First Name',
+        selector: 'employeeFirstName',
+        sortable: true,
+      },
+      {
+        name: 'Last Name',
+        selector: 'employeeLastName',
+        sortable: true,
+      },
+      {
+        name: 'Email',
+        selector: 'employeeEmail',
+        sortable: true,    
+      },
+      {
+        name: '',
+        cell:({id}) => (
+          <NavLink to={{pathname:'/users/report',state:{id:users[id].employeeId,fname:users[id].employeeFirstName, lname:users[id].employeeLastName,email:users[id].employeeEmail}}}><Button className={classes.view}>View</Button></NavLink>  
+        ),
+      },
+      {
+        name: '',
+        cell:({id}) => (
+          <button className={classes.delete}
+            value={id}
+            onClick={handleEmployeeDelete}
+          ><FaRegTrashAlt/></button>
+        ),
+      },
+    ];
+    })}
   
     const onSearchHandler = (name)=>{
       console.log(name)
@@ -22,13 +76,21 @@ const ViewList = () => {
     useEffect(() => {
       const fetchMeals = async () => {
         let response
-        if(searchName ===""){
+        if(searchName === ""){
           response = await fetch(
-            'http://localhost:8080/api/employee'
+            'http://localhost:8080/api/employee',{
+              headers:{
+                'Authorization':token
+              }
+            }
           );
         }else{
           response = await fetch(
-            'http://localhost:8080/api/employee/search/findByemployeeFirstNameContaining?name='+searchName
+            'http://localhost:8080/api/employee/search/findByemployeeFirstNameContaining?name='+searchName,{
+              headers:{
+                'Authorization':token
+              }
+            }
           );
         }
   
@@ -45,14 +107,14 @@ const ViewList = () => {
         for (const key in courseArray) {
           loadedCourses.push({
             id: key,
+            employeeId:courseArray[key].employeeId,
             employeeFirstName: courseArray[key].employeeFirstName,
             employeeLastName: courseArray[key].employeeLastName,
             employeeEmail: courseArray[key].employeeEmail,
-            // description: courseArray[key].courseDescription,
           });
         }
-  
-        setMeals(loadedCourses);
+
+        setUsers(loadedCourses);
         setIsLoading(false);
       };
   
@@ -60,7 +122,8 @@ const ViewList = () => {
         setIsLoading(false);
         setHttpError(error.message);
       });
-    }, [searchName]);
+      
+    }, []);
   
     if (isLoading) {
       return (
@@ -77,47 +140,71 @@ const ViewList = () => {
         </section>
       );
     }
+
+  const handleEmployeeDelete = (event) => {
+    // console.log(users[event.target.value].employeeId)
+    // console.log(event.target.value);
+    // setSelectedEmployeeId(users[event.target.value].employeeId);
+    if(window.confirm("Do you want to remove this employee?") == true){
+      setDeleteEmployee(true);
+      deleteHandler(event);
+    }
+    else{
+      setDeleteEmployee(false);
+    }
+  }
+
+    const deleteHandler=async (event)=>{
+      console.log(users[event.target.value].employeeId);
+      try {
+          let res=await fetch("http://localhost:8080/api/employee/"+users[event.target.value].employeeId, 
+          { 
+            method: 'DELETE', 
+            headers:{ 'Authorization':token} 
+          })
+
+                if (res.status === 204 ) {
+                    alert("Employee Deleted!");
+                } else {
+                    alert("Some error occured");
+                    console.log(res.status);
+                }
+          } 
+      catch (err) {
+            console.log(err);
+          }
+  // };
+}
+
+    // const reportHandler = () => {
+    //   <NavLink to='/reports' />
+    // }
   
-    const coursesList = courses.map((course) => (
-      <ListItem
+    const coursesList = users.map((course) => (
+      <ViewEmployeeData
         key={course.employeeId}
         id={course.employeeId}
         employeeFirstName={course.employeeFirstName}
         employeeLastName={course.employeeLastName}
         employeeEmail={course.employeeEmail}
-        // description={course.description}
       />
+    
     ));
 
   
     return (
       <div className={classes.viewlist}>
         <Search search={onSearchHandler}/>
-          {/* <ul>{coursesList}</ul> */}
-
-        <table className={classes.tablee}>
-          <thead>
-            <tr>
-              <th className={classes.first_head}>Name</th>
-              {/* <th>Last name</th> */}
-              <th>Email</th>
-              <th className={classes.last_head}>Role</th>
-            </tr>
-          </thead>
-          <tbody>
-            {courses.map(item => {
-              return (
-                <tr key={item.employeeId}>
-                  <td className={classes.first_column}>{ item.employeeFirstName }  { item.employeeLastName }</td>
-                  {/* <td>{ item.employeeLastName }</td> */}
-                  <td>{ item.employeeEmail }</td>
-                  <td className={classes.last_column}>Trainee</td>
-                </tr>
-              );
-            })}
-          </tbody>
-        </table>
-        
+         
+        <div className={classes.tablee}>
+          <DataTable 
+              title="Employees"
+              columns={columns}
+              data={users}
+              pagination
+              highlightOnHover
+            />
+        </div> 
       </div>
     );
   };

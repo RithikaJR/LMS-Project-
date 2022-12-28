@@ -9,37 +9,48 @@
   padding: 0;
   display: flex;
   align-items: center;
+  
 }
 
 .nav li {
   margin: 0;
-  margin-left: 3rem;
+  margin-left: 2rem;
 }
 
 .nav h1 {
   color: rgb(255, 255, 255);
+  text-transform: capitalize;
 }
 
 .nav a {
   text-decoration: none;
-  color: rgb(163, 162, 162);
+  color: rgb(72, 72, 72);
 }
 
 .nav a:hover,
 .nav a:active {
-  color: #ffffff;
+  /* color: #ffffff; */
+  /* background-color: none; */
+  opacity: 0.7;
 }
+
+.number {
+  font-weight: bold;
+}
+
+
 
 .nav button {
   font: inherit;
-  background: #ffffff;
-  border: 1px;
+  background: #6898c3;
+  /* border: 1px solid black; */
   padding: 0.5rem 1.5rem;
-  color: #f55858;
+  /* color: #f55858;   */
   cursor: pointer;
-  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.26);
   border-radius: 20px;
 }
+
+
 
 .nav button:focus {
   outline: none;
@@ -47,6 +58,63 @@
 
 .nav button:hover,
 .nav button:active {
-  color: white;
-  background: #f55858;
+  /* color: white; */
+  /* background: #f55858; */
+  border: 1px;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.178);
 }
+
+.profilepic img{
+  border-radius: 100%;
+  width: 10px;
+  height: 10px;
+  
+}
+
+.bell img {
+  height: 30px;
+  width: 30px;
+}
+
+.profilepic img{
+  border-radius: 100%;
+  width: 10px;
+  height: 10px;
+  
+}
+
+.bell img {
+  height: 30px;
+  width: 30px;
+}
+
+.notify img {
+  height: 35px;
+  width: 35px;
+}
+
+.close_nav img{
+  height: 3rem;
+  width: 3rem;
+}
+
+.close_nav Button {
+  
+  align-items: center;
+  border: 1px;
+  border-radius: 50%;
+  font-size: 25px;
+  width: 2rem;
+  height: 2rem;
+  padding: 0.1rem;
+  margin-right: 1rem;
+  float: right;
+}
+
+.close_nav Button:hover{
+  transform: scale(1.2);
+  background-color: rgba(134, 205, 250, 0);
+  color: #3886ca;
+  font-size: 26.5px;
+}
+

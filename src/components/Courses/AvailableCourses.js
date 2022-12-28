@@ -2,14 +2,30 @@ import React, { useEffect, useState } from 'react';
 import Search from '../Search Bar/Search.js';
 
 import classes from './AvailableCourse.module.css';
+import './AvailableCourses.css';
 import CourseItem from './CourseItem';
 
+import ReactPaginate from 'react-paginate';
+
 const AvailableCourses = () => {
-    const [courses, setMeals] = useState([]);
+
+    let token = `Bearer ${sessionStorage.getItem('jwt')}`;
+
+    const [courses, setCourse] = useState([]);
     const [isLoading, setIsLoading] = useState(true);
     const [httpError, setHttpError] = useState();
     const [searchName, setSearchName] = useState("");
+
   
+  
+    // Pagination
+    const [itemOffset, setItemOffset] = useState(0);
+    const itemsPerPage = 3;
+    const endOffset = itemOffset + itemsPerPage;
+    console.log(`Loading items from ${itemOffset} to ${endOffset}`);
+    const currentItems = courses.slice(itemOffset, endOffset);
+    const pageCount = Math.ceil(courses.length / itemsPerPage);
+
     const onSearchHandler = (name)=>{
       console.log(name)
       setSearchName(name);
@@ -20,12 +36,18 @@ const AvailableCourses = () => {
         let response;
         if(searchName===''){
           response = await fetch(
-            'http://localhost:8080/api/courses');
+            'http://localhost:8080/api/courses',{
+              headers:{
+                'Authorization':token
+              }
+            });
         }else{
-          response = await fetch('http://localhost:8080/api/courses/search/findBycourseNameContaining?name='+searchName);
+          response = await fetch('http://localhost:8080/api/courses/search/findBycourseNameContaining?name='+searchName,{
+            headers:{
+              'Authorization':token
+            }
+          });
         }
-        
-  
         if (!response.ok) {
           throw new Error('Something went wrong!');
         }
@@ -49,7 +71,7 @@ const AvailableCourses = () => {
           });
         }
   
-        setMeals(loadedCourses);
+        setCourse(loadedCourses);
         setIsLoading(false);
       };
   
@@ -75,26 +97,51 @@ const AvailableCourses = () => {
       );
     }
   
-    const coursesList = courses.map((course) => (
+    const coursesList = currentItems.map((course) => (
       <CourseItem
         key={course.id}
         id={course.courseId}
         name={course.name}
         image={course.image}
-        // url={course.courseUrl}
         description={course.description}
-        // api={module.moduleApi}
       />
     ));
 
+    // Invoke when user click to request another page.
+    const handlePageClick = (event) => {
+      const newOffset = (event.selected * itemsPerPage) % courses.length;
+      console.log(
+        `User requested page number ${event.selected}, which is offset ${newOffset}`
+      );
+      setItemOffset(newOffset);
+    };
+    
     
   
     return (
       <React.Fragment>
         <Search search={onSearchHandler}/>
         <section className={classes.courses}>
+         
           <ul>{coursesList}</ul>
+          
         </section>
+
+        {/* Pagination */}
+        <ReactPaginate
+              breakLabel="..."
+              nextLabel="Next >"
+              onPageChange={handlePageClick}
+              pageRangeDisplayed={5}
+              pageCount={pageCount}
+              previousLabel="< Previous"
+              renderOnZeroPageCount={null}
+              containerClassName="pagination"
+              pageLinkClassName='page-num'
+              previousLinkClassName='page-num'
+              nextLinkClassName='page-num'
+              activeClassName='active'
+            />
       </React.Fragment>
     );
   };

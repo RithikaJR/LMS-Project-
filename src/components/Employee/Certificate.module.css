@@ -1,0 +1,100 @@
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;600&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Aboreto&display=swap');
+* {
+    box-sizing: border-box;
+    font-family: 'Montserrat', sans-serif;;
+  }
+
+  .app {
+    font-family: "Hachi Maru Pop", cursive;
+    /* display: flex; */
+    padding: 15px;
+  }
+  
+
+  .meta {
+    flex-grow: 1;
+    padding-right: 15px;
+  }
+
+  .app h1{
+    width: 200px;
+    margin: 0.5rem auto;
+    /* height: 3rem; */
+  }
+
+  .app .meta input {
+    font-family: inherit;
+    padding: 5px;
+    width: 200px;
+    box-shadow: 0 0 2px rgba(0, 0, 0, 0.25);
+    border: 2px solid rgba(0, 0, 0, 0.25);
+    border-radius: 5px;
+  }
+
+  .app .meta button {
+    padding: 10px 15px;
+    border: 2px solid #87ceeb;
+    background-color: #33f3fb;
+    font-family: inherit;
+    margin: 20px 0;
+    border-radius: 10px;
+    cursor: pointer;
+  }
+
+  .downloadWrapper {
+    padding: 10px;
+  }
+
+  .certificateWrapper {
+    box-shadow: 0 0 5px #000;
+    border-radius: 10px;
+    overflow: hidden;
+    width: fit-content;
+    position: relative;
+  }
+
+  .certificateWrapper img {
+    display: block;
+    height: 420px;
+  }
+
+  .certificateWrapper p1 {
+    font-family: 'Aboreto', cursive;
+    /* font-family: "Staatliches", cursive; */
+    text-transform: uppercase;
+    font-weight: bold;
+    margin: 0;
+    position: absolute;
+    left: 245px;
+    top: 185px;
+    font-size: 25pt;
+  }
+
+  .certificateWrapper p2 {
+    font-family: 'Aboreto', cursive;
+    /* font-family: "Staatliches", cursive; */
+    text-transform: uppercase;
+    font-weight: bold;
+    margin: 0;
+    position: absolute;
+    left: 215px;
+    top: 260px;
+    font-size: 13pt;
+  }
+
+  .certificateWrapper p3 {
+    font-family: 'Aboreto', cursive;
+    /* font-family: "Staatliches", cursive; */
+    text-transform: uppercase;
+    font-weight: bold;
+    margin: 0;
+    position: absolute;
+    left: 90px;
+    top: 350px;
+    font-size: 10pt;
+  }
+
+  .app Button{
+    margin: 0.5rem 35%;
+  }

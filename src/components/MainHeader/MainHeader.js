@@ -11,7 +11,7 @@ const MainHeader = (props) => {
       <div className={classes['header-image']}>
           <a href=''><img src={exp_logo}/></a>
       </div>
-      <Navigation isLoggedIn={props.isAuthenticated} onLogout={props.onLogout} />
+      <Navigation isLoggedIn={props.isAuthenticated} onLogout={props.onLogout} name={props.name} tracker={props.tracker} employeeId={props.employeeId} userId={props.userId}/>
     </header>
   );
 };

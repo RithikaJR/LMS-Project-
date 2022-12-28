@@ -9,16 +9,112 @@
     text-align: center;
 }
 
-.px-4 label {
-    display: block;
-    padding: 0.5rem 0;
-    margin: 0 3rem;
-}
-
-.px-4 select, input, textarea {
-    margin: 0 0.5rem;
-}
-
 .last {
     text-align:center;
 }
+
+.individual label{
+    margin-right: 0.5rem;
+    display: inline-block;
+    width: 200px;
+    text-align: right;
+}
+
+.individual input {
+    border: 1px solid grey;
+    border-radius: 10px;
+    padding: 0.3rem 0;
+    margin: 0.5rem 0;
+    padding-left: 0.5rem;
+    width: 20rem;
+}
+
+.individual select {
+    border: 1px solid grey;
+    border-radius: 10px;
+    padding: 0.3rem 0;
+    margin: 0.5rem 0;
+    margin-right: 0.5rem;
+    padding-left: 0.5rem;
+    width: 15rem;
+}
+
+.individuals label{
+    margin-right: 0.5rem;
+    display: inline-block;
+    width: 200px;
+    text-align: right;
+}
+
+.individuals select {
+    border: 1px solid grey;
+    border-radius: 10px;
+    padding: 0.3rem 0;
+    margin: 0.5rem 0;
+    margin-right: 0.5rem;
+    padding-left: 0.5rem;
+    width: 20rem;
+}
+
+.individual label::after {
+    content: "*";
+    opacity: 0.8;
+    color: rgb(246, 94, 94);
+    margin-left: 0.1rem;
+}
+
+.individual Button{
+    border: 1px;
+    padding: 0.5rem 1rem;
+    background-color: rgba(240, 248, 255, 0);
+}
+
+.module_wrap{
+    text-align: center;
+    margin-top: 1.5rem;
+    padding: 1rem;
+    border: 1px;
+    border-radius: 15px;
+    background-color: #9dcef9;
+}
+
+.module_wrap h2{
+    color: rgb(255, 255, 255);
+    font-weight: bold;
+}
+
+.module Button{
+    height: 2rem;
+    border: 1px;
+    padding: 0.5rem 1rem;
+    background-color: rgba(240, 248, 255, 0);
+    color: white;
+    margin-top: -0.5rem;
+}
+
+.module img{
+    height: 40px;
+    width: 40px;
+    /* margin-bottom: 1rem; */
+}
+
+.module Button:hover {
+    background-color: rgba(255, 255, 255, 0);
+    transform: scale(1.15);
+}
+
+.module{
+    display: flex;
+    width: 90%;
+    background-color: #4390d4;
+    border: 1px;
+    color: white;
+    border-radius: 20px;
+    text-align: center;
+    justify-content: space-between;
+    margin: 1rem 0;
+    padding: 1rem 0.5rem;
+    padding-left: 3rem;
+    
+}
+

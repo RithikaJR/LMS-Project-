@@ -1,0 +1,119 @@
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;600&display=swap');
+
+.courses ul{
+    border: 1px solid white;
+    border-radius: 10px;
+    min-height: 23.8rem;
+    height: fit-content;
+    align-content: center;
+    padding: 1rem;
+    width: 25rem;
+    margin: 1rem;
+    background-color: white;
+}
+
+
+.courses {
+    width: 95%;
+    margin: 0 auto;
+    margin-bottom: 3rem;
+    border: 3px;
+    display: flex;
+    justify-content: space-evenly;
+    height: auto;
+    background-color: #8db1eb;
+    box-shadow: 1px 1px 10px grey;
+    
+}
+
+.page h3 {
+    font-family: 'Montserrat', sans-serif;
+    /* margin-top: 8rem; */
+    margin-left: 35rem;
+    color: rgb(66, 66, 66);
+    font-size: 3rem;
+    font-weight: bold;
+    text-align: center;
+}
+
+.page Button {
+    margin: 1.5rem 0;
+    /* width: 16rem; */
+}
+
+.aa{
+    /* border: 1px solid black; */
+    width: 60%;
+    height: 25.8rem;
+    margin: 1rem;   
+    background-image: url(../../images/iframe_bg.jpg);
+    background-size: cover;
+    border-radius: 10px;
+}
+
+.player {
+    width: 99.5%;
+    height: 410px;
+    border: 2px solid rgb(255, 255, 255);
+    border-radius: 10px;
+}
+
+
+
+.cert {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    /* padding-right: -1rem; */
+    /* margin-bottom: 1.5rem; */
+}
+
+.cert Button {
+    margin-top: 3rem;
+    margin-right: 1rem;
+    padding: 0.7rem 0.7rem;
+    color: white;
+    background-color: #69a9e1;
+    /* border: 2px solid gray;  */
+    font-weight: bold;
+}
+
+.cert Button:disabled {
+    background-color: gray;
+    cursor: not-allowed;
+}
+
+.cert img{
+    height: 4rem;
+    width: 4rem;
+    margin-left: 0.5rem;
+}
+
+.rating{
+    padding-right: 2rem;
+}
+
+.close img{
+    height: 3rem;
+    width: 3rem;
+}
+
+.close Button {
+    
+    align-items: center;
+    border: 1px;
+    border-radius: 50%;
+    font-size: 25px;
+    width: 2rem;
+    height: 2rem;
+    padding: 0.1rem;
+    margin-right: 1rem;
+    float: right;
+}
+
+.close Button:hover{
+    transform: scale(1.2);
+    background-color: rgba(134, 205, 250, 0);
+    color: #3886ca;
+    font-size: 26.5px;
+}
