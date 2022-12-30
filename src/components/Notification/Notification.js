@@ -220,7 +220,8 @@ const Notification = ()=>{
          console.log('clicked'+approvalList[clickedId].employeeEmail);
          console.log('clicked'+approvalList[clickedId].employeeName);
          console.log('clicked'+approvalList[clickedId].courseName);
-         alert("Status rejected") 
+         message.success("Status rejected")
+       
          console.log("request: ", response);
          return response.json();
        }) 

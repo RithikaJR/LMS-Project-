@@ -1,3 +1,4 @@
+import { message } from 'antd';
 import { useEffect, useState } from 'react';
 import Button from '../UI/Button/Button';
 import classes from './FeedbackItem.module.css'
@@ -30,10 +31,10 @@ const FeedbackItem = (props) => {
       });
       if (res.status === 200) 
       {
-        alert("Responded To FeedBack")
+        message.success("Responded To FeedBack")
       } else 
       {
-        alert("Some error occured");
+        message.error("Some error occured");
       }
     } catch (err) {
       console.log(err);
