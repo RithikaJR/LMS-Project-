@@ -184,7 +184,7 @@ const logoutHandler = () => {
             {isLoggedIn ? <CourseInterface onLogout={logoutHandler} /> : <Redirect to='/login' /> }
           </Route>
 
-    
+          {/* //Employee */}
           <Route path="/employee">
             {employeeLoggedIn ? <EmployeeHome isAuthenticated={employeeLoggedIn} onLogout={logoutHandler} name={employeeName} employeeId={employeeId} tracker={userStatus} userId={userId}/> : <Redirect to='/login' /> }
           </Route>

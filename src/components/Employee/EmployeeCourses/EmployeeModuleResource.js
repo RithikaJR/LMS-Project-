@@ -42,11 +42,6 @@ const EmployeeModuleResource = (props) => {
       console.log(props.resourceUrl);
       console.log(props.duration);
     
-      // const handleChange = () => {
-      //   // setChecked(true);
-      //   console.log("trueeee")
-      //   props.resourceCheck("dfaf");
-      // }
     
     return (
       <li className={classes.resource} >

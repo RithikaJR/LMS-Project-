@@ -1,14 +1,8 @@
 import React from 'react';
-
 import profilepicture from '../images/profilepic.jpg';
-// import Avatar from 'react-avatar';
 import classes from './Navigation.module.css';
-import Collapsible from 'react-collapsible';
-
 import { Dropdown, Image } from 'semantic-ui-react'
 
-//npm install @faker-js/faker --save-dev
-//npm install semantic-ui-react
 
 
 const NavigationLA = (props) => {

@@ -45,5 +45,14 @@
   .searchbar {
     background-color: blue;
   }
+
+  .enroll_page h2{
+    font: inherit;
+    font-size: 50px;
+    color: rgb(74, 74, 74);
+    font-weight: bold;
+    text-align: center;
+    margin-top: 2rem;
+  }
   
   

@@ -55,7 +55,7 @@ function Search() {
     <div className="App">
       <h3>Search Filter</h3>
       <input
-        style={{ width: "30%", height: "25px" }}
+        style={{ width: "30%", height: "25px"}}
         type="text"
         placeholder="Search..."
         onChange={(e) => setSearchTitle(e.target.value)}
