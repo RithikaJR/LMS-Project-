@@ -47,9 +47,9 @@ const EnrolledCourses = (props) => {
         const responseData = await response.json();
   
         const loadedCourses = [];
-        const courseArray = {...responseData};
+        const courseArray = {...responseData.coursesEnrolled};
 
-        console.log(responseData);
+        console.log(courseArray);
         for (const key in courseArray) {
           loadedCourses.push({
             id: key,

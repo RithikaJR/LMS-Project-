@@ -1,8 +1,12 @@
 import classes from '../Notification/Notification.module.css';
-import React, { useEffect, useState } from 'react';
+import React, { Fragment, useEffect, useState } from 'react';
 import DataTable from 'react-data-table-component';
 import approval from '../images/approval.png';
 import reject from '../images/reject.png';
+import Button from '../UI/Button/Button';
+import Modal from '../UI/Modal/Modal';
+import '../Login//ForgotPassword.css';
+import close from '../images/blue_close.png';
 
 import ApprovalList from './ApprovalList';
 
@@ -42,7 +46,7 @@ const Notification = ()=>{
           cell:({id}) => (
             <button
               value={id}
-              onClick={rejectHandler}
+              onClick={showOverlayHandler}
   
             >Reject</button>
            
@@ -69,9 +73,12 @@ const Notification = ()=>{
     const [isLoading, setIsLoading] = useState(true);
     const [httpError, setHttpError] = useState();
     const [date, setDate] = useState(null);
+    const [overlayShown, setoverlayIsShown] = useState(false);
+    const [enteredReason, setenteredReason] = useState('');
+    const [clickedId, setClickedId] = useState(0);
 
    
-   
+    
     useEffect(() => {
       const courseApprovalList = async () => { 
         let response = await fetch(
@@ -88,10 +95,10 @@ const Notification = ()=>{
           const loadedApprovalList = [];
           const listArray = {...responseData._embedded.courseApproval};
 
-          console.log(responseData);
+          // console.log(responseData);
           // let count=0;
           for (const key in listArray) {
-            if(listArray[key].approvalStatus === "pending"){
+            // if(listArray[key].approvalStatus === "pending"){
               // console.log(key);
             loadedApprovalList.push({
               id: key,
@@ -104,7 +111,7 @@ const Notification = ()=>{
               employeeEmail:listArray[key].employeeEmail
             });
             // count+=1
-          }
+          //}
           }
           setApprovalList(loadedApprovalList);
         
@@ -170,17 +177,35 @@ const Notification = ()=>{
        })
       
     }
+    
+
+    const showOverlayHandler = (event) => {
+      setClickedId(event.target.value);
+      console.log("clickedId",clickedId);
+      setoverlayIsShown(true);
+      
+      
+      
+    };
   
+    const hideOverlayHandler = () => {
+      setoverlayIsShown(false);
+    };
+
+    const reasonHandler = (event) =>{
+      setenteredReason(event.target.value);
+    }
     const rejectHandler = (event) =>{   
-      console.log('clicked'+approvalList[event.target.value].courseApprovalId); 
+      event.preventDefault();
+      console.log('clicked'+approvalList[clickedId].courseApprovalId); 
        
-      setemployeeId(approvalList[event.target.value].employeeId);
+      setemployeeId(approvalList[clickedId].employeeId);
       console.log("zcfd"+employeeId);
       
-      event.preventDefault();
+       
        
         //put api for course approval
-         fetch("http://localhost:8080/api/course-approval/"+approvalList[event.target.value].courseApprovalId, {
+         fetch("http://localhost:8080/api/course-approval/"+approvalList[clickedId].courseApprovalId, {
         
          headers: { "Content-Type": "application/json", 'Authorization':token },
          method: "PUT",
@@ -191,9 +216,9 @@ const Notification = ()=>{
          
        }).then(response => {
          console.log("Rejected");
-         console.log('clicked'+approvalList[event.target.value].employeeEmail);
-         console.log('clicked'+approvalList[event.target.value].employeeName);
-         console.log('clicked'+approvalList[event.target.value].courseName);
+         console.log('clicked'+approvalList[clickedId].employeeEmail);
+         console.log('clicked'+approvalList[clickedId].employeeName);
+         console.log('clicked'+approvalList[clickedId].courseName);
          alert("Status rejected") 
          console.log("request: ", response);
          return response.json();
@@ -209,11 +234,13 @@ const Notification = ()=>{
         
         {
 
-          employeeEmail:approvalList[event.target.value].employeeEmail,
+          employeeEmail:approvalList[clickedId].employeeEmail,
       
-          employeeName:approvalList[event.target.value].employeeName,
+          employeeName:approvalList[clickedId].employeeName,
       
-          courseName:approvalList[event.target.value].courseName
+          courseName:approvalList[clickedId].courseName,
+
+          rejectionReason:enteredReason
       
       }
        )
@@ -223,11 +250,16 @@ const Notification = ()=>{
        console.log("request: ", response);
        return response.json();
      }) 
+     setenteredReason('');
     }
+
+
+   
 
 
 
     return(
+      <Fragment>
         <div className={classes.tablee}>
         <DataTable 
             title="Approval Request"
@@ -237,7 +269,34 @@ const Notification = ()=>{
             highlightOnHover
             
           />
-      </div>
+            </div>
+            
+            <div>
+            {overlayShown && 
+            <Modal onClose={overlayShown} className="overlay">
+              <div className='close_password'>
+                <Button onClick={hideOverlayHandler}><img src={close}/></Button>
+              </div>
+              <div className='password_change'>
+                <h2>Reason for Rejection</h2>
+                <form onSubmit={rejectHandler}>
+                  <label>
+                    Enter Reason
+                  </label>
+                  <input type="text" 
+                                             value={enteredReason} 
+                                             required 
+                                             placeholder='Enter your reason' 
+                                             onChange={reasonHandler}/>
+                <div className='password_submit'>
+                  <Button  type='submit'>Submit</Button>
+                </div>
+                </form>
+              </div>
+            </Modal>}
+            </div>
+        
+            </Fragment>
         
     );
 };

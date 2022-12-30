@@ -99,13 +99,7 @@ const Navigation = (props) => {
       <ul>
         {props.isLoggedIn && (
           <li>
-<<<<<<< HEAD
-            {/* <a href="/">Home</a> */}
-            {/* <h1>Welcome Super Admin!</h1> */}
-            <h1>Welcome Learning Admin!</h1>
-=======
             <h1>Welcome {Username}</h1>
->>>>>>> 52aec4ba95660a3c440edeb846296270b5c7e375
           </li>
         )}
 
