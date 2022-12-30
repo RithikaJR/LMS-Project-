@@ -1,0 +1,103 @@
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;600&display=swap');
+
+
+.learningAdminHome {
+  font-family: 'Montserrat', sans-serif;
+  box-sizing: border-box;
+  height: auto;
+  background-image: url(../images/homepage_background.jpg);
+  /* background-size: cover; */
+  padding-bottom: 1rem;
+}
+
+
+.writeup{
+  /* font-family: 'Montserrat', sans-serif; */
+  /* font-size: 17px; */
+  font-size: large;
+  /* width: 90%; */
+  /* max-width: 40rem; */
+  padding: 3rem;
+  /* margin: 2rem auto; */
+  text-align: center;
+}
+
+.logolinks ul {
+  display: flex;
+  float:inline-start;
+  justify-content: center;
+  list-style: none;
+  margin-left: -40px;
+  margin-bottom: 150px;
+  /* padding-left: 2rem; */
+}
+
+.logolinks li a {
+  margin-right: 20px;
+  height: 30px;
+  width: 50px;
+  padding-left: 2rem;
+}
+
+.logolinks img {
+  height: 200px;
+  width: 200px;
+}
+
+.course {
+  margin-top: 13px;
+}
+
+.usertext{
+  text-decoration: none;
+  color: rgb(223, 130, 8);
+  text-align: center;
+  padding-left: 2rem;
+}
+
+.coursetext{
+  text-decoration: none;
+  color: rgb(29, 133, 230);
+  text-align: center;
+}
+
+.coursetext h4 {
+  margin-top: 32px;
+  margin-left: 20px;
+}
+
+.usertext h4 {
+  /* margin-top: 5px; */
+  margin-top: 30px;
+  margin-left: 20px;
+}
+
+.usertext img {
+  margin-bottom: 0.85rem;
+}
+
+/* .usertext img:hover {
+  opacity: 0.7;
+}
+
+.coursetext img:hover {
+  opacity: 0.7;
+} */
+
+.image_wrap {
+  height: 15rem;
+  width: 15rem;
+  align-items: center;
+  border: 0.5px;
+  border-radius: 50%;
+  background-color: white;
+  /* padding-bottom: ; */
+  margin: 0 2rem;
+  /* box-shadow: 1px 1px; */
+  transition: 0.3s ease-in-out;
+}
+
+.image_wrap:hover {
+  box-shadow: 5px 3px 50px rgb(167, 166, 166);
+
+}

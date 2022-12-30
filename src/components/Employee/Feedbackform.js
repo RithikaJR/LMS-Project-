@@ -43,10 +43,14 @@ function submitFeedback(e1){
 
   .then(res=>{
     if(res.data != null){
-      message.success("Thank you for your feedback!")
+      alert("Thank you for your feedback!")
+      setFeedback({
+        feedback_desc:""
+      })
     }
     console.log("res"+res.data)
   })
+
 }
 
   return (

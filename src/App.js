@@ -17,6 +17,7 @@ import SuperAdminHome from './components/Home/SuperAdminHome';
 import LAHomePage from './components/LearningAdmin/LAHomePage';
 import ViewEmployeeData from './components/CourseTracking/ViewEmployeeData';
 import { message } from 'antd';
+import FeedbackList from './components/Notification/FeedbackList';
 
 
 function App() {
@@ -174,6 +175,10 @@ const logoutHandler = () => {
 
           <Route path="/notification">
           {isLoggedIn ? <Notification onLogout={logoutHandler} /> : <Redirect to='/login' /> }
+          </Route>
+
+          <Route path="/feedbacks">
+          {isLoggedIn ? <FeedbackList onLogout={logoutHandler} /> : <Redirect to='/login' /> }
           </Route>
 
 
