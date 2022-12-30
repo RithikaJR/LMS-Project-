@@ -13,37 +13,6 @@ const EnrolledCourseItem = (props) => {
   const [cartIsShown, setCartIsShown] = useState(false);
   const [view, setView] = useState(false);
   
-  // const showCartHandler = async (e) => {
-  //   try {
-  //     let res = await fetch("http://localhost:8080/api/enroll-course", {
-  //       method: "POST",
-  //       headers: {"content-type": "application/json"},
-  //       body: JSON.stringify({
-  //         employeeId:{
-  //           employeeId:props.employeeId,
-  //         },
-  //         courseId:{
-  //           courseId:props.id,
-  //         },
-  //         entrolledDate:null
-  //       } ),
-  //     });
-  //     if (res.status === 200) {
-  //       setCartIsShown(true);
-  //       setView(true)
-  //     } else {
-  //       alert("Some error occured");
-  //     }
-  //   } catch (err) {
-  //     console.log(err);
-  //   }
-      
-  //   };
-  
-
-  //   let hideCartHandler =()=>{
-  //     setCartIsShown(false);
-  //   };
   const propsHandler =()=>{
     sessionStorage.setItem("courseId",props.id);
     sessionStorage.setItem("coursename", props.name);
@@ -51,7 +20,7 @@ const EnrolledCourseItem = (props) => {
   }
 
     console.log("CourseItem"+props.id);
-    console.log("coursenmae"+props.name);
+    console.log("coursename"+props.name);
     return (
       <li className={classes.courses}>
         <div className={classes.courseimg}>
@@ -60,7 +29,7 @@ const EnrolledCourseItem = (props) => {
         <div>
           <h3>{props.name}</h3>
           <div className={classes.description}>Course Description : {props.description}</div>
-          <div className={classes.view}><NavLink to={{pathname:'/employee/course-module',state:{course_name:props.name}}}><Button onClick={propsHandler}>View</Button></NavLink></div>
+          <div className={classes.view}><NavLink to={{pathname:'/employee/course-module',state:{course_name:props.name, enrollId:props.enrolledCourseId}}}><Button onClick={propsHandler}>View</Button></NavLink></div>
           
         </div>
       </li>

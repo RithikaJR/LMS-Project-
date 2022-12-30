@@ -7,7 +7,7 @@
     height: fit-content;
     align-content: center;
     padding: 1rem;
-    width: 25rem;
+    width: 25rem;   
     margin: 1rem;
     background-color: white;
 }
@@ -38,11 +38,9 @@
 
 .page Button {
     margin: 1.5rem 0;
-    /* width: 16rem; */
 }
 
 .aa{
-    /* border: 1px solid black; */
     width: 60%;
     height: 25.8rem;
     margin: 1rem;   

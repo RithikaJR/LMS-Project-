@@ -109,11 +109,6 @@
     display: none;
   }
 
-  /* .imgWrapper {
-    width: 100vw;
-    height: 100vh;
-  } */
-
   @keyframes blender {
     0% {
       opacity: 0;
@@ -168,7 +163,7 @@
   
   .avatar{
     background: none;
-    margin-left: 60%;
+    /* margin-left: 60%; */
     /* margin-right: 30px; */
   }
 

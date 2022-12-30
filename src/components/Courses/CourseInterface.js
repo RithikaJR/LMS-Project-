@@ -84,16 +84,6 @@ const CourseInterface = (props) => {
     );
   }
 
-  const jsPdfGenerator = () =>{
-    var doc = new jsPDF('p','pt');
-    doc.text(20,20,'Certificate');
-
-    doc.text(80,40,'Course Category : Communication');
-    doc.text(100,60,'Course Name : Leadership Skills');
-    doc.save("generated.pdf");
-   
-}
-
   const handleChange = () => {
     setChecked(true);
   }

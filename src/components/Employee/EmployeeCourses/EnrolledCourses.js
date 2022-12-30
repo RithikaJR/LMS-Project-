@@ -10,6 +10,7 @@ const EnrolledCourses = (props) => {
     let token = `Bearer ${sessionStorage.getItem('jwt')}`;
 
     const [enrolledCourses, setEnrolledCourse] = useState([]);
+    const [enrolledCourseId, setEnrolledCourseId] = useState([]);
     const [isLoading, setIsLoading] = useState(true);
     const [httpError, setHttpError] = useState();
     const [searchName, setSearchName] = useState("");
@@ -21,12 +22,8 @@ const EnrolledCourses = (props) => {
     console.log(`Loading items from ${itemOffset} to ${endOffset}`);
     const currentItems = enrolledCourses.slice(itemOffset, endOffset);
     const pageCount = Math.ceil(enrolledCourses.length / itemsPerPage);
-
-    // const onSearchHandler = (name)=>{
-    //   console.log(name)
-    //   setSearchName(name);
-    // }
-
+    
+    
     useEffect(() => {
       const fetchMeals = async () => {
         let response;
@@ -47,7 +44,7 @@ const EnrolledCourses = (props) => {
         const responseData = await response.json();
   
         const loadedCourses = [];
-        const courseArray = {...responseData};
+        const courseArray = {...responseData.coursesEnrolled};
 
         console.log(responseData);
         for (const key in courseArray) {
@@ -60,9 +57,10 @@ const EnrolledCourses = (props) => {
             duration: courseArray[key].courseDuration,
             rating:courseArray[key].courseRating,
             
+            
           });
         }
-  
+
         setEnrolledCourse(loadedCourses);
         console.log(loadedCourses);
         setIsLoading(false);
@@ -72,6 +70,9 @@ const EnrolledCourses = (props) => {
         setIsLoading(false);
         setHttpError(error.message);
       });
+
+   
+
     }, [searchName]);
   
     if (isLoading) {
@@ -89,19 +90,18 @@ const EnrolledCourses = (props) => {
         </section>
       );
     }
+
+    
   
-    const coursesList = currentItems.map((course) => (
+    const coursesList = enrolledCourses.map((course) => (
       <EnrolledCourseItem
         key={course.id}
         id={course.courseId}
         name={course.name}
         image={course.image}
-        // url={course.courseUrl}
         description={course.description}
-        // api={module.moduleApi}
         duration={course.duration}
         employeeId={props.employeeId}
-        // emp_name={props.name}
       />
     ));
 
