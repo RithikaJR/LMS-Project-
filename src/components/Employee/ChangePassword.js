@@ -1,7 +1,7 @@
 import { useState } from "react";
 import Button from "../UI/Button/Button";
 import './ChangePassword.css'
-import validator from 'validator'
+
 import { useEffect } from "react";
 
 
