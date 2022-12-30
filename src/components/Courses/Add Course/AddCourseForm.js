@@ -1,4 +1,3 @@
-import { Input, Label, Textarea,Select} from '@windmill/react-ui';
 import React ,{ useEffect, useState } from 'react'
 import NewCourse from './Module/NewCourse';
 import Modules from './Modules';
@@ -6,7 +5,7 @@ import Button from '../../UI/Button/Button.js'
 import './AddCourseForm.css';
 import Axios from 'axios';
 import close from '../../images/close.png'
-
+import { message } from 'antd';
 
 const AddCourseForm = ()=>{
 
@@ -33,7 +32,7 @@ const AddCourseForm = ()=>{
   const [addNewModule, setAddNewModule] = useState(false);
   const [selectedResourceType, setSelectedResourceType] = useState("");
 
-  const [message, setMessage] = useState("");
+  // const [message, setMessage] = useState("");
 
     const[expense, setExpense] =useState([]);
 
@@ -104,7 +103,7 @@ function submitCategory(e1){
 
   .then(res=>{
     if(res.data != null){
-      alert("Course category added successfully!")
+      message.success("Course category added successfully!")
     }
     console.log(res.data)
   })
@@ -190,7 +189,7 @@ function submitCourse(e2){
 
   .then(res=>{
     if(res.data != null){
-      alert("Course added successfully!")
+      message.success("Course added successfully!")
     }
     console.log("hb"+res.data)
   })
@@ -292,7 +291,7 @@ function submitModule(e3){
 
   .then(res=>{
     if(res.data != null){
-      alert("Module & resource added successfully!")
+      message.success("Module & resource added successfully!")
     }
     console.log("hb"+res.data)
     // console.log("iubih"+selectedCourseId);
@@ -574,7 +573,7 @@ return (
       </div>
       </div>
 
-      <div className="message">{message ? <p>{message}</p> : null}</div>
+      {/* <div className="message">{message ? <p>{message}</p> : null}</div> */}
       </>
 );
 }

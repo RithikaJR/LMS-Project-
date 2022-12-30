@@ -16,6 +16,7 @@ import Notification from './components/Notification/Notification';
 import SuperAdminHome from './components/Home/SuperAdminHome';
 import LAHomePage from './components/LearningAdmin/LAHomePage';
 import ViewEmployeeData from './components/CourseTracking/ViewEmployeeData';
+import { message } from 'antd';
 
 
 function App() {
@@ -69,7 +70,8 @@ const loginHandler = (email, password) => {
     })  
   }).then(response1 => {
     if(response1.status === 401){
-      alert("Enter Valid User Name or Password")
+      // alert("Enter Valid User Name or Password")
+      message.error("Enter Valid User Name or Password")
     }
     console.log("request: ", response1);
     return response1.json();
@@ -179,7 +181,7 @@ const logoutHandler = () => {
             {isLoggedIn ? <CourseInterface onLogout={logoutHandler} /> : <Redirect to='/login' /> }
           </Route>
 
-    
+          {/* //Employee */}
           <Route path="/employee">
             {employeeLoggedIn ? <EmployeeHome isAuthenticated={employeeLoggedIn} onLogout={logoutHandler} name={employeeName} employeeId={employeeId} tracker={userStatus} userId={userId}/> : <Redirect to='/login' /> }
           </Route>

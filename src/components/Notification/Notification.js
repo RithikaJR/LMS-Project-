@@ -4,8 +4,8 @@ import DataTable from 'react-data-table-component';
 import approval from '../images/approval.png';
 import reject from '../images/reject.png';
 
-import App from '../../App';
 import ApprovalList from './ApprovalList';
+import { message } from 'antd';
 
 const Notification = ()=>{
   const columns =
@@ -33,7 +33,6 @@ const Notification = ()=>{
         cell:({id}) => (
           <button 
             value={id}
-            // onClick={(e) => handleInputChange(row, "surname", e)}
             onClick={approveHandler}
           >Approve</button>
         ),
@@ -44,7 +43,6 @@ const Notification = ()=>{
           cell:({id}) => (
             <button
               value={id}
-              // onClick={(e) => handleInputChange(row, "surname", e)}
               onClick={rejectHandler}
   
             >Reject</button>
@@ -94,7 +92,7 @@ const Notification = ()=>{
           console.log(responseData);
           // let count=0;
           for (const key in listArray) {
-            if(listArray[key].approvalStatus === "pending"){
+            // if(listArray[key].approvalStatus === "pending"){
               // console.log(key);
             loadedApprovalList.push({
               id: key,
@@ -107,7 +105,7 @@ const Notification = ()=>{
               employeeEmail:listArray[key].employeeEmail
             });
             // count+=1
-          }
+          // }
           }
           setApprovalList(loadedApprovalList);
         
@@ -148,7 +146,7 @@ const Notification = ()=>{
             console.log("hello change");
             console.log(approvalList[event.target.value].employeeId)
           
-            alert("Status approved") 
+            message.success("Status approved") 
             console.log("request: ", response);
             
             return response.json();
@@ -197,7 +195,7 @@ const Notification = ()=>{
          console.log('clicked'+approvalList[event.target.value].employeeEmail);
          console.log('clicked'+approvalList[event.target.value].employeeName);
          console.log('clicked'+approvalList[event.target.value].courseName);
-         alert("Status rejected") 
+          message.success("Status rejected") 
          console.log("request: ", response);
          return response.json();
        }) 
@@ -222,16 +220,13 @@ const Notification = ()=>{
        )
        
      }).then(response => {
-       console.log("Rejected");
-
-      //  alert("Status rejected") 
+       console.log("Rejected"); 
        console.log("request: ", response);
        return response.json();
      }) 
     }
 
 
-    
 
     return(
         <div className={classes.tablee}>

@@ -58,3 +58,8 @@
     color: white;
     border: 1px solid white;
 }
+.errorMessage{
+    align-items: flex-start;
+    color: brown;
+    font-size: 15px;
+}

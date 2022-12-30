@@ -2,6 +2,8 @@ import React, {Component, useState}  from 'react';
 import axios from 'axios';
 import classes from './AddUser.module.css';
 import Button from '../UI/Button/Button';
+import { useEffect } from 'react';
+import { message } from 'antd';
 // import classes from "./UserPage.module.css";
 
 const AddUser =()=> {
@@ -9,7 +11,25 @@ const AddUser =()=> {
     let token = `Bearer ${sessionStorage.getItem('jwt')}`;
     const [enterempid, setenterempdid] = useState();
     const [enteredrole, setenteredrole] = useState(2);
-   
+    const [employeeIdErrorMessage, setemployeeIdErrorMessage] = useState('')
+
+    useEffect(() =>{
+        const identifier =setTimeout(() =>{
+          console.log("Validity Check");
+          
+          if(enterempid !=='' && /[0-9]/.test(enterempid)){
+            setemployeeIdErrorMessage('')
+        }
+            
+        }, 500)
+  
+        return () => {
+            console.log('CLEANUP');
+            clearTimeout(identifier);
+          };
+        }, [enterempid]) 
+
+
 const changeidHandler= (e) => {
     console.log(e.target.value);
     setenterempdid(e.target.value);
@@ -19,6 +39,15 @@ const changeroleHandler= (e) => {
     console.log(e.target.value);
     setenteredrole(e.target.value);
 }  
+const ValidateEnterempid = () =>{
+    if(!/[0-9]/.test(enterempid))
+    {
+        setemployeeIdErrorMessage("Please only enter numeric characters (Allowed input:0-9)")
+    } else if(enterempid === ''){
+        setemployeeIdErrorMessage("Employee Id Cannot be empty")
+    }     
+
+}
 
 let submitHandler = async (e) => {
     e.preventDefault();
@@ -36,7 +65,7 @@ let submitHandler = async (e) => {
         if (!response.ok) {
             throw new Error('Something went wrong!');
           }else{
-            alert("Role Changed Successfully")
+            message.success("Role Changed Successfully")
           }
       })
     }
@@ -52,7 +81,10 @@ let submitHandler = async (e) => {
                 <input type="text" name="employee_id" 
                     onChange={changeidHandler}
                     value={enterempid} 
+                    onBlur={ValidateEnterempid}
                     placeholder="Employee ID"/>
+                {employeeIdErrorMessage === '' ? null :
+                      <div className={classes.errorMessage}>{employeeIdErrorMessage}</div>}
             </div>
 
             <div className={classes.lable}>

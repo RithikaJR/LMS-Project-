@@ -140,3 +140,9 @@
     border-radius: 10px;
     padding-left: 0.8rem;
 }
+
+.errorMessage{
+    align-items: flex-start;
+    color: brown;
+    font-size: 15px;
+}

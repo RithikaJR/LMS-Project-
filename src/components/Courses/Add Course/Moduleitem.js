@@ -3,8 +3,6 @@ import React from 'react';
 
 const ModuleItem = (props) => {
    
-    // const [title] =  useState(props.title);
-    // console.log('ExpenseItem evaluated by React');
     return (
     
         <div className="expense-item">   

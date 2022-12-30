@@ -1,12 +1,9 @@
 import { useContext } from 'react';
 import classes from './EmployeeCourseItem.module.css';
-// import slide_image4 from '../../images/slide_image4.jpg';
 import Button from '../../UI/Button/Button';
 import { NavLink } from 'react-router-dom';
-import CourseInterface from './EmployeeCourseInterface';
-import Modal from '../../UI/Modal/Modal';
 import { useState } from 'react';
-import TickImage from '../../images/tick.png'
+import { message } from 'antd';
 
 
 const EmployeeCourseItem = (props) => {
@@ -41,9 +38,9 @@ const EmployeeCourseItem = (props) => {
       if (res.status === 201) {
         setCartIsShown(true);
         setView(true)
-        alert("Enroll request Sent")
+        message.success("Enroll request Sent")
       } else {
-        alert("Some error occured");
+        message.error("Some error occured")
       }
     } catch (err) {
       console.log(err);
@@ -58,8 +55,6 @@ const EmployeeCourseItem = (props) => {
     console.log("CouresItem"+props.id);
     return (
     <div>
-      {/* {props.currentItem &&
-      props.currentItem.map((item)=>( */}
       <li className={classes.courses}>
           <div className={classes.courseimg}>
             <img src={props.image}/>
@@ -70,21 +65,8 @@ const EmployeeCourseItem = (props) => {
             {view && <div className={classes.view}><Button disabled>Requested</Button></div>}
             
             {!view && <div className={classes.view}><NavLink to={{pathname:'',state:{id:props.id}}}><Button onClick={showCartHandler}>Enroll</Button></NavLink></div> }
-            {/* {cartIsShown && 
-            <Modal>
-              <div class="learn" id="learn">
-                  <div class="learn-header">
-                      <div class="title"><image src={TickImage} alt=""/></div>
-                  </div>
-                  <div class="learn-body">Enroll Request Sent
-                      <div><Button data-close-button class="close-button" onClick={hideCartHandler}>OK</Button></div>
-                  </div>
-              </div>
-              </Modal>
-          } */}
           </div>
         </li>
-        {/* ))} */}
       </div>
     );
   };

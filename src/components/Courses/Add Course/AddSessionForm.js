@@ -3,6 +3,7 @@ import Axios from 'axios';
 import Button from '../../UI/Button/Button';
 import classes from './AddSessionForm.module.css';
 import SessionMail from './SessionMail';
+import { message } from 'antd';
 
 
 const AddSessionForm = (props) => {
@@ -41,7 +42,6 @@ function handle(e){
 function submit(e){
   e.preventDefault();
   Axios.post(url,{
-//     sessionId:data.sessionId,
     sessionName:data.sessionName,
     trainerName:data.trainer,
     sessionDescription:data.sessionDescription,
@@ -58,7 +58,7 @@ function submit(e){
 
   .then(res=>{
     if(res.data != null){
-      alert("Session added Successfully!")
+      message.success("Session added Successfully!")
     }
     console.log(res.data)
   })
@@ -83,17 +83,9 @@ function submit(e){
                         id='sessionName'
                         placeholder="Session Name"
                         onChange={(e)=>handle(e)}
-                        value={data.sessionName} />
+                        value={data.sessionName}
+                        required />
                 </div>
-                
-                {/* <div className={classes.individual}>
-                <label>Session ID</label>
-                <input type="number"
-                        placeholder="ID" 
-                        id='sessionId'
-                        onChange={(e)=>handle(e)}
-                        value={data.sessionId}/>
-                </div> */}
                 
                 <div className={classes.individual}>
                 <label>Trainer</label>
@@ -101,7 +93,8 @@ function submit(e){
                         placeholder="Trainer Name"
                         id='trainer'
                         onChange={(e)=>handle(e)}
-                        value={data.trainer} />
+                        value={data.trainer}
+                        required  />
                 </div>
 
                 <div className={classes.individual}>
@@ -112,7 +105,8 @@ function submit(e){
                         cols="35" 
                         id='sessionDescription'
                         onChange={(e)=>handle(e)}
-                        value={data.sessionDescription}/>
+                        value={data.sessionDescription}
+                        required />
                 </div>
 
                 <div className={classes.date}>
@@ -121,6 +115,7 @@ function submit(e){
                         id='date'
                         onChange={(e)=>handle(e)}
                         value={data.date}
+                        required 
                         />
                 </div>
 
@@ -131,6 +126,7 @@ function submit(e){
                        onChange={(e)=>handle(e)}
                        value={data.startTime} 
                        step="2"
+                       required 
                         />
 
                 <label>End Time</label>
@@ -139,11 +135,12 @@ function submit(e){
                         onChange={(e)=>handle(e)}
                         value={data.endTime}
                         step="2"
+                        required 
                         />
                 </div>
                 
                 <div className={classes.individual}>
-                <label>Session Amount</label>
+                <label>Trainer Compensation</label>
                 <input type="number"
                         placeholder="Amount"
                         min="0"

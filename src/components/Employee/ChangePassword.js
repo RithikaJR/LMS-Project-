@@ -1,6 +1,9 @@
 import { useState } from "react";
 import Button from "../UI/Button/Button";
 import './ChangePassword.css'
+import validator from 'validator'
+import { useEffect } from "react";
+import { message } from "antd";
 
 
 const ChangePassword = (props)=>{
@@ -8,8 +11,31 @@ const ChangePassword = (props)=>{
 
     const [confirmPwd, setConfirmPwd] = useState("");
     const [newPwd, setNewPwd] = useState("");
+    const [validatenewPwd, setvalidateNewPwd] = useState();
     const [currentPwd, setcurrentPwd] = useState("");
     
+    const [newPasswordErrorMessage, setNewPasswordErrorMessage] = useState('')
+    const [ConfirmPasswordErrorMessage, setConfirmPasswordErrorMessage] = useState('')
+
+    let newPasswordErrorMsg = "1.Password must have at least one non-alphabetic character.\n2.Password must have atleast one digit (0-9)\n3.Password must have a length of 6 characters."
+
+    useEffect(() =>{
+      const identifier =setTimeout(() =>{
+        console.log("Validity Check");
+        
+        if(newPwd.includes('@') === true){
+          console.log("deqf")
+          setNewPasswordErrorMessage("")
+        }
+          
+      }, 500)
+  
+      return () => {
+        console.log('CLEANUP');
+        clearTimeout(identifier);
+      };
+    }, [newPwd]) 
+
     const changePasswordHandler = (event) => {
         event.preventDefault();
 
@@ -25,19 +51,17 @@ const ChangePassword = (props)=>{
           
         }).then(response => {
           
-            // console.log(response.statusText)
             console.log(confirmPwd)
             console.log(currentPwd)
-            // alert("Password Change Successfully") 
             console.log("request: ", response);
-            // console.log("request: ", response.changePasswordStatus);
           return response.json();
           
         })
         
         .then(resJson => {
           if(resJson.changePasswordStatus !== null){
-            alert(resJson.changePasswordStatus)
+            // alert(resJson.changePasswordStatus)
+            message.success(resJson.changePasswordStatus)
             // console.log("resonse: ", resJson.changePasswordStatus);
             fetch("http://localhost:8080/api/status-update/"+props.userId, {
         
@@ -53,7 +77,7 @@ const ChangePassword = (props)=>{
             setConfirmPwd("");
             // props.changePassword(false)
           }else{
-            alert("Current password is wrong")
+            message.error("Current password is wrong")
           }
           
           
@@ -61,16 +85,27 @@ const ChangePassword = (props)=>{
        
     };
         const comfirmPassword=(event)=>{
-          // if(newPwd === event.target.value){
+      
             setConfirmPwd(event.target.value)
-          // }else{
-          //   console.log("Your New Password and Confirm password do not match")
-          // }
-          
+        
         }
         const newPassword=(event)=>{
-          setNewPwd(event.target.value)
-      }
+          setNewPwd(event.target.value)   
+        }
+        const validatenewPassword=()=>{
+          if(newPwd.includes('@') !== true){
+            setNewPasswordErrorMessage(newPasswordErrorMsg );
+          }
+        }
+
+        const validateConfirmPassword=(event)=>{
+          if(newPwd === event.target.value){
+            setConfirmPasswordErrorMessage("newPasswordErrorMsg" );
+          }
+
+        }
+
+        
         const currentPasswordChange=(event)=>{
           setcurrentPwd(event.target.value)
           
@@ -89,13 +124,29 @@ const ChangePassword = (props)=>{
                 </tr>
                 <tr>
                   <td><b>New Password:</b></td>
-                  <td><input className="input" onChange={newPassword} value={newPwd} type="password" placeholder='********' required/><br></br></td>
+                  <td><input className="input" onChange={newPassword} value={newPwd} onBlur={validatenewPassword} type="password" placeholder='********' required/>
+                  </td>
+                  
                 </tr>
                 <tr>
-                  <td><b>Confirm Password:</b></td>
-                  <td><input className="input" onChange={comfirmPassword} value={confirmPwd} type="password" placeholder='********' required/><br></br></td>
+                  <td></td>
+                  <td>{newPasswordErrorMessage === '' ? null :
+                      <div className='errorMessage'><ol><li>Password must have at least one non-alphabetic character.</li><li>Password must have atleast one digit (0-9)</li><li>Password must have a length of 6 characters.</li></ol></div>}</td>
                 </tr>
+                
+                <tr>
+                  <td><b>Confirm Password:</b></td>
+                  <td><input className="input" onChange={comfirmPassword}  onBlur={validateConfirmPassword} value={confirmPwd} type="password" placeholder='********' required/><br></br></td>
+                </tr>
+
+                <tr>
+                  <td></td>
+                  <td>{newPasswordErrorMessage === '' ? null :
+                      <div className='errorMessage'>feqfqefq</div>}</td>
+                </tr>
+
               </table>
+
                  
                 <Button type="submit"><b>Change Password</b></Button>
             </form>

@@ -64,24 +64,13 @@ const EmployeeCourseModuleList = (props) =>{
       }, [moduleCheck]);
     
 
-  // const handleChecks = ()=>{
-  //   if(props.checked == true){
-  //     setModuleCheck(true)
-  //   }
-  //   else{
-  //     setModuleCheck(false);
-  //   }
-  // }
-
   const checkedHandler = () =>{
     console.log("hjfsjafjfj")
-    // props.moduleCheck(true)
   }
 
 
   console.log(props.id);
   console.log(props.name);
-  // console.log(props.moduleId);
 
 
   const VideoLink = (link)=>{
@@ -116,11 +105,11 @@ const EmployeeCourseModuleList = (props) =>{
     return (
       <div className={classes.wrap}>
         <div className={classes.check}>
-          {/* <form> */}
+
             <input type="checkbox" 
                    onChange={checkedHandler}
                    checked={moduleCheck}/>
-          {/* </form> */}
+
         </div>
           <DropdownButton id="dropdown-basic-button" title={props.name}>
             {listOfResources}
