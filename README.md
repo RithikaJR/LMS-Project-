@@ -73,10 +73,10 @@ This section has moved here: [https://facebook.github.io/create-react-app/docs/t
 
 <!-- --------------------Install Comments--------------- -->
 
-npm install react-scripts    
-npm install react-router-dom@5
-npm install axios
-npm install react-data-table-component styled-components
-npm install react-paginate --save 
-npm i react-component-export-image
-npm install jspdf --save 
+npm install react-scripts  --legacy-peer-deps
+npm install react-router-dom@5  --legacy-peer-deps
+npm install axios  --legacy-peer-deps
+npm install react-data-table-component styled-components  --legacy-peer-deps
+npm install react-paginate --save  --legacy-peer-deps
+npm i react-component-export-image  --legacy-peer-deps
+npm install jspdf --save  --legacy-peer-deps

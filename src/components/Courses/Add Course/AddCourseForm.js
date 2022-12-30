@@ -1,4 +1,3 @@
-import { Input, Label, Textarea,Select} from '@windmill/react-ui';
 import React ,{ useEffect, useState } from 'react'
 import NewCourse from './Module/NewCourse';
 import Modules from './Modules';
