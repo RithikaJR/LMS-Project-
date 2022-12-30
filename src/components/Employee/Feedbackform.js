@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import Button from "../UI/Button/Button.js";
 import classes from './Feedbackform.module.css';
 import Axios from 'axios';
+import { message } from "antd";
 
 
 const FeedbackForm = (props) => {
@@ -42,13 +43,14 @@ function submitFeedback(e1){
 
   .then(res=>{
     if(res.data != null){
-      alert("Thank you for your feedback!")
+      message.success("Thank you for your feedback!")
       setFeedback({
         feedback_desc:""
       })
     }
     console.log("res"+res.data)
   })
+
 }
 
   return (

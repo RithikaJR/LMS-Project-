@@ -1,6 +1,6 @@
 import React, {useState} from "react";
 import { exportComponentAsPNG } from "react-component-export-image";
-import image from '../images/course_certificate.png';
+import image from '.././images/course_certificate.png';
 import Button from "../UI/Button/Button";
 import classes from "./Certificate.module.css";
  

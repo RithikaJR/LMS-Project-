@@ -1,8 +1,9 @@
 import { useState } from "react";
 import Button from "../UI/Button/Button";
 import './ChangePassword.css'
-import validator from 'validator'
+
 import { useEffect } from "react";
+import { message } from "antd";
 
 
 const ChangePassword = (props)=>{
@@ -59,7 +60,8 @@ const ChangePassword = (props)=>{
         
         .then(resJson => {
           if(resJson.changePasswordStatus !== null){
-            alert(resJson.changePasswordStatus)
+            // alert(resJson.changePasswordStatus)
+            message.success(resJson.changePasswordStatus)
             // console.log("resonse: ", resJson.changePasswordStatus);
             fetch("http://localhost:8080/api/status-update/"+props.userId, {
         
@@ -75,7 +77,7 @@ const ChangePassword = (props)=>{
             setConfirmPwd("");
             // props.changePassword(false)
           }else{
-            alert("Current password is wrong")
+            message.error("Current password is wrong")
           }
           
           

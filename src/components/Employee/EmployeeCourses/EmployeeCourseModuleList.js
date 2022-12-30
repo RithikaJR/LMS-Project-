@@ -17,7 +17,9 @@ const EmployeeCourseModuleList = (props) =>{
 
     useEffect(() => {
         const fetchModules = async () => {
+          console.log("hh")
           let response = await fetch(
+           
               'http://localhost:8080/api/modules/'+props.id+'/moduleResources',{
                 headers:{
                   'Authorization':token

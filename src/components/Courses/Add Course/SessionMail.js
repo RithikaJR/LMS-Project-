@@ -2,6 +2,7 @@ import Axios from 'axios';
 import { useState } from 'react';
 import classes from './SessionMail.module.css';
 import Button from '../../UI/Button/Button';
+import { message } from 'antd';
 
 const SessionMail = (props) => {
     let token = `Bearer ${sessionStorage.getItem('jwt')}`;
@@ -53,7 +54,7 @@ function submit(e){
 
 .then(res=>{
     if(res.data != null){
-    alert("Email scheduled Successfully!")
+    message.success("Email scheduled Successfully!")
     }
     console.log(res.data)
 })

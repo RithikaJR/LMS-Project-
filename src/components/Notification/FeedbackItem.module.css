@@ -1,0 +1,16 @@
+.border
+{
+    height: 7rem;
+    width: 70%;
+    border: 1px;
+    background-color: beige;
+    margin: 2rem;
+    /* border-style:double; */
+    box-shadow: 1px 1px 4px grey;
+    border-radius: 25px;
+
+}
+.wrap
+{
+    margin:3rem;
+}

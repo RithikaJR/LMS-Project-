@@ -1,11 +1,11 @@
 import Axios from 'axios';
-// import React,{Component} from 'react';
 import Button from '../UI/Button/Button';
 import classes from "./UserPage.module.css";
-// import Search from "../Search Bar/Search.js";
+
 import image from '../images/excel.png';
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
+import { message } from 'antd';
 
 
 
@@ -22,6 +22,24 @@ const UserPage = () => {
         lastName:"",
         email:""      
       })
+
+      const [employeeIdErrorMessage, setemployeeIdErrorMessage] = useState('')
+
+      useEffect(() =>{
+        const identifier =setTimeout(() =>{
+          console.log("Validity Check");
+          
+          if(data.id !=='' && /[0-9]/.test(data.id)){
+            setemployeeIdErrorMessage('')
+        }
+            
+        }, 500)
+  
+        return () => {
+            console.log('CLEANUP');
+            clearTimeout(identifier);
+          };
+        }, [data.id]) 
 
     const url = "http://localhost:8080/api/employee";
 
@@ -46,7 +64,16 @@ const UserPage = () => {
       
         .then(res=>{
           if(res.data != null){
-            alert("Employee added successfully!!")
+            message.success("Employee added successfully!!")
+            setData({
+                        id:"",
+                        firstName:"",
+                        lastName:"",
+                        email:""      
+                    })
+
+          }else{
+            message.error("Somthing wnet wrong!!")
           }
           console.log(res.data);
         })
@@ -74,7 +101,9 @@ const UserPage = () => {
         .then(res => {
             if (res.ok) {
                 console.log(res.data);
-                alert("File uploaded successfully.")
+                message.success("File uploaded successfully.")
+            }else{
+                message.error("Somthing went wrong")
             }
         });
     };
@@ -111,6 +140,13 @@ const UserPage = () => {
         setAddEmployee(true);
     };
 
+    const validateEmployyeId = () =>{
+        if(!/[0-9]/.test(data.id)){
+            setemployeeIdErrorMessage("Please only enter numeric characters (Allowed input:0-9)")
+        }
+
+    }
+
     const submitHandler = () => {
 
     }
@@ -138,7 +174,9 @@ const UserPage = () => {
 
                     </div>
                      <div>
-                         <input type="file" onChange={onFileChange} required />
+                         <input type="file" 
+                         accept=".csv,application/vnd.openxmlformats-officedocument.spreadsheetml.sheet, application/vnd.ms-excel"
+                         onChange={onFileChange} required />
                          <Button onClick={onFileUpload}>
                              Upload
                          </Button>
@@ -160,7 +198,10 @@ const UserPage = () => {
                                        placeholder='Employee ID'
                                        onChange={(e)=>handle(e)}
                                        value={data.id}
+                                       onBlur={validateEmployyeId}
                                        required />
+                                       {employeeIdErrorMessage === '' ? null :
+                                    <div className={classes.errorMessage}>{employeeIdErrorMessage}</div>}
                             </div>
                             <div className={classes.individual}>
                                 <label>First Name</label>

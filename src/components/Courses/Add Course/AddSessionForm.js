@@ -3,6 +3,7 @@ import Axios from 'axios';
 import Button from '../../UI/Button/Button';
 import classes from './AddSessionForm.module.css';
 import SessionMail from './SessionMail';
+import { message } from 'antd';
 
 
 const AddSessionForm = (props) => {
@@ -57,7 +58,7 @@ function submit(e){
 
   .then(res=>{
     if(res.data != null){
-      alert("Session added Successfully!")
+      message.success("Session added Successfully!")
     }
     console.log(res.data)
   })

@@ -3,6 +3,7 @@ import classes from './EmployeeCourseItem.module.css';
 import Button from '../../UI/Button/Button';
 import { NavLink } from 'react-router-dom';
 import { useState } from 'react';
+import { message } from 'antd';
 
 
 const EmployeeCourseItem = (props) => {
@@ -37,9 +38,9 @@ const EmployeeCourseItem = (props) => {
       if (res.status === 201) {
         setCartIsShown(true);
         setView(true)
-        alert("Enroll request Sent")
+        message.success("Enroll request Sent")
       } else {
-        alert("Some error occured");
+        message.error("Some error occured")
       }
     } catch (err) {
       console.log(err);

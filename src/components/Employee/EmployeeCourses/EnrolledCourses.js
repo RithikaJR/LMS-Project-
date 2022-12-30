@@ -46,7 +46,7 @@ const EnrolledCourses = (props) => {
         const loadedCourses = [];
         const courseArray = {...responseData.coursesEnrolled};
 
-        console.log(responseData);
+        console.log(courseArray);
         for (const key in courseArray) {
           loadedCourses.push({
             id: key,

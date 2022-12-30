@@ -80,3 +80,5 @@ npm install react-data-table-component styled-components
 npm install react-paginate --save 
 npm i react-component-export-image
 npm install jspdf --save 
+npm install --save react-circular-progressbar --legacy-peer-deps
+npm install validator --legacy-peer-deps

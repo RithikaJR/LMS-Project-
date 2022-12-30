@@ -72,15 +72,66 @@ const Navigation = (props) => {
       setoverlayIsShown(false);
     }
 
-    if(approvalList.length != 0){
+    if(approvalList.length + feedbackList.length != 0){
       setNotify(true);
     }
     else {
       setNotify(false);
     }
+   
+
+    //feedbacklists
+
+
+
+    const fetchFeedbacks = async () => {
+      let response;
+        response = await fetch(
+          'http://localhost:8080/api/feedback-form'
+          ,{
+            headers:{
+              'Authorization':token
+            }
+          });
+      if (!response.ok) {
+        throw new Error('Something went wrong!');
+      }
+
+      const responseData = await response.json();
+
+      const employeeFeedback = [];
+      const feedbackArray = {...responseData._embedded.feedback};
+
+      console.log("gygtg"+responseData);
+      for (const key in feedbackArray) {
+      if(feedbackArray[key].status === false){
+        employeeFeedback.push({
+          id: key,
+          feedbackId: feedbackArray[key].feedbackId,
+          employeeId: feedbackArray[key].employeeId,
+          employeeName: feedbackArray[key].employeeName,
+          feedback: feedbackArray[key].feedback,
+          status: feedbackArray[key].status,
+        });
+      }
+    }
+      // console.log("dfsdf")
+      setFeedbackList(employeeFeedback);
+      console.log(feedbackList);
+      setIsLoading(false);
+    };
+
+    fetchFeedbacks().catch((error) => {
+      setIsLoading(false);
+      setHttpError(error.message);
+    });
+
+  
+
+
     
    
-  },[approvalList.length]);
+  },[approvalList,feedbackList]);
   // approvalList.length
 
   let approval_length = approvalList.length;
@@ -93,6 +144,8 @@ const Navigation = (props) => {
   const hideCartHandler = () => {
     setoverlayIsShown(false);
   };
+
+
 
   return (
     <nav className={classes.nav}>
@@ -121,7 +174,7 @@ const Navigation = (props) => {
               <Dropdown.Item className='menu'>
                 <div className='item'>
                   <NavLink to='/feedbacks' className='navv'>
-                    <h5>You have <span className={classes.number}>{}-</span> new feedbacks</h5>
+                    <h5>You have <span className={classes.number}>{feedback_length}</span> new feedbacks</h5>
                   </NavLink>
                 </div>
               </Dropdown.Item>
