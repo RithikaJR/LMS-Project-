@@ -24,6 +24,11 @@ const UserPage = () => {
       })
 
       const [employeeIdErrorMessage, setemployeeIdErrorMessage] = useState('')
+      const [employeeEmailErrorMessage, setemployeeEmailErrorMessage] = useState('')
+
+      const emailRegex = /^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,4}$/i;
+
+      const [formIsValid, setFormIsValid] = useState(false);
 
       useEffect(() =>{
         const identifier =setTimeout(() =>{
@@ -31,6 +36,10 @@ const UserPage = () => {
           
           if(data.id !=='' && /[0-9]/.test(data.id)){
             setemployeeIdErrorMessage('')
+          }
+          if(/^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,4}$/i.test(data.email) === true){
+            setemployeeEmailErrorMessage('');
+            setFormIsValid(true)
         }
             
         }, 500)
@@ -39,7 +48,7 @@ const UserPage = () => {
             console.log('CLEANUP');
             clearTimeout(identifier);
           };
-        }, [data.id]) 
+        }, [data.id,data.email]) 
 
     const url = "http://localhost:8080/api/employee";
 
@@ -143,6 +152,15 @@ const UserPage = () => {
     const validateEmployyeId = () =>{
         if(!/[0-9]/.test(data.id)){
             setemployeeIdErrorMessage("Please only enter numeric characters (Allowed input:0-9)")
+            setFormIsValid(false)
+        }
+
+    }
+    const validateEmployyeEmail = ()=>{
+        if(emailRegex.test(data.email) !== true){
+            setemployeeEmailErrorMessage("Please enter valid email address")
+
+            setFormIsValid(false)
         }
 
     }
@@ -228,9 +246,12 @@ const UserPage = () => {
                                        placeholder='Email'
                                        onChange={(e)=>handle(e)}
                                        value={data.email}
+                                       onBlur={validateEmployyeEmail}
                                        required />
+                                       {employeeEmailErrorMessage === '' ? null :
+                                    <div className={classes.errorMessage}>{employeeEmailErrorMessage}</div>}
                             </div>
-                            <Button type="submit">Submit</Button>
+                            <Button type="submit"   disabled={!formIsValid}>Submit </Button>
                         </form> 
                     </div> 
                 }

@@ -42,7 +42,7 @@ const Navigation = (props) => {
 
           console.log(responseData);
           for (const key in listArray) {
-            if(listArray[key].approvalStatus === "pending"){
+            // if(listArray[key].approvalStatus === "pending"){
             loadedApprovalList.push({
               id: key,
               courseApprovalId:listArray[key].courseApprovalId,
@@ -52,7 +52,7 @@ const Navigation = (props) => {
               courseName: listArray[key].courseName,
               approvalStatus:listArray[key].approvalStatus
             });
-          }
+          // }
           }
     
           setApprovalList(loadedApprovalList);
@@ -104,7 +104,7 @@ const Navigation = (props) => {
 
       console.log("gygtg"+responseData);
       for (const key in feedbackArray) {
-      if(feedbackArray[key].status === false){
+      // if(feedbackArray[key].status === false){
         employeeFeedback.push({
           id: key,
           feedbackId: feedbackArray[key].feedbackId,
@@ -113,7 +113,7 @@ const Navigation = (props) => {
           feedback: feedbackArray[key].feedback,
           status: feedbackArray[key].status,
         });
-      }
+      // }
     }
       // console.log("dfsdf")
       setFeedbackList(employeeFeedback);
@@ -126,12 +126,7 @@ const Navigation = (props) => {
       setHttpError(error.message);
     });
 
-  
-
-
-    
-   
-  },[approvalList,feedbackList]);
+  },[]);
   // approvalList.length
 
   let approval_length = approvalList.length;
@@ -144,7 +139,6 @@ const Navigation = (props) => {
   const hideCartHandler = () => {
     setoverlayIsShown(false);
   };
-
 
 
   return (

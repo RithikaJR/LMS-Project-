@@ -9,13 +9,23 @@ import { message } from "antd";
 const ChangePassword = (props)=>{
     let token = `Bearer ${sessionStorage.getItem('jwt')}`;
 
-    const [confirmPwd, setConfirmPwd] = useState("");
+    const uppercaseRegExp   = /(?=.*?[A-Z])/;
+    const lowercaseRegExp   = /(?=.*?[a-z])/;
+    const digitsRegExp      = /(?=.*?[0-9])/;
+    const specialCharRegExp = /(?=.*?[#?!@$%^&*-])/;
+    const minLengthRegExp   = /.{8,}/;
+
+
+    
     const [newPwd, setNewPwd] = useState("");
+    const [confirmPwd, setConfirmPwd] = useState("");
     const [validatenewPwd, setvalidateNewPwd] = useState();
     const [currentPwd, setcurrentPwd] = useState("");
     
     const [newPasswordErrorMessage, setNewPasswordErrorMessage] = useState('')
     const [ConfirmPasswordErrorMessage, setConfirmPasswordErrorMessage] = useState('')
+
+    const [formIsValid, setFormIsValid] = useState(false);
 
     let newPasswordErrorMsg = "1.Password must have at least one non-alphabetic character.\n2.Password must have atleast one digit (0-9)\n3.Password must have a length of 6 characters."
 
@@ -23,10 +33,16 @@ const ChangePassword = (props)=>{
       const identifier =setTimeout(() =>{
         console.log("Validity Check");
         
-        if(newPwd.includes('@') === true){
+        if(specialCharRegExp.test(newPwd) === true && digitsRegExp.test(newPwd) === true && newPwd !== ''){
           console.log("deqf")
           setNewPasswordErrorMessage("")
+          if(confirmPwd == newPwd){
+            setConfirmPasswordErrorMessage("");
+            setFormIsValid(true)
+          }
         }
+
+        
           
       }, 500)
   
@@ -34,7 +50,7 @@ const ChangePassword = (props)=>{
         console.log('CLEANUP');
         clearTimeout(identifier);
       };
-    }, [newPwd]) 
+    }, [newPwd,confirmPwd]) 
 
     const changePasswordHandler = (event) => {
         event.preventDefault();
@@ -85,24 +101,23 @@ const ChangePassword = (props)=>{
        
     };
         const comfirmPassword=(event)=>{
-      
             setConfirmPwd(event.target.value)
-        
         }
         const newPassword=(event)=>{
           setNewPwd(event.target.value)   
         }
         const validatenewPassword=()=>{
-          if(newPwd.includes('@') !== true){
+          if(specialCharRegExp.test(newPwd) !== true || digitsRegExp.test(newPwd) !== true || newPwd === ''){
             setNewPasswordErrorMessage(newPasswordErrorMsg );
+            setFormIsValid(false)
           }
         }
 
-        const validateConfirmPassword=(event)=>{
-          if(newPwd === event.target.value){
-            setConfirmPasswordErrorMessage("newPasswordErrorMsg" );
+        const validateConfirmPassword=()=>{
+          if(confirmPwd !== newPwd){
+            setConfirmPasswordErrorMessage("Password not match" );
+            setFormIsValid(false)
           }
-
         }
 
         
@@ -141,14 +156,14 @@ const ChangePassword = (props)=>{
 
                 <tr>
                   <td></td>
-                  <td>{newPasswordErrorMessage === '' ? null :
-                      <div className='errorMessage'>feqfqefq</div>}</td>
+                  <td>{ConfirmPasswordErrorMessage === '' ? null :
+                      <div className='errorMessage'>{ConfirmPasswordErrorMessage}</div>}</td>
                 </tr>
 
               </table>
 
                  
-                <Button type="submit"><b>Change Password</b></Button>
+                <Button type="submit" disabled={!formIsValid}><b>Change Password</b></Button>
             </form>
         </div>
       </div>
