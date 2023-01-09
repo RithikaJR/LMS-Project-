@@ -6,13 +6,13 @@ const EnrollTableItem = (props) => {
 
     
     return(
-        <li>
-            <span className={classes.enroll_items}>
+        <li className={classes.enroll_list}>
+            <div className={classes.enroll_items}>
                 {props.name}
-            </span>
-            <span className={classes.enroll_items}>
+            </div>
+            <div className={classes.enroll_items}>
                 {props.duration}
-            </span>
+            </div>
         </li>
     )
 }

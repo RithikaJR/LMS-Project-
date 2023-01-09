@@ -35,7 +35,15 @@ const EmployeeCourseInterface = (props) => {
   const [data, setData] = useState({
     course_id: "",
     employee_id: "",
+    completed_date:"",
   });
+
+  // let pre_date = new Date().toLocaleString();
+  // let comp_arr = pre_date.split(",");
+  // let complete_date = comp_arr[0];
+
+  const current = new Date();
+  const date1 = `${current.getFullYear()}-${current.getMonth()+1}-${current.getDate()}`;
 
   let course_id = sessionStorage.getItem('courseId')
   let duration = sessionStorage.getItem('courseDuration')
@@ -50,6 +58,7 @@ const EmployeeCourseInterface = (props) => {
 
   console.log("interface " + course_id);
   console.log("duration" + duration);
+  console.log("date"+date1);
 
   useEffect(() => {
     const fetchModules = async () => {
@@ -92,6 +101,7 @@ const EmployeeCourseInterface = (props) => {
       Axios.post(url, {
         courseId: course_id,
         employeeId: emp_id,
+        // completed_date: date1
       },
         {
           headers: {

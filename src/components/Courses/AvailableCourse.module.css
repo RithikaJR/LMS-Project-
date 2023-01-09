@@ -29,7 +29,7 @@
     flex-direction: row;
     width: 100%;
     display: grid;
-    grid-template-columns: repeat(2, 350px);
+    grid-template-columns: repeat(3, 350px);
     grid-gap: 60px;
 
    

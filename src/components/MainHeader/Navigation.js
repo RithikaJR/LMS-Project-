@@ -131,7 +131,7 @@ const Navigation = (props) => {
 
     
    
-  },[approvalList,feedbackList]);
+  },[]);
   // approvalList.length
 
   let approval_length = approvalList.length;

@@ -1,7 +1,7 @@
 import { useState } from "react";
 import { useEffect } from "react";
 import { useLocation } from "react-router-dom";
-import CompleteTableItem from "./CompletedTableItem";
+import CompletedTableItem from "./CompletedTableItem";
 import EnrollTableItem from "./EnrollTableItem";
 import classes from './ViewEmployeeData.module.css'
 import { CircularProgressbar,buildStyles } from 'react-circular-progressbar';
@@ -35,6 +35,8 @@ const ViewEmployeeData = (props) => {
 
     const progress = (completedCourse.length / enrolledCourse.length) * 100;
     console.log("progress"+ progress)
+
+    // let complete_course_name;
   
 
 
@@ -102,11 +104,22 @@ const ViewEmployeeData = (props) => {
           id: key,
           complete_Id: courseArrayComplete[key].completedCourseId,
           completeCourseId: courseArrayComplete[key].courseId,
+          completeDate: courseArrayComplete[key].completed_date
         });
       }
 
+      
+
+      {completedCourse.map((complete) => {
+        enrolledCourse.map((enroll) => {
+          if(complete.completeCourseId == enroll.courseId){
+            setCompleteCourseName(enroll.name);
+          }
+       })
+      })}
+
+      console.log("course ka name"+completeCourseName);
       setCompletedCourse(loadedCoursesComplete);
-      console.log("gfgfgfg"+loadedCoursesComplete);
       setIsLoadingComplete(false);
     };
 
@@ -121,8 +134,6 @@ const ViewEmployeeData = (props) => {
 
 
   }, []);
-
-  
 
   if (isLoading) {
     return (
@@ -157,6 +168,15 @@ const ViewEmployeeData = (props) => {
     );
   }
 
+  // let final_date = [];
+
+  // {completedCourse.map((complete) => {
+  //   let recieved_date = complete.completeDate;
+  //   let arr = recieved_date.split("T");
+  //   let date_arr = arr[0].split("-");
+  //   final_date = date_arr[2]+"/"+date_arr[1]+"/"+date_arr[0];
+  // })}
+
   const enrolledcourseslist = enrolledCourse.map((enroll) => (
     <EnrollTableItem  id={enroll.courseId}
                       name={enroll.name}
@@ -164,8 +184,10 @@ const ViewEmployeeData = (props) => {
   ));
 
   const completedcourseslist = completedCourse.map((complete) => (
-    <CompleteTableItem id={complete.complete_Id}
+    <CompletedTableItem id={complete.complete_Id}
                        course_name={completeCourseName}
+                      //  complete_date={final_date}
+                       complete_date={complete.completeDate}
                      />
   ));
 
