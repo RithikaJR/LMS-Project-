@@ -1,7 +1,7 @@
 import { useState } from "react";
 import { useEffect } from "react";
 import { useLocation } from "react-router-dom";
-import CompleteTableItem from "./CompletedTableItem";
+import CompletedTableItem from "./CompletedTableItem";
 import EnrollTableItem from "./EnrollTableItem";
 import classes from './ViewEmployeeData.module.css'
 import { CircularProgressbar,buildStyles } from 'react-circular-progressbar';
@@ -33,6 +33,12 @@ const ViewEmployeeData = (props) => {
   console.log("data " + employeeName);
   console.log("data " + employeeEmail);
 
+    const progress = (completedCourse.length / enrolledCourse.length) * 100;
+    console.log("progress"+ progress)
+
+    // let complete_course_name;
+  
+
 
   useEffect(() => {
     const fetchEnrolledCourses = async () => {
@@ -51,9 +57,9 @@ const ViewEmployeeData = (props) => {
       const responseData = await response.json();
 
       const loadedCourses = [];
-      const courseArray = { ...responseData };
+      const courseArray = { ...responseData.coursesEnrolled };
 
-      console.log(responseData);
+      console.log("sssSS"+responseData);
       for (const key in courseArray) {
         loadedCourses.push({
           id: key,
@@ -64,7 +70,7 @@ const ViewEmployeeData = (props) => {
         });
       }
       setEnrolledCourse(loadedCourses);
-      console.log(loadedCourses);
+      console.log("loadd"+loadedCourses);
       setIsLoading(false);
     };
 
@@ -73,12 +79,6 @@ const ViewEmployeeData = (props) => {
       setHttpError(error.message);
     });
 
-    {
-      enrolledCourse.map(enroll => {
-        setCourseId(enroll.courseId);
-        setCourseName(enroll.name);
-      })
-    }
 
     const fetchCompletedCourses = async () => {
       let response;
@@ -90,7 +90,7 @@ const ViewEmployeeData = (props) => {
       });
 
       if (!response.ok) {
-        throw new Error('Something went wrong!');
+        throw new Error('Something went wrong!'); 
       }
 
       const responseDataComplete = await response.json();
@@ -98,26 +98,30 @@ const ViewEmployeeData = (props) => {
       const loadedCoursesComplete = [];
       const courseArrayComplete = { ...responseDataComplete._embedded.completedCourse };
 
-      console.log(responseDataComplete);
+      console.log("sdfsf");
       for (const key in courseArrayComplete) {
         loadedCoursesComplete.push({
           id: key,
           complete_Id: courseArrayComplete[key].completedCourseId,
           completeCourseId: courseArrayComplete[key].courseId,
-          completeEnrollId: courseArrayComplete[key].enrolledCourseId,
+          completeDate: courseArrayComplete[key].completed_date
         });
       }
 
+      
+
+      {completedCourse.map((complete) => {
+        enrolledCourse.map((enroll) => {
+          if(complete.completeCourseId == enroll.courseId){
+            setCompleteCourseName(enroll.name);
+          }
+       })
+      })}
+
+      console.log("course ka name"+completeCourseName);
       setCompletedCourse(loadedCoursesComplete);
-      console.log(loadedCoursesComplete);
       setIsLoadingComplete(false);
     };
-     
-    {completedCourse.map(complete => {
-      if(complete.completeCourseId === courseId){
-        setCompleteCourseName(courseName);
-      }
-    })}
 
     fetchCompletedCourses().catch((error) => {
       setIsLoadingComplete(false);
@@ -125,7 +129,7 @@ const ViewEmployeeData = (props) => {
     });
 
     setTimeout(() => {
-      setPercentage(60);
+      setPercentage(progress);
      }, 500);
 
 
@@ -164,15 +168,26 @@ const ViewEmployeeData = (props) => {
     );
   }
 
+  // let final_date = [];
+
+  // {completedCourse.map((complete) => {
+  //   let recieved_date = complete.completeDate;
+  //   let arr = recieved_date.split("T");
+  //   let date_arr = arr[0].split("-");
+  //   final_date = date_arr[2]+"/"+date_arr[1]+"/"+date_arr[0];
+  // })}
+
   const enrolledcourseslist = enrolledCourse.map((enroll) => (
-    <EnrollTableItem id={enroll.courseId}
-      name={enroll.name}
-      duration={enroll.duration} />
+    <EnrollTableItem  id={enroll.courseId}
+                      name={enroll.name}
+                      duration={enroll.duration} />
   ));
 
   const completedcourseslist = completedCourse.map((complete) => (
-    <CompleteTableItem id={complete.complete_Id}
-                      course_name={completeCourseName}
+    <CompletedTableItem id={complete.complete_Id}
+                       course_name={completeCourseName}
+                      //  complete_date={final_date}
+                       complete_date={complete.completeDate}
                      />
   ));
 
@@ -190,8 +205,6 @@ const ViewEmployeeData = (props) => {
                         value={percentage} 
                         text={`${percentage}%`}
                         styles={buildStyles({
-                                // rotation: 0.25,
-                                // strokeLinecap: 'butt',
                                 pathTransitionDuration: 0.5,
                                 transform: 'rotate(0.25turn)',
                                 transformOrigin: 'center center'},)} />
@@ -213,7 +226,7 @@ const ViewEmployeeData = (props) => {
                 <h3>Completed Courses</h3>
               </div>
               <div className={classes.enroll_list}>
-                <ol>{enrolledcourseslist}</ol>
+                <ol>{completedcourseslist}</ol>
               </div>
             </div>
           </div>

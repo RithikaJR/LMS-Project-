@@ -1,15 +1,22 @@
 import classes from './EnrollTableItem.module.css'
 
-const CompleteTableItem = (props) => {
+const CompletedTableItem = (props) => {
 
-    
+    console.log("hello"+props.course_name);
     return(
-        <li>
-            <span className={classes.enroll_items}>
-                {props.course_name}
-            </span>
+        <li className={classes.enroll_list}>
+            <div className={classes.enroll_items}>
+                <b>{props.course_name}</b>
+            </div>
+            <div className={classes.enroll_items}>
+                completed on
+            </div>
+            <div className={classes.enroll_items}>
+                {/* <b>{props.final_date}</b> */}
+                <b>{props.complete_date}</b>
+            </div>
         </li>
     )
 }
 
-export default CompleteTableItem;
+export default CompletedTableItem;

@@ -2,3 +2,9 @@
 .enroll_items{
     margin-right: 1rem;
 }
+
+.enroll_list{
+    text-align: left;
+    display: flex;
+    justify-content: space-between;
+}

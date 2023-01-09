@@ -139,8 +139,9 @@ function submit(e){
                         />
                 </div>
                 
-                <div className={classes.individual}>
+                <div className={classes.individual1}>
                 <label>Trainer Compensation</label>
+                <span>₹</span>
                 <input type="number"
                         placeholder="Amount"
                         min="0"

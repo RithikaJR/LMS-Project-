@@ -2,15 +2,17 @@ import classes from './EnrollTableItem.module.css'
 
 const EnrollTableItem = (props) => {
 
+    console.log("coursename"+props.name)
+
     
     return(
-        <li>
-            <span className={classes.enroll_items}>
+        <li className={classes.enroll_list}>
+            <div className={classes.enroll_items}>
                 {props.name}
-            </span>
-            <span className={classes.enroll_items}>
+            </div>
+            <div className={classes.enroll_items}>
                 {props.duration}
-            </span>
+            </div>
         </li>
     )
 }

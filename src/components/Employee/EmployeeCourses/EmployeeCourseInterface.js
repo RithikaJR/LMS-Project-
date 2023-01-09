@@ -1,8 +1,8 @@
-import React,{ useEffect, useState } from "react";
+import React, { useEffect, useState } from "react";
 import { useLocation } from "react-router-dom";
 import classes from './EmployeeCourseInterface.module.css';
 import './EmployeeCourseInterface.css';
-import jsPDF from 'jspdf';
+import Axios from 'axios';
 import CourseRating from "../../Users/CourseRating";
 import { Button } from "react-bootstrap";
 import EmployeeCourseModuleList from "./EmployeeCourseModuleList";
@@ -16,8 +16,10 @@ const EmployeeCourseInterface = (props) => {
 
   let token = `Bearer ${sessionStorage.getItem('jwt')}`;
   let Username = localStorage.getItem('LoggedName');
+  let emp_id = localStorage.getItem('LoggedEmployeeId');
   let course_name = sessionStorage.getItem("coursename");
-  
+  let courseId = sessionStorage.getItem('courseId');
+
   const [modules, setModules] = useState([]);
   const [isLoading, setIsLoading] = useState(true);
   const [httpError, setHttpError] = useState();
@@ -28,30 +30,45 @@ const EmployeeCourseInterface = (props) => {
   const [downloadCertificate, setDownloadCertificate] = useState(true);
   const [cartIsShown, setCartIsShown] = useState(false);
   const [check, setCheck] = useState(false);
- 
-  let propdata = sessionStorage.getItem('courseId')
+
+  const url = "http://localhost:8080/api/completed-course"
+  const [data, setData] = useState({
+    course_id: "",
+    employee_id: "",
+    completed_date:"",
+  });
+
+  // let pre_date = new Date().toLocaleString();
+  // let comp_arr = pre_date.split(",");
+  // let complete_date = comp_arr[0];
+
+  const current = new Date();
+  const date1 = `${current.getFullYear()}-${current.getMonth()+1}-${current.getDate()}`;
+
+  let course_id = sessionStorage.getItem('courseId')
   let duration = sessionStorage.getItem('courseDuration')
 
   let arr = duration.split(":");
-  let pre_timer = arr[0]*3600000 + arr[1]*60000 +arr[2]*1000;
-  let timer = (pre_timer * 80)/100;
+  let pre_timer = arr[0] * 3600000 + arr[1] * 60000 + arr[2] * 1000;
+  let timer = (pre_timer * 80) / 100;
   console.log(pre_timer)
   console.log(timer);
   console.log(course_name);
 
 
-  console.log("interface "+propdata);
-  console.log("duration"+duration);
+  console.log("interface " + course_id);
+  console.log("duration" + duration);
+  console.log("date"+date1);
 
   useEffect(() => {
     const fetchModules = async () => {
       let response;
-        response = await fetch(
-          'http://localhost:8080/api/courses/'+propdata+'/modules',{
-            headers:{
-              'Authorization':token
-            }
-          });
+      response = await fetch(
+        'http://localhost:8080/api/courses/' + course_id + '/modules', {
+        headers: {
+          'Authorization': token
+        }
+      });
 
       if (!response.ok) {
         throw new Error('Something went wrong!');
@@ -60,7 +77,7 @@ const EmployeeCourseInterface = (props) => {
       const responseData = await response.json();
 
       const loadedCourses = [];
-      const moduleArray = {...responseData._embedded.module};
+      const moduleArray = { ...responseData._embedded.module };
 
       for (const key in moduleArray) {
         loadedCourses.push({
@@ -78,12 +95,30 @@ const EmployeeCourseInterface = (props) => {
       setHttpError(error.message);
     });
 
-      setTimeout(() => {
-        setDownloadCertificate(false);
-        setCheck(true)
-     }, pre_timer);
+    setTimeout(() => {
+      setDownloadCertificate(false);
+      setCheck(true)
+      Axios.post(url, {
+        courseId: course_id,
+        employeeId: emp_id,
+        // completed_date: date1
+      },
+        {
+          headers: {
+            'Authorization': token
+          }
+        })
 
- 
+        .then(res => {
+          if (res.data != null) {
+            alert("Course Completed Successfully!")
+          }
+          console.log(res.data)
+        })
+
+    }, pre_timer);
+
+
 
   }, []);
 
@@ -103,73 +138,73 @@ const EmployeeCourseInterface = (props) => {
     );
   }
 
-  
 
-const hideCartHandler = () => {
-  setChecked(false);
-};
+
+  const hideCartHandler = () => {
+    setChecked(false);
+  };
 
 
   const handleChange = () => {
     setChecked(true);
   }
 
-  const videoLinkHandler = (link1)=>{
-   
+  const videoLinkHandler = (link1) => {
+
     setLink(link1)
   }
 
- 
+
 
   const courseModuleList = modules.map((module) => (
     <EmployeeCourseModuleList
-      videooLink = {videoLinkHandler}
+      videooLink={videoLinkHandler}
       key={module.id}
       id={module.moduleId}
       name={module.name}
     />
-    ));
+  ));
 
   return (
     <section className={classes.page}>
       <div className={classes.cert}>
-          <h3>Modules
-            {check && 
+        <h3>Modules
+          {check &&
             <img src={complete} />
-            }
-          </h3>
-          <Button onClick={handleChange} disabled={downloadCertificate}>Download Certificate</Button>
-          {checked &&
+          }
+        </h3>
+        <Button onClick={handleChange} disabled={downloadCertificate}>Download Certificate</Button>
+        {checked &&
           <div className="certt">
             <Modal onClose={cartIsShown}>
               <div className={classes.close}>
-                <Button onClick={hideCartHandler}><img src={close}/></Button>
+                <Button onClick={hideCartHandler}><img src={close} /></Button>
               </div>
-              <Certificate  name={Username}
-                            courseName={course_name}/>
+              <Certificate name={Username}
+                courseName={course_name} />
             </Modal>
-        </div>
+          </div>
         }
       </div>
       {/* onClick={downloadHandler} */}
       <div className={classes.rating}>
         <CourseRating />
       </div>
-    
-    <section className={classes.courses}>
-      <ul>{courseModuleList}</ul>     
-    <section className={classes.aa}>
-      <iframe src={link}
+
+      <section className={classes.courses}>
+        <ul>{courseModuleList}</ul>
+        <section className={classes.aa}>
+          <iframe src={link}
             // onClick={clickHandler}
             className={classes.player}
             autoplay
             allowFullScreen="true">
-      </iframe>
+          </iframe>
+        </section>
+      </section>
+
+
     </section>
-  </section>
-  
-  
-</section>
   );
 }
 

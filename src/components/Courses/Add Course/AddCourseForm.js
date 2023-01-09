@@ -103,12 +103,16 @@ function submitCategory(e1){
 
   .then(res=>{
     if(res.data != null){
-      message.success("Course category added successfully!")
+      message.success("Course category added successfully!");
+      setCategoryData({
+        categoryName:""
+    })
     }
     console.log(res.data)
   })
 
   setAddNewCategory(false);
+  
 }
 
 ////////////////////////////// GET COURSE /////////////////////////////
@@ -150,7 +154,7 @@ function submitCategory(e1){
 
 //////////////////POST COURSE////////////////////////
 
-const url_course = "http://localhost:8080/api/add-course/add";
+const url_course = "http://localhost:8080/api/course/add-course";
 const [courseData,setCourseData] = useState({
         categoryId:"",
         course_name:"",
@@ -190,6 +194,13 @@ function submitCourse(e2){
   .then(res=>{
     if(res.data != null){
       message.success("Course added successfully!")
+      setCourseData({
+        categoryId:"",
+        course_name:"",
+        course_description:"",
+        course_imageUrl:"",
+        course_duration:""
+      })
     }
     console.log("hb"+res.data)
   })

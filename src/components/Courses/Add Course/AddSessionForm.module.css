@@ -22,6 +22,13 @@
     text-align: right;
 }
 
+.individual1 label{
+    margin-right: 0.3rem;
+    display: inline-block;
+    width: 200px;
+    text-align: right;
+}
+
 .individual input {
     border: 1px solid grey;
     border-radius: 10px;
@@ -31,12 +38,22 @@
     width: 20rem;
 }
 
+.individual1 input {
+    border: 1px solid grey;
+    border-radius: 10px;
+    padding: 0.3rem 0;
+    margin: 0.5rem 0;
+    padding-left: 2rem;
+    width: 18.5rem;
+}
+
 .individual label::after {
     content: "*";
     opacity: 0.8;
     color: rgb(246, 94, 94);
     margin-left: 0.1rem;
 }
+
 
 .individual textarea{
     border: 1px solid grey;
@@ -99,4 +116,9 @@
     margin: 0.5rem 0;
     padding-left: 0.5rem;
     width: 20rem;
+}
+
+.individual1 span{
+    position: relative;
+    left: 20px;
 }
