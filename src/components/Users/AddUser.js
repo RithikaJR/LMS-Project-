@@ -13,12 +13,16 @@ const AddUser =()=> {
     const [enteredrole, setenteredrole] = useState(2);
     const [employeeIdErrorMessage, setemployeeIdErrorMessage] = useState('')
 
+    const [formIsValid, setFormIsValid] = useState(false);
+
+
     useEffect(() =>{
         const identifier =setTimeout(() =>{
           console.log("Validity Check");
           
           if(enterempid !=='' && /[0-9]/.test(enterempid)){
             setemployeeIdErrorMessage('')
+            setFormIsValid(true)
         }
             
         }, 500)
@@ -43,6 +47,7 @@ const ValidateEnterempid = () =>{
     if(!/[0-9]/.test(enterempid))
     {
         setemployeeIdErrorMessage("Please only enter numeric characters (Allowed input:0-9)")
+        setFormIsValid(false)
     } else if(enterempid === ''){
         setemployeeIdErrorMessage("Employee Id Cannot be empty")
     }     
@@ -99,6 +104,7 @@ let submitHandler = async (e) => {
 
             <Button
                 type="submit" onSubmit ={submitHandler} 
+                disabled={!formIsValid}
                 className="btn btn-primary">Submit
             </Button>
         </form>
